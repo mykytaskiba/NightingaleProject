@@ -10,7 +10,7 @@
 # Build results
 [Dd]ebug/
 [Rr]elease/
-x64/
+## x64/
 ARM/
 build/
 [Oo]ut/
