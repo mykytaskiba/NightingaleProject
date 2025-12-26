@@ -15,7 +15,7 @@ ARM/
 build/
 [Oo]ut/
 *.build.log
-*.lib
+## *.lib
 *.obj
 ## *.dll for now?
 *.exe
@@ -44,16 +44,16 @@ build/
 *.VC.opendb
 
 # Project/Solution files
-*.sln
-*.vcxproj
-*.vcxproj.filters
-*.vgdbsettings
-*.dtproj
-*.shproj
-*.vbproj
-*.csproj
-*.fsproj
-*.metaproj
+##*.sln
+##*.vcxproj
+##*.vcxproj.filters
+##*.vgdbsettings
+##*.dtproj
+##*.shproj
+##*.vbproj
+##*.csproj
+##*.fsproj
+##*.metaproj
 
 # Miscellaneous
 .vs/            # Visual Studio 2017+ .vs directory
