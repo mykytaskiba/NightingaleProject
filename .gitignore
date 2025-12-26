@@ -17,7 +17,7 @@ build/
 *.build.log
 *.lib
 *.obj
-*.dll
+## *.dll for now?
 *.exe
 *.manifest
 *.pdb
@@ -63,3 +63,4 @@ ipch/           # Visual Studio 2010+
 *.wmv
 *.avi
 # ... and more specific files from the GitHub templates
+*.ipch
