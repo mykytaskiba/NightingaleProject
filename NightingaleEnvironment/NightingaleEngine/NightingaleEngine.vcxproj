@@ -210,7 +210,7 @@
     <ClInclude Include="Code\vector.h" />
     <ClInclude Include="Code\window.h" />
     <ClInclude Include="Code\key_enum.h" />
-    <ClInclude Include="Code\engine_setup_package.h" />
+    <ClInclude Include="Code\engine_settings.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

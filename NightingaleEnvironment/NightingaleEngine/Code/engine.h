@@ -10,7 +10,7 @@
 #include "camera.h"
 #include "asset_manager.h"
 #include "console.h"
-#include "engine_setup_package.h"
+#include "engine_settings.h"
 
 #define DEFAULT_FPS_COUNT 30 
 

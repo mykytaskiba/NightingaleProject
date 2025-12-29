@@ -459,7 +459,7 @@
     <ClInclude Include="Code\key_enum.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Code\engine_setup_package.h">
+    <ClInclude Include="Code\engine_settings.h">
       <Filter>Header Files\Setup</Filter>
     </ClInclude>
   </ItemGroup>
