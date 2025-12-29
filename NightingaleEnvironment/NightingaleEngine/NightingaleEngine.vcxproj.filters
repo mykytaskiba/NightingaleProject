@@ -83,6 +83,9 @@
     </Filter>
     <Filter Include="Source Files\Rendering\Skeleton">
     </Filter>
+    <Filter Include="Header Files\Setup">
+      <UniqueIdentifier>{1243eb7c-61a4-4be3-8e8b-3d673afd9307}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\main.cpp">
@@ -122,9 +125,6 @@
       <Filter>Source Files\Logic</Filter>
     </ClCompile>
     <ClCompile Include="Code\frame_controller.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\time.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Code\debug_ui.cpp">
@@ -324,9 +324,6 @@
     <ClInclude Include="Code\frame_controller.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Code\time.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Code\debug_ui.h">
       <Filter>Header Files\IMGUI</Filter>
     </ClInclude>
@@ -458,6 +455,12 @@
     </ClInclude>
     <ClInclude Include="Code\color.h">
       <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\key_enum.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\engine_setup_package.h">
+      <Filter>Header Files\Setup</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

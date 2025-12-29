@@ -5,13 +5,13 @@
 
 class ConsoleCommand;
 
-//Way to interact with the engine
-class Console : public GameObject {
+class Console {
     friend class HelpCommand;
     friend class ConsoleCommand;
+    friend class Engine;
 public:
-        //static context execute command
-   static ExecutionResult ExecuteFromString(string command);
+    //static context execute command
+    static ExecutionResult ExecuteFromString(string command);
 
 protected:
 
@@ -29,7 +29,7 @@ protected:
 
     map<string, ConsoleCommand*> m_commandMap;
 
-    
+
     void registerAllCommands();
     void registerSingleCommand(ConsoleCommand* command);
 
@@ -44,5 +44,4 @@ protected:
     virtual void init();
     virtual void tick();
     virtual void shutdown();
-
 };

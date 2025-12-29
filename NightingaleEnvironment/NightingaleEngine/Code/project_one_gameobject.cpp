@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "project_one_gameobject.h"
 #include "engine_functions.h"
-#include "time.h"
 #include "render_skinned.h"
 #include "asset_manager.h"
 #include "input.h"
@@ -48,7 +47,7 @@ void ProjectOneGameObject::tick()
 
     ImGui::Begin("ControlPanel");
 
-    float FPS = 1.0f / Time::GetDelta();
+    float FPS = 1.0f / EngineFunctions::DeltaTime();
     //FPS Estimation
     ImGui::Text("FrameRate: %.1f", FPS);
 
@@ -93,7 +92,7 @@ void ProjectOneGameObject::tick()
     }
 
     if(m_bPlaying) {
-        m_tValue += Time::GetDelta() * m_playbackSpeed;
+        m_tValue += EngineFunctions::DeltaTime() * m_playbackSpeed;
         while (m_tValue > 1.0f) {
             m_tValue += -1.0f;
             if (m_currentAnimation == m_pAnimKick) {
@@ -203,7 +202,7 @@ void ProjectOneGameObject::extras()
         movement = movement[0] * right + movement[2] * forward;
 
         movement.normalize_equal();
-        getTransform().position += movement * m_movementSpeed * Time::GetDelta();
+        getTransform().position += movement * m_movementSpeed * EngineFunctions::DeltaTime();
         
         if (m_bCameraFollowPlayer) {
             CameraController::s_instance->setPosition(getTransform().position);

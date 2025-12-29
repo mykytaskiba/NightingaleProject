@@ -7,7 +7,7 @@
 #include "render_shader.h"
 #include "project_one_gameobject.h"
 #include "render_skinned.h"
-#include "time.h"
+#include "engine_functions.h"
 
 
 void ProjectThreeRenderHook::render(GraphicsContext& context)
@@ -107,7 +107,7 @@ void ProjectThree::tick()
         m_IKTarget = m_IKevaluator.endEffector();
 
         Vector3 toTarget = m_realTarget - m_IKTarget;
-        float maxMoveThisFrame = m_smoothMoveSpeed * Time::GetDelta();
+        float maxMoveThisFrame = m_smoothMoveSpeed * EngineFunctions::DeltaTime();
         if (toTarget.magnitude() > maxMoveThisFrame) {
             toTarget.normalize_equal() *= maxMoveThisFrame;
         }

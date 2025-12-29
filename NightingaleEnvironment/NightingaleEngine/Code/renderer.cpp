@@ -11,7 +11,6 @@
 #include "matrix.h"
 #include "render_shader.h"
 #include "termination.h"
-#include "time.h"
 #include "loader.h"
 #include "mesh.h"
 #include "input.h"

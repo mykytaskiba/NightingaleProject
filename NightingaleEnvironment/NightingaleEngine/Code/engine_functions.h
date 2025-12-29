@@ -31,4 +31,6 @@ public:
     static int ScreenWidth();
     static int ScreenHeight();
 
+    static time_type DeltaTime();
+
 };

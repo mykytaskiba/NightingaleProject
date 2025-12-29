@@ -24,3 +24,8 @@ void FrameController::setTargetFrameRate(uint target)
 	assert(target != 0);
 	m_targetFrameRate = 1.0 / ((time_type)target);
 }
+
+FrameController::FrameController(uint targetFrameRate)
+{
+	setTargetFrameRate(targetFrameRate);
+}

@@ -10,11 +10,11 @@ public:
     
     static bool compileShader(const char* vertexShader, const char* fragmentShader, GL_Shader& outShader);
 
-    GL_Shader() : m_shaderHandle(GL_INVALID_INDEX) {}
+    GL_Shader();
 
-    bool isValid() { return m_shaderHandle == GL_INVALID_INDEX; }
+    bool isValid();
 
-    void activate() { glUseProgram(m_shaderHandle); }
+    void activate();
 
 private:
 
@@ -27,13 +27,7 @@ private:
     };
 
 
-    static uint shaderTypeToGL(ShaderType shaderType) {
-        switch (shaderType) {
-        case ShaderType::VERTEX_SHADER: return GL_VERTEX_SHADER;
-        case ShaderType::FRAGMENT_SHADER: return GL_FRAGMENT_SHADER;
-        case ShaderType::COMPUTE_SHADER: return GL_COMPUTE_SHADER;
-        }
-    }
+    static uint shaderTypeToGL(ShaderType shaderType);
     static bool verifyShaderSuccess(uint shaderID, uint operationType);
     static bool compileShader(ShaderType type, const char* source, GL_Shader& outShader);
 

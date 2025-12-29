@@ -5,11 +5,13 @@
 #include <filesystem>
 #include <math.h>
 #include <numbers>
+#include <cstddef>
 
 //Common used types
 using string = std::string;
 using uint = unsigned int;
 using byte = std::byte;
+using time_type = double;
 
 
 using ifstream = std::ifstream;

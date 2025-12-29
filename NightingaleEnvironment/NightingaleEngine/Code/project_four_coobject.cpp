@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "project_four_coobject.h"
 #include "engine_internals.h"
-#include "time.h"
 #include "project_one_gameobject.h"
+#include "engine_functions.h"
 
 ProjectFour::ProjectFour(ProjectOneGameObject& projectOne) : m_projectOne(projectOne), m_renderHook(*this)
 {
@@ -61,7 +61,7 @@ void ProjectFour::tick()
 
 
     if (m_bSimulate) {
-        physicsTick(Time::GetDelta());
+        physicsTick(EngineFunctions::DeltaTime());
     }
 }
 

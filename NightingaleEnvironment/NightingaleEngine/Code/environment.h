@@ -2,7 +2,8 @@
 
 namespace afterparty {
 
-    class Environment {
+
+    class AfterpartyEnvironment {
 
     };
 

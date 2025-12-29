@@ -1,9 +1,7 @@
 #include "pch.h"
 #include "camera_controller.h"
-
 #include "engine_functions.h"
 #include "input.h"
-#include "time.h"
 #include "camera.h"
 
 CameraController* CameraController::s_instance = nullptr;
@@ -33,8 +31,8 @@ void CameraController::tick()
 {
 
     if (Input::MouseDown(MouseButton::Right)) {
-        Matrix4x4 rotationDeltaY = Matrix4x4::CreateRotationY(m_rotationSpeed * Time::GetDelta() * Input::MouseDelta()[0]);
-        Matrix4x4 rotationDeltaX = Matrix4x4::CreateRotationX(m_rotationSpeed * Time::GetDelta() * Input::MouseDelta()[1]);
+        Matrix4x4 rotationDeltaY = Matrix4x4::CreateRotationY(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[0]);
+        Matrix4x4 rotationDeltaX = Matrix4x4::CreateRotationX(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[1]);
         m_rotationY = rotationDeltaY * m_rotationY;
         m_rotationX = rotationDeltaX * m_rotationX;
 
@@ -61,7 +59,7 @@ void CameraController::tick()
             rightVec.normalize_equal();
 
             Vector3 moveDelta = forwardVec * Input::MouseDelta()[1] + rightVec * Input::MouseDelta()[0];
-            moveDelta *= Time::GetDelta();
+            moveDelta *= EngineFunctions::DeltaTime();
             m_position += moveDelta;
         }
     }

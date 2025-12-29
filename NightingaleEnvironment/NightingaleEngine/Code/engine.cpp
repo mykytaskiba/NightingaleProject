@@ -3,38 +3,39 @@
 #include "engine.h"
 #include "logger.h"
 #include "termination.h"
-#include "time.h"
 
 #include "engine_internals.h"
 #include "console.h"
 #include "engine_functions.h"
 
 
+
+EngineSettings& Engine::settings()
+{
+    return m_settings;
+}
+
 void Engine::run()
 {
-    wakeUp();
-
     init();
 
     update();
 
     shutdown();
-
-
-
 }
 
-void Engine::wakeUp()
+Engine::Engine()
 {
-    //Logger::SetLoggingStatus(LoggerStatus::LOG_FULL);
-    //Logger::Log("Nightingale Engine has woken up");
+    setDefaultSettings();
 }
+
 
 void Engine::init()
 {
     EngineInternals::init(*this);
 
     m_window.init();
+    m_window.setTitle(m_settings.window_title);
 
     m_frameController.setTargetFrameRate(60);
 
@@ -44,13 +45,12 @@ void Engine::init()
 
     m_scene.init();
 
-    EngineFunctions::InstantiateGameObject<Console>();
-    m_scene.tick(); //tick once so the console is created
+    m_console.init();
     
-    ExecutionResult result = Console::ExecuteFromString("cpack data/load.cpack");
-    assert(result.bSuccess);
+    loadCommands();
 
     m_renderer.init();
+
 
 }
 
@@ -65,7 +65,8 @@ void Engine::update()
         m_debugUI.newFrame();
         m_input.captureInputState();
 
-        m_scene.tick();
+        m_scene.tick(); 
+        m_console.tick();
 
 
         m_renderer.render();
@@ -74,7 +75,6 @@ void Engine::update()
         m_window.update();
 
         m_frameController.frameEnd();
-        Time::s_delta = m_frameController.getDeltaTime();
         
 
     }
@@ -83,8 +83,22 @@ void Engine::update()
 void Engine::shutdown()
 {
     m_scene.shutdown();
+    m_console.shutdown();
     m_input.shutdown();
     m_debugUI.shutdown();
     m_renderer.shutdown();
     m_window.shutdown();
+}
+
+void Engine::loadCommands()
+{
+    for (string const command : m_settings.load_commands) {
+        ExecutionResult result = Console::ExecuteFromString(command);
+        assert(result.bSuccess);
+    }
+}
+
+void Engine::setDefaultSettings()
+{
+    m_settings.window_title = "Nightingale Engine";
 }

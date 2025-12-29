@@ -7,8 +7,8 @@
 #include "mesh.h"
 #include "render_shader.h"
 #include "defines.h"
-#include "time.h"
 #include "project_one_gameobject.h"
+#include "engine_functions.h"
 
 ProjectTwo::ProjectTwo(ProjectOneGameObject& projectOne) : m_projectOne(projectOne), m_renderHook(*this)
 {
@@ -63,7 +63,7 @@ void ProjectTwo::tick()
 
         m_curveLengthSpeedFactor = m_arcLengthTable.getTotalLength() / 200.0f; //magic number in this case
 
-        m_tDistValue += m_travelSpeed * 1.0f/m_curveLengthSpeedFactor * Time::GetDelta();
+        m_tDistValue += m_travelSpeed * 1.0f / m_curveLengthSpeedFactor * EngineFunctions::DeltaTime();
         if (m_tDistValue >= 1.0f) {
             m_tDistValue = 1.0f;
             m_bPlaybackActive = false;

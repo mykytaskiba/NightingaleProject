@@ -1,14 +1,10 @@
 #pragma once
 #include "defines.h"
 
-using time_type = double;
-
+//time_type defined in defines
 class FrameController {
 
 public:
-    FrameController(uint targetFrameRate) {
-        setTargetFrameRate(targetFrameRate);
-    }
     ~FrameController() {}
 
     FrameController(FrameController const&) = delete;
@@ -18,6 +14,8 @@ public:
     void frameEnd();
 
     void setTargetFrameRate(uint target);
+
+    FrameController(uint targetFrameRate);
 
     time_type getDeltaTime() { return m_deltaTime; }
 

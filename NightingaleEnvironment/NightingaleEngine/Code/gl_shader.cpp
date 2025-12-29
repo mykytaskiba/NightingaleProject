@@ -3,6 +3,7 @@
 
 #include "gl_shader.h"
 #include "gl_shader_uniform.h"
+#include <GL/glew.h>
 
 
 void GL_Shader::releaseShader()
@@ -36,6 +37,27 @@ bool GL_Shader::compileShader(const char* vertexShaderSource, const char* fragme
 
     outShader.m_shaderHandle = shaderProgram;
     return true;
+}
+
+GL_Shader::GL_Shader() : m_shaderHandle(GL_INVALID_INDEX) {}
+
+bool GL_Shader::isValid()
+{
+    return m_shaderHandle == GL_INVALID_INDEX;
+}
+
+void GL_Shader::activate()
+{
+    glUseProgram(m_shaderHandle);
+}
+
+uint GL_Shader::shaderTypeToGL(ShaderType shaderType)
+{
+    switch (shaderType) {
+    case ShaderType::VERTEX_SHADER: return GL_VERTEX_SHADER;
+    case ShaderType::FRAGMENT_SHADER: return GL_FRAGMENT_SHADER;
+    case ShaderType::COMPUTE_SHADER: return GL_COMPUTE_SHADER;
+    }
 }
 
 bool GL_Shader::verifyShaderSuccess(uint shaderID, uint operationType)

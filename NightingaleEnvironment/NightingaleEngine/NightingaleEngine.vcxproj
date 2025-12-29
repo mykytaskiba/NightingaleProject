@@ -40,7 +40,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -206,10 +206,11 @@
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />
     <ClInclude Include="Code\termination.h" />
-    <ClInclude Include="Code\time.h" />
     <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Code\vector.h" />
     <ClInclude Include="Code\window.h" />
+    <ClInclude Include="Code\key_enum.h" />
+    <ClInclude Include="Code\engine_setup_package.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -261,7 +262,6 @@
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />
     <ClCompile Include="Code\termination.cpp" />
-    <ClCompile Include="Code\time.cpp" />
     <ClCompile Include="Code\transform.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Lib\imgui-master\backends\imgui_impl_glfw.cpp">

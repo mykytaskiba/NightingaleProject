@@ -8,7 +8,7 @@ void Window::init()
 {
     GL::init();
 
-    m_window = GL::createWindow(800, 600, "NightingGale Engine");
+    m_window = GL::createWindow(800, 600, "No Title Set");
 
     glfwSetFramebufferSizeCallback(m_window.pWindow, resizeCallback);
 
@@ -35,6 +35,11 @@ void Window::update()
 
 void Window::shutdown()
 {
+}
+
+void Window::setTitle(string const& windowTitle)
+{
+    glfwSetWindowTitle(m_window.pWindow, windowTitle.c_str());
 }
 
 void Window::resizeCallback(GLFWwindow* window, int width, int height)

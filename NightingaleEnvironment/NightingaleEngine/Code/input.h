@@ -1,31 +1,9 @@
 #pragma once
 #include "vector.h"
+#include "assert_define.h"
+#include "key_enum.h"
 
-enum class MouseButton {
-    Left = 0,
-    Right = 1,
-    Middle = 2
-};
 
-//Keys that are used must be registed here
-enum class Key {
-    Tilda = ImGuiKey_GraveAccent,
-    Enter = ImGuiKey_Enter,
-    Shift = ImGuiKey_LeftShift,
-
-    UpArrow = ImGuiKey_UpArrow,
-    DownArrow = ImGuiKey_DownArrow,
-
-    W = ImGuiKey_W,
-    A = ImGuiKey_A,
-    S = ImGuiKey_S,
-    D = ImGuiKey_D,
-    F = ImGuiKey_F,
-    C = ImGuiKey_C,
-    X = ImGuiKey_X,
-    Z = ImGuiKey_Z
-
-};
 
 class Input {
     //for simplicity, input is currently retrieved from IMGUI state
@@ -54,8 +32,8 @@ private:
 
     static Input* s_pInput;
 
-    static uint const MOUSE_BUTTON_STATES_TO_CAPTURE = 3;
-    static uint const KEY_BUTTON_STATES_TO_CAPTURE = ImGuiKey_NamedKey_COUNT;
+    static uint const MOUSE_BUTTON_STATES_TO_CAPTURE = 3u;
+    static uint const KEY_BUTTON_STATES_TO_CAPTURE = 155u;//ImGuiKey_NamedKey_COUNT (TO DO): Eventually remove dependency on IMGUI?
 
     float m_mouseWheelScroll;
     Vector2 m_mousePos;
