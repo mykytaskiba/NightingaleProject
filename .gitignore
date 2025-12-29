@@ -64,3 +64,6 @@ ipch/           # Visual Studio 2010+
 *.avi
 # ... and more specific files from the GitHub templates
 *.ipch
+
+## Ignore each of the project copies of the core data
+/NightingaleEnvironment/SampleApp/data/core/

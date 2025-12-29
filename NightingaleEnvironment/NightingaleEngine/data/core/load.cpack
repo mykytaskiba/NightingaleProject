@@ -1,16 +1,16 @@
 @clearlog
 @enablelog true
 
-shader_load main_shader data/shader/main.vert data/shader/main.frag
+shader_load main_shader data/core/shader/main.vert data/core/shader/main.frag
 @verify
 
-shader_load anim_shader data/shader/animated.vert data/shader/main.frag
+shader_load anim_shader data/core/shader/animated.vert data/core/shader/main.frag
 @verify
 
-shader_load unlit_shader data/shader/main.vert data/shader/unlit.frag
+shader_load unlit_shader data/core/shader/main.vert data/core/shader/unlit.frag
 @verify
 
-shader_load line_shader data/shader/line.vert data/shader/line.frag
+shader_load line_shader data/core/shader/line.vert data/core/shader/line.frag
 @verify
 
 load_scale 0.01
