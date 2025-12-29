@@ -101,4 +101,6 @@ void Engine::loadCommands()
 void Engine::setDefaultSettings()
 {
     m_settings.window_title = "Nightingale Engine";
+
+    m_settings.load_commands.push_back("cpack data/core/load.cpack");
 }
