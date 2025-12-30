@@ -7,6 +7,7 @@
 #include "engine_functions.h"
 #include "asset_manager.h"
 
+/*
 ExecutionResult ShaderLoadCommand::execute(string args, ExecutionState& state)
 {
     string shaderName = nextArg(args);
@@ -195,3 +196,4 @@ ExecutionResult AnimationLoadCommand::execute(string args, ExecutionState& state
     result.bSuccess = true;
     return result;
 }
+*/

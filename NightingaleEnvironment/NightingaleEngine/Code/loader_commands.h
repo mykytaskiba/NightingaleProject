@@ -3,6 +3,7 @@
 #include "console_command.h"
 #include "core_commands.h"
 
+/*
 class ShaderLoadCommand : public ConsoleCommand {
 public:
     ShaderLoadCommand() : ConsoleCommand("shader_load") {}
@@ -35,3 +36,4 @@ public:
 
 };
 
+*/

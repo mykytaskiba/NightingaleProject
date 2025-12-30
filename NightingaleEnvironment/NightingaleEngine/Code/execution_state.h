@@ -2,7 +2,11 @@
 #include "defines.h"
 
 namespace afterparty {
+
+    class AfterpartyEnvironment;
+
     struct ExecutionState {
+
         string lastCommand{ "No command" };
 
         map<string, string> defines{};

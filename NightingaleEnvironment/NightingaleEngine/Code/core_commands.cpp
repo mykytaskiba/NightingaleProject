@@ -2,23 +2,10 @@
 #include "core_commands.h"
 #include "loader.h"
 #include "console.h"
+#include "afterparty.h"
+#include "argument.h"
 
-
-ExecutionResult EchoCommand::execute(string args, ExecutionState& state)
-{
-    ExecutionResult result;
-    result.bSuccess = true;
-    result.message = "";
-    
-    string argProcess;
-    do {
-        argProcess = nextArg(args);
-        result.message += argProcess + " ";
-
-    } while (args != "");
-
-    return result;
-}
+/*
 
 ExecutionResult CPackCommand::execute(string args, ExecutionState& state)
 {
@@ -222,5 +209,18 @@ ExecutionResult ShowErrorLogCommand::execute(string args, ExecutionState& state)
     result.bSuccess = true;
     result.message = state.errorLog;
     return result;
-}
+}*/
 
+void EchoCommand::execute(string args, ExecutionState& state, ExecutionResult& result)
+{
+    result.bSuccess = true;
+    result.message = "";
+    bool b1;
+    float f1;
+    float f2;
+    string echoString;
+
+    if (!verifyArgumentResult(Argument::extractArgs(args, b1, f1, f2, echoString), result)) return;
+
+    result.message = echoString;
+}

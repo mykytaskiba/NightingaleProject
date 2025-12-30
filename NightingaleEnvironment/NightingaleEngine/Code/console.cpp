@@ -6,6 +6,7 @@
 #include "loader_commands.h"
 #include "gameobject_commands.h"
 
+/*
 Console* Console::pConsole = nullptr;
 
 ExecutionResult Console::ExecuteFromString(string args)
@@ -13,7 +14,6 @@ ExecutionResult Console::ExecuteFromString(string args)
     assert(pConsole != nullptr);
     return pConsole->executeCommand(args);
 }
-
 void Console::registerAllCommands()
 {
     //Console is ready when the commands are registered, so the singleton can be registered here
@@ -50,22 +50,22 @@ void Console::registerAllCommands()
     registerSingleCommand(new SetScaleCommand());
     aliasCommand("setpos", new SetPositionCommand());
     registerSingleCommand(new SetColorCommand());
-}
-
+}*/
+/*
 void Console::registerSingleCommand(ConsoleCommand* command)
 {
     assert(command != nullptr);
     m_commandMap[command->getCommand()] = command;
-}
-
+}*/
+/*
 void Console::aliasCommand(string alias, ConsoleCommand* command)
 {
 
     assert(command != nullptr);
     m_commandMap[alias] = command;
 
-}
-
+}*/
+/*
 ExecutionResult Console::executeCommand(string args)
 {
     if (args.size() == 0) {
@@ -101,17 +101,11 @@ ExecutionResult Console::executeCommand(string args)
     m_executionState.verify();
 
     return result;
-}
+}*/
 
 
 void Console::init()
 {
-    m_consoleShown = false;
-    m_consoleHeight = 300;
-    m_consoleMessage = "";
-    m_executedCommandBrowser = 0;
-
-    registerAllCommands();
 }
 
 void Console::tick()
@@ -172,13 +166,13 @@ void Console::tick()
 
         if (commandEntered) {
             string fullCommand = string(m_consoleBuffer);
-            ExecutionResult executionResult = executeCommand(fullCommand);
-            if (executionResult.bSuccess) {
-                m_consoleBuffer.clear();
-                m_executedCommands.push_back(fullCommand);
-                m_executedCommandBrowser = 0;
-            }
-            m_consoleMessage = executionResult.message;
+            //ExecutionResult executionResult = executeCommand(fullCommand);
+            //if (executionResult.bSuccess) {
+             //   m_consoleBuffer.clear();
+             //   m_executedCommands.push_back(fullCommand);
+             //   m_executedCommandBrowser = 0;
+            //}
+            //m_consoleMessage = executionResult.message;
         }
     }
 }

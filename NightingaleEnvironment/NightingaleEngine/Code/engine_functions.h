@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include "afterparty.h"
 
 class GameObject;
 class Camera;
@@ -32,5 +33,7 @@ public:
     static int ScreenHeight();
 
     static time_type DeltaTime();
+
+    static ExecutionResult ExecuteCommand(string const&);
 
 };

@@ -1,20 +1,20 @@
 #pragma once
-#include "console_command.h"
+#include "command.h"
+#include "afterparty.h"
 
-
-class EchoCommand : public ConsoleCommand {
+class EchoCommand : public AfterpartyCommand {
 public:
-    EchoCommand() : ConsoleCommand("echo") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    EchoCommand() : AfterpartyCommand("echo") {}
+    virtual void execute(string args, ExecutionState& state, ExecutionResult& result) override;
 };
-
-//a cpack is a console pack
+/*
 class CPackCommand : public ConsoleCommand {
 public:
     CPackCommand() : ConsoleCommand("cpack") {}
     virtual ExecutionResult execute(string args, ExecutionState& state);
 };
 
+/*
 //verify last command was successful
 class VerifyCommand : public ConsoleCommand {
 public:
@@ -77,3 +77,4 @@ public:
     ShowErrorLogCommand() : ConsoleCommand("@showerror") {}
     virtual ExecutionResult execute(string args, ExecutionState& state);
 };
+*/

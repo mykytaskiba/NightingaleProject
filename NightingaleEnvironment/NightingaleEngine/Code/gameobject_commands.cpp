@@ -10,6 +10,7 @@
 #include "render_skinned.h"
 #include "color.h"
 
+/*
 ExecutionResult CreateGameObjectCommand::execute(string args, ExecutionState& state)
 {
     string type = nextArg(args);
@@ -119,13 +120,7 @@ ExecutionResult SetScaleCommand::execute(string args, ExecutionState& state)
     float scale, y, z;
     if (!nextFloat(args, scale)) {
         return result;
-    }/*
-    if (!nextFloat(args, y)) {
-        return result;
     }
-    if (!nextFloat(args, z)) {
-        return result;
-    }*/
 
     state.pGameObject->getTransform().scale = scale;
 
@@ -208,3 +203,4 @@ ExecutionResult SetColorCommand::execute(string args, ExecutionState& state)
 
     return result;
 }
+*/

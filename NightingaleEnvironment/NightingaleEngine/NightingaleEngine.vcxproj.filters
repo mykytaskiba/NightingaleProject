@@ -86,6 +86,15 @@
     <Filter Include="Header Files\Setup">
       <UniqueIdentifier>{1243eb7c-61a4-4be3-8e8b-3d673afd9307}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CoreConsoleCommands">
+      <UniqueIdentifier>{2c371785-5bca-44ba-b6c7-b44fb8b65f10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\CoreConsoleCommands">
+      <UniqueIdentifier>{7c499021-1566-4c4b-a958-711df108281a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine Data">
+      <UniqueIdentifier>{285b15ec-9c42-4e83-93e8-1054573cacef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\main.cpp">
@@ -262,6 +271,18 @@
     <ClCompile Include="Lib\imgui-master\misc\cpp\imgui_stdlib.cpp">
       <Filter>Source Files\IMGUI\lib</Filter>
     </ClCompile>
+    <ClCompile Include="Code\environment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\default_console_commands.cpp">
+      <Filter>Engine Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\argument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -372,9 +393,6 @@
     <ClInclude Include="Code\console_command.h">
       <Filter>Header Files\Console</Filter>
     </ClInclude>
-    <ClInclude Include="Code\core_commands.h">
-      <Filter>Header Files\Console</Filter>
-    </ClInclude>
     <ClInclude Include="Code\asset_manager.h">
       <Filter>Header Files\AssetManagement</Filter>
     </ClInclude>
@@ -461,6 +479,15 @@
     </ClInclude>
     <ClInclude Include="Code\engine_settings.h">
       <Filter>Header Files\Setup</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\execution_state.h">
+      <Filter>Header Files\Afterparty</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\execution_result.h">
+      <Filter>Header Files\Afterparty</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\core_commands.h">
+      <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

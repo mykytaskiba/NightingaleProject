@@ -11,8 +11,10 @@
 #include "asset_manager.h"
 #include "console.h"
 #include "engine_settings.h"
+#include "afterparty.h"
 
 #define DEFAULT_FPS_COUNT 30 
+
 
 class Engine {
     friend class EngineInternals;
@@ -31,16 +33,19 @@ private:
     void update();
     void shutdown();
 
+    void registerConsoleCommands();
     void loadCommands();
     
     EngineSettings m_settings;
     void setDefaultSettings();
+    void defaultSettings_CoreCommands();
 
     Window m_window;
     Renderer m_renderer;
     Input m_input;
     DebugUI m_debugUI;
     Console m_console;
+    AfterpartyEnvironment m_scriptEnvironment;
     
     Scene m_scene;
     Camera m_camera; //for now assume a single camera

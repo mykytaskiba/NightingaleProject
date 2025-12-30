@@ -4,6 +4,7 @@
 class GameObject;
 class RenderNode;
 
+/*
 struct ExecutionResult {
     string message{ "No command executed" };
     bool bSuccess{ false };
@@ -51,12 +52,13 @@ struct ExecutionState {
     float popFloat();
     float pushFloat();*/
 
-    //called after execution completed, mainly for logging?
+  /*  //called after execution completed, mainly for logging?
     void verify();
     void appendToLog(string command, string message);
     void appendToError(string command, string message);
-};
+};*/
 
+/*
 class ConsoleCommand {
 
 protected:
@@ -70,7 +72,7 @@ public:
     virtual ExecutionResult execute(string args, ExecutionState& state) { return ExecutionResult(); }
 
 
-    //does not process $defines
+    //does not process $defines 
     static string nextArgRaw(string& args);
 
     static string nextArg(string& args);
@@ -82,5 +84,5 @@ public:
 
     //try to parse next float
     static bool nextFloat(string& args, float& value);
-};
+};*/
 
