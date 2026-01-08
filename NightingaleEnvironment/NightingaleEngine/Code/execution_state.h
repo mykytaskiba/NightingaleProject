@@ -3,7 +3,6 @@
 
 namespace afterparty {
 
-    class AfterpartyEnvironment;
 
     struct ExecutionState {
 

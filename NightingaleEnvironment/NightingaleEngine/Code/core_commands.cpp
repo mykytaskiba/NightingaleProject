@@ -215,12 +215,13 @@ void EchoCommand::execute(string args, ExecutionState& state, ExecutionResult& r
 {
     result.bSuccess = true;
     result.message = "";
-    bool b1;
-    float f1;
-    float f2;
     string echoString;
 
-    if (!verifyArgumentResult(Argument::extractArgs(args, b1, f1, f2, echoString), result)) return;
+    //Repeated pattern for argument extraction
+    if (!verifyArgumentResult(
+        Argument::extractArgs(args, 
+            echoString //<---- arguments go here 
+        ), result)) return;
 
     result.message = echoString;
 }

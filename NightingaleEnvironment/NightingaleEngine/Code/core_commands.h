@@ -7,6 +7,7 @@ public:
     EchoCommand() : AfterpartyCommand("echo") {}
     virtual void execute(string args, ExecutionState& state, ExecutionResult& result) override;
 };
+
 /*
 class CPackCommand : public ConsoleCommand {
 public:
@@ -53,28 +54,4 @@ public:
     virtual ExecutionResult execute(string args, ExecutionState& state);
 };
 
-class EnableLogCommand : public ConsoleCommand {
-public:
-    EnableLogCommand() : ConsoleCommand("@enablelog") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-
-};
-
-class ClearConsoleLogCommand : public ConsoleCommand {
-public:
-    ClearConsoleLogCommand() : ConsoleCommand("@clearlog") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
-
-class ShowConsoleLogCommand : public ConsoleCommand {
-public:
-    ShowConsoleLogCommand() : ConsoleCommand("@showlog") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
-
-class ShowErrorLogCommand : public ConsoleCommand {
-public:
-    ShowErrorLogCommand() : ConsoleCommand("@showerror") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
 */

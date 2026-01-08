@@ -396,9 +396,6 @@
     <ClInclude Include="Code\asset_manager.h">
       <Filter>Header Files\AssetManagement</Filter>
     </ClInclude>
-    <ClInclude Include="Code\loader_commands.h">
-      <Filter>Header Files\Console</Filter>
-    </ClInclude>
     <ClInclude Include="Code\gameobject_commands.h">
       <Filter>Header Files\Console</Filter>
     </ClInclude>
@@ -488,6 +485,12 @@
     </ClInclude>
     <ClInclude Include="Code\core_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\loader_commands.h">
+      <Filter>Header Files\CoreConsoleCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\advanced_arguments.h">
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,10 +1,14 @@
 #pragma once
 #include "defines.h"
 #include "execution_state.h"
+#include "advanced_arguments.h"
 
 namespace afterparty {
 
     class AfterpartyEnvironment;
+
+
+
     struct ArgumentExtractionResult {
 
         string args{}; //args for processing
@@ -13,7 +17,6 @@ namespace afterparty {
         string sampleUsage{};
     };
 
-    //a single argument in a command
     class Argument {
     public:
         static string extractNext(string&);
@@ -32,6 +35,7 @@ namespace afterparty {
         static void extractSingleArg(ArgumentExtractionResult& result, float& arg);
         static void extractSingleArg(ArgumentExtractionResult& result, string& arg);
         static void extractSingleArg(ArgumentExtractionResult& result, bool& arg);
+
 
 
         //terminal function
@@ -107,4 +111,51 @@ namespace afterparty {
         }
 
     };
+
+    template<typename Arg>
+    struct ArgumentTest {
+        
+    };
+
+    template<>
+    struct ArgumentTest<int> {
+        string usage() { return "int"; };
+        void get();
+    };
+
+    template <typename... Args>
+    struct ArgumentList;
+
+    //base specialization
+    template<>
+    struct ArgumentList<> {
+
+    };
+
+    template<typename Arg, typename... Rest>
+    struct ArgumentList<Arg, Rest...> {
+
+        Arg arg;
+        ArgumentList<Rest...> rest;
+
+        Arg const& get() const {
+            return arg;
+        }
+
+        template<int depth>
+        auto get() const {
+            if constexpr (depth == 0) {
+                return get();
+            }
+            if constexpr (depth > 0) {
+                return rest.template get<(depth - 1)>();
+            }
+        }
+
+        string get_usage() const {
+
+        }
+
+    };
+
 }

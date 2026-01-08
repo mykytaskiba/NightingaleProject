@@ -22,6 +22,21 @@ string Argument::extractNextWithDefine(string& args)
 {
     string arg = extractNext(args);
 
+    ArgumentList<int, int, int, float> test;
+    int aaa = sizeof(test);
+
+    test.arg = 1;
+    test.rest.arg = 2.0f;
+    test.rest.rest.arg = 3;
+    test.rest.rest.rest.arg = 5.0f;
+
+    test.get();
+    test.rest.get();
+    int i1 = test.get<0>();
+    int i2 = test.get<1>();
+    int i3 = test.get<2>();
+    float f1 = test.get<3>();
+
     
     if (arg.size() >= 2) {
         bool bDefineSyntax = arg[0] == '$';
@@ -84,4 +99,5 @@ void Argument::extractSingleArg(ArgumentExtractionResult& result, bool& arg)
     result.bSuccess = false;
     result.errorMessage = valueStr + " is not a value for bool type";
 }
+
 

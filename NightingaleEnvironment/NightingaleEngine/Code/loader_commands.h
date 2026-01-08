@@ -1,14 +1,14 @@
 #pragma once
 #include "defines.h"
-#include "console_command.h"
-#include "core_commands.h"
+#include "command.h"
+#include "afterparty.h"
 
-/*
-class ShaderLoadCommand : public ConsoleCommand {
+class ShaderLoadCommand : public AfterpartyCommand {
 public:
-    ShaderLoadCommand() : ConsoleCommand("shader_load") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    ShaderLoadCommand() : AfterpartyCommand("shader_load") {}
+    virtual void execute(string args, ExecutionState& state, ExecutionResult& result) override;
 };
+/*
 
 class MeshLoadCommand : public ConsoleCommand {
 public:
