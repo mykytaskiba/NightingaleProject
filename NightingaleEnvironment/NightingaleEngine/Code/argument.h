@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "execution_state.h"
 #include "advanced_arguments.h"
+#include "argument_impl.h"
 
 namespace afterparty {
 
@@ -9,19 +10,73 @@ namespace afterparty {
 
 
 
-    struct ArgumentExtractionResult {
 
-        string args{}; //args for processing
-        bool bSuccess{ false };
-        string errorMessage{};
-        string sampleUsage{};
+
+    template <typename... Args>
+    struct ArgumentList;
+
+    //base specialization
+    template<>
+    struct ArgumentList<> {
+
+        void get_usage_recur(string& result) const {
+        }
     };
+
+    template<typename Arg, typename... Rest>
+    struct ArgumentList<Arg, Rest...> {
+
+    private:
+        Arg arg;
+        ArgumentList<Rest...> rest;
+
+        Arg const& get() const {
+            return arg;
+        }
+
+        void get_usage_recur(string& result) const {
+            result += " (" + ArgumentExtractor<Arg>::usage() + ")";
+            rest.get_usage_recur(result);
+        }
+
+        void parse_recur(string& args, ParsingResult& result) {
+            ArgumentExtractor<Arg>
+        }
+
+    public:
+
+
+        template<uint depth>
+        auto get() const {
+            if constexpr (depth == 0) {
+                return get();
+            }
+            if constexpr (depth > 0) {
+                return rest.template get<(depth - 1)>();
+            }
+        }
+
+        string get_usage() const {
+            string result = "";
+            get_usage_recur(result);
+            return result;
+        }
+
+        ParsingResult parse(string& args) {
+            ParsingResult result;
+        }
+
+
+    };
+
+}
+
+/*
+
+    /*
 
     class Argument {
     public:
-        static string extractNext(string&);
-        static string extractNextWithDefine(string&);
-
     private:
 
         //Argument extraction
@@ -111,51 +166,4 @@ namespace afterparty {
         }
 
     };
-
-    template<typename Arg>
-    struct ArgumentTest {
-        
-    };
-
-    template<>
-    struct ArgumentTest<int> {
-        string usage() { return "int"; };
-        void get();
-    };
-
-    template <typename... Args>
-    struct ArgumentList;
-
-    //base specialization
-    template<>
-    struct ArgumentList<> {
-
-    };
-
-    template<typename Arg, typename... Rest>
-    struct ArgumentList<Arg, Rest...> {
-
-        Arg arg;
-        ArgumentList<Rest...> rest;
-
-        Arg const& get() const {
-            return arg;
-        }
-
-        template<int depth>
-        auto get() const {
-            if constexpr (depth == 0) {
-                return get();
-            }
-            if constexpr (depth > 0) {
-                return rest.template get<(depth - 1)>();
-            }
-        }
-
-        string get_usage() const {
-
-        }
-
-    };
-
-}
+    */*/

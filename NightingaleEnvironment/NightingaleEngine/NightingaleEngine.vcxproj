@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\argument_impl.h" />
     <ClInclude Include="Code\advanced_arguments.h" />
     <ClInclude Include="Code\afterparty.h" />
     <ClInclude Include="Code\animation.h" />
