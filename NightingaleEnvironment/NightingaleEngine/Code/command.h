@@ -50,6 +50,7 @@ namespace afterparty {
         void execute(string args, ExecutionState& state, ExecutionResult& result) override {
             //m_arguments.parse(args);
             //verify result
+            m_arguments.
         }
     protected:
         virtual void execute_command(ArgumentList<Args> args, ExecutionState& state, ExecutionResult& result) = 0;

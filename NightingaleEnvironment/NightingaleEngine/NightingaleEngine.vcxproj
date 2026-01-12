@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\argument_helpers.h" />
     <ClInclude Include="Code\argument_impl.h" />
     <ClInclude Include="Code\advanced_arguments.h" />
     <ClInclude Include="Code\afterparty.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="Code\animation_evaluator.cpp" />
     <ClCompile Include="Code\arc_length_table.cpp" />
     <ClCompile Include="Code\argument.cpp" />
+    <ClCompile Include="Code\argument_helpers.cpp" />
     <ClCompile Include="Code\camera.cpp" />
     <ClCompile Include="Code\camera_controller.cpp" />
     <ClCompile Include="Code\color.cpp" />
