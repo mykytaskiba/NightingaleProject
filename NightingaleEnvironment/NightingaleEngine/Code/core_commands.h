@@ -1,11 +1,10 @@
 #pragma once
 #include "command.h"
-#include "afterparty.h"
 
-class EchoCommand : public AfterpartyCommand {
+class EchoCommand : public Command<string> {
 public:
-    EchoCommand() : AfterpartyCommand("echo") {}
-    virtual void execute(string args, ExecutionState& state, ExecutionResult& result) override;
+    EchoCommand() : Command<string>("echo") {}
+    virtual void execute_command(ArgumentList<string>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
 /*

@@ -1,22 +1,20 @@
 #pragma once
 #include "defines.h"
 
-namespace afterparty {
 
 
-    struct ExecutionState {
+struct ExecutionState {
 
-        string lastCommand{ "No command" };
+    string lastCommand{ "No command" };
 
-        map<string, string> defines{};
+    map<string, string> defines{};
 
-        //log
-        bool bCreateLog{ false };
-        string log{};
-        string errorLog{};
+    //log
+    bool bCreateLog{ false };
+    string log{};
+    string errorLog{};
 
 
-        //loader values
-        float loaderScale{ 1.0f };
-    };
-}
+    //loader values
+    float loaderScale{ 1.0f };
+};

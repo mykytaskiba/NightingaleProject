@@ -211,17 +211,9 @@ ExecutionResult ShowErrorLogCommand::execute(string args, ExecutionState& state)
     return result;
 }*/
 
-void EchoCommand::execute(string args, ExecutionState& state, ExecutionResult& result)
+
+void EchoCommand::execute_command(ArgumentList<string>& args, ExecutionState& state, ExecutionResult& result)
 {
     result.bSuccess = true;
-    result.message = "";
-    string echoString;
-
-    //Repeated pattern for argument extraction
-    if (!verifyArgumentResult(
-        Argument::extractArgs(args, 
-            echoString //<---- arguments go here 
-        ), result)) return;
-
-    result.message = echoString;
+    result.message = args.get<0>();
 }

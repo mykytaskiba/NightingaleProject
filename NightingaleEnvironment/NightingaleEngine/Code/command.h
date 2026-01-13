@@ -4,55 +4,40 @@
 #include "execution_state.h"
 #include "argument.h"
 
-namespace afterparty {
+//pure virtual core command interface
+class CommandInterface {
 
-    class ExecutionState;
-    /*
-    //a single command
-    class Command {
+public:
+	virtual string const& getCommand() const = 0;
+	virtual void execute(string args, ExecutionState& state, ExecutionResult& result) = 0;
+};
 
-    protected:
-        string m_command;
-        
+//argument command
+template<typename... Args>
+class Command : public CommandInterface {
+private:
+	string m_command{""};
+	ArgumentList<Args...> m_arguments{};
+public:
 
-    private:
+	Command(string const& commandStr) : m_command(commandStr) {}
 
-    public:
-        Command(string command);
+	string const& getCommand() const override {
+		return m_command;
+	}
 
-        string const& getCommand() const { return m_command; }
-        //returns a message with the command result
-        virtual void execute(string args, ExecutionState& state, ExecutionResult& result);
+	virtual void execute(string args, ExecutionState& state, ExecutionResult& result) override {
+		//m_arguments.parse(args);
+		//verify result
 
-    protected:
-        bool verifyArgumentResult(ArgumentExtractionResult const& argumentExtraction, ExecutionResult& commandResult);
-    };*/
-    
-    //pure virtual core command interface
-    class CommandInterface {
+		ParsingResult parsingState = m_arguments.parse(args);
+		if (!parsingState.bSuccess) {
+			result.bSuccess = false;
+			result.message = parsingState.errorMessage;
+			return;
+		}
+		execute_command(m_arguments, state, result);
+	}
 
-    public:
-        virtual string const& getCommand() const = 0;
-        virtual void execute(string args, ExecutionState& state, ExecutionResult& result) = 0;
-    };
-
-    //argument command
-    template<char const* CommandStr, typename... Args>
-    class Command : public CommandInterface {
-    private:
-        string m_command{ CommandStr };
-        ArgumentList<Args> m_arguments;
-    public:
-        string const& getCommand() override {
-            return m_command;
-        }
-
-        void execute(string args, ExecutionState& state, ExecutionResult& result) override {
-            //m_arguments.parse(args);
-            //verify result
-            m_arguments.
-        }
-    protected:
-        virtual void execute_command(ArgumentList<Args> args, ExecutionState& state, ExecutionResult& result) = 0;
-    };
-}
+	virtual void execute_command(ArgumentList<Args...>& args, ExecutionState& state, ExecutionResult& result) = 0;
+};

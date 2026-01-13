@@ -1,7 +1,6 @@
 #pragma once
 #include "defines.h"
 
-namespace afterparty {
 
     struct ExecutionResult {
         string message{ "No command executed" };
@@ -9,5 +8,3 @@ namespace afterparty {
         bool bSuccess{ false };
         
     };
-
-}

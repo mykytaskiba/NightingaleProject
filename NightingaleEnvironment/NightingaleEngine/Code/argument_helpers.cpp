@@ -3,7 +3,6 @@
 #include "argument.h"
 #include "environment.h"
 
-using namespace afterparty;
 
 string ArgumentHelpers::getNextRaw(string& args)
 {
@@ -26,8 +25,8 @@ string ArgumentHelpers::getNextWithDefines(string& args)
     if (arg.size() >= 2) {
         bool bDefineSyntax = arg[0] == '$';
         if (bDefineSyntax) {
-            assert(AfterpartyEnvironment::getInstance() != nullptr);
-            AfterpartyEnvironment& environment = *AfterpartyEnvironment::getInstance();
+            //assert(AfterpartyEnvironment::getInstance() != nullptr);
+            //AfterpartyEnvironment& environment = *AfterpartyEnvironment::getInstance();
             //TO DO: make a define class?
             //map<string, string>& defines = environment.m_.defines;
             //bool bDefineExists = defines.find(arg.substr(1)) != defines.end();

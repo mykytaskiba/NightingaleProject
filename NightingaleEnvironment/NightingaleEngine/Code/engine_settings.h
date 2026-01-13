@@ -6,7 +6,7 @@ struct EngineSettings {
 
 	string window_title{};
 
-	vector<AfterpartyCommand*> console_commands{};
+	vector<CommandInterface*> console_commands{};
 
 	vector<string> load_commands{};
 };

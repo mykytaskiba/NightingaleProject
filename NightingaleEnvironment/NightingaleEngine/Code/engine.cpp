@@ -99,7 +99,7 @@ void Engine::shutdown()
 
 void Engine::registerConsoleCommands()
 {
-    for (AfterpartyCommand*& command : m_settings.console_commands) {
+    for (CommandInterface*& command : m_settings.console_commands) {
         m_scriptEnvironment.registerSingleCommand(command);
     }
 }

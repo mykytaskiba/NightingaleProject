@@ -280,9 +280,6 @@
     <ClCompile Include="Code\environment.cpp">
       <Filter>Source Files\Afterparty</Filter>
     </ClCompile>
-    <ClCompile Include="Code\command.cpp">
-      <Filter>Source Files\Afterparty</Filter>
-    </ClCompile>
     <ClCompile Include="Code\argument_helpers.cpp">
       <Filter>Source Files\Afterparty</Filter>
     </ClCompile>

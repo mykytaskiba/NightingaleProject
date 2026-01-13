@@ -45,7 +45,7 @@ private:
     Input m_input;
     DebugUI m_debugUI;
     Console m_console;
-    AfterpartyEnvironment m_scriptEnvironment;
+    ScriptingEnvironment m_scriptEnvironment;
     
     Scene m_scene;
     Camera m_camera; //for now assume a single camera

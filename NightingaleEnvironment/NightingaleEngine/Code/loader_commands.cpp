@@ -198,6 +198,3 @@ ExecutionResult AnimationLoadCommand::execute(string args, ExecutionState& state
 }
 */
 
-void ShaderLoadCommand::execute(string args, ExecutionState & state, ExecutionResult & result)
-{
-}

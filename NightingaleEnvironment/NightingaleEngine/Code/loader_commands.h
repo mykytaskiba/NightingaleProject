@@ -3,11 +3,12 @@
 #include "command.h"
 #include "afterparty.h"
 
+/*
 class ShaderLoadCommand : public AfterpartyCommand {
 public:
     ShaderLoadCommand() : AfterpartyCommand("shader_load") {}
     virtual void execute(string args, ExecutionState& state, ExecutionResult& result) override;
-};
+};*/
 /*
 
 class MeshLoadCommand : public ConsoleCommand {

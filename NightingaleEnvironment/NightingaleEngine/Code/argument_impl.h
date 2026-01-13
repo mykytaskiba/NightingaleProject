@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include "argument_helpers.h"
 
 struct ParsingResult {
     bool bSuccess{ false };
@@ -78,6 +79,9 @@ inline string ArgumentExtractor<string>::parse(string& args, ParsingResult& resu
 
         arg += " " + ArgumentHelpers::getNextWithDefines(args);
     }
+
+    result.bSuccess = true;
+    return arg;
 }
 
 inline bool ArgumentExtractor<bool>::parse(string& args, ParsingResult& result)

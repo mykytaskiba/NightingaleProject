@@ -2,11 +2,10 @@
 #include "execution_state.h"
 #include "execution_result.h"
 
-namespace afterparty {
 
-    class Command;
+    class CommandInterface;
 
-    class AfterpartyEnvironment {
+    class ScriptingEnvironment {
 
     public:
         //Must init environment to call commands
@@ -17,18 +16,16 @@ namespace afterparty {
         //Execute single command
         ExecutionResult execute(string const&);
 
-        void registerSingleCommand(Command* command);
+        void registerSingleCommand(CommandInterface* command);
 
-        static AfterpartyEnvironment* getInstance();
+        static ScriptingEnvironment* getInstance();
 
     private:
 
-        static AfterpartyEnvironment* m_pInstance;//singleton
+        static ScriptingEnvironment* m_pInstance;//singleton
 
         ExecutionState m_executionState{};
-        map<string, Command*> m_commandMap;
+        map<string, CommandInterface*> m_commandMap;
 
 
     };
-
-}

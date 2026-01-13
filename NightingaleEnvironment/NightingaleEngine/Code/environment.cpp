@@ -2,25 +2,25 @@
 #include "environment.h"
 #include "command.h"
 #include "argument.h"
+#include "argument_helpers.h"
 
-using namespace afterparty;
 
-AfterpartyEnvironment* AfterpartyEnvironment::m_pInstance = nullptr;
+ScriptingEnvironment* ScriptingEnvironment::m_pInstance = nullptr;
 
-void AfterpartyEnvironment::init()
+void ScriptingEnvironment::init()
 {
     m_pInstance = this;
 }
 
-void AfterpartyEnvironment::tick()
+void ScriptingEnvironment::tick()
 {
 }
 
-void AfterpartyEnvironment::shutdown()
+void ScriptingEnvironment::shutdown()
 {
 }
 
-ExecutionResult AfterpartyEnvironment::execute(string const& commandIn)
+ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
 {
     ExecutionResult result;
 
@@ -40,7 +40,7 @@ ExecutionResult AfterpartyEnvironment::execute(string const& commandIn)
         }
     }
 
-    string command = Argument::extractNext(args);
+    string command = ArgumentHelpers::getNextWithDefines(args);
     auto it = m_commandMap.find(command);
     bool bFoundCommand = it != m_commandMap.end();
     if (!bFoundCommand) {
@@ -51,7 +51,7 @@ ExecutionResult AfterpartyEnvironment::execute(string const& commandIn)
 
     m_executionState.lastCommand = commandIn;
 
-    Command* const& pCommand = (*it).second;
+    CommandInterface* const& pCommand = (*it).second;
     pCommand->execute(args, m_executionState, result);
 
     //m_executionState.verify();
@@ -59,7 +59,7 @@ ExecutionResult AfterpartyEnvironment::execute(string const& commandIn)
     return result;
 }
 
-void AfterpartyEnvironment::registerSingleCommand(Command* command)
+void ScriptingEnvironment::registerSingleCommand(CommandInterface* command)
 {
     assert(command != nullptr);
     string const& commandStr = command->getCommand();
@@ -68,7 +68,7 @@ void AfterpartyEnvironment::registerSingleCommand(Command* command)
     m_commandMap[commandStr] = command;
 }
 
-AfterpartyEnvironment* AfterpartyEnvironment::getInstance()
+ScriptingEnvironment* ScriptingEnvironment::getInstance()
 {
     return m_pInstance;
 }
