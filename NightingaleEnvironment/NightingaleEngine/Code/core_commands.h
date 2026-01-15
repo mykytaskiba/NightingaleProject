@@ -1,18 +1,25 @@
 #pragma once
 #include "command.h"
 
-class EchoCommand : public Command<string> {
+class EchoCommand : public Command<AllText> {
 public:
-    EchoCommand() : Command<string>("echo") {}
-    virtual void execute_command(ArgumentList<string>& args, ExecutionState& state, ExecutionResult& result) override;
+    EchoCommand() : Command<AllText>("echo") {}
+    virtual void execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result) override;
+};
+
+class CPackCommand : public Command<Line> {
+public:
+    CPackCommand() : Command("cpack") {}
+    virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
+};
+
+class HelpCommand : public Command<> {
+public:
+    HelpCommand() : Command("help") {}
+    virtual void execute_command(ArgumentList<>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
 /*
-class CPackCommand : public ConsoleCommand {
-public:
-    CPackCommand() : ConsoleCommand("cpack") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
 
 /*
 //verify last command was successful
@@ -29,11 +36,6 @@ public:
     virtual ExecutionResult execute(string args, ExecutionState& state);
 };
 
-class HelpCommand : public ConsoleCommand {
-public:
-    HelpCommand() : ConsoleCommand("help") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
 
 class DefineCommand : public ConsoleCommand {
 public:

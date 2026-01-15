@@ -17,11 +17,27 @@ struct ArgumentList;
 //base specialization
 template<>
 struct ArgumentList<> {
-
+public:
 	void get_usage_recur(string& result) const {
 	}
 	void parse_recur(string& args, ParsingResult& result) {
+		if (args.length() != 0) {
+			result.errorMessage = "too many arguments entered";
+			result.bSuccess = false;
+			return;
+		}
+		result.bSuccess = true;
+	}
 
+	string get_usage() const {
+		string result = " (void)";
+		return result;
+	}
+
+	ParsingResult parse(string& args) {
+		ParsingResult result;
+		parse_recur(args, result);
+		return result;
 	}
 };
 
@@ -36,20 +52,23 @@ private:
 		return arg;
 	}
 
+public:
+
 	void get_usage_recur(string& result) const {
 		result += " (" + ArgumentExtractor<Arg>::usage() + ")";
 		rest.get_usage_recur(result);
 	}
 
+
+
+	//should be public for parsing
+	//TO DO: make private eventually?
 	void parse_recur(string& args, ParsingResult& result) {
 		arg = ArgumentExtractor<Arg>::parse(args, result);
 		if (result.bSuccess) {
 			rest.parse_recur(args, result);
 		}
 	}
-
-public:
-
 
 	template<uint depth>
 	auto get() const {
@@ -69,11 +88,8 @@ public:
 
 	ParsingResult parse(string& args) {
 		ParsingResult result;
-
 		parse_recur(args, result);
-
 		return result;
-
 	}
 
 

@@ -166,13 +166,15 @@ void Console::tick()
 
         if (commandEntered) {
             string fullCommand = string(m_consoleBuffer);
-            //ExecutionResult executionResult = executeCommand(fullCommand);
-            //if (executionResult.bSuccess) {
-             //   m_consoleBuffer.clear();
-             //   m_executedCommands.push_back(fullCommand);
-             //   m_executedCommandBrowser = 0;
-            //}
-            //m_consoleMessage = executionResult.message;
+            assert(ScriptingEnvironment::getInstance() != nullptr);
+            ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
+            ExecutionResult executionResult = scriptingEnv.execute(fullCommand);
+            if (executionResult.bSuccess) {
+                m_consoleBuffer.clear();
+                m_executedCommands.push_back(fullCommand);
+                m_executedCommandBrowser = 0;
+            }
+            m_consoleMessage = executionResult.message;
         }
     }
 }

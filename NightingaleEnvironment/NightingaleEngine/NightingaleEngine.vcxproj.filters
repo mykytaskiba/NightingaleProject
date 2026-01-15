@@ -498,5 +498,8 @@
     <ClInclude Include="Code\argument_helpers.h">
       <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
+    <ClInclude Include="Code\special_arguments.h">
+      <Filter>Header Files\Afterparty</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

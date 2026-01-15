@@ -37,7 +37,6 @@ void Engine::init()
     m_scriptEnvironment.init();
     registerConsoleCommands();
 
-    m_scriptEnvironment.execute("echo 123 132 true 8s9d8a0 6564565");
 
     m_window.init();
     m_window.setTitle(m_settings.window_title);
@@ -107,8 +106,8 @@ void Engine::registerConsoleCommands()
 void Engine::loadCommands()
 {
     for (string const command : m_settings.load_commands) {
-        //ExecutionResult result = Console::ExecuteFromString(command);
-        //assert(result.bSuccess);
+        ExecutionResult result = m_scriptEnvironment.execute(command);
+        assert(result.bSuccess);
     }
 }
 

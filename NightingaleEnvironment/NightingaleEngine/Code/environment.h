@@ -6,7 +6,7 @@
     class CommandInterface;
 
     class ScriptingEnvironment {
-
+        friend class HelpCommand; //to help list all commands
     public:
         //Must init environment to call commands
         void init();

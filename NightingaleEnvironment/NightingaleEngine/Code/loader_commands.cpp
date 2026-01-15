@@ -7,148 +7,82 @@
 #include "engine_functions.h"
 #include "asset_manager.h"
 
-/*
-ExecutionResult ShaderLoadCommand::execute(string args, ExecutionState& state)
+
+void ShaderLoadCommand::execute_command(ArgumentList<Line, Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string shaderName = nextArg(args);
-    string vertexShaderPath = nextArg(args);
-    string fragmentShaderPath = nextArg(args);
-    string rest = nextArg(args);
-
-    string expectedCommand = "\"shader_load (shader_name) (path_to_vertex) (path_to_fragment)\"";
-
-    ExecutionResult result;
-
-    if (vertexShaderPath == "" || fragmentShaderPath == "" || shaderName == "") {
-        result.message = "too few arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
-
-    if (rest != "") {
-        result.message = "too many arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
+    string shaderName = *args.get<0>();
+    string vertexShaderPath = *args.get<1>();
+    string fragmentShaderPath = *args.get<2>();
 
     if (AssetManager<RenderShader>::has(shaderName)) {
         result.message = "shader already exists: " + shaderName;
         result.bSuccess = false;
-        return result;
+        return;
     }
 
     if (!Loader::file_exists(vertexShaderPath)) {
         result.message = "vertex shader not found " + vertexShaderPath;
         result.bSuccess = false;
-        return result;
+        return;
     }
     if (!Loader::file_exists(fragmentShaderPath)) {
         result.message = "fragment shader not found " + fragmentShaderPath;
         result.bSuccess = false;
-        return result;
+        return;
     }
 
     string vertexSource = Loader::read_file_contents(vertexShaderPath);
     string fragmentSource = Loader::read_file_contents(fragmentShaderPath);
-    
+
     GL_Shader GLshader;
     if (!GL_Shader::compileShader(vertexSource.c_str(), fragmentSource.c_str(), GLshader)) {
 
         result.message = "Shader compilation failed";
         result.bSuccess = false;
-        return result;
+        return;
     }
 
     RenderShader* shader = new RenderShader(GLshader);
-    
+
     bool success = AssetManager<RenderShader>::add(shaderName, shader);
     assert(success);
 
     result.message = "Shader compile success";
     result.bSuccess = true;
-    return result;
 }
 
-ExecutionResult MeshLoadCommand::execute(string args, ExecutionState& state)
+void MeshLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string meshName = nextArg(args);
-    string pathToMesh = nextArg(args);
-    string rest = nextArg(args);
-
-    string expectedCommand = "\"mesh_load (mesh_name) (path_to_mesh)\"";
-
-    ExecutionResult result;
-
-    if (meshName == "" || pathToMesh == "") {
-        result.message = "too few arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
-
-    if (rest != "") {
-        result.message = "too many arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
+    string meshName = *args.get<0>();
+    string pathToMesh = *args.get<1>();
 
     if (AssetManager<Mesh>::has(meshName)) {
         result.message = "mesh already exists: " + meshName;
         result.bSuccess = false;
-        return result;
+        return;
     }
 
     //TO DO: once loader fbx load is implemented, then this will need to be updated too
     Mesh* pMesh = Loader::fbxSingleMesh(pathToMesh, state.loaderScale);
-
 
     bool success = AssetManager<Mesh>::add(meshName, pMesh);
     assert(success);
 
     result.message = "Mesh load success";
     result.bSuccess = true;
-    return result;
 }
 
-ExecutionResult LoaderScaleCommand::execute(string args, ExecutionState& state)
+void SkeletonLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    float scale;
-    string expected = m_command + " (f)";
-    if (!nextFloat(args, scale)) {
-        ExecutionResult::FAIL("parsing fail, expected: " + expected);
-    }
-
-    state.loaderScale = scale;
-    return ExecutionResult::SUCCESS("load scale set");
-}
-
-ExecutionResult SkeletonLoadCommand::execute(string args, ExecutionState& state)
-{
-    string meshName = nextArg(args);
-    string pathToMesh = nextArg(args);
-    string rest = nextArg(args);
-
-    string expectedCommand = m_command + " (skeleton_name) (path_to_mesh)";
-
-    ExecutionResult result;
-
-    if (meshName == "" || pathToMesh == "") {
-        result.message = "too few arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
-
-    if (rest != "") {
-        result.message = "too many arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
+    string meshName = *args.get<0>();
+    string pathToMesh = *args.get<1>();
 
     if (AssetManager<Skeleton>::has(meshName)) {
         result.message = "mesh already exists: " + meshName;
         result.bSuccess = false;
-        return result;
+        return;
     }
-    
+
     Skeleton* pSkeleton = Loader::fbxSkeleton(pathToMesh, state.loaderScale);
 
     bool success = AssetManager<Skeleton>::add(meshName, pSkeleton);
@@ -156,35 +90,18 @@ ExecutionResult SkeletonLoadCommand::execute(string args, ExecutionState& state)
 
     result.message = "Skeleton load success";
     result.bSuccess = true;
-    return result;
+    return;
 }
 
-ExecutionResult AnimationLoadCommand::execute(string args, ExecutionState& state)
+void AnimationLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string name = nextArg(args);
-    string path = nextArg(args);
-    string rest = nextArg(args);
-
-    string expectedCommand = m_command + " (animation_name) (path_to_fbx)";
-
-    ExecutionResult result;
-
-    if (name == "" || path == "") {
-        result.message = "too few arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
-
-    if (rest != "") {
-        result.message = "too many arguments, expected: " + expectedCommand;
-        result.bSuccess = false;
-        return result;
-    }
+    string name = *args.get<0>();
+    string path = *args.get<1>();
 
     if (AssetManager<Animation>::has(name)) {
         result.message = "animation already exists: " + name;
         result.bSuccess = false;
-        return result;
+        return;
     }
 
     Animation* pAnimation = Loader::fbxAnimation(path);
@@ -194,7 +111,13 @@ ExecutionResult AnimationLoadCommand::execute(string args, ExecutionState& state
 
     result.message = "Animation load success";
     result.bSuccess = true;
-    return result;
+    return;
 }
-*/
 
+void LoaderScaleCommand::execute_command(ArgumentList<float>& args, ExecutionState& state, ExecutionResult& result)
+{
+    state.loaderScale = args.get<0>();
+    result.bSuccess = true;
+    result.message = "Loader scale set";
+    return;
+}

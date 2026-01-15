@@ -2,10 +2,21 @@
 #include "core_commands.h"
 #include "engine_settings.h"
 #include "engine.h"
+#include "loader_commands.h"
 
 
 void Engine::defaultSettings_CoreCommands() {
+    //Core commands
     m_settings.console_commands.push_back(new EchoCommand());
+    m_settings.console_commands.push_back(new CPackCommand());
+    m_settings.console_commands.push_back(new HelpCommand());
+
+    //Loader commands
+    m_settings.console_commands.push_back(new ShaderLoadCommand());
+    m_settings.console_commands.push_back(new MeshLoadCommand());
+    m_settings.console_commands.push_back(new SkeletonLoadCommand());
+    m_settings.console_commands.push_back(new AnimationLoadCommand());
+    m_settings.console_commands.push_back(new LoaderScaleCommand());
 }
 
 /*
@@ -18,7 +29,6 @@ void Engine::defaultSettings_CoreCommands() {
     registerSingleCommand(new CPackCommand());
     registerSingleCommand(new VerifyCommand());
     registerSingleCommand(new DropStateCommand());
-    registerSingleCommand(new HelpCommand());
     registerSingleCommand(new DefineCommand());
     registerSingleCommand(new UndefineCommand());
     registerSingleCommand(new UndefineAllCommand());
@@ -27,12 +37,6 @@ void Engine::defaultSettings_CoreCommands() {
     registerSingleCommand(new ShowConsoleLogCommand());
     registerSingleCommand(new ShowErrorLogCommand());
 
-    //Loader commands
-    registerSingleCommand(new ShaderLoadCommand());
-    registerSingleCommand(new MeshLoadCommand());
-    registerSingleCommand(new SkeletonLoadCommand());
-    registerSingleCommand(new AnimationLoadCommand());
-    registerSingleCommand(new LoaderScaleCommand());
 
     //logic commands
     registerSingleCommand(new CreateGameObjectCommand());

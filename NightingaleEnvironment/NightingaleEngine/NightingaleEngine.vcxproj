@@ -216,6 +216,7 @@
     <ClInclude Include="Code\engine_settings.h" />
     <ClInclude Include="Code\execution_state.h" />
     <ClInclude Include="Code\execution_result.h" />
+    <ClInclude Include="Code\special_arguments.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

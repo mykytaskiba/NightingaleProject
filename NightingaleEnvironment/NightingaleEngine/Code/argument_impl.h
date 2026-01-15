@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "argument_helpers.h"
+#include "special_arguments.h"
 
 struct ParsingResult {
     bool bSuccess{ false };
@@ -30,18 +31,26 @@ struct ArgumentExtractor<float> {
     static float parse(string& args, ParsingResult& result);
 };
 
-//STRING
-template<>
-struct ArgumentExtractor<string> {
-    static string usage() { return "text"; }
-    static string parse(string& args, ParsingResult& result);
-};
-
 //BOOL
 template<>
 struct ArgumentExtractor<bool> {
     static string usage() { return "true/false"; }
     static bool parse(string& args, ParsingResult& result);
+};
+
+//ALL TEXT
+template<>
+struct ArgumentExtractor<AllText> {
+    static string usage() { return "text..."; }
+    static AllText parse(string& args, ParsingResult& result);
+
+};
+
+//LINE
+template<>
+struct ArgumentExtractor<Line> {
+    static string usage() { return "line"; }
+    static Line parse(string& args, ParsingResult& result);
 };
 
 
@@ -69,20 +78,6 @@ inline float ArgumentExtractor<float>::parse(string& args, ParsingResult& result
     
 }
 
-inline string ArgumentExtractor<string>::parse(string& args, ParsingResult& result)
-{
-    //Note: the loop is required to make sure that all the $defines are handled
-    string arg = "";
-
-    arg += ArgumentHelpers::getNextWithDefines(args);
-    while (args != "") {
-
-        arg += " " + ArgumentHelpers::getNextWithDefines(args);
-    }
-
-    result.bSuccess = true;
-    return arg;
-}
 
 inline bool ArgumentExtractor<bool>::parse(string& args, ParsingResult& result)
 {
@@ -100,4 +95,37 @@ inline bool ArgumentExtractor<bool>::parse(string& args, ParsingResult& result)
     result.bSuccess = false;
     result.errorMessage = valueStr + " is not a value for bool type";
     return false;
+}
+
+inline AllText ArgumentExtractor<AllText>::parse(string& args, ParsingResult& result)
+{
+    //Note: the loop is required to make sure that all the $defines are handled
+    AllText arg;
+    arg.text = "";
+
+    arg.text += ArgumentHelpers::getNextWithDefines(args);
+    while (args != "") {
+
+        arg.text += " " + ArgumentHelpers::getNextWithDefines(args);
+    }
+    
+    result.bSuccess = true;
+    if (arg.text.length() == 0) {
+        result.bSuccess = false;
+    }
+
+    return arg;
+}
+
+inline Line ArgumentExtractor<Line>::parse(string& args, ParsingResult& result)
+{
+    Line arg;
+    arg.line = ArgumentHelpers::getNextWithDefines(args);
+
+    result.bSuccess = true;
+    if (arg.line.length() == 0) {
+        result.bSuccess = false;
+    }
+
+    return arg;
 }
