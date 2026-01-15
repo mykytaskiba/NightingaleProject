@@ -97,9 +97,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Code\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\pch.cpp">
       <Filter>Source Files\Project</Filter>
     </ClCompile>

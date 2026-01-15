@@ -250,7 +250,6 @@
     <ClCompile Include="Code\loader.cpp" />
     <ClCompile Include="Code\loader_commands.cpp" />
     <ClCompile Include="Code\logger.cpp" />
-    <ClCompile Include="Code\main.cpp" />
     <ClCompile Include="Code\mesh.cpp" />
     <ClCompile Include="Code\mesh_object.cpp" />
     <ClCompile Include="Code\pch.cpp">

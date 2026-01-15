@@ -20,6 +20,9 @@
 
         static ScriptingEnvironment* getInstance();
 
+        //autofill an execution command, i.e. "sample_script" -> "execute_command path/sample_script.ext"
+        string autoFillCommand(string const&) const;
+
     private:
 
         static ScriptingEnvironment* m_pInstance;//singleton

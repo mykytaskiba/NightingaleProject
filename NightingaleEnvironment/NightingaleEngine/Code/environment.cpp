@@ -44,8 +44,11 @@ ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
     auto it = m_commandMap.find(command);
     bool bFoundCommand = it != m_commandMap.end();
     if (!bFoundCommand) {
-        result.message = "Command not found";
-        result.bValidCommand = false;
+
+        string filledCommand = autoFillCommand(commandIn);
+        result = execute(filledCommand);
+        //result.message = "Command not found";
+        //result.bValidCommand = false;
         return result;
     }
 
@@ -71,5 +74,11 @@ void ScriptingEnvironment::registerSingleCommand(CommandInterface* command)
 ScriptingEnvironment* ScriptingEnvironment::getInstance()
 {
     return m_pInstance;
+}
+
+string ScriptingEnvironment::autoFillCommand(string const& inCommand) const
+{
+    string filledCommand = "cpack data/" + inCommand + ".cpack";
+    return filledCommand;
 }
 
