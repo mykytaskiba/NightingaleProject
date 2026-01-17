@@ -280,6 +280,9 @@
     <ClCompile Include="Code\argument_helpers.cpp">
       <Filter>Source Files\Afterparty</Filter>
     </ClCompile>
+    <ClCompile Include="Code\execution_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">

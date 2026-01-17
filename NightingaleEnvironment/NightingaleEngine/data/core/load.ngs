@@ -13,7 +13,7 @@ load_shader unlit_shader data/core/shader/main.vert data/core/shader/unlit.frag
 load_shader line_shader data/core/shader/line.vert data/core/shader/line.frag
 @verify
 
-set_loader_scale 0.01
+loader_scale = 0.01
 
 load_mesh sphere_mesh data/core/sphere.fbx
 @verify

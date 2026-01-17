@@ -11,6 +11,8 @@ struct ExecutionState {
 
     map<string, string> defines{};
 
+    float extract_float_with_default(string const& key, float default_val) const;
+
     //log
     bool bCreateLog{ false };
     string log{};
@@ -19,7 +21,4 @@ struct ExecutionState {
     GameObject* pGameObject;
     RenderNode* pRenderNode;
 
-
-    //loader values
-    float loaderScale{ 1.0f };
 };

@@ -28,9 +28,3 @@ public:
 
 };
 
-class LoaderScaleCommand : public Command<float> {
-public:
-    LoaderScaleCommand() : Command("set_loader_scale") {}
-    virtual void execute_command(ArgumentList<float>& args, ExecutionState& state, ExecutionResult& result) override;
-
-};

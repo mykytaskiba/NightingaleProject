@@ -20,8 +20,13 @@
 
         static ScriptingEnvironment* getInstance();
 
+        void preprocessCommand(string&) const;
         //autofill an execution command, i.e. "sample_script" -> "execute_command path/sample_script.ext"
         string autoFillCommand(string const&) const;
+
+        bool defineSyntax(string&) const;
+
+        void trimWhitespace(string&) const;
 
     private:
 

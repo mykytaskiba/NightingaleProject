@@ -13,12 +13,18 @@ public:
     virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
+
+class DefineCommand : public Command<Line,Line> {
+public:
+    DefineCommand() : Command(".define") {}
+    virtual void execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result) override;
+};
+
 class HelpCommand : public Command<Nothing> {
 public:
     HelpCommand() : Command("help") {}
     virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
 };
-
 /*
 
 /*

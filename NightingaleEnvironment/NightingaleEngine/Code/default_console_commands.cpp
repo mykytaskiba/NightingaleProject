@@ -11,13 +11,13 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new EchoCommand());
     m_settings.console_commands.push_back(new ExecuteCommand());
     m_settings.console_commands.push_back(new HelpCommand());
+    m_settings.console_commands.push_back(new DefineCommand());
 
     //Loader commands
     m_settings.console_commands.push_back(new ShaderLoadCommand());
     m_settings.console_commands.push_back(new MeshLoadCommand());
     m_settings.console_commands.push_back(new SkeletonLoadCommand());
     m_settings.console_commands.push_back(new AnimationLoadCommand());
-    m_settings.console_commands.push_back(new LoaderScaleCommand());
 
     //logic commands
     m_settings.console_commands.push_back(new CreateGameObjectCommand());

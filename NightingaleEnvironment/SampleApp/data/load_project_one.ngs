@@ -1,4 +1,4 @@
-set_loader_scale 0.05
+loader_scale = 0.05
 load_skeleton character data/character_ybot.fbx
 @verify
 
@@ -21,7 +21,7 @@ load_animation ybot_throw data/anim_throw_ybot.fbx
 @verify
 
 //Sphere needed for nodes
-set_loader_scale 0.01
+loader_scale = 0.01
 load_mesh bone_mesh data/core/sphere.fbx
 @verify
 

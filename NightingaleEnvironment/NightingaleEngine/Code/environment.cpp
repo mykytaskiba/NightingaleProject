@@ -40,15 +40,13 @@ ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
         }
     }
 
+    preprocessCommand(args);
     string command = ArgumentHelpers::getNextWithDefines(args);
     auto it = m_commandMap.find(command);
     bool bFoundCommand = it != m_commandMap.end();
     if (!bFoundCommand) {
-
-        string filledCommand = autoFillCommand(commandIn);
-        result = execute(filledCommand);
-        //result.message = "Command not found";
-        //result.bValidCommand = false;
+        result.message = "command not found";
+        result.bValidCommand = false;
         return result;
     }
 
@@ -56,8 +54,6 @@ ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
 
     CommandInterface* const& pCommand = (*it).second;
     pCommand->execute(args, m_executionState, result);
-
-    //m_executionState.verify();
 
     return result;
 }
@@ -76,9 +72,50 @@ ScriptingEnvironment* ScriptingEnvironment::getInstance()
     return m_pInstance;
 }
 
+void ScriptingEnvironment::preprocessCommand(string& command) const
+{
+    if (defineSyntax(command)) return;
+
+    string processedCommand;
+
+    string commandStr = ArgumentHelpers::getNextRaw(command);
+    auto it = m_commandMap.find(commandStr);
+    bool bFoundCommand = it != m_commandMap.end();
+
+    if (!bFoundCommand) {
+        commandStr = autoFillCommand(commandStr);
+    }
+
+    processedCommand = commandStr + " " + command;
+    command = processedCommand;
+}
+
+
 string ScriptingEnvironment::autoFillCommand(string const& inCommand) const
 {
     string filledCommand = ".execute data/" + inCommand + ".ngs";
     return filledCommand;
+}
+
+bool ScriptingEnvironment::defineSyntax(string& inCommand) const
+{
+    size_t equalSign = inCommand.find('=');
+    if (equalSign == string::npos) {
+        return false;
+    }
+
+    string defineKey = inCommand.substr(0, equalSign);
+    string defineVal = inCommand.substr(equalSign+1);
+    trimWhitespace(defineKey);
+    trimWhitespace(defineVal);
+
+    inCommand = ".define " + defineKey + " " + defineVal;
+
+}
+
+void ScriptingEnvironment::trimWhitespace(string& inStr) const
+{
+    inStr = inStr.substr(inStr.find_first_not_of(' '));
+    inStr = inStr.substr(0, inStr.find_last_not_of(' ') + 1);
 }
 

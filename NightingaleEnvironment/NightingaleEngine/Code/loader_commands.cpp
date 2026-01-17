@@ -62,8 +62,9 @@ void MeshLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionS
         return;
     }
 
+    float loaderScale = state.extract_float_with_default("loader_scale", 1.0f);
     //TO DO: once loader fbx load is implemented, then this will need to be updated too
-    Mesh* pMesh = Loader::fbxSingleMesh(pathToMesh, state.loaderScale);
+    Mesh* pMesh = Loader::fbxSingleMesh(pathToMesh, loaderScale);
 
     bool success = AssetManager<Mesh>::add(meshName, pMesh);
     assert(success);
@@ -83,7 +84,8 @@ void SkeletonLoadCommand::execute_command(ArgumentList<Line, Line>& args, Execut
         return;
     }
 
-    Skeleton* pSkeleton = Loader::fbxSkeleton(pathToMesh, state.loaderScale);
+    float loaderScale = state.extract_float_with_default("loader_scale", 1.0f);
+    Skeleton* pSkeleton = Loader::fbxSkeleton(pathToMesh, loaderScale);
 
     bool success = AssetManager<Skeleton>::add(meshName, pSkeleton);
     assert(success);
@@ -114,10 +116,3 @@ void AnimationLoadCommand::execute_command(ArgumentList<Line, Line>& args, Execu
     return;
 }
 
-void LoaderScaleCommand::execute_command(ArgumentList<float>& args, ExecutionState& state, ExecutionResult& result)
-{
-    state.loaderScale = args.get<0>();
-    result.bSuccess = true;
-    result.message = "Loader scale set";
-    return;
-}

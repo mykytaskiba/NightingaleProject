@@ -211,3 +211,14 @@ void HelpCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& s
     result.message = commandList;
     return;
 }
+
+void DefineCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
+{
+    string defineKey = *args.get<0>();
+    string defineVal = *args.get<1>();
+
+    state.defines[defineKey] = defineVal;
+
+    result.bSuccess = true;
+    result.message = defineKey + " was set to " + defineVal;
+}

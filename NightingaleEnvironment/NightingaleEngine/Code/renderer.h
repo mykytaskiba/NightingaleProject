@@ -34,6 +34,6 @@ private:
     void registerRenderable(RenderNode*);
 
     GraphicsContext m_graphicsContext{};
-    Screen m_screen;
+    Screen m_screen{ 0,0 };
 
 };
