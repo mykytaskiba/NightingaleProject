@@ -53,6 +53,14 @@ struct ArgumentExtractor<Line> {
     static Line parse(string& args, ParsingResult& result);
 };
 
+//VOID
+template<>
+struct ArgumentExtractor<Nothing> {
+    static string usage() { return "void"; }
+    static Nothing parse(string& args, ParsingResult& result);
+};
+
+
 
 
 //begin all function implementations
@@ -128,4 +136,11 @@ inline Line ArgumentExtractor<Line>::parse(string& args, ParsingResult& result)
     }
 
     return arg;
+}
+
+inline Nothing ArgumentExtractor<Nothing>::parse(string& args, ParsingResult& result)
+{
+
+    result.bSuccess = true;
+    return Nothing();
 }

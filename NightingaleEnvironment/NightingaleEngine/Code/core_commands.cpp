@@ -193,7 +193,7 @@ void ExecuteCommand::execute_command(ArgumentList<Line>& args, ExecutionState& s
     return;
 }
 
-void HelpCommand::execute_command(ArgumentList<>& args, ExecutionState& state, ExecutionResult& result)
+void HelpCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
 {
     string commandList = "";
 

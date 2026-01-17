@@ -28,17 +28,6 @@ public:
 		}
 		result.bSuccess = true;
 	}
-
-	string get_usage() const {
-		string result = " (void)";
-		return result;
-	}
-
-	ParsingResult parse(string& args) {
-		ParsingResult result;
-		parse_recur(args, result);
-		return result;
-	}
 };
 
 template<typename Arg, typename... Rest>

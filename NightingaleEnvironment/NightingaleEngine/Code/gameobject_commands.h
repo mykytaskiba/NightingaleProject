@@ -3,6 +3,7 @@
 #include "console_command.h"
 #include "core_commands.h"
 
+
 /*
 //create gameobject command, also serves as a factory of sorts
 class CreateGameObjectCommand : public ConsoleCommand {

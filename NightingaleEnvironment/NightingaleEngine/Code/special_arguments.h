@@ -34,3 +34,7 @@ struct Path {
 		return path;
 	}
 };
+
+struct Nothing {
+
+};
