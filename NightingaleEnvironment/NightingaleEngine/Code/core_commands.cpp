@@ -170,7 +170,7 @@ void EchoCommand::execute_command(ArgumentList<AllText>& args, ExecutionState& s
     result.message = (*text);
 }
 
-void CPackCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
+void ExecuteCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
     string path = *args.get<0>();
 
@@ -181,15 +181,15 @@ void CPackCommand::execute_command(ArgumentList<Line>& args, ExecutionState& sta
         return;
     }
 
-    vector<string> cpack_contents = Loader::read_file_contents_by_line(path);
+    vector<string> command_contents = Loader::read_file_contents_by_line(path);
 
     ScriptingEnvironment& scripting_env = *ScriptingEnvironment::getInstance();
-    for (auto it = cpack_contents.begin(); it != cpack_contents.end(); ++it) {
+    for (auto it = command_contents.begin(); it != command_contents.end(); ++it) {
         scripting_env.execute(*it);
     }
 
     result.bSuccess = true;
-    result.message = "cpack execution success";
+    result.message = "execution success";
     return;
 }
 

@@ -8,7 +8,7 @@
 void Engine::defaultSettings_CoreCommands() {
     //Core commands
     m_settings.console_commands.push_back(new EchoCommand());
-    m_settings.console_commands.push_back(new CPackCommand());
+    m_settings.console_commands.push_back(new ExecuteCommand());
     m_settings.console_commands.push_back(new HelpCommand());
 
     //Loader commands

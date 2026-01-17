@@ -7,9 +7,9 @@ public:
     virtual void execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class CPackCommand : public Command<Line> {
+class ExecuteCommand : public Command<Line> {
 public:
-    CPackCommand() : Command("cpack") {}
+    ExecuteCommand() : Command(".execute") {}
     virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 

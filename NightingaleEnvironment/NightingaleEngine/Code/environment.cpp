@@ -78,7 +78,7 @@ ScriptingEnvironment* ScriptingEnvironment::getInstance()
 
 string ScriptingEnvironment::autoFillCommand(string const& inCommand) const
 {
-    string filledCommand = "cpack data/" + inCommand + ".cpack";
+    string filledCommand = ".execute data/" + inCommand + ".ngs";
     return filledCommand;
 }
 
