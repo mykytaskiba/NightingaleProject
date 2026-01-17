@@ -2,6 +2,8 @@
 #include "defines.h"
 
 
+class GameObject;
+class RenderNode;
 
 struct ExecutionState {
 
@@ -13,6 +15,9 @@ struct ExecutionState {
     bool bCreateLog{ false };
     string log{};
     string errorLog{};
+
+    GameObject* pGameObject;
+    RenderNode* pRenderNode;
 
 
     //loader values

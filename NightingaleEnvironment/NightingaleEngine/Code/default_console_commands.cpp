@@ -3,6 +3,7 @@
 #include "engine_settings.h"
 #include "engine.h"
 #include "loader_commands.h"
+#include "gameobject_commands.h"
 
 
 void Engine::defaultSettings_CoreCommands() {
@@ -17,6 +18,14 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SkeletonLoadCommand());
     m_settings.console_commands.push_back(new AnimationLoadCommand());
     m_settings.console_commands.push_back(new LoaderScaleCommand());
+
+    //logic commands
+    m_settings.console_commands.push_back(new CreateGameObjectCommand());
+    m_settings.console_commands.push_back(new AttachRenderMeshCommand());
+    m_settings.console_commands.push_back(new AttachAnimatedMeshCommand());
+    m_settings.console_commands.push_back(new SetPositionCommand());
+    m_settings.console_commands.push_back(new SetScaleCommand());
+    m_settings.console_commands.push_back(new SetColorCommand());
 }
 
 /*
@@ -37,13 +46,4 @@ void Engine::defaultSettings_CoreCommands() {
     registerSingleCommand(new ShowConsoleLogCommand());
     registerSingleCommand(new ShowErrorLogCommand());
 
-
-    //logic commands
-    registerSingleCommand(new CreateGameObjectCommand());
-    aliasCommand("create", new CreateGameObjectCommand());
-    registerSingleCommand(new AttachRenderMeshCommand());
-    registerSingleCommand(new AttachAnimatedMeshCommand());
-    registerSingleCommand(new SetPositionCommand());
-    registerSingleCommand(new SetScaleCommand());
-    aliasCommand("setpos", new SetPositionCommand());
-    registerSingleCommand(new SetColorCommand());*/
+*/

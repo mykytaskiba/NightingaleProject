@@ -10,59 +10,39 @@
 #include "render_skinned.h"
 #include "color.h"
 
-/*
-ExecutionResult CreateGameObjectCommand::execute(string args, ExecutionState& state)
+void CreateGameObjectCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string type = nextArg(args);
-    string rest = nextArg(args);
+    string type = *args.get<0>();
     
-    string expected = m_command + " (type)";
-
-    ExecutionResult result;
-    result.bSuccess = false;
-    if (rest != "") {
-        result.message = "too many arguments, expected: " + expected;
-        return result;
-    }
-    if (type == "") {
-        result.message = "too few arguments, expected: " + expected;
-        return result;
-    }
-
     GameObject* pCreatedObject = nullptr;
-   
+
     if (!GameObjectFactory::instantiateFromType(type, pCreatedObject)) {
         result.message = "failed instantiating object of type " + type;
-        return result;
+        result.bSuccess = false;
+        return;
     }
 
     state.pGameObject = pCreatedObject;
 
     result.bSuccess = true;
     result.message = "created an object of type " + type;
-    return result;
+    return;
 }
 
-ExecutionResult AttachRenderMeshCommand::execute(string args, ExecutionState& state)
+void AttachRenderMeshCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string meshName = nextArg(args);
-
-    ExecutionResult result;
-    result.bSuccess = false;
-
-    if (meshName == "") {
-        result.message = "Must specify MeshName from asset loader";
-        return result;
-    }
+    string meshName = *args.get<0>();
 
     if (!AssetManager<Mesh>::has(meshName)) {
+        result.bSuccess = false;
         result.message = "Mesh is not loaded: " + meshName;
-        return result;
+        return;
     }
 
     if (state.pGameObject == nullptr) {
+        result.bSuccess = false;
         result.message = "Invalid state, previous gameobject must be set";
-        return result;
+        return;
     }
 
     Mesh* pMesh = AssetManager<Mesh>::retrieve(meshName);
@@ -72,85 +52,30 @@ ExecutionResult AttachRenderMeshCommand::execute(string args, ExecutionState& st
     pMeshNode->setMesh(pMesh);
 
     EngineFunctions::AssignRenderNode(state.pGameObject, pMeshNode);
-    
+
     state.pRenderNode = pMeshNode;
 
     result.bSuccess = true;
     result.message = "AttachMesh success";
-    return result;
+    return;
 }
 
-ExecutionResult SetPositionCommand::execute(string args, ExecutionState& state)
+void AttachAnimatedMeshCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    ExecutionResult result;
-    if (state.pGameObject == nullptr) {
-        result.message = "Invalid state, previous gameobject must be set";
-    }
+    string skeletonName = *args.get<0>();
 
-    string expected = "setposition (x) (y) (z)";
-    result.message = "failed to parse float, expected: " + expected; 
-    float x, y, z;
-    if (!nextFloat(args, x)) {
-        return result;
-    }
-    if (!nextFloat(args, y)) {
-        return result;
-    }
-    if (!nextFloat(args, z)) {
-        return result;
-    }
 
-    state.pGameObject->getTransform().position = Vector3(x, y, z);
-    
-    result.bSuccess = true;
-    result.message = "position has been set";
-
-    return result;
-}
-
-ExecutionResult SetScaleCommand::execute(string args, ExecutionState& state)
-{
-    ExecutionResult result;
-    if (state.pGameObject == nullptr) {
-        result.message = "Invalid state, previous gameobject must be set";
-    }
-
-    string expected = "setscale (scale)";
-    result.message = "failed to parse float, expected: " + expected;
-    float scale, y, z;
-    if (!nextFloat(args, scale)) {
-        return result;
-    }
-
-    state.pGameObject->getTransform().scale = scale;
-
-    result.bSuccess = true;
-    result.message = "scale has been set";
-
-    return result;
-
-}
-
-ExecutionResult AttachAnimatedMeshCommand::execute(string args, ExecutionState& state)
-{
-    string skeletonName = nextArg(args);
-
-    ExecutionResult result;
-    result.bSuccess = false;
-
-    if (skeletonName == "") {
-        result.message = "Must specify SkeletonName from asset loader";
-        return result;
-    }
 
     if (!AssetManager<Skeleton>::has(skeletonName)) {
+        result.bSuccess = false;
         result.message = "Skeleton is not loaded: " + skeletonName;
-        return result;
+        return;
     }
 
     if (state.pGameObject == nullptr) {
+        result.bSuccess = false;
         result.message = "Invalid state, previous gameobject must be set";
-        return result;
+        return;
     }
 
     Skeleton* pSkeleton = AssetManager<Skeleton>::retrieve(skeletonName);
@@ -165,42 +90,67 @@ ExecutionResult AttachAnimatedMeshCommand::execute(string args, ExecutionState& 
 
     result.bSuccess = true;
     result.message = "Attach AnimatedMesh success";
-    return result;
+    return;
 }
 
-ExecutionResult SetColorCommand::execute(string args, ExecutionState& state)
+void SetPositionCommand::execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result)
 {
-    ExecutionResult result;
+    if (state.pGameObject == nullptr) {
+        result.message = "Invalid state, previous gameobject must be set";
+        return;
+    }
+
+    float x = args.get<0>();
+    float y = args.get<1>();
+    float z = args.get<2>();
+
+    state.pGameObject->getTransform().position = Vector3(x, y, z);
+
+    result.bSuccess = true;
+    result.message = "position has been set";
+
+    return;
+}
+
+void SetScaleCommand::execute_command(ArgumentList<float>& args, ExecutionState& state, ExecutionResult& result)
+{
+    if (state.pGameObject == nullptr) {
+        result.message = "Invalid state, previous gameobject must be set";
+        return;
+    }
+
+    float scale = args.get<0>();
+    state.pGameObject->getTransform().scale = scale;
+
+    result.bSuccess = true;
+    result.message = "scale has been set";
+
+    return;
+}
+
+void SetColorCommand::execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result)
+{
     if (state.pRenderNode == nullptr) {
         result.message = "Invalid state, previous renderNode must be set";
+        return;
     }
 
     RenderMeshNode* pRenderMesh = dynamic_cast<RenderMeshNode*>(state.pRenderNode);
     if (pRenderMesh == nullptr) {
         result.message = "Invalid state, currently only renderMesh is supported";
-
+        return;
     }
 
-    string expected = "setcolor (x) (y) (z)";
-    result.message = "failed to parse float, expected: " + expected;
-    float r, g, b;
-    if (!nextFloat(args, r)) {
-        return result;
-    }
-    if (!nextFloat(args, g)) {
-        return result;
-    }
-    if (!nextFloat(args, b)) {
-        return result;
-    }
+    float r = args.get<0>();
+    float g = args.get<1>();
+    float b = args.get<2>();
 
     Color color{ r,g,b, 1.0f };
-    
+
     pRenderMesh->setColor(color);
 
     result.bSuccess = true;
-    result.message = "position has been set";
+    result.message = "color has been set";
 
-    return result;
+    return;
 }
-*/

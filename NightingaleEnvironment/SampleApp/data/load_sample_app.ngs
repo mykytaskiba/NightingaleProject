@@ -1,11 +1,11 @@
 
-load_scale 0.01
-mesh_load plane_mesh data/core/plane.fbx
+set_loader_scale 0.01
+load_mesh plane_mesh data/core/plane.fbx
 @verify
 
-create cameracontroller
+create_gameobject cameracontroller
 
-//.execute data/load_simple_scene.ngs
+.execute data/load_simple_scene.ngs
 
 //.execute data/load_project_two.ngs
 //.execute data/load_project_one.ngs

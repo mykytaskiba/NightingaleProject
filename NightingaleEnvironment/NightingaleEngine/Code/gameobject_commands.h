@@ -1,46 +1,42 @@
 #pragma once
 #include "defines.h"
-#include "console_command.h"
-#include "core_commands.h"
+#include "command.h"
 
 
-/*
-//create gameobject command, also serves as a factory of sorts
-class CreateGameObjectCommand : public ConsoleCommand {
+class CreateGameObjectCommand : public Command<Line> {
 public:
-    CreateGameObjectCommand() : ConsoleCommand("create_gameobject") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    CreateGameObjectCommand() : Command("create_gameobject") {}
+    virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
- 
+
 //attach a single rendermesh to the game object, mesh must be in the AssetManager already
-class AttachRenderMeshCommand : public ConsoleCommand {
+class AttachRenderMeshCommand : public Command<Line> {
 public:
-    AttachRenderMeshCommand() : ConsoleCommand("attach_rendermesh") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    AttachRenderMeshCommand() : Command("attach_rendermesh") {}
+    virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 
 };
 
-class AttachAnimatedMeshCommand : public ConsoleCommand {
+class AttachAnimatedMeshCommand : public Command<Line> {
 public:
-    AttachAnimatedMeshCommand() : ConsoleCommand("attach_animatedmesh") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    AttachAnimatedMeshCommand() : Command("attach_animatedmesh") {}
+    virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class SetPositionCommand : public ConsoleCommand {
+class SetPositionCommand : public Command <float,float,float> {
 public:
-    SetPositionCommand() : ConsoleCommand("setposition") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    SetPositionCommand() : Command("setposition") {}
+    virtual void execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class SetScaleCommand : public ConsoleCommand {
+class SetScaleCommand : public Command <float> {
 public:
-    SetScaleCommand() : ConsoleCommand("setscale") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    SetScaleCommand() : Command("setscale") {}
+    virtual void execute_command(ArgumentList<float>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class SetColorCommand : public ConsoleCommand {
+class SetColorCommand : public Command <float, float, float> {
 public:
-    SetColorCommand() : ConsoleCommand("setcolor") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    SetColorCommand() : Command("setcolor") {}
+    virtual void execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result) override;
 };
-*/
