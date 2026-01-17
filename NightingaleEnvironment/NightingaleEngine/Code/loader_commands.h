@@ -1,37 +1,36 @@
 #pragma once
 #include "defines.h"
-#include "console_command.h"
-#include "core_commands.h"
+#include "command.h"
+#include "afterparty.h"
 
-class ShaderLoadCommand : public ConsoleCommand {
+class ShaderLoadCommand : public Command<Line,Line,Line> {
 public:
-    ShaderLoadCommand() : ConsoleCommand("shader_load") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    ShaderLoadCommand() : Command("load_shader") {}
+    virtual void execute_command(ArgumentList<Line,Line,Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class MeshLoadCommand : public ConsoleCommand {
+class MeshLoadCommand : public Command<Line, Line> {
 public:
-    MeshLoadCommand() : ConsoleCommand("mesh_load") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    MeshLoadCommand() : Command("load_mesh") {}
+    virtual void execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class SkeletonLoadCommand : public ConsoleCommand {
+class SkeletonLoadCommand : public Command<Line, Line> {
 public:
-    SkeletonLoadCommand() : ConsoleCommand("skeleton_load") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    SkeletonLoadCommand() : Command("load_skeleton") {}
+    virtual void execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class AnimationLoadCommand : public ConsoleCommand {
+class AnimationLoadCommand : public Command<Line, Line> {
 public:
-    AnimationLoadCommand() : ConsoleCommand("animation_load") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-
-};
-
-class LoaderScaleCommand : public ConsoleCommand {
-public:
-    LoaderScaleCommand() : ConsoleCommand("load_scale") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    AnimationLoadCommand() : Command("load_animation") {}
+    virtual void execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result) override;
 
 };
 
+class LoaderScaleCommand : public Command<float> {
+public:
+    LoaderScaleCommand() : Command("set_loader_scale") {}
+    virtual void execute_command(ArgumentList<float>& args, ExecutionState& state, ExecutionResult& result) override;
+
+};

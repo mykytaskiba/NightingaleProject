@@ -74,3 +74,8 @@ time_type EngineFunctions::DeltaTime()
     return EngineInternals::pEngine->m_frameController.getDeltaTime();
 }
 
+ExecutionResult EngineFunctions::ExecuteCommand(string const& command)
+{
+    return EngineInternals::pEngine->m_scriptEnvironment.execute(command);
+}
+

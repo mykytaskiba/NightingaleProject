@@ -1,0 +1,30 @@
+set_loader_scale 0.05
+load_skeleton character data/character_ybot.fbx
+@verify
+
+load_animation ybot_walk data/anim_walk_ybot.fbx
+@verify
+
+load_animation ybot_idle data/anim_idle_ybot.fbx
+@verify
+
+load_animation ybot_dance data/anim_dance_ybot.fbx
+@verify
+
+load_animation ybot_kickup data/anim_kickup_ybot.fbx
+@verify
+
+load_animation ybot_kick data/anim_kick_ybot.fbx
+@verify
+
+load_animation ybot_throw data/anim_throw_ybot.fbx
+@verify
+
+//Sphere needed for nodes
+set_loader_scale 0.01
+load_mesh bone_mesh data/core/sphere.fbx
+@verify
+
+create_gameobject project1gameobject
+attach_animatedmesh character
+setposition 0 -12 0

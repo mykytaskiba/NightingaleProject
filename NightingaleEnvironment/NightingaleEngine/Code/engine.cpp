@@ -33,6 +33,10 @@ Engine::Engine()
 void Engine::init()
 {
     EngineInternals::init(*this);
+    
+    m_scriptEnvironment.init();
+    registerConsoleCommands();
+
 
     m_window.init();
     m_window.setTitle(m_settings.window_title);
@@ -64,7 +68,8 @@ void Engine::update()
 
         m_debugUI.newFrame();
         m_input.captureInputState();
-
+        
+        m_scriptEnvironment.tick();
         m_scene.tick(); 
         m_console.tick();
 
@@ -88,12 +93,20 @@ void Engine::shutdown()
     m_debugUI.shutdown();
     m_renderer.shutdown();
     m_window.shutdown();
+    m_scriptEnvironment.shutdown();
+}
+
+void Engine::registerConsoleCommands()
+{
+    for (CommandInterface*& command : m_settings.console_commands) {
+        m_scriptEnvironment.registerSingleCommand(command);
+    }
 }
 
 void Engine::loadCommands()
 {
     for (string const command : m_settings.load_commands) {
-        ExecutionResult result = Console::ExecuteFromString(command);
+        ExecutionResult result = m_scriptEnvironment.execute(command);
         assert(result.bSuccess);
     }
 }
@@ -102,5 +115,7 @@ void Engine::setDefaultSettings()
 {
     m_settings.window_title = "Nightingale Engine";
 
-    m_settings.load_commands.push_back("cpack data/core/load.cpack");
+    m_settings.load_commands.push_back(".execute data/core/load.ngs");
+
+    defaultSettings_CoreCommands();
 }

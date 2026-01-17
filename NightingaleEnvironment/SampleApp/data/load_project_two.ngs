@@ -1,0 +1,11 @@
+set_loader_scale 0.01
+
+
+load_mesh ground_plane data/ground_plane.fbx
+@verify
+
+create_gameobject gameobject
+setposition 0 -12.5 0
+setscale 100
+attach_rendermesh ground_plane
+setcolor 0.2 0.8 0.2

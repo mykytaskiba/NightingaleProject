@@ -1,0 +1,21 @@
+@clearlog
+@enablelog true
+
+load_shader main_shader data/core/shader/main.vert data/core/shader/main.frag
+@verify
+
+load_shader anim_shader data/core/shader/animated.vert data/core/shader/main.frag
+@verify
+
+load_shader unlit_shader data/core/shader/main.vert data/core/shader/unlit.frag
+@verify
+
+load_shader line_shader data/core/shader/line.vert data/core/shader/line.frag
+@verify
+
+set_loader_scale 0.01
+
+load_mesh sphere_mesh data/core/sphere.fbx
+@verify
+
+@enablelog false

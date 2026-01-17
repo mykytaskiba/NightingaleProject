@@ -2,59 +2,10 @@
 #include "core_commands.h"
 #include "loader.h"
 #include "console.h"
+#include "afterparty.h"
+#include "argument.h"
 
-
-ExecutionResult EchoCommand::execute(string args, ExecutionState& state)
-{
-    ExecutionResult result;
-    result.bSuccess = true;
-    result.message = "";
-    
-    string argProcess;
-    do {
-        argProcess = nextArg(args);
-        result.message += argProcess + " ";
-
-    } while (args != "");
-
-    return result;
-}
-
-ExecutionResult CPackCommand::execute(string args, ExecutionState& state)
-{
-    string path = nextArg(args);
-    string rest = nextArg(args);
-
-    ExecutionResult result;
-    result.bSuccess = false;
-
-    string expectedText = "cpack (path_to_cpack_file.cpack)";
-
-    if (rest != "") {
-        result.message = "Too many args, expected: " + expectedText;
-        return result;
-    }
-
-    if (path == "") {
-        result.message = "Too few args, expected: " + expectedText;
-        return result;
-    }
-
-    if (!Loader::file_exists(path)) {
-        result.message = "file not found: " + path;
-        return result;
-    }
-
-    vector<string> cpack_contents = Loader::read_file_contents_by_line(path);
-
-    for (auto it = cpack_contents.begin(); it != cpack_contents.end(); ++it) {
-        Console::ExecuteFromString(*it);
-    }
-
-    result.bSuccess = true;
-    result.message = "cpack execution success";
-    return result;
-}
+/*
 
 ExecutionResult VerifyCommand::execute(string args, ExecutionState& state)
 {
@@ -86,20 +37,6 @@ ExecutionResult DropStateCommand::execute(string args, ExecutionState& state)
 
 ExecutionResult HelpCommand::execute(string args, ExecutionState& state)
 {
-    string commandList = "";
-
-    assert(Console::pConsole);
-    
-    map<string, ConsoleCommand*> const& commandMap = Console::pConsole->m_commandMap;
-    
-    for (auto it = commandMap.cbegin(); it != commandMap.cend(); ++it) {
-        commandList += (*it).first + "\n";
-    }
-
-    ExecutionResult result;
-    result.bSuccess = true;
-    result.message = commandList;
-    return result;
 }
 
 
@@ -222,5 +159,55 @@ ExecutionResult ShowErrorLogCommand::execute(string args, ExecutionState& state)
     result.bSuccess = true;
     result.message = state.errorLog;
     return result;
+}*/
+
+
+void EchoCommand::execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result)
+{
+    result.bSuccess = true;
+
+    AllText const& text = args.get<0>();
+    result.message = (*text);
 }
 
+void ExecuteCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
+{
+    string path = *args.get<0>();
+
+    result.bSuccess = false;
+
+    if (!Loader::file_exists(path)) {
+        result.message = "file not found: " + path;
+        return;
+    }
+
+    vector<string> command_contents = Loader::read_file_contents_by_line(path);
+
+    ScriptingEnvironment& scripting_env = *ScriptingEnvironment::getInstance();
+    for (auto it = command_contents.begin(); it != command_contents.end(); ++it) {
+        scripting_env.execute(*it);
+    }
+
+    result.bSuccess = true;
+    result.message = "execution success";
+    return;
+}
+
+void HelpCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
+{
+    string commandList = "";
+
+    assert(ScriptingEnvironment::getInstance() != nullptr);
+    ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
+
+    map<string, CommandInterface*> const& commandMap = scriptingEnv.m_commandMap;
+
+    for (auto it = commandMap.cbegin(); it != commandMap.cend(); ++it) {
+        string usage = (*it).second->getUsage();
+        commandList += (*it).first + usage + "\n";
+    }
+
+    result.bSuccess = true;
+    result.message = commandList;
+    return;
+}

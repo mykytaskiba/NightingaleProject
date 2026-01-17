@@ -1,0 +1,13 @@
+
+set_loader_scale 0.01
+load_mesh plane_mesh data/core/plane.fbx
+@verify
+
+create_gameobject cameracontroller
+
+.execute data/load_simple_scene.ngs
+
+//.execute data/load_project_two.ngs
+//.execute data/load_project_one.ngs
+
+//@undefine_all

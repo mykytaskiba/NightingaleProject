@@ -67,3 +67,7 @@ ipch/           # Visual Studio 2010+
 
 ## Ignore each of the project copies of the core data
 /NightingaleEnvironment/SampleApp/data/core/
+NightingaleEnvironment/.vs/NightingaleEnvironment/v16/Browse.VC.db-shm
+NightingaleEnvironment/.vs/NightingaleEnvironment/v16/Browse.VC.db-wal
+NightingaleEnvironment/.vs/NightingaleEnvironment/v16/Solution.VC.db-shm
+NightingaleEnvironment/.vs/NightingaleEnvironment/v16/Solution.VC.db-wal

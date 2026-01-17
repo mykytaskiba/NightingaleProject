@@ -1,20 +1,27 @@
 #pragma once
-#include "console_command.h"
+#include "command.h"
 
-
-class EchoCommand : public ConsoleCommand {
+class EchoCommand : public Command<AllText> {
 public:
-    EchoCommand() : ConsoleCommand("echo") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    EchoCommand() : Command<AllText>("echo") {}
+    virtual void execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-//a cpack is a console pack
-class CPackCommand : public ConsoleCommand {
+class ExecuteCommand : public Command<Line> {
 public:
-    CPackCommand() : ConsoleCommand("cpack") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
+    ExecuteCommand() : Command(".execute") {}
+    virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
+class HelpCommand : public Command<Nothing> {
+public:
+    HelpCommand() : Command("help") {}
+    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
+};
+
+/*
+
+/*
 //verify last command was successful
 class VerifyCommand : public ConsoleCommand {
 public:
@@ -29,11 +36,6 @@ public:
     virtual ExecutionResult execute(string args, ExecutionState& state);
 };
 
-class HelpCommand : public ConsoleCommand {
-public:
-    HelpCommand() : ConsoleCommand("help") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
 
 class DefineCommand : public ConsoleCommand {
 public:
@@ -53,27 +55,4 @@ public:
     virtual ExecutionResult execute(string args, ExecutionState& state);
 };
 
-class EnableLogCommand : public ConsoleCommand {
-public:
-    EnableLogCommand() : ConsoleCommand("@enablelog") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-
-};
-
-class ClearConsoleLogCommand : public ConsoleCommand {
-public:
-    ClearConsoleLogCommand() : ConsoleCommand("@clearlog") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
-
-class ShowConsoleLogCommand : public ConsoleCommand {
-public:
-    ShowConsoleLogCommand() : ConsoleCommand("@showlog") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
-
-class ShowErrorLogCommand : public ConsoleCommand {
-public:
-    ShowErrorLogCommand() : ConsoleCommand("@showerror") {}
-    virtual ExecutionResult execute(string args, ExecutionState& state);
-};
+*/
