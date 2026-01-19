@@ -1,6 +1,7 @@
 #pragma once
 #include "game_object.h"
 #include "animation.h"
+#include "ngmath.h"
 #include "project_two_coobject.h"
 #include "project_three_coobject.h"
 #include "project_four_coobject.h"

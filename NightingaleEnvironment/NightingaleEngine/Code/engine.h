@@ -12,6 +12,7 @@
 #include "console.h"
 #include "engine_settings.h"
 #include "afterparty.h"
+#include "test_file.h"
 
 #define DEFAULT_FPS_COUNT 30 
 
@@ -20,6 +21,8 @@ class Engine {
     friend class EngineInternals;
     friend class EngineFunctions;
 public:
+
+    TestNGMATH mathtest;
 
     EngineSettings& settings();
     void run();

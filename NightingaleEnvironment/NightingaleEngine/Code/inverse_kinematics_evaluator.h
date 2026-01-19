@@ -1,5 +1,6 @@
 #pragma once
 #include "skeleton.h"
+#include "ngmath.h"
 
 class GraphicsContext;
 

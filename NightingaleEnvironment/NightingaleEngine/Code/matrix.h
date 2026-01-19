@@ -4,6 +4,7 @@
 
 #include "vector.h"
 #include <algorithm>
+#include "ngmath.h"
 
 template <typename T, unsigned int DIM_ROW, unsigned int DIM_COL>
 class Matrix {

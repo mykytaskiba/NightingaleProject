@@ -199,7 +199,6 @@ static Vector<T, DIM> operator/(float scalar, Vector<T, DIM>const& vector) {
 
 //Vector defines
 using Vector2 = Vector<float, 2>;
-using Vector3 = Vector<float, 3>;
 using Vector4 = Vector<float, 4>;
 
 using Vector2i = Vector<int, 3>;

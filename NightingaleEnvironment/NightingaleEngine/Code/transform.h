@@ -3,6 +3,7 @@
 #include "quaternion.h"
 #include "vector.h"
 #include "matrix.h"
+#include "ngmath.h"
 
 //a transform class represents a position, scale and a rotation in the world
 class Transform {

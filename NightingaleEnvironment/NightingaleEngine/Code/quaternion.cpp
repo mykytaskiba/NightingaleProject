@@ -159,7 +159,17 @@ Quaternion Quaternion::operator+(Quaternion const& other) const
 
 Vector3 Quaternion::rotate(Vector3 const& vector) const
 {
-    Vector3 result = (getRotation() * vector.add_dimension(1.0f)).truncate_dimension();
+    Vector4 v4;
+    v4[0] = vector.x;
+    v4[1] = vector.y;
+    v4[2] = vector.z;
+    v4[3] = 1.0f;
+    //TODO: Make an add dimension/truncate dimnesion method?
+    Vector3 result;
+    Vector4 v4res = (getRotation() * v4);
+    result.x = v4res[0];
+    result.y = v4res[1];
+    result.z = v4res[2];
     return result;
     //quat a*b multiplicaiton
     //a.w* b.w - a.x * b.x - a.y * b.y - a.z * b.z,  // 1

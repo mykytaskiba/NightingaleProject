@@ -2,7 +2,7 @@
 #include "defines.h"
 #include "argument_helpers.h"
 #include "special_arguments.h"
-#include "vector.h"
+#include "ngmath.h"
 
 struct ParsingResult {
     bool bSuccess{ false };
@@ -137,16 +137,13 @@ struct ArgumentExtractor<Vector3> {
     static Vector3 parse(string& args, ParsingResult& result) {
 
         Vector3 arg(0,0,0);
-        float x = ArgumentExtractor<float>::parse(args, result);
+        arg.x = ArgumentExtractor<float>::parse(args, result);
         if (!result.bSuccess) return arg;
-        float y = ArgumentExtractor<float>::parse(args, result);
+        arg.y = ArgumentExtractor<float>::parse(args, result);
         if (!result.bSuccess) return arg;
-        float z = ArgumentExtractor<float>::parse(args, result);
+        arg.z = ArgumentExtractor<float>::parse(args, result);
         if (!result.bSuccess) return arg;
         
-        arg[0] = x;
-        arg[1] = y;
-        arg[2] = z;
         return arg;
     }
 };

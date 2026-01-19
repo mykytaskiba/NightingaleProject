@@ -3,6 +3,7 @@
 #include "engine_internals.h"
 #include "project_one_gameobject.h"
 #include "engine_functions.h"
+#include "ngmath.h"
 
 ProjectFour::ProjectFour(ProjectOneGameObject& projectOne) : m_projectOne(projectOne), m_renderHook(*this)
 {

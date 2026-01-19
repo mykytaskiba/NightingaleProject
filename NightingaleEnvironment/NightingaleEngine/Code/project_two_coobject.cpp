@@ -9,6 +9,7 @@
 #include "defines.h"
 #include "project_one_gameobject.h"
 #include "engine_functions.h"
+#include "ngmath.h"
 
 ProjectTwo::ProjectTwo(ProjectOneGameObject& projectOne) : m_projectOne(projectOne), m_renderHook(*this)
 {

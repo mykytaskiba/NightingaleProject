@@ -1,6 +1,7 @@
 #pragma once
 #include "vector.h"
 #include "color.h"
+#include "ngmath.h"
 
 class RenderShader;
 class Mesh;
