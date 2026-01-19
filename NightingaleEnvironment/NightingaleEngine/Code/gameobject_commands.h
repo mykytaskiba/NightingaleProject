@@ -23,10 +23,10 @@ public:
     virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
-class SetPositionCommand : public Command <float,float,float> {
+class SetPositionCommand : public Command <Vector3> {
 public:
     SetPositionCommand() : Command("setposition") {}
-    virtual void execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result) override;
+    virtual void execute_command(ArgumentList<Vector3>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
 class SetScaleCommand : public Command <float> {

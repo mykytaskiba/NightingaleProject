@@ -93,18 +93,14 @@ void AttachAnimatedMeshCommand::execute_command(ArgumentList<Line>& args, Execut
     return;
 }
 
-void SetPositionCommand::execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result)
+void SetPositionCommand::execute_command(ArgumentList<Vector3>& args, ExecutionState& state, ExecutionResult& result)
 {
     if (state.pGameObject == nullptr) {
         result.message = "Invalid state, previous gameobject must be set";
         return;
     }
 
-    float x = args.get<0>();
-    float y = args.get<1>();
-    float z = args.get<2>();
-
-    state.pGameObject->getTransform().position = Vector3(x, y, z);
+    state.pGameObject->getTransform().position = args.get<0>();
 
     result.bSuccess = true;
     result.message = "position has been set";

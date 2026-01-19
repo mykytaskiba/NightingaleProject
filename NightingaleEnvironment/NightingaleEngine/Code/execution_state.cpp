@@ -6,8 +6,6 @@ float ExecutionState::extract_float_with_default(string const& key, float defaul
 {
     bool bHasKey = defines.find(key) != defines.end();
 
-    
-
     if (bHasKey) {
         string value(defines.at(key));
         ParsingResult parsingResult;
