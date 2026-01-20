@@ -2,8 +2,8 @@
 
 #include "gl_shader.h"
 #include "gl_shader_uniform.h"
-#include "matrix.h"
 #include "color.h"
+#include "ngmath.h"
 
 //Shader that is used for rendering (Default vertex -> fragment pipeline)
 class RenderShader {

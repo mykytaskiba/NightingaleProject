@@ -1,6 +1,6 @@
 #pragma once
 //Mathmatical vector
-#include "defines.h"
+#include "defines-ngmath.h"
 
 template < typename T, uint DIM >
 struct Vector {
@@ -86,7 +86,7 @@ public:
     }
 
     Vector<T, DIM + 1u> add_dimension(T value) const {
-        Vector<T, DIM + 1u> result = Vector<T,DIM+1u>::garbage_vector();
+        Vector<T, DIM + 1u> result = Vector<T, DIM + 1u>::garbage_vector();
 
         for (uint loop = 0; loop < DIM; loop++) {
             result[loop] = data[loop];
@@ -118,7 +118,7 @@ public:
         return sqrt(magnitude_squared());
     }
 
-    Vector<T,DIM>& normalize_equal() {
+    Vector<T, DIM>& normalize_equal() {
         float magn = magnitude();
         if (magn <= 0.0f) {
             return *this;
@@ -129,14 +129,14 @@ public:
         return *this;
     }
 
-    Vector<T,DIM> normalized() const {
+    Vector<T, DIM> normalized() const {
         Vector<T, DIM> result(*this);
         result.normalize_equal();
         return result;
     }
 
     //Copy creating operators
-    
+
     Vector<T, DIM> operator+(Vector<T, DIM> const& other) const {
         Vector<T, DIM> result(*this);
         result += other;
@@ -191,16 +191,16 @@ static Vector<T, DIM> operator/(float scalar, Vector<T, DIM>const& vector) {
     return (vector / scalar);
 }
 
-
-
-
-
-
-
 //Vector defines
 using Vector2 = Vector<float, 2>;
+using Vector3 = Vector<float, 3>;
 using Vector4 = Vector<float, 4>;
 
 using Vector2i = Vector<int, 3>;
 using Vector3i = Vector<int, 3>;
 using Vector4i = Vector<int, 3>;
+
+
+
+
+

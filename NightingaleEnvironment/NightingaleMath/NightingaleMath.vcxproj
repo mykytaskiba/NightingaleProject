@@ -140,14 +140,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Code\test_file.h" />
     <ClInclude Include="Code\defines-ngmath.h" />
-    <ClInclude Include="Code\vector3.h" />
+    <ClInclude Include="Code\matrix.h" />
     <ClInclude Include="Code\ngmath.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Code\test_file.cpp" />
-    <ClCompile Include="Code\vector3.cpp" />
+    <ClInclude Include="Code\vector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

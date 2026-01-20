@@ -333,12 +333,6 @@
     <ClInclude Include="Code\component.h">
       <Filter>Header Files\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="Code\vector.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\matrix.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
     <ClInclude Include="Code\camera.h">
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>

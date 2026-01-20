@@ -1,7 +1,6 @@
 #pragma once
 #include "defines.h"
-#include "vector.h"
-#include "matrix.h"
+#include "ngmath.h"
 
 
 class GraphicsContext;

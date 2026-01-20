@@ -5,12 +5,12 @@
 #include "assimp/scene.h"
 #include "assimp/Importer.hpp"
 #include "mesh.h"
-#include "matrix.h"
 #include "defines.h"
 #include "skeleton.h"
 #include "animation.h"
 #include "skeleton_builder.h"
 #include "animation_builder.h"
+#include "ngmath.h"
 
 
 

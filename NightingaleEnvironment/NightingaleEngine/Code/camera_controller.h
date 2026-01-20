@@ -1,7 +1,5 @@
 #pragma once
 #include "game_object.h"
-#include "matrix.h"
-#include "vector.h"
 #include "ngmath.h"
 
 class CameraController : public GameObject{

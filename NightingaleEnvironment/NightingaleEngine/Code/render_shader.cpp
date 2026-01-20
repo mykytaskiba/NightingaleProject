@@ -3,6 +3,7 @@
 #include "render_shader.h"
 #include "shader_source.h"
 #include "gl_shader_uniform.h"
+#include "ngmath.h"
 
 
 

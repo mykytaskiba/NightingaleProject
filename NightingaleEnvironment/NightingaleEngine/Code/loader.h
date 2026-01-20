@@ -1,8 +1,8 @@
 #pragma once
 #include "defines.h"
 #include "assimp/Importer.hpp"
-#include "matrix.h"
 #include "quaternion.h"
+#include "ngmath.h"
 
 class Mesh;
 class Skeleton;

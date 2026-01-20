@@ -7,14 +7,13 @@
 
 //TEMP INCLUDES
 #include "game_object.h"
-#include "vector.h"
-#include "matrix.h"
 #include "render_shader.h"
 #include "termination.h"
 #include "loader.h"
 #include "mesh.h"
 #include "input.h"
 #include "engine_internals.h"
+#include "ngmath.h"
 
 //TO DO remove this temp include
 #include "skeleton.h"

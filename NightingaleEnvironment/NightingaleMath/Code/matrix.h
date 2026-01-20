@@ -1,17 +1,13 @@
 #pragma once
-//Mathmatical vector
-#include "defines.h"
-
+#include "defines-ngmath.h"
 #include "vector.h"
-#include <algorithm>
-#include "ngmath.h"
 
 template <typename T, unsigned int DIM_ROW, unsigned int DIM_COL>
 class Matrix {
 
 private:
     T data[DIM_ROW][DIM_COL]; //ROW MAJOR
-    
+
 
 
 public:
@@ -33,7 +29,7 @@ public:
         }
         return result;
     }
-    
+
     static Matrix Identity() {
         Matrix result = Matrix::Zero();
         constexpr uint diagonal_min = std::min(DIM_ROW, DIM_COL);
@@ -56,7 +52,7 @@ public:
 
     Vector<T, DIM_ROW> operator*(const Vector<T, DIM_COL>& vec) const {
         Vector<T, DIM_ROW> result;
-        
+
         for (int loop_row = 0; loop_row < DIM_ROW; loop_row++) {
             result[loop_row] = T();
             for (int loop_col = 0; loop_col < DIM_COL; loop_col++) {
@@ -84,7 +80,7 @@ public:
     }
 
     T& operator() (uint row, uint col) {
-        
+
         assert(row < DIM_ROW);
         assert(col < DIM_COL);
 
@@ -99,9 +95,9 @@ public:
         return data[row][col];
     }
 
-    static 
-        Matrix<T,DIM_ROW,DIM_COL> CreateTranslation(T x, T y, T z) 
-        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
+    static
+        Matrix<T, DIM_ROW, DIM_COL> CreateTranslation(T x, T y, T z)
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
         Matrix translation = Matrix::Identity();
 
         translation.data[0][3] = x;
@@ -143,7 +139,7 @@ public:
         rotation.data[2][2] = cos_a;
         rotation.data[2][0] = -sin_a;
         rotation.data[0][2] = sin_a;
-        
+
         return rotation;
     }
 
@@ -190,7 +186,7 @@ public:
     static
         Matrix<T, DIM_ROW, DIM_COL> CreateScale(Vector3 scaleVec)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-       
+
         return CreateScale(scaleVec[0], scaleVec[1], scaleVec[2]);
 
     }
@@ -207,7 +203,7 @@ public:
         assert(back > 0.0f);
         assert(front < back);
 
-        
+
         T tan_fov = 1.0f / tan(fov / 2.0f);
 
         perspective.data[0][0] = tan_fov;
@@ -223,5 +219,3 @@ public:
 //Matrix defines
 using Matrix4x4 = Matrix<float, 4, 4>;
 using Matrix3x3 = Matrix<float, 3, 3>;
-
-

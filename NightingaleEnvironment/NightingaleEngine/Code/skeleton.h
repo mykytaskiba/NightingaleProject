@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.h"
-#include "matrix.h"
+#include "ngmath.h"
 
 //TO DO remove these forward declarations
 class RenderShader;

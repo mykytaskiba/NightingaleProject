@@ -3,7 +3,6 @@
 
 int main() {
 
-    
     //std::thread render_thread = std::thread(render_test);
     Engine engine;
     

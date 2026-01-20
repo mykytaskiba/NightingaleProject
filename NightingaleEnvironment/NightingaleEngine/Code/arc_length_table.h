@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.h"
-#include "vector.h"
+#include "ngmath.h"
 
 class CubicSpline3D;
 

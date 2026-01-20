@@ -1,6 +1,6 @@
 #pragma once
-#include "matrix.h"
 #include "defines.h"
+#include "ngmath.h"
 
 class Screen;
 

@@ -137,11 +137,11 @@ struct ArgumentExtractor<Vector3> {
     static Vector3 parse(string& args, ParsingResult& result) {
 
         Vector3 arg(0,0,0);
-        arg.x = ArgumentExtractor<float>::parse(args, result);
+        arg[0] = ArgumentExtractor<float>::parse(args, result);
         if (!result.bSuccess) return arg;
-        arg.y = ArgumentExtractor<float>::parse(args, result);
+        arg[1] = ArgumentExtractor<float>::parse(args, result);
         if (!result.bSuccess) return arg;
-        arg.z = ArgumentExtractor<float>::parse(args, result);
+        arg[2] = ArgumentExtractor<float>::parse(args, result);
         if (!result.bSuccess) return arg;
         
         return arg;

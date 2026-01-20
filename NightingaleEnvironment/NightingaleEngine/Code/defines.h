@@ -31,7 +31,6 @@ namespace filesystem = std::filesystem;
 constexpr float pi = (float) std::numbers::pi;
 
 
-
 //NO_HEAP_ALLOCATION
 //Define inside of a class to remove that class from ever being on the heap
 //#define NO_HEAP_ALLOCATION                              \

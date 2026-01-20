@@ -1,7 +1,7 @@
 #pragma once
-#include "vector.h"
 #include "assert_define.h"
 #include "key_enum.h"
+#include "ngmath.h"
 
 
 

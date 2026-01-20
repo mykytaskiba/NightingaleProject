@@ -186,7 +186,6 @@
     <ClInclude Include="Code\loader.h" />
     <ClInclude Include="Code\loader_commands.h" />
     <ClInclude Include="Code\logger.h" />
-    <ClInclude Include="Code\matrix.h" />
     <ClInclude Include="Code\mesh.h" />
     <ClInclude Include="Code\mesh_object.h" />
     <ClInclude Include="Code\pch.h" />
@@ -210,7 +209,6 @@
     <ClInclude Include="Code\skinned_mesh.h" />
     <ClInclude Include="Code\termination.h" />
     <ClInclude Include="Code\transform.h" />
-    <ClInclude Include="Code\vector.h" />
     <ClInclude Include="Code\window.h" />
     <ClInclude Include="Code\key_enum.h" />
     <ClInclude Include="Code\engine_settings.h" />

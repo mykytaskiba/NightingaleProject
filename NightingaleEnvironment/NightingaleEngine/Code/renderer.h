@@ -4,9 +4,9 @@
 #include "gl_window.h"
 #include "gl_shader.h"
 #include "debug_ui.h"
-#include "matrix.h"
 #include "screen.h"
 #include "graphics_context.h"
+#include "ngmath.h"
 
 class Mesh;
 class RenderShader;
