@@ -11,7 +11,7 @@
 #include "asset_manager.h"
 #include "console.h"
 #include "engine_settings.h"
-#include "afterparty.h"
+#include "scripting.h"
 
 #define DEFAULT_FPS_COUNT 30 
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.h"
-#include "afterparty.h"
+#include "scripting.h"
 
 class GameObject;
 class Camera;

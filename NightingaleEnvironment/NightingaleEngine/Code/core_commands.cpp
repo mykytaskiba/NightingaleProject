@@ -2,7 +2,7 @@
 #include "core_commands.h"
 #include "loader.h"
 #include "console.h"
-#include "afterparty.h"
+#include "scripting.h"
 #include "argument.h"
 
 /*

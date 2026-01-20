@@ -25,8 +25,8 @@ string ArgumentHelpers::getNextWithDefines(string& args)
     if (arg.size() >= 2) {
         bool bDefineSyntax = arg[0] == '$';
         if (bDefineSyntax) {
-            //assert(AfterpartyEnvironment::getInstance() != nullptr);
-            //AfterpartyEnvironment& environment = *AfterpartyEnvironment::getInstance();
+            //assert(Environment::getInstance() != nullptr);
+            //Environment& environment = *Environment::getInstance();
             //TO DO: make a define class?
             //map<string, string>& defines = environment.m_.defines;
             //bool bDefineExists = defines.find(arg.substr(1)) != defines.end();

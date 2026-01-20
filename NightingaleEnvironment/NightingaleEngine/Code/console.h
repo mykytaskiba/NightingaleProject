@@ -2,7 +2,7 @@
 #include "game_object.h"
 #include "defines.h"
 #include "console_command.h"
-#include "afterparty.h"
+#include "scripting.h"
 
 
 class ConsoleCommand;

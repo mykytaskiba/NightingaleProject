@@ -1,7 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "command.h"
-#include "afterparty.h"
+#include "scripting.h"
 
 class ShaderLoadCommand : public Command<Line,Line,Line> {
 public:
