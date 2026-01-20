@@ -140,10 +140,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\color.h" />
     <ClInclude Include="Code\defines-ngmath.h" />
     <ClInclude Include="Code\matrix.h" />
     <ClInclude Include="Code\ngmath.h" />
     <ClInclude Include="Code\vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Code\color.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
