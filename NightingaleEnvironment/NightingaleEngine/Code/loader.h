@@ -1,7 +1,6 @@
 #pragma once
 #include "defines.h"
 #include "assimp/Importer.hpp"
-#include "quaternion.h"
 #include "ngmath.h"
 
 class Mesh;

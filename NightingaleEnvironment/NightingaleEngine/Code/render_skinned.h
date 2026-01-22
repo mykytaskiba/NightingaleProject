@@ -1,6 +1,6 @@
 #pragma once
 #include "render_node.h"
-#include "color.h"
+#include "ngmath.h"
 #include "animation_evaluator.h"
 
 class Mesh;

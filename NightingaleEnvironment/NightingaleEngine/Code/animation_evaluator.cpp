@@ -2,7 +2,7 @@
 #include "animation_evaluator.h"
 #include "animation.h"
 #include "skeleton.h"
-#include "quaternion.h"
+#include "ngmath.h"
 
 using TPositionChannel = Animation::TPositionChannel;
 using TRotationChannel = Animation::TRotationChannel;

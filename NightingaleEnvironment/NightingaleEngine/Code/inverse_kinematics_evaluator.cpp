@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "inverse_kinematics_evaluator.h"
-#include "quaternion.h"
 #include "graphics_context.h"
 #include "asset_manager.h"
+#include "ngmath.h"
 
 void InverseKinematicEvaluator::bind(Skeleton* pSkeleton, string const& bindNode, uint bindDepth)
 {

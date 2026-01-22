@@ -1,6 +1,5 @@
 #pragma once
 
-#include <vector>
 #include <map>
 #include <filesystem>
 #include <math.h>
@@ -18,6 +17,7 @@ using ifstream = std::ifstream;
 using stringstream = std::stringstream;
 using exception = std::exception;
 
+#include <vector>
 template<typename T>
 using vector = std::vector<T>;
 

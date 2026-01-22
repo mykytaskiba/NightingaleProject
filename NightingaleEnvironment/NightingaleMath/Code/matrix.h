@@ -1,6 +1,8 @@
 #pragma once
 #include "defines-ngmath.h"
 #include "vector.h"
+#include <concepts>
+#include <cmath>
 
 template <typename T, unsigned int DIM_ROW, unsigned int DIM_COL>
 class Matrix {
@@ -81,8 +83,8 @@ public:
 
     T& operator() (uint row, uint col) {
 
-        assert(row < DIM_ROW);
-        assert(col < DIM_COL);
+        //assert(row < DIM_ROW);
+        //assert(col < DIM_COL);
 
         return data[row][col];
     }
@@ -97,7 +99,7 @@ public:
 
     static
         Matrix<T, DIM_ROW, DIM_COL> CreateTranslation(T x, T y, T z)
-        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
         Matrix translation = Matrix::Identity();
 
         translation.data[0][3] = x;
@@ -173,7 +175,7 @@ public:
 
     static
         Matrix<T, DIM_ROW, DIM_COL> CreateScale(T scaleX, T scaleY, T scaleZ)
-        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
         Matrix scale = Matrix::Identity();
 
         scale.data[0][0] = scaleX;
@@ -185,7 +187,7 @@ public:
 
     static
         Matrix<T, DIM_ROW, DIM_COL> CreateScale(Vector3 scaleVec)
-        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
 
         return CreateScale(scaleVec[0], scaleVec[1], scaleVec[2]);
 

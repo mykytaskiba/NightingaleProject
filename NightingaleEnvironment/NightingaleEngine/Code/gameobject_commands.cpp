@@ -8,7 +8,7 @@
 #include "engine_functions.h"
 #include "skeleton.h"
 #include "render_skinned.h"
-#include "color.h"
+#include "ngmath.h"
 
 void CreateGameObjectCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {

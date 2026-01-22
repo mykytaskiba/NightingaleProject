@@ -1,9 +1,7 @@
 #pragma once
-#include "defines.h"
-#include "ngmath.h"
+#include "defines-ngmath.h"
+#include "vector.h"
 
-
-class GraphicsContext;
 
 class CubicSpline {
 
@@ -13,7 +11,7 @@ private:
 public:
     void addValue(float value);
     void finalize();
-    
+
     float evaluate(float t) const;
 
 private:
@@ -41,5 +39,4 @@ private:
     vector<Vector3> m_representationValues;
 public:
     void represent(CubicSpline3D const& curve, float deltaStep);
-    void draw(GraphicsContext& context);
 };

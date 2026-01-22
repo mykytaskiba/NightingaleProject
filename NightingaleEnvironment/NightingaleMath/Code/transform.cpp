@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "transform.h"
 
 
@@ -7,7 +6,7 @@ Transform Transform::interpolate(Transform const& a, Transform const& b, float t
     Transform result;
 
     result.position = Vector3::interpolate(a.position, b.position, t);
-    result.scale = pow(a.scale, (1.0f - t))*pow(b.scale, t);
+    result.scale = pow(a.scale, (1.0f - t)) * pow(b.scale, t);
     result.rotation = Quaternion::interpolate(a.rotation, b.rotation, t);
 
 
@@ -18,7 +17,7 @@ Matrix4x4 Transform::getMatrix() const
 {
     Matrix4x4 result = rotation.getRotation();
 
-    result(0,3) = position[0];
+    result(0, 3) = position[0];
     result(1, 3) = position[1];
     result(2, 3) = position[2];
 
@@ -27,7 +26,7 @@ Matrix4x4 Transform::getMatrix() const
             result(i, j) *= scale;
         }
     }
-    
+
     return result;
 }
 

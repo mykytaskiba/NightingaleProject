@@ -1,5 +1,4 @@
 #pragma once
-#include "color.h"
 #include "ngmath.h"
 
 class RenderShader;

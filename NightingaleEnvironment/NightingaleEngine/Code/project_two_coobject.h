@@ -1,9 +1,7 @@
 #pragma once
 #include "render_node.h"
 #include "defines.h"
-#include "vector.h"
-#include "cubic_spline.h"
-#include "arc_length_table.h"
+#include "ngmath.h"
 
 class ProjectOneGameObject;
 class ProjectTwo;

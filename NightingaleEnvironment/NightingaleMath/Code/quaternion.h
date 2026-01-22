@@ -1,5 +1,6 @@
 #pragma once
-#include "ngmath.h"
+#include "vector.h"
+#include "matrix.h"
 
 class Quaternion {
 
@@ -15,7 +16,7 @@ public:
 
     void normalizeEquals();
     float magnitude() const;
-    Matrix4x4 getRotation() const; 
+    Matrix4x4 getRotation() const;
 
     float dot(Quaternion const&) const;
 
@@ -35,4 +36,7 @@ public:
     bool operator==(Quaternion const&) const;
 };
 
-static Quaternion operator*(float scalar, Quaternion const& quat);
+static Quaternion operator*(float scalar, Quaternion const& quat)
+{
+    return quat * scalar;
+}

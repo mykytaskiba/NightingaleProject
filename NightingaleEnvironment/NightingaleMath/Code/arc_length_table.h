@@ -1,6 +1,5 @@
 #pragma once
-#include "defines.h"
-#include "ngmath.h"
+#include "defines-ngmath.h"
 
 class CubicSpline3D;
 

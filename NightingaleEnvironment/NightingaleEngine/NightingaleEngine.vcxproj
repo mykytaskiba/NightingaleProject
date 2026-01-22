@@ -118,7 +118,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Lib\glfw-3.4.bin.WIN64\include;$(ProjectDir)Lib\glew-2.1.0\include;$(ProjectDir)Lib\imgui-master\backends;$(ProjectDir)Lib\imgui-master;$(ProjectDir)Lib\assimp-6.0.2\include;$(ProjectDir)Lib\imgui-master\misc\cpp;$(SolutionDir)NightingaleMath\Code;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Lib\glfw-3.4.bin.WIN64\include;$(ProjectDir)Lib\glew-2.1.0\include;$(ProjectDir)Lib\imgui-master\backends;$(ProjectDir)Lib\imgui-master;$(ProjectDir)Lib\assimp-6.0.2\include;$(ProjectDir)Lib\imgui-master\misc\cpp;$(SolutionDir)NightingaleMath\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
@@ -152,7 +152,6 @@
     <ClInclude Include="Code\animation.h" />
     <ClInclude Include="Code\animation_builder.h" />
     <ClInclude Include="Code\animation_evaluator.h" />
-    <ClInclude Include="Code\arc_length_table.h" />
     <ClInclude Include="Code\argument.h" />
     <ClInclude Include="Code\assert_define.h" />
     <ClInclude Include="Code\asset_manager.h" />
@@ -164,7 +163,6 @@
     <ClInclude Include="Code\console_command.h" />
     <ClInclude Include="Code\core_commands.h" />
     <ClInclude Include="Code\core_interface.h" />
-    <ClInclude Include="Code\cubic_spline.h" />
     <ClInclude Include="Code\debug_ui.h" />
     <ClInclude Include="Code\defines.h" />
     <ClInclude Include="Code\engine.h" />
@@ -192,7 +190,6 @@
     <ClInclude Include="Code\project_one_gameobject.h" />
     <ClInclude Include="Code\project_three_coobject.h" />
     <ClInclude Include="Code\project_two_coobject.h" />
-    <ClInclude Include="Code\quaternion.h" />
     <ClInclude Include="Code\renderer.h" />
     <ClInclude Include="Code\render_mesh.h" />
     <ClInclude Include="Code\render_node.h" />
@@ -207,7 +204,6 @@
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />
     <ClInclude Include="Code\termination.h" />
-    <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Code\window.h" />
     <ClInclude Include="Code\key_enum.h" />
     <ClInclude Include="Code\engine_settings.h" />
@@ -218,7 +214,6 @@
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
     <ClCompile Include="Code\animation_evaluator.cpp" />
-    <ClCompile Include="Code\arc_length_table.cpp" />
     <ClCompile Include="Code\argument.cpp" />
     <ClCompile Include="Code\argument_helpers.cpp" />
     <ClCompile Include="Code\camera.cpp" />
@@ -226,7 +221,6 @@
     <ClCompile Include="Code\console.cpp" />
     <ClCompile Include="Code\console_command.cpp" />
     <ClCompile Include="Code\core_commands.cpp" />
-    <ClCompile Include="Code\cubic_spline.cpp" />
     <ClCompile Include="Code\debug_ui.cpp" />
     <ClCompile Include="Code\engine.cpp" />
     <ClCompile Include="Code\engine_functions.cpp" />
@@ -256,7 +250,6 @@
     <ClCompile Include="Code\project_one_gameobject.cpp" />
     <ClCompile Include="Code\project_three_coobject.cpp" />
     <ClCompile Include="Code\project_two_coobject.cpp" />
-    <ClCompile Include="Code\quaternion.cpp" />
     <ClCompile Include="Code\renderer.cpp" />
     <ClCompile Include="Code\render_mesh.cpp" />
     <ClCompile Include="Code\render_shader.cpp" />
@@ -267,7 +260,6 @@
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />
     <ClCompile Include="Code\termination.cpp" />
-    <ClCompile Include="Code\transform.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Code\default_console_commands.cpp" />
     <ClCompile Include="Lib\imgui-master\backends\imgui_impl_glfw.cpp">

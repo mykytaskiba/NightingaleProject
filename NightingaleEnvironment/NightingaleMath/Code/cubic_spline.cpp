@@ -1,7 +1,6 @@
-#include "pch.h"
+#include "defines-ngmath.h"
 #include "cubic_spline.h"
-#include "defines.h"
-#include "graphics_context.h"
+#include <cmath>
 
 void CubicSpline::addValue(float value)
 {
@@ -13,8 +12,8 @@ void CubicSpline::finalize()
     m_derivatives.clear();
     //TO DO: Automatically recalculate derivatives when adding values
     m_derivatives.push_back(0.0f); //first derivative
-    for (size_t i{ 1u }; i < m_values.size()-1u; ++i) {
-        float derivative = (m_values[i + 1u] - m_values[i - 1u])/2.0f;
+    for (size_t i{ 1u }; i < m_values.size() - 1u; ++i) {
+        float derivative = (m_values[i + 1u] - m_values[i - 1u]) / 2.0f;
         m_derivatives.push_back(derivative);
     }
     m_derivatives.push_back(0.0f); //final derivative
@@ -37,12 +36,12 @@ float CubicSpline::evaluate(float t) const
 
     size_t valueCount = m_values.size();
     if (valueCount == 0u) {
-        assert(0);
+        //assert(0);
         return 0.0f;
     }
 
     if (t < 0.0f || t > 1.0f) {
-        assert(0);
+        //assert(0);
         return 0.0f;
     }
 
@@ -51,11 +50,11 @@ float CubicSpline::evaluate(float t) const
     uint intervalCount = valueCount - 1u;
     double globalT = (t * (double)intervalCount);
     size_t valueIndex = (size_t)globalT;
-    
-    
+
+
     float temp;
     float relativeT = std::modf(globalT, &temp);
-    
+
     Vector4 values = Vector4(m_values[valueIndex], m_values[valueIndex + 1u],
         m_derivatives[valueIndex], m_derivatives[valueIndex + 1u]);
 
@@ -67,9 +66,9 @@ float CubicSpline::evaluate(float t) const
         relativeT * (functionValues[1] +
             relativeT * (functionValues[2] +
                 relativeT * functionValues[3]));
-                
+
     return result;
-    
+
 
 }
 
@@ -100,12 +99,12 @@ void SplineRepresentation::represent(CubicSpline3D const& curve, float deltaStep
 {
     m_representationValues.clear();
 
-    uint totalSteps = ((uint)(1.0f/deltaStep) - 1u);
-    m_representationValues.reserve((size_t) (totalSteps + 1u));
+    uint totalSteps = ((uint)(1.0f / deltaStep) - 1u);
+    m_representationValues.reserve((size_t)(totalSteps + 1u));
 
     for (uint i{ 0u }; i < totalSteps; ++i) {
         float t = deltaStep * (float)i;
-        
+
         m_representationValues.push_back(curve.evaluate(t));
     }
 
@@ -113,9 +112,10 @@ void SplineRepresentation::represent(CubicSpline3D const& curve, float deltaStep
 
 }
 
+/*
 void SplineRepresentation::draw(GraphicsContext& context)
 {
     for (size_t i{ 0u }; i < m_representationValues.size() - 1u; ++i) {
         context.drawLine(m_representationValues[i], m_representationValues[i + 1u]);
     }
-}
+}*/

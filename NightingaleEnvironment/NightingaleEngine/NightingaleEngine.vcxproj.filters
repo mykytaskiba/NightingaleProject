@@ -19,8 +19,6 @@
     </Filter>
     <Filter Include="Source Files\Rendering\GraphicsLibrary">
     </Filter>
-    <Filter Include="Source Files\Math">
-    </Filter>
     <Filter Include="Source Files\Rendering\ShaderPreprocess">
     </Filter>
     <Filter Include="Source Files\Logic">
@@ -49,34 +47,33 @@
     <Filter Include="Engine Data">
       <UniqueIdentifier>{285b15ec-9c42-4e83-93e8-1054573cacef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripting">
+    <Filter Include="Source Files\Scripting" />
+    <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Scripting\Project" />
-    <Filter Include="Scripting\Core" />
-    <Filter Include="Scripting\Logging" />
-    <Filter Include="Scripting\Rendering" />
-    <Filter Include="Scripting\Rendering\GraphicsLibrary" />
-    <Filter Include="Scripting\Rendering\ShaderPreprocess" />
-    <Filter Include="Scripting\Rendering\RenderNodes" />
-    <Filter Include="Scripting\Rendering\Skeleton" />
-    <Filter Include="Scripting\Math" />
-    <Filter Include="Scripting\Logic" />
-    <Filter Include="Scripting\IMGUI" />
-    <Filter Include="Scripting\Loading" />
-    <Filter Include="Scripting\Input" />
-    <Filter Include="Scripting\Game" />
-    <Filter Include="Scripting\Console" />
-    <Filter Include="Scripting\AssetManagement" />
-    <Filter Include="Scripting\Afterparty" />
-    <Filter Include="Scripting\Setup">
+    <Filter Include="Header Files\Project" />
+    <Filter Include="Header Files\Core" />
+    <Filter Include="Header Files\Logging" />
+    <Filter Include="Header Files\Rendering" />
+    <Filter Include="Header Files\Rendering\GraphicsLibrary" />
+    <Filter Include="Header Files\Rendering\ShaderPreprocess" />
+    <Filter Include="Header Files\Rendering\RenderNodes" />
+    <Filter Include="Header Files\Rendering\Skeleton" />
+    <Filter Include="Header Files\Logic" />
+    <Filter Include="Header Files\IMGUI" />
+    <Filter Include="Header Files\Loading" />
+    <Filter Include="Header Files\Input" />
+    <Filter Include="Header Files\Game" />
+    <Filter Include="Header Files\Console" />
+    <Filter Include="Header Files\AssetManagement" />
+    <Filter Include="Header Files\Afterparty" />
+    <Filter Include="Header Files\Setup">
       <UniqueIdentifier>{1243eb7c-61a4-4be3-8e8b-3d673afd9307}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripting\CoreConsoleCommands">
+    <Filter Include="Header Files\CoreConsoleCommands">
       <UniqueIdentifier>{2c371785-5bca-44ba-b6c7-b44fb8b65f10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Scripting" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\pch.cpp">
@@ -175,9 +172,6 @@
     <ClCompile Include="Code\skeleton.cpp">
       <Filter>Source Files\Rendering\Skeleton</Filter>
     </ClCompile>
-    <ClCompile Include="Code\quaternion.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Code\render_skinned.cpp">
       <Filter>Source Files\Rendering\RenderNodes</Filter>
     </ClCompile>
@@ -196,20 +190,11 @@
     <ClCompile Include="Code\animation_builder.cpp">
       <Filter>Source Files\Rendering\Skeleton</Filter>
     </ClCompile>
-    <ClCompile Include="Code\transform.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
     <ClCompile Include="Code\animation_evaluator.cpp">
       <Filter>Source Files\Rendering\Skeleton</Filter>
     </ClCompile>
     <ClCompile Include="Code\project_two_coobject.cpp">
       <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\cubic_spline.cpp">
-      <Filter>Source Files\Math</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\arc_length_table.cpp">
-      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Code\project_three_coobject.cpp">
       <Filter>Source Files\Game</Filter>
@@ -265,211 +250,199 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
-      <Filter>Scripting\Project</Filter>
+      <Filter>Header Files\Project</Filter>
     </ClInclude>
     <ClInclude Include="Code\defines.h">
-      <Filter>Scripting\Project</Filter>
+      <Filter>Header Files\Project</Filter>
     </ClInclude>
     <ClInclude Include="Code\engine.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\logger.h">
-      <Filter>Scripting\Logging</Filter>
+      <Filter>Header Files\Logging</Filter>
     </ClInclude>
     <ClInclude Include="Code\renderer.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\graphics_library.h">
-      <Filter>Scripting\Rendering\GraphicsLibrary</Filter>
+      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\gl_window.h">
-      <Filter>Scripting\Rendering\GraphicsLibrary</Filter>
+      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\gl_shader.h">
-      <Filter>Scripting\Rendering\GraphicsLibrary</Filter>
+      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\shader_source.h">
-      <Filter>Scripting\Rendering\ShaderPreprocess</Filter>
+      <Filter>Header Files\Rendering\ShaderPreprocess</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_shader.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\shader_attribute.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\gl_shader_uniform.h">
-      <Filter>Scripting\Rendering\GraphicsLibrary</Filter>
+      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\game_object.h">
-      <Filter>Scripting\Logic</Filter>
+      <Filter>Header Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Code\root_object.h">
-      <Filter>Scripting\Logic</Filter>
+      <Filter>Header Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Code\core_interface.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\component.h">
-      <Filter>Scripting\Logic</Filter>
+      <Filter>Header Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Code\camera.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\frame_controller.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\debug_ui.h">
-      <Filter>Scripting\IMGUI</Filter>
+      <Filter>Header Files\IMGUI</Filter>
     </ClInclude>
     <ClInclude Include="Code\mesh.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\loader.h">
-      <Filter>Scripting\Loading</Filter>
+      <Filter>Header Files\Loading</Filter>
     </ClInclude>
     <ClInclude Include="Code\input.h">
-      <Filter>Scripting\Input</Filter>
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Code\engine_internals.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\window.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\screen.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\termination.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\scene.h">
-      <Filter>Scripting\Logic</Filter>
+      <Filter>Header Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Code\camera_controller.h">
-      <Filter>Scripting\Game</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\engine_functions.h">
-      <Filter>Scripting\Core</Filter>
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_node.h">
-      <Filter>Scripting\Rendering\RenderNodes</Filter>
+      <Filter>Header Files\Rendering\RenderNodes</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_mesh.h">
-      <Filter>Scripting\Rendering\RenderNodes</Filter>
+      <Filter>Header Files\Rendering\RenderNodes</Filter>
     </ClInclude>
     <ClInclude Include="Code\mesh_object.h">
-      <Filter>Scripting\Game</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\console.h">
-      <Filter>Scripting\Console</Filter>
+      <Filter>Header Files\Console</Filter>
     </ClInclude>
     <ClInclude Include="Code\console_command.h">
-      <Filter>Scripting\Console</Filter>
+      <Filter>Header Files\Console</Filter>
     </ClInclude>
     <ClInclude Include="Code\asset_manager.h">
-      <Filter>Scripting\AssetManagement</Filter>
+      <Filter>Header Files\AssetManagement</Filter>
     </ClInclude>
     <ClInclude Include="Code\gameobject_factory.h">
-      <Filter>Scripting\Loading</Filter>
+      <Filter>Header Files\Loading</Filter>
     </ClInclude>
     <ClInclude Include="Code\assert_define.h">
-      <Filter>Scripting\Project</Filter>
+      <Filter>Header Files\Project</Filter>
     </ClInclude>
     <ClInclude Include="Code\skeleton.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\scripting.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\environment.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\argument.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\command.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\animation.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\quaternion.h">
-      <Filter>Scripting\Math</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_skinned.h">
-      <Filter>Scripting\Rendering\RenderNodes</Filter>
+      <Filter>Header Files\Rendering\RenderNodes</Filter>
     </ClInclude>
     <ClInclude Include="Code\skinned_mesh.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\graphics_context.h">
-      <Filter>Scripting\Rendering</Filter>
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\project_one_gameobject.h">
-      <Filter>Scripting\Game</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\skeleton_builder.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\animation_builder.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\transform.h">
-      <Filter>Scripting\Math</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\animation_evaluator.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\project_two_coobject.h">
-      <Filter>Scripting\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\cubic_spline.h">
-      <Filter>Scripting\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\arc_length_table.h">
-      <Filter>Scripting\Math</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\project_three_coobject.h">
-      <Filter>Scripting\Game</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\inverse_kinematics_evaluator.h">
-      <Filter>Scripting\Rendering\Skeleton</Filter>
+      <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\project_four_coobject.h">
-      <Filter>Scripting\Game</Filter>
+      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="Code\key_enum.h">
-      <Filter>Scripting\Input</Filter>
+      <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Code\engine_settings.h">
-      <Filter>Scripting\Setup</Filter>
+      <Filter>Header Files\Setup</Filter>
     </ClInclude>
     <ClInclude Include="Code\execution_state.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\execution_result.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\core_commands.h">
-      <Filter>Scripting\CoreConsoleCommands</Filter>
+      <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
     <ClInclude Include="Code\loader_commands.h">
-      <Filter>Scripting\CoreConsoleCommands</Filter>
+      <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
     <ClInclude Include="Code\advanced_arguments.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\argument_impl.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\argument_helpers.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\special_arguments.h">
-      <Filter>Scripting\Afterparty</Filter>
+      <Filter>Header Files\Afterparty</Filter>
     </ClInclude>
     <ClInclude Include="Code\gameobject_commands.h">
-      <Filter>Scripting\CoreConsoleCommands</Filter>
+      <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

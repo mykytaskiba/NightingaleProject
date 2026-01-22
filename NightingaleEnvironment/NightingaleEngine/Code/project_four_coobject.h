@@ -1,8 +1,7 @@
 #pragma once
 #include "render_node.h"
 #include "defines.h"
-#include "vector.h"
-#include "transform.h"
+#include "ngmath.h"
 
 class ProjectOneGameObject;
 class ProjectFour;

@@ -1,7 +1,7 @@
 #pragma once
 #include "render_node.h"
 #include "graphics_context.h"
-#include "color.h"
+#include "ngmath.h"
 
 class Mesh;
 class RenderShader;

@@ -1,18 +1,18 @@
-#include "pch.h"
 #include "quaternion.h"
 #include "vector.h"
+#include <cmath>
 
-Quaternion::Quaternion(float inX, float inY, float inZ, float inW) 
+Quaternion::Quaternion(float inX, float inY, float inZ, float inW)
     : x(inX), y(inY), z(inZ), w(inW)
 {
 }
 
 Quaternion::Quaternion(Vector3 axis, float angle) : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
 {
-   // assert(axis.magnitude() == 1.0f);
-    
+    // assert(axis.magnitude() == 1.0f);
+
     float sin_a = sin(angle / 2.0f);
-    w = cos(angle/2.0f);
+    w = cos(angle / 2.0f);
 
     x = axis[0] * sin_a;
     y = axis[1] * sin_a;
@@ -119,7 +119,7 @@ Quaternion Quaternion::operator*(Quaternion const& other) const
 {
     Quaternion result;
 
-    
+
     result.w = w * other.w - x * other.x - y * other.y - z * other.z;
     result.x = w * other.x + x * other.w + y * other.z - z * other.y;
     result.y = w * other.y - x * other.z + y * other.w + z * other.x;
@@ -134,7 +134,7 @@ Quaternion Quaternion::operator*(Quaternion const& other) const
 }
 
 Quaternion& Quaternion::operator*=(Quaternion const& other)
-{ 
+{
     Quaternion temp = (*this) * other;
     *this = temp;
     return *this;
@@ -178,7 +178,3 @@ bool Quaternion::operator==(Quaternion const& other) const
         w == other.w);
 }
 
-Quaternion operator*(float scalar, Quaternion const& quat)
-{
-    return quat* scalar;
-}

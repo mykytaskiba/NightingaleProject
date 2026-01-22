@@ -1,9 +1,7 @@
 #pragma once
-
-#include "quaternion.h"
-#include "vector.h"
 #include "matrix.h"
-#include "ngmath.h"
+#include "vector.h"
+#include "quaternion.h"
 
 //a transform class represents a position, scale and a rotation in the world
 class Transform {

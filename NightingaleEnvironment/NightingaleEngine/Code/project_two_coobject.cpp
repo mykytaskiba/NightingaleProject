@@ -2,7 +2,6 @@
 #include "project_two_coobject.h"
 #include "engine_internals.h"
 #include "renderer.h"
-#include "transform.h"
 #include "asset_manager.h"
 #include "mesh.h"
 #include "render_shader.h"
@@ -245,7 +244,8 @@ void ProjectTwoRenderHook::render(GraphicsContext& context)
         pNodeModel->Draw();
     }
 
-    m_curveRepresentation.draw(context);
+    //TO DO: reimplement this method outside of math library
+    //m_curveRepresentation.draw(context);
 
     //render hook hack to make 
 }

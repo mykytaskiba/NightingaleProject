@@ -18,7 +18,7 @@
     <ClInclude Include="Code\defines-ngmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\ngmath.h">
+    <ClInclude Include="Includes\ngmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\vector.h">
@@ -30,9 +30,33 @@
     <ClInclude Include="Code\color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\quaternion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\arc_length_table.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\cubic_spline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\color.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\quaternion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\arc_length_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\cubic_spline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

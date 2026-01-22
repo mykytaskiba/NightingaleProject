@@ -3,7 +3,7 @@
 #include "render_shader.h"
 #include "engine_internals.h"
 #include "mesh.h"
-#include "transform.h"
+#include "ngmath.h"
 
 void GraphicsContext::setCurrentShader(RenderShader* pShader)
 {

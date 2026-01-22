@@ -1,7 +1,6 @@
 #pragma once
 #include "core_interface.h"
 #include "defines.h"
-#include "transform.h"
 #include "ngmath.h"
 
 class Component;

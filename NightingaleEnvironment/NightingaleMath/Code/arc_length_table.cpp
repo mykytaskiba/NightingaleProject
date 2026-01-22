@@ -1,6 +1,6 @@
-#include "pch.h"
 #include "arc_length_table.h"
 #include "cubic_spline.h"
+#include "vector.h"
 
 void ArcLengthTable::evaluate(CubicSpline3D const& spline)
 {
@@ -9,7 +9,7 @@ void ArcLengthTable::evaluate(CubicSpline3D const& spline)
 
     float currT = 0.0f;
     float currLength = 0.0f;
-    
+
     m_tValues.push_back(currT);
     m_length.push_back(currLength);
     float currStep = maxDeltaT;
@@ -21,7 +21,7 @@ void ArcLengthTable::evaluate(CubicSpline3D const& spline)
         if (nextT >= 1.0f) { //if we are finished
             nextT = 1.0f;
         }
-        
+
         Vector3 halfVal = spline.evaluate((currT + nextT) / 2.0f);
         Vector3 nextVal = spline.evaluate(nextT);
 
@@ -58,7 +58,7 @@ float ArcLengthTable::getTFromLength(float length) const
         if (mid == m_length.size() - 1u) return 1.0f;
 
         float minLength = m_length[mid];
-        float maxLength = m_length[mid+1u];
+        float maxLength = m_length[mid + 1u];
 
         if (length >= minLength && length < maxLength)
         {

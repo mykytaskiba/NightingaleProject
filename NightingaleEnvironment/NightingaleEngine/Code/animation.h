@@ -1,6 +1,4 @@
 #pragma once
-#include "quaternion.h"
-#include "transform.h"
 #include "ngmath.h"
 
 template <typename T> 
