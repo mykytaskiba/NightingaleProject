@@ -38,12 +38,12 @@ public:
 
 
     T& operator[](uint index) {
-        //assert(index < DIM);
+        assert(index < DIM);
         return data[index];
     }
 
     T operator[](uint index) const {
-        //assert(index < DIM);
+        assert(index < DIM);
         return data[index];
     }
 

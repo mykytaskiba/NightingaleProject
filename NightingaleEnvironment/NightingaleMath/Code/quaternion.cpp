@@ -9,7 +9,7 @@ Quaternion::Quaternion(float inX, float inY, float inZ, float inW)
 
 Quaternion::Quaternion(Vector3 axis, float angle) : x(0.0f), y(0.0f), z(0.0f), w(0.0f)
 {
-    // assert(axis.magnitude() == 1.0f);
+    assert(axis.magnitude() == 1.0f);
 
     float sin_a = sin(angle / 2.0f);
     w = cos(angle / 2.0f);
@@ -48,7 +48,7 @@ float Quaternion::magnitude() const
 
 Matrix4x4 Quaternion::getRotation() const
 {
-    //assert(magnitude() == 1.0f);
+    assert(magnitude() == 1.0f);
 
     Matrix4x4 result = Matrix4x4::Identity();
     result(0, 0) = 1.0f - 2.0f * y * y - 2.0f * z * z;

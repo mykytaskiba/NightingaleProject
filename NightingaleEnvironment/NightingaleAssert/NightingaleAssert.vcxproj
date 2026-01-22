@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{cc17ff00-7e2d-4e4c-823d-f9008c98cba6}</ProjectGuid>
-    <RootNamespace>NightingaleMath</RootNamespace>
+    <ProjectGuid>{c5ec99ad-42cd-4ac6-ad28-2fddb05768ec}</ProjectGuid>
+    <RootNamespace>NightingaleAssert</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,8 +116,6 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Code;$(ProjectDir)Includes;$(SolutionDir)NightingaleAssert;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,22 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Code\arc_length_table.h" />
-    <ClInclude Include="Code\color.h" />
-    <ClInclude Include="Code\cubic_spline.h" />
-    <ClInclude Include="Code\defines-ngmath.h" />
-    <ClInclude Include="Code\matrix.h" />
-    <ClInclude Include="Code\transform.h" />
-    <ClInclude Include="Includes\ngmath.h" />
-    <ClInclude Include="Code\quaternion.h" />
-    <ClInclude Include="Code\vector.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Code\arc_length_table.cpp" />
-    <ClCompile Include="Code\color.cpp" />
-    <ClCompile Include="Code\cubic_spline.cpp" />
-    <ClCompile Include="Code\quaternion.cpp" />
-    <ClCompile Include="Code\transform.cpp" />
+    <ClInclude Include="nightingale_assert.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

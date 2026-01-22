@@ -83,8 +83,8 @@ public:
 
     T& operator() (uint row, uint col) {
 
-        //assert(row < DIM_ROW);
-        //assert(col < DIM_COL);
+        assert(row < DIM_ROW);
+        assert(col < DIM_COL);
 
         return data[row][col];
     }

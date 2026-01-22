@@ -1,5 +1,5 @@
 #pragma once
-#include "assert_define.h"
+#include "nightingale_assert.h"
 #include "key_enum.h"
 #include "ngmath.h"
 
