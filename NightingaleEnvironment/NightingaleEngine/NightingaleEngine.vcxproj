@@ -293,6 +293,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NighingalePhysics\NighingalePhysics.vcxproj">
+      <Project>{79023311-f5ba-47ad-97ae-49a73660d076}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\NightingaleMath\NightingaleMath.vcxproj">
       <Project>{cc17ff00-7e2d-4e4c-823d-f9008c98cba6}</Project>
     </ProjectReference>
