@@ -7,12 +7,13 @@
 #include "screen.h"
 #include "graphics_context.h"
 #include "ngmath.h"
+#include "engine_system.h"
 
 class Mesh;
 class RenderShader;
 class RenderNode;
 
-class Renderer {
+class Renderer : public EngineSystem {
     friend class EngineFunctions;
     friend class ProjectTwo; //TO DO: remove later
     friend class ProjectThree;
@@ -21,9 +22,9 @@ public:
 
     Renderer() {}
 
+    void register_system(EngineSystemBinding& binding) override;
     void init();
     void render();
-    void shutdown();
 
     void handleResize(int width, int height);
 

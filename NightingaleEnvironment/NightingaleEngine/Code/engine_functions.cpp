@@ -79,3 +79,13 @@ ExecutionResult EngineFunctions::ExecuteCommand(string const& command)
     return EngineInternals::pEngine->m_scriptEnvironment.execute(command);
 }
 
+void EngineFunctions::SetWindowTitle(string const& title)
+{
+    EngineInternals::pEngine->m_window.setTitle(title); 
+}
+
+void EngineFunctions::SetTargetFramerate(int framerate)
+{
+    EngineInternals::pEngine->m_frameController.setTargetFrameRate(framerate);
+}
+

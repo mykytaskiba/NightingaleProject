@@ -11,13 +11,16 @@
 //Filesystem
 #include <filesystem>
 
-//Containers
+//STD and Containers
 #include <vector>
 #include <map>
+#include <set>
+#include <functional>
 
 //Math and Numbers
 #include <math.h>
 #include <numbers>
+#include "ngmath.h"
 
 //OPENGL SETUP
 #include <GL/glew.h>

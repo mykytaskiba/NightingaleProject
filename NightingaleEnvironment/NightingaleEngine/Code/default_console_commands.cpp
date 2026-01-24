@@ -12,6 +12,9 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new ExecuteCommand());
     m_settings.console_commands.push_back(new HelpCommand());
     m_settings.console_commands.push_back(new DefineCommand());
+    m_settings.console_commands.push_back(new SetWindowTitleCommand());
+    m_settings.console_commands.push_back(new QuitCommand());
+    m_settings.console_commands.push_back(new SetTargetFramerateCommand());
 
     //Loader commands
     m_settings.console_commands.push_back(new ShaderLoadCommand());
@@ -27,6 +30,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SetScaleCommand());
     m_settings.console_commands.push_back(new SetColorCommand());
 }
+
 
 /*
     //Console is ready when the commands are registered, so the singleton can be registered here

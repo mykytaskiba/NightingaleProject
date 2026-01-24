@@ -12,13 +12,15 @@
 #include "console.h"
 #include "engine_settings.h"
 #include "scripting.h"
+#include "priority_function.h"
 
-#define DEFAULT_FPS_COUNT 30 
+#define DEFAULT_FPS_COUNT 10 
 
 
 class Engine {
     friend class EngineInternals;
     friend class EngineFunctions;
+    friend class EngineSystemBinding;
 public:
 
     EngineSettings& settings();
@@ -29,6 +31,7 @@ public:
 private:
 
     //Core loop, init -> update -> shutdown
+    void register_systems();
     void init();
     void update();
     void shutdown();
@@ -39,6 +42,15 @@ private:
     EngineSettings m_settings;
     void setDefaultSettings();
     void defaultSettings_CoreCommands();
+
+    set<PriorityFunction> m_initFunctions;
+    set<PriorityFunction> m_updateFunctions;
+    set<PriorityFunction> m_shutdownFunctions;
+
+    void executeFunctionsInSet(set<PriorityFunction>& set);
+    void register_init(uint priority, FEngineProcedure function);
+    void register_update(uint priority, FEngineProcedure function);
+    void register_shutdown(uint priority, FEngineProcedure function);
 
     Window m_window;
     Renderer m_renderer;

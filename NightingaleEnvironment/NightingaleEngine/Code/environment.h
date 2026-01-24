@@ -10,8 +10,6 @@
     public:
         //Must init environment to call commands
         void init();
-        void tick();
-        void shutdown();
 
         //Execute single command
         ExecutionResult execute(string const&);

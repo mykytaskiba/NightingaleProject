@@ -23,11 +23,6 @@ void Scene::init()
 
 
 }
-
-void Scene::shutdown()
-{
-}
-
 void Scene::tick()
 {
     m_root.execute(m_tickFunc);

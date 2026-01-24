@@ -22,7 +22,43 @@ struct ArgumentExtractor {
 //INT
 template<>
 struct ArgumentExtractor<int> {
-    static string usage() { return "int"; }
+    static string usage() { return "integer"; }
+    static int parse(string& args, ParsingResult& result)
+    {
+        string valueStr = ArgumentHelpers::getNextWithDefines(args);
+        try {
+            result.bSuccess = true;
+            return std::stoi(valueStr);
+        }
+        catch (std::invalid_argument const& e) {
+            result.errorMessage = valueStr + " is not a value for an integer";
+            result.bSuccess = false;
+            return 0;
+        }
+        catch (std::out_of_range const& e) {
+            result.errorMessage = valueStr + " is not a value for an integer";
+            result.bSuccess = false;
+            return 0;
+        }
+    }
+};
+
+//UINT
+template<>
+struct ArgumentExtractor<uint> {
+    static string usage() { return "positive integer"; }
+    static uint parse(string& args, ParsingResult& result)
+    {
+        int i = ArgumentExtractor<int>::parse(args, result);
+        if (result.bSuccess) {
+            if (i < 0) {
+                result.errorMessage = "integer value is negative " + i;
+                result.bSuccess = false;
+                return 0;
+            }
+            return uint(i);
+        }
+    }
 };
 
 //FLOAT
@@ -38,12 +74,12 @@ struct ArgumentExtractor<float> {
             return std::stof(valueStr);
         }
         catch (std::invalid_argument const& e) {
-            result.errorMessage = valueStr + " is not a value for float";
+            result.errorMessage = valueStr + " is not a value for a float";
             result.bSuccess = false;
             return 0.0f;
         }
         catch (std::out_of_range const& e) {
-            result.errorMessage = valueStr + " is not a value for float";
+            result.errorMessage = valueStr + " is not a value for a float";
             result.bSuccess = false;
             return 0.0f;
         }

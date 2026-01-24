@@ -10,7 +10,6 @@ class Input {
 public:
     void init();
     void captureInputState();
-    void shutdown();
 
     
     static Vector2 const& MousePos() { assert(s_pInput != nullptr); return s_pInput->m_mousePos; }

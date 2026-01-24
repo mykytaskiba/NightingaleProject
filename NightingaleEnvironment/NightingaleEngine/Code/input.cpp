@@ -34,10 +34,6 @@ void Input::captureInputState()
     
 }
 
-void Input::shutdown()
-{
-}
-
 bool Input::KeyDown(Key key)
 {
     assert(s_pInput != nullptr);

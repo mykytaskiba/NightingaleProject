@@ -19,6 +19,11 @@
 #include "skeleton.h"
 
 
+void Renderer::register_system(EngineSystemBinding& binding)
+{
+    //binding.register_init(200, [this] {init(); });
+}
+
 void Renderer::init()
 {
     m_graphicsContext.init();
@@ -50,9 +55,6 @@ void Renderer::render()
 
 }
 
-void Renderer::shutdown()
-{
-}
 
 void Renderer::handleResize(int width, int height)
 {

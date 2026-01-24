@@ -4,7 +4,8 @@
 #include "console.h"
 #include "scripting.h"
 #include "argument.h"
-
+#include "engine_functions.h"
+#include "termination.h"
 /*
 
 ExecutionResult VerifyCommand::execute(string args, ExecutionState& state)
@@ -221,4 +222,31 @@ void DefineCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionSta
 
     result.bSuccess = true;
     result.message = defineKey + " was set to " + defineVal;
+}
+
+void SetWindowTitleCommand::execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result)
+{
+    string windowTitle = *args.get<0>();
+
+    EngineFunctions::SetWindowTitle(windowTitle);
+
+    result.bSuccess = true;
+    result.message = "Window title set to " + windowTitle;
+}
+
+void QuitCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
+{
+    Termination::SendTerminationSignal();
+
+    result.bSuccess = true;
+    result.message = "App quit";
+}
+
+void SetTargetFramerateCommand::execute_command(ArgumentList<uint>& args, ExecutionState& state, ExecutionResult& result)
+{
+    uint framerate = args.get<0>();
+    EngineFunctions::SetTargetFramerate(framerate);
+
+    result.bSuccess = true;
+    result.message = "Target framerate set to " + std::to_string(framerate);
 }

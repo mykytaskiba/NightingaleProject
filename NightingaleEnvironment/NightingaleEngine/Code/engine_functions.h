@@ -36,4 +36,7 @@ public:
 
     static ExecutionResult ExecuteCommand(string const&);
 
+    static void SetWindowTitle(string const& title);
+    static void SetTargetFramerate(int framerate);
+
 };

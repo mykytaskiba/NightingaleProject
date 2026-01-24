@@ -18,7 +18,6 @@ public:
     TGameObjectFunc m_renderFunc;
 
     void init();
-    void shutdown();
 
     void tick();
     void render();

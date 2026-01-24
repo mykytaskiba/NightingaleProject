@@ -148,6 +148,7 @@
     <ClInclude Include="Code\argument_helpers.h" />
     <ClInclude Include="Code\argument_impl.h" />
     <ClInclude Include="Code\advanced_arguments.h" />
+    <ClInclude Include="Code\engine_system_binding.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
     <ClInclude Include="Code\animation_builder.h" />
@@ -159,7 +160,6 @@
     <ClInclude Include="Code\command.h" />
     <ClInclude Include="Code\component.h" />
     <ClInclude Include="Code\console.h" />
-    <ClInclude Include="Code\console_command.h" />
     <ClInclude Include="Code\core_commands.h" />
     <ClInclude Include="Code\core_interface.h" />
     <ClInclude Include="Code\debug_ui.h" />
@@ -209,6 +209,8 @@
     <ClInclude Include="Code\execution_state.h" />
     <ClInclude Include="Code\execution_result.h" />
     <ClInclude Include="Code\special_arguments.h" />
+    <ClInclude Include="Code\priority_function.h" />
+    <ClInclude Include="Code\engine_system.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -224,6 +226,7 @@
     <ClCompile Include="Code\engine.cpp" />
     <ClCompile Include="Code\engine_functions.cpp" />
     <ClCompile Include="Code\engine_internals.cpp" />
+    <ClCompile Include="Code\engine_system_binding.cpp" />
     <ClCompile Include="Code\environment.cpp" />
     <ClCompile Include="Code\execution_state.cpp" />
     <ClCompile Include="Code\frame_controller.cpp" />

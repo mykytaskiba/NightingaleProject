@@ -37,8 +37,6 @@
     </Filter>
     <Filter Include="Source Files\Console">
     </Filter>
-    <Filter Include="Source Files\AssetManagement">
-    </Filter>
     <Filter Include="Source Files\Rendering\Skeleton">
     </Filter>
     <Filter Include="Source Files\CoreConsoleCommands">
@@ -67,13 +65,13 @@
     <Filter Include="Header Files\Game" />
     <Filter Include="Header Files\Console" />
     <Filter Include="Header Files\AssetManagement" />
-    <Filter Include="Header Files\Afterparty" />
     <Filter Include="Header Files\Setup">
       <UniqueIdentifier>{1243eb7c-61a4-4be3-8e8b-3d673afd9307}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\CoreConsoleCommands">
       <UniqueIdentifier>{2c371785-5bca-44ba-b6c7-b44fb8b65f10}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Scripting" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\pch.cpp">
@@ -247,6 +245,9 @@
     <ClCompile Include="Code\execution_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\engine_system_binding.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -348,9 +349,6 @@
     <ClInclude Include="Code\console.h">
       <Filter>Header Files\Console</Filter>
     </ClInclude>
-    <ClInclude Include="Code\console_command.h">
-      <Filter>Header Files\Console</Filter>
-    </ClInclude>
     <ClInclude Include="Code\asset_manager.h">
       <Filter>Header Files\AssetManagement</Filter>
     </ClInclude>
@@ -361,16 +359,16 @@
       <Filter>Header Files\Rendering\Skeleton</Filter>
     </ClInclude>
     <ClInclude Include="Code\scripting.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\environment.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\argument.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\command.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\animation.h">
       <Filter>Header Files\Rendering\Skeleton</Filter>
@@ -415,10 +413,10 @@
       <Filter>Header Files\Setup</Filter>
     </ClInclude>
     <ClInclude Include="Code\execution_state.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\execution_result.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\core_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
@@ -427,19 +425,28 @@
       <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
     <ClInclude Include="Code\advanced_arguments.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\argument_impl.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\argument_helpers.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\special_arguments.h">
-      <Filter>Header Files\Afterparty</Filter>
+      <Filter>Header Files\Scripting</Filter>
     </ClInclude>
     <ClInclude Include="Code\gameobject_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\priority_function.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\engine_system.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\engine_system_binding.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

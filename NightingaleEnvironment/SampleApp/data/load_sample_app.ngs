@@ -1,7 +1,10 @@
+set_window_title Sample App
+set_target_framerate 60
 
 loader_scale = 0.01
 load_mesh plane_mesh data/core/plane.fbx
 @verify
+
 
 create_gameobject cameracontroller
 

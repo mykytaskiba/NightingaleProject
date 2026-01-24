@@ -12,14 +12,6 @@ void ScriptingEnvironment::init()
     m_pInstance = this;
 }
 
-void ScriptingEnvironment::tick()
-{
-}
-
-void ScriptingEnvironment::shutdown()
-{
-}
-
 ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
 {
     ExecutionResult result;

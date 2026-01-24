@@ -25,6 +25,24 @@ public:
     HelpCommand() : Command("help") {}
     virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
 };
+
+class SetWindowTitleCommand : public Command<AllText> {
+public:
+    SetWindowTitleCommand() : Command("set_window_title") {}
+    virtual void execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result) override;
+};
+
+class QuitCommand : public Command<Nothing> {
+public:
+    QuitCommand() : Command("quit") {}
+    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
+};
+
+class SetTargetFramerateCommand : public Command<uint> {
+public:
+    SetTargetFramerateCommand() : Command("set_target_framerate") {}
+    virtual void execute_command(ArgumentList<uint>& args, ExecutionState& state, ExecutionResult& result) override;
+};
 /*
 
 /*

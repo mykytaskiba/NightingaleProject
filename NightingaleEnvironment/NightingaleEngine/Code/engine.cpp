@@ -17,10 +17,11 @@ EngineSettings& Engine::settings()
 
 void Engine::run()
 {
+    register_systems();
+
+
     init();
-
     update();
-
     shutdown();
 }
 
@@ -30,32 +31,38 @@ Engine::Engine()
 }
 
 
+void Engine::register_systems()
+{
+    register_init(74, [this] {m_window.init(); });
+    register_init(75, [this] {m_debugUI.init(m_window); });
+    register_init(80, [this] {m_input.init(); });
+    register_init(90, [this] {m_scene.init(); });
+    register_init(95, [this] {  loadCommands(); });
+    register_init(100, [this] {m_renderer.init(); });
+    
+    register_update(60, [this] {m_frameController.frameStart(); });
+    register_update(70, [this] {m_debugUI.newFrame(); });
+    register_update(80, [this] {m_input.captureInputState(); });
+    register_update(90, [this] {m_scene.tick(); });
+    register_update(100, [this] {m_console.tick(); });
+    register_update(200, [this] {m_renderer.render(); });
+    register_update(230, [this] {m_debugUI.endFrame(); });
+    register_update(240, [this] {m_window.update(); });
+    register_update(250, [this] {m_frameController.frameEnd(); });
+
+    register_shutdown(100, [this] {m_debugUI.shutdown(); });
+
+}
+
 void Engine::init()
 {
     EngineInternals::init(*this);
     
+    //Currently scripting environment is handled differently than the rest of system
     m_scriptEnvironment.init();
     registerConsoleCommands();
 
-
-    m_window.init();
-    m_window.setTitle(m_settings.window_title);
-
-    m_frameController.setTargetFrameRate(60);
-
-    m_debugUI.init(m_window);
-
-    m_input.init();
-
-    m_scene.init();
-
-    m_console.init();
-    
-    loadCommands();
-
-    m_renderer.init();
-
-
+    executeFunctionsInSet(m_initFunctions);
 }
 
 void Engine::update()
@@ -63,37 +70,13 @@ void Engine::update()
 
     while (!Termination::NeedTermination())
     {
-        m_frameController.frameStart();
-        
-
-        m_debugUI.newFrame();
-        m_input.captureInputState();
-        
-        m_scriptEnvironment.tick();
-        m_scene.tick(); 
-        m_console.tick();
-
-
-        m_renderer.render();
-        m_debugUI.endFrame();
-
-        m_window.update();
-
-        m_frameController.frameEnd();
-        
-
+        executeFunctionsInSet(m_updateFunctions);
     }
 }
 
 void Engine::shutdown()
 {
-    m_scene.shutdown();
-    m_console.shutdown();
-    m_input.shutdown();
-    m_debugUI.shutdown();
-    m_renderer.shutdown();
-    m_window.shutdown();
-    m_scriptEnvironment.shutdown();
+    executeFunctionsInSet(m_shutdownFunctions);
 }
 
 void Engine::registerConsoleCommands()
@@ -111,10 +94,33 @@ void Engine::loadCommands()
     }
 }
 
+void Engine::executeFunctionsInSet(set<PriorityFunction>& set)
+{
+    for (auto it{ set.begin() }; it != set.end(); ++it) {
+        (*it)();
+    }
+}
+
+void Engine::register_init(uint priority, FEngineProcedure function)
+{
+    PriorityFunction func(priority, function);
+    m_initFunctions.insert(func);
+}
+
+void Engine::register_update(uint priority, FEngineProcedure function)
+{
+    PriorityFunction func(priority, function);
+    m_updateFunctions.insert(func);
+}
+
+void Engine::register_shutdown(uint priority, FEngineProcedure function)
+{
+    PriorityFunction func(priority, function);
+    m_shutdownFunctions.insert(func);
+}
+
 void Engine::setDefaultSettings()
 {
-    m_settings.window_title = "Nightingale Engine";
-
     m_settings.load_commands.push_back(".execute data/core/load.ngs");
 
     defaultSettings_CoreCommands();

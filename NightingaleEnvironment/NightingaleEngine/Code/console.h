@@ -1,8 +1,8 @@
 #pragma once
 #include "game_object.h"
 #include "defines.h"
-#include "console_command.h"
 #include "scripting.h"
+#include "engine_system.h"
 
 
 class ConsoleCommand;
@@ -11,9 +11,9 @@ class Console {
     friend class HelpCommand;
     friend class ConsoleCommand;
 public:
-    virtual void init();
-    virtual void tick();
-    virtual void shutdown();
+    void init();
+    void tick();
+
 protected:
 
 
