@@ -13,7 +13,7 @@ class Mesh;
 class RenderShader;
 class RenderNode;
 
-class Renderer : public EngineSystem {
+class Renderer {
     friend class EngineFunctions;
     friend class ProjectTwo; //TO DO: remove later
     friend class ProjectThree;
@@ -22,7 +22,6 @@ public:
 
     Renderer() {}
 
-    void register_system(EngineSystemBinding& binding) override;
     void init();
     void render();
 

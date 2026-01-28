@@ -15,10 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\ngphys.h">
+    <ClInclude Include="Includes\ngphys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\testfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -30,7 +30,6 @@ Engine::Engine()
     setDefaultSettings();
 }
 
-
 void Engine::register_systems()
 {
     register_init(74, [this] {m_window.init(); });
@@ -64,6 +63,7 @@ void Engine::init()
 
     executeFunctionsInSet(m_initFunctions);
 }
+#include "ngphys.h"
 
 void Engine::update()
 {
@@ -72,6 +72,10 @@ void Engine::update()
     {
         executeFunctionsInSet(m_updateFunctions);
     }
+
+    Physics physics;
+    
+
 }
 
 void Engine::shutdown()

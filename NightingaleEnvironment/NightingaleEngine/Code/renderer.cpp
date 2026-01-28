@@ -19,10 +19,6 @@
 #include "skeleton.h"
 
 
-void Renderer::register_system(EngineSystemBinding& binding)
-{
-    //binding.register_init(200, [this] {init(); });
-}
 
 void Renderer::init()
 {

@@ -6,10 +6,10 @@
 #include "ngmath.h"
 
 
-
 void RenderShader::activate()
 {
     m_baseShader.activate();
+
 }
 
 void RenderShader::transferByName(string const& name, Matrix4x4 const& matrix)
