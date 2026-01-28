@@ -1,5 +1,6 @@
 #pragma once
 #include "ngmath.h"
+#include "screen.h"
 
 class RenderShader;
 class Mesh;
@@ -9,6 +10,9 @@ private:
     RenderShader* m_pCurrentShader{ nullptr };
 
 public:
+    //TO DO: possibly refactor this?
+    Screen m_currentScreenDims{};
+
     void setCurrentShader(RenderShader*);
     RenderShader* getCurrentShader();
     
@@ -17,6 +21,7 @@ public:
     
     RenderShader* m_pUnlitShader;
     Mesh* m_pSphere;
+
 
     void init();
 

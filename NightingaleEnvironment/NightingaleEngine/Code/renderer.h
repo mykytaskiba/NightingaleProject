@@ -7,11 +7,11 @@
 #include "screen.h"
 #include "graphics_context.h"
 #include "ngmath.h"
-#include "engine_system.h"
 
 class Mesh;
 class RenderShader;
 class RenderNode;
+class RenderPass;
 
 class Renderer {
     friend class EngineFunctions;
@@ -30,6 +30,8 @@ public:
 
 private:
 
+    vector<RenderPass*> m_renderpasses;
+    void registerRenderPass(RenderPass*);
 
     vector<RenderNode*> m_renderables;
     void registerRenderable(RenderNode*);
