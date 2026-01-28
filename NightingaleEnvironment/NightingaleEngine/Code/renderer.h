@@ -30,6 +30,7 @@ public:
 
 private:
 
+
     vector<RenderNode*> m_renderables;
     void registerRenderable(RenderNode*);
 

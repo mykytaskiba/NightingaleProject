@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{79023311-f5ba-47ad-97ae-49a73660d076}</ProjectGuid>
-    <RootNamespace>NightingalePhysics</RootNamespace>
+    <ProjectGuid>{6f639eec-e813-42e9-817a-340756ec4ca3}</ProjectGuid>
+    <RootNamespace>NightingaleRender</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>NightingalePhysics</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -118,7 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)NightingaleAssert;$(SolutionDir)NightingaleMath\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingaleAssert;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -142,17 +141,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Code\physics.h" />
-    <ClInclude Include="Code\testfile.h" />
-    <ClInclude Include="Includes\ngphys.h" />
+    <ClInclude Include="Includes\ngrender.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Code\physics.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\NightingaleMath\NightingaleMath.vcxproj">
-      <Project>{cc17ff00-7e2d-4e4c-823d-f9008c98cba6}</Project>
-    </ProjectReference>
+    <ClCompile Include="Code\test.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
