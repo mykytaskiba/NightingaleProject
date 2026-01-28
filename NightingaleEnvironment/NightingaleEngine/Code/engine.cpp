@@ -63,7 +63,6 @@ void Engine::init()
 
     executeFunctionsInSet(m_initFunctions);
 }
-#include "ngphys.h"
 
 void Engine::update()
 {
@@ -73,7 +72,6 @@ void Engine::update()
         executeFunctionsInSet(m_updateFunctions);
     }
 
-    Physics physics;
     
 
 }
