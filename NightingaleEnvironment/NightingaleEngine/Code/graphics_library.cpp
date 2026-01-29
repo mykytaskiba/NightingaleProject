@@ -1,10 +1,6 @@
 #include "pch.h"
 #include "graphics_library.h"
 
-void GraphicsLibrary::init()
-{
-
-}
 
 
 void GraphicsLibrary::setViewport(uint x, uint y, uint width, uint height) {

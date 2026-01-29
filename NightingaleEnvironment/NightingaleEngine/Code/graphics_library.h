@@ -9,7 +9,6 @@
 /// </summary>
 class GraphicsLibrary {
 public:
-    static void init();
 
 
     static void setViewport(uint x, uint y, uint width, uint height);

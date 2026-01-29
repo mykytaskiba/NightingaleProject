@@ -3,6 +3,7 @@
 
 class GLFWwindow;
 
+//TO DO: Potentially make this a wrapper and a Window_GLFW a specific implementation?
 class Window {
 public:
     void init();
