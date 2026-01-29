@@ -7,7 +7,7 @@
 #include "window.h"
 #include "screen.h"
 #include "scene.h"
-#include "camera.h"
+#include "ngrender.h"
 #include "asset_manager.h"
 #include "console.h"
 #include "engine_settings.h"

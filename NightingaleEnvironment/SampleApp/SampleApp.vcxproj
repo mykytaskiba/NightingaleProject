@@ -117,13 +117,13 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)NightingaleEngine\Code;$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingaleAssert;$(SolutionDir)NightingalePhysics\Includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)NightingaleEngine\Code;$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingaleAssert;$(SolutionDir)NightingalePhysics\Includes;$(SolutionDir)NightingaleRender\Includes</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;assimp-vc142-mtd.lib;NightingaleMath.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;assimp-vc142-mtd.lib;NightingaleMath.lib;NightingaleRender.lib;NightingalePhysics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>call "$(SolutionDir)BuildScripts\CopyEngineData.bat" $(SolutionDir) $(ProjectName)</Command>

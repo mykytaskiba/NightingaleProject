@@ -2,7 +2,7 @@
 #include "camera_controller.h"
 #include "engine_functions.h"
 #include "input.h"
-#include "camera.h"
+#include "ngrender.h"
 
 CameraController* CameraController::s_instance = nullptr;
 

@@ -131,9 +131,6 @@
     <ClCompile Include="Code\scene.cpp">
       <Filter>Source Files\Logic</Filter>
     </ClCompile>
-    <ClCompile Include="Code\camera.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Code\termination.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
@@ -259,9 +256,6 @@
     <ClInclude Include="Code\pch.h">
       <Filter>Header Files\Project</Filter>
     </ClInclude>
-    <ClInclude Include="Code\defines.h">
-      <Filter>Header Files\Project</Filter>
-    </ClInclude>
     <ClInclude Include="Code\engine.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
@@ -303,9 +297,6 @@
     </ClInclude>
     <ClInclude Include="Code\component.h">
       <Filter>Header Files\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\camera.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\frame_controller.h">
       <Filter>Header Files\Core</Filter>

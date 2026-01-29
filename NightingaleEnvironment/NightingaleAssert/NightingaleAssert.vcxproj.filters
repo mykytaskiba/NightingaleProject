@@ -18,5 +18,8 @@
     <ClInclude Include="nightingale_assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 #include "render_skinned.h"
 #include "asset_manager.h"
 #include "input.h"
-#include "camera.h"
+#include "ngrender.h"
 #include "camera_controller.h"
 
 

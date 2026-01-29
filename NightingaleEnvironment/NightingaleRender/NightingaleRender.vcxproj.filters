@@ -18,9 +18,15 @@
     <ClInclude Include="Includes\ngrender.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -141,10 +141,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\camera.h" />
     <ClInclude Include="Includes\ngrender.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Code\camera.cpp" />
     <ClCompile Include="Code\test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NightingaleMath\NightingaleMath.vcxproj">
+      <Project>{cc17ff00-7e2d-4e4c-823d-f9008c98cba6}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
