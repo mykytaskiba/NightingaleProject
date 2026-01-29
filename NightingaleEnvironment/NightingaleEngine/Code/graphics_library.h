@@ -1,6 +1,5 @@
 #pragma once
 
-#include "gl_window.h"
 #include "gl_shader.h"
 #include "defines.h"
 #include "ngmath.h"

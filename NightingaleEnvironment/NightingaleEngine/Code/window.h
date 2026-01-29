@@ -1,5 +1,4 @@
 #pragma once
-#include "gl_window.h"
 #include "defines.h"
 
 class GLFWwindow;

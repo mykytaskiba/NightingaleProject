@@ -86,9 +86,6 @@
     <ClCompile Include="Code\graphics_library.cpp">
       <Filter>Source Files\Rendering\GraphicsLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="Code\gl_window.cpp">
-      <Filter>Source Files\Rendering\GraphicsLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="Code\gl_shader.cpp">
       <Filter>Source Files\Rendering\GraphicsLibrary</Filter>
     </ClCompile>
@@ -263,9 +260,6 @@
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\graphics_library.h">
-      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\gl_window.h">
       <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\gl_shader.h">
