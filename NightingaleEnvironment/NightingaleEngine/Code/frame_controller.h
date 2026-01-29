@@ -1,31 +1,30 @@
 #pragma once
 #include "defines.h"
 
+#define DEFAULT_FRAMERATE_TARGET 10 
+
 //time_type defined in defines
 class FrameController {
 
 public:
-    ~FrameController() {}
 
-    FrameController(FrameController const&) = delete;
-    FrameController& operator=(FrameController const&) = delete;
+    FrameController();
 
     void frameStart();
     void frameEnd();
 
     void setTargetFrameRate(uint target);
 
-    FrameController(uint targetFrameRate);
 
-    time_type getDeltaTime() { return m_deltaTime; }
+    TTimeDelta getDeltaTime() { return m_deltaTime; }
 
 
 private:
 
-    time_type m_frameStartTime = 0;
-    time_type m_frameEndTime = 0;
-    time_type m_targetFrameRate = 0;
+    TTimeAbs m_frameStartTime{ 0.0 };
+    TTimeAbs m_frameEndTime{ 0.0 };
+    TTimeAbs m_targetFrameRate{ 0.0 };
 
-    time_type m_deltaTime = 0;
+    TTimeDelta m_deltaTime{ 0.0 };
 
 };

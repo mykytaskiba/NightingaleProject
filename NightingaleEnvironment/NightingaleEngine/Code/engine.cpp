@@ -38,12 +38,14 @@ void Engine::register_systems()
     register_init(90, [this] {m_scene.init(); });
     register_init(95, [this] {  loadCommands(); });
     register_init(100, [this] {m_renderer.init(); });
+    register_init(110, [this] {CS550TempTestFuncInit(); });
     
     register_update(60, [this] {m_frameController.frameStart(); });
     register_update(70, [this] {m_debugUI.newFrame(); });
     register_update(80, [this] {m_input.captureInputState(); });
     register_update(90, [this] {m_scene.tick(); });
     register_update(100, [this] {m_console.tick(); });
+    register_update(190, [this] {m_physics.update(m_frameController.getDeltaTime()); });
     register_update(200, [this] {m_renderer.render(); });
     register_update(230, [this] {m_debugUI.endFrame(); });
     register_update(240, [this] {m_window.update(); });
@@ -121,9 +123,20 @@ void Engine::register_shutdown(uint priority, FEngineProcedure function)
     m_shutdownFunctions.insert(func);
 }
 
+
 void Engine::setDefaultSettings()
 {
     m_settings.load_commands.push_back(".execute data/core/load.ngs");
 
     defaultSettings_CoreCommands();
+}
+
+#include "render_mesh.h"
+void Engine::CS550TempTestFuncInit()
+{
+    GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+    RenderMeshNode* pRenderNode = new RenderMeshNode();
+    pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+    EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
 }

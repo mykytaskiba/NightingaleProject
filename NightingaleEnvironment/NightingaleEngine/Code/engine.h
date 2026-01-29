@@ -7,14 +7,14 @@
 #include "window.h"
 #include "screen.h"
 #include "scene.h"
-#include "ngrender.h"
 #include "asset_manager.h"
 #include "console.h"
 #include "engine_settings.h"
 #include "scripting.h"
 #include "priority_function.h"
+#include "ngphys.h"
+#include "ngrender.h"
 
-#define DEFAULT_FPS_COUNT 10 
 
 
 class Engine {
@@ -58,11 +58,14 @@ private:
     DebugUI m_debugUI;
     Console m_console;
     ScriptingEnvironment m_scriptEnvironment;
+    Physics m_physics;
+    FrameController m_frameController;
     
     Scene m_scene;
     Camera m_camera; //for now assume a single camera
 
     static Engine* m_pEngine;
 
-    FrameController m_frameController = FrameController(DEFAULT_FPS_COUNT);
+    void CS550TempTestFuncInit();
+
 };

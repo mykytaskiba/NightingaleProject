@@ -13,8 +13,13 @@ using FEngineProcedure = std::function<void()>;
 using string = std::string;
 using uint = unsigned int;
 using byte = std::byte;
-using time_type = double;
 
+//Logic time variables
+using TTimeAbs = double;
+using TTimeDelta= float;
+
+//Physics time delta
+using TTimePhys = float;
 
 using ifstream = std::ifstream;
 using stringstream = std::stringstream;

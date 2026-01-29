@@ -2,6 +2,11 @@
 #include "frame_controller.h"
 #include <GLFW/glfw3.h>
 
+FrameController::FrameController()
+{
+	setTargetFrameRate(DEFAULT_FRAMERATE_TARGET);
+}
+
 void FrameController::frameStart()
 {
 	m_frameStartTime = glfwGetTime();
@@ -22,10 +27,6 @@ void FrameController::frameEnd()
 void FrameController::setTargetFrameRate(uint target)
 { 
 	assert(target != 0);
-	m_targetFrameRate = 1.0 / ((time_type)target);
+	m_targetFrameRate = 1.0 / ((TTimeAbs)target);
 }
 
-FrameController::FrameController(uint targetFrameRate)
-{
-	setTargetFrameRate(targetFrameRate);
-}
