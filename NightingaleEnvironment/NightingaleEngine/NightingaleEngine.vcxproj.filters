@@ -245,9 +245,6 @@
     <ClCompile Include="Code\engine_system_binding.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Code\render_pass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\forward_render_pass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -444,9 +441,6 @@
     </ClInclude>
     <ClInclude Include="Code\engine_system_binding.h">
       <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\render_pass.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\forward_render_pass.h">
       <Filter>Header Files\Rendering</Filter>

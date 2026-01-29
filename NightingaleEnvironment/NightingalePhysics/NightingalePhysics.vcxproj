@@ -143,7 +143,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Code\physics.h" />
-    <ClInclude Include="Code\testfile.h" />
     <ClInclude Include="Includes\ngphys.h" />
   </ItemGroup>
   <ItemGroup>

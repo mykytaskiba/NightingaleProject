@@ -142,11 +142,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Code\camera.h" />
+    <ClInclude Include="Code\render_pass.h" />
     <ClInclude Include="Includes\ngrender.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\camera.cpp" />
-    <ClCompile Include="Code\test.cpp" />
+    <ClCompile Include="Code\render_pass.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleMath\NightingaleMath.vcxproj">

@@ -4,7 +4,7 @@
 #include "graphics_library.h"
 #include "shader_source.h"
 #include "render_node.h"
-#include "render_pass.h"
+#include "ngrender.h"
 
 //TEMP INCLUDES
 #include "game_object.h"

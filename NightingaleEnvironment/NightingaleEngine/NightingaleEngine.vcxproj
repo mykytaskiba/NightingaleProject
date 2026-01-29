@@ -150,7 +150,6 @@
     <ClInclude Include="Code\advanced_arguments.h" />
     <ClInclude Include="Code\engine_system_binding.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
-    <ClInclude Include="Code\render_pass.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
     <ClInclude Include="Code\animation_builder.h" />
@@ -254,7 +253,6 @@
     <ClCompile Include="Code\project_two_coobject.cpp" />
     <ClCompile Include="Code\renderer.cpp" />
     <ClCompile Include="Code\render_mesh.cpp" />
-    <ClCompile Include="Code\render_pass.cpp" />
     <ClCompile Include="Code\render_shader.cpp" />
     <ClCompile Include="Code\render_skinned.cpp" />
     <ClCompile Include="Code\scene.cpp" />
