@@ -1,7 +1,6 @@
 #pragma once
 #include "defines.h"
 
-#include "gl_window.h"
 #include "gl_shader.h"
 #include "debug_ui.h"
 #include "screen.h"

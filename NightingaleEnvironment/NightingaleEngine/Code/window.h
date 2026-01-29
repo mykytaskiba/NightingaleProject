@@ -2,6 +2,8 @@
 #include "gl_window.h"
 #include "defines.h"
 
+class GLFWwindow;
+
 class Window {
 public:
     void init();
@@ -10,11 +12,14 @@ public:
 
     void setTitle(string const& windowTitle);
 
-    GLFWwindow* GetNativeWindow() { return m_window.pWindow; }
+    GLFWwindow* GetNativeWindow() { return m_pWindow; }
 private:
 
     static void resizeCallback(GLFWwindow* window, int width, int height);
     static void dropCallback(GLFWwindow* window, int pathCount, const char** paths);
 
-    GL_Window m_window;
+
+    static GLFWwindow* createWindow(uint width, uint height, string const& title);
+
+    GLFWwindow* m_pWindow;
 };

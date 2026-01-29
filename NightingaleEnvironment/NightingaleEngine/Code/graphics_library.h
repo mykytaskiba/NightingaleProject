@@ -12,8 +12,6 @@ class GraphicsLibrary {
 public:
     static void init();
 
-    static GL_Window createWindow(uint width, uint height, string const& title);
-    static bool shouldCloseWindow(GL_Window&);
 
     static void setViewport(uint x, uint y, uint width, uint height);
 
@@ -22,8 +20,6 @@ public:
 
     static void clearDepth();
 
-    static void swapBuffers(GL_Window&);
-    static void pollEvents();
 
 
 private:
