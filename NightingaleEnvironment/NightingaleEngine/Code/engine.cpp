@@ -132,6 +132,7 @@ void Engine::setDefaultSettings()
 }
 
 #include "render_mesh.h"
+#include "physics_debug_render_pass.h"
 void Engine::CS550TempTestFuncInit()
 {
     GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
@@ -139,4 +140,46 @@ void Engine::CS550TempTestFuncInit()
     pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+
+    int ySize = 2;
+    int xSize = 2;
+    int zSize = 2;
+
+    float offset = 3.0f;
+    float cubeSize = 1.0f;
+
+    float velocityFromCenter = 10.0f;
+    Vector3 center = { 0,0,0 };
+
+    for (int x = -xSize; x <= xSize; x++) {
+        for (int z = -zSize; z <= zSize; z++) {
+            for (int y = -ySize; y <= ySize; y++) {
+                Vector3 position{ (float)x,(float)y,(float)z };
+                position *= offset * cubeSize;
+                    
+                Body* pBody = new Body();
+                pBody->localBox = AxisAlignedBox({ 0,0,0 }, { cubeSize,cubeSize,cubeSize });
+                pBody->position = position;
+                pBody->velocity = (position - center).normalized() * velocityFromCenter;
+                m_physics.addBody(pBody);
+                pBody->bUseGravity = true;
+
+                pBody->update(0.0f);
+            }
+        }
+    }
+
+    //TO DO: This definitely creates a memory leak
+    PhysicsDebugRenderPass* pPhysicsPass = new PhysicsDebugRenderPass(m_physics);
+    m_renderer.registerRenderPass(pPhysicsPass);
+
+
+    Body* pFloor = new Body();
+    pFloor->localBox = AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f });
+    pFloor->position = Vector3(0, -10.0f, 0);
+    pFloor->update(0.0f);
+    m_physics.addBody(pFloor);
+
+    m_physics.setTargetUpdateRate(180);
+    m_physics.setMaxUpdatesPerFrame(4);
 }

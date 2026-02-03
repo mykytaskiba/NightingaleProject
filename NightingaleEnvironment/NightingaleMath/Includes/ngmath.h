@@ -10,3 +10,6 @@
 #include "../Code/transform.h"
 #include "../Code/cubic_spline.h"
 #include "../Code/arc_length_table.h"
+
+//Boxes/Bounds
+#include "../Code/axis_aligned_box.h"

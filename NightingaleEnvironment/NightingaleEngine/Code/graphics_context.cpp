@@ -47,8 +47,37 @@ void GraphicsContext::init()
     m_pSphere = AssetManager<Mesh>::retrieve("sphere_mesh");
     assert(m_pSphere != nullptr);
 
+    m_pCube = AssetManager<Mesh>::retrieve("cube_mesh");
+    assert(m_pCube != nullptr);
+
     m_pUnlitShader = AssetManager<RenderShader>::retrieve("unlit_shader");
     assert(m_pUnlitShader != nullptr);
+
+}
+
+void GraphicsContext::drawAxisAlignedBox(AxisAlignedBox const& box, Color const& color)
+{
+    Vector3 min = box.min();
+    Vector3 max = box.max();
+    Vector3 extends = box.extends();
+    Vector3 right = { extends[0],0,0 };
+    Vector3 up = { 0,extends[1],0 };
+    Vector3 forward = { 0,0,extends[2] };
+
+    drawLine(min, min + up);
+    drawLine(min + right, min + up + right);
+    drawLine(min + forward, min + up + forward);
+    drawLine(max, max - up);
+
+    drawLine(min, min + right);
+    drawLine(min, min + forward);
+    drawLine(max - up, max - up - forward);
+    drawLine(max - up, max - up - right);
+
+    drawLine(max, max - right);
+    drawLine(max, max - forward);
+    drawLine(min + up, min + up + right);
+    drawLine(min + up, min + up + forward);
 
 }
 
@@ -77,6 +106,40 @@ void GraphicsContext::drawSphere(Vector3 const& at, float scale, Color const& co
     m_pUnlitShader->transferByName("uColor", color);
     m_pSphere->Draw();
 
+}
+
+void GraphicsContext::drawCube(Vector3 const& center, Vector3 const& scale, Color const& color)
+{
+    setCurrentShader(m_pUnlitShader);
+
+    Transform transform;
+    transform.scale = 1.0f;
+    transform.position = center;
+
+    Matrix4x4 scaleMatrix = Matrix4x4::CreateScale(scale);
+    Matrix4x4 transformMatrix = transform.getMatrix() * scaleMatrix;
+
+    m_pUnlitShader->transferByName("uModelMatrix", transformMatrix);
+    m_pUnlitShader->transferByName("uColor", color);
+    m_pCube->Draw();
+}
+
+void GraphicsContext::drawWireSphere(Vector3 const& at, float scale, Color const& color)
+{
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDisable(GL_CULL_FACE);
+    drawSphere(at, scale, color);
+    glEnable(GL_CULL_FACE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
+
+void GraphicsContext::drawWireCube(Vector3 const& center, Vector3 const& scale, Color const& color)
+{
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDisable(GL_CULL_FACE);
+    drawCube(center, scale, color); 
+    glEnable(GL_CULL_FACE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void GraphicsContext::endFrame()

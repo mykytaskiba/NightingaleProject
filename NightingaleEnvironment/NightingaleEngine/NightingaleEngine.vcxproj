@@ -150,6 +150,8 @@
     <ClInclude Include="Code\advanced_arguments.h" />
     <ClInclude Include="Code\engine_system_binding.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
+    <ClInclude Include="Code\panel.h" />
+    <ClInclude Include="Code\physics_debug.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
     <ClInclude Include="Code\animation_builder.h" />
@@ -208,6 +210,7 @@
     <ClInclude Include="Code\special_arguments.h" />
     <ClInclude Include="Code\priority_function.h" />
     <ClInclude Include="Code\engine_system.h" />
+    <ClInclude Include="Code\physics_debug_render_pass.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -244,6 +247,8 @@
     <ClCompile Include="Code\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Code\physics_debug.cpp" />
+    <ClCompile Include="Code\physics_debug_render_pass.cpp" />
     <ClCompile Include="Code\project_four_coobject.cpp" />
     <ClCompile Include="Code\project_one_gameobject.cpp" />
     <ClCompile Include="Code\project_three_coobject.cpp" />

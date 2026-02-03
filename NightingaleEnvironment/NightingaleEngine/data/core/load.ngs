@@ -18,4 +18,7 @@ loader_scale = 0.01
 load_mesh sphere_mesh data/core/sphere.fbx
 @verify
 
+load_mesh cube_mesh data/core/cube.fbx
+@verify
+
 @enablelog false

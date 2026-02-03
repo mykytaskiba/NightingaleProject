@@ -6,15 +6,19 @@
 //Main class for the physics system
 class Physics {
 public:
+	friend class PhysicsDebugRenderPass;
+
 	Physics();
 
 
 	void update(TTimePhys frameDelta);
 	void subUpdate(TTimePhys deltaT);
 
-	void SetTargetUpdateRate(uint updatesPerSecond);
-	void SetMaxUpdatesPerFrame(uint maxUpdatePerFrame);
-	void SetDiscardUnusedTime(bool bDiscardUnusedTime);
+	void setTargetUpdateRate(uint updatesPerSecond);
+	void setMaxUpdatesPerFrame(uint maxUpdatePerFrame);
+	void setDiscardUnusedTime(bool bDiscardUnusedTime);
+
+	void addBody(Body* pBody);
 
 private:
 

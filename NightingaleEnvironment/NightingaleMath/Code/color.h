@@ -11,7 +11,7 @@ public:
     ColorChannel b;
     ColorChannel a;
 
-    Color(ColorChannel r_, ColorChannel g_, ColorChannel b_, ColorChannel a_) :
+    constexpr Color(ColorChannel r_, ColorChannel g_, ColorChannel b_, ColorChannel a_) :
         r(r_), g(g_), b(b_), a(a_) {}
 
 private:

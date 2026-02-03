@@ -1,6 +1,5 @@
 #pragma once
-//Mathmatical vector
-#include "defines-ngmath.h"
+#include "defines.h"
 
 template < typename T, uint DIM >
 struct Vector {

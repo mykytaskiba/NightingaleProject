@@ -148,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\physics.cpp" />
+    <ClCompile Include="Code\physics_body.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleMath\NightingaleMath.vcxproj">

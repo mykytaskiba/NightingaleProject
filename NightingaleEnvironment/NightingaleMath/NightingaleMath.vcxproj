@@ -141,10 +141,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\axis_aligned_box.h" />
     <ClInclude Include="Code\arc_length_table.h" />
     <ClInclude Include="Code\color.h" />
     <ClInclude Include="Code\cubic_spline.h" />
-    <ClInclude Include="Code\defines-ngmath.h" />
     <ClInclude Include="Code\matrix.h" />
     <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Includes\ngmath.h" />
@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\arc_length_table.cpp" />
+    <ClCompile Include="Code\axis_aligned_box.cpp" />
     <ClCompile Include="Code\color.cpp" />
     <ClCompile Include="Code\cubic_spline.cpp" />
     <ClCompile Include="Code\quaternion.cpp" />

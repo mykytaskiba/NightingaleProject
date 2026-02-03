@@ -26,14 +26,14 @@ public:
 
     void handleResize(int width, int height);
 
+    void registerRenderPass(RenderPass*);
+    void registerRenderable(RenderNode*);
 
 private:
 
     vector<RenderPass*> m_renderpasses;
-    void registerRenderPass(RenderPass*);
 
     vector<RenderNode*> m_renderables;
-    void registerRenderable(RenderNode*);
 
     GraphicsContext m_graphicsContext{};
     Screen m_screen{ 0,0 };

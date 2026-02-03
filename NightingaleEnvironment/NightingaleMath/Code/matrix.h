@@ -1,5 +1,5 @@
 #pragma once
-#include "defines-ngmath.h"
+#include "defines.h"
 #include "vector.h"
 #include <concepts>
 #include <cmath>
