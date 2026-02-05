@@ -23,5 +23,7 @@ public:
 
     void transferArray(string const& name, vector<Matrix4x4> const& matricies);
 
+    float const* getMatrixData(Matrix4x4 const& matrix);
+
 
 };

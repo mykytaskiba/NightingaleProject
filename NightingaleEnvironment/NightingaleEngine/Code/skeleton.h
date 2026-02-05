@@ -33,9 +33,9 @@ public:
 
     void bindPose();
 
-    Vector3 nodePosition(uint index) const;
-    Vector3 bindPoseNodeOrientation(uint index) const;
-    Vector3 currentNodeUp(uint index) const;
+    Vector3 const& nodePosition(uint index) const;
+    Vector3 const& bindPoseNodeOrientation(uint index) const;
+    Vector3 const& currentNodeUp(uint index) const;
 
 private:
 

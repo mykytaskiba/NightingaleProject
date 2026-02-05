@@ -35,7 +35,7 @@ SkeletonBuilder::SkeletonBuilder(aiScene const* pScene, aiMatrix4x4 const& impor
         }
         else {
             //special case for corenode
-            node.transform = Matrix4x4::Identity();
+            node.transform.make_identity();
         }
         
         m_pSkeleton->m_nodes.push_back(node);
@@ -57,7 +57,8 @@ SkeletonBuilder::SkeletonBuilder(aiScene const* pScene, aiMatrix4x4 const& impor
     aiMatrix4x4 parentTransform = Loader::parentTransformation(pArmature);
 
     m_pSkeleton->setParentTransform(Loader::fromAIMatrix(importTransform * parentTransform));
-    m_pSkeleton->m_transform = Matrix4x4::Identity();
+    m_pSkeleton->m_transform;
+    m_pSkeleton->m_transform.make_identity();
 
     m_pSkeleton->calcCurrentTransform();
     m_pSkeleton->calcBoneMatricies();

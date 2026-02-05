@@ -159,8 +159,10 @@ void InverseKinematicEvaluator::setSkeletonOrientations() {
 
         Quaternion rotation(axis, angle);
 
-        Matrix4x4 translation = Matrix4x4::CreateTranslation(1.0f * m_pSkeleton->nodePosition(it->fromIdx));
-        Matrix4x4 translationInv = Matrix4x4::CreateTranslation(-1.0f * m_pSkeleton->nodePosition(it->fromIdx));
+        Matrix4x4 translation;
+        translation.make_translation(1.0f * m_pSkeleton->nodePosition(it->fromIdx));
+        Matrix4x4 translationInv;
+        translationInv.make_translation(-1.0f * m_pSkeleton->nodePosition(it->fromIdx));
 
         m_pSkeleton->m_nodeTransforms[it->fromIdx] = translation * rotation.getRotation() * translationInv * m_pSkeleton->m_nodeTransforms[it->fromIdx];
         m_pSkeleton->recalcCurrentTransformPartial(it->fromIdx);

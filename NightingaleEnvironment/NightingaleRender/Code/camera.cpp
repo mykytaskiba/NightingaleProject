@@ -1,14 +1,5 @@
 #include "camera.h"
 
-Camera::Camera() :
-    m_perspectiveMatrix(Matrix4x4::Identity()),
-    m_cachedPerspectiveMatrix(Matrix4x4::Identity()),
-    m_viewMatrix(Matrix4x4::Identity()),
-    m_targetWidth(0),
-    m_targetHeight(0),
-    m_type(CameraType::Custom)
-{
-}
 
 
 Matrix4x4 const& Camera::GetPerspectiveMatrix() const
@@ -29,7 +20,7 @@ void Camera::SetViewMatrix(Matrix4x4 const& matrix)
 
 void Camera::SetPerspective(float front, float back, float fov)
 {
-    m_perspectiveMatrix = Matrix4x4::CreatePerspective(front, back, fov);
+    m_perspectiveMatrix.make_perspective(front, back, fov); 
     m_type = CameraType::Perspective;
     RecalculateCachedMatrix();
 }
@@ -41,14 +32,16 @@ void Camera::SetTargetSize(uint width, uint height)
     RecalculateCachedMatrix();
 }
 
-Vector3 Camera::forward()
+Vector3 const& Camera::forward() const
 {
-    return Vector3(m_viewMatrix(2, 0), m_viewMatrix(2, 1), m_viewMatrix(2, 2));
+    //TO DO: return a ref, make truncate dimension return a ref?
+    return m_viewMatrix[2].truncate_dimension();
 }
 
-Vector3 Camera::right()
+Vector3 const& Camera::right() const
 {
-    return Vector3(m_viewMatrix(0, 0), m_viewMatrix(0, 1), m_viewMatrix(0, 2));
+    //TO DO: return a ref, make truncate dimension return a ref?
+    return m_viewMatrix[0].truncate_dimension();
 }
 
 void Camera::RecalculateCachedMatrix() const
@@ -59,7 +52,7 @@ void Camera::RecalculateCachedMatrix() const
         if (m_targetWidth == 0 || m_targetHeight == 0) return; //not valid screen size for matrix
         float aspectINV = ((float)m_targetHeight) / ((float)m_targetWidth); //W/H is normal aspect, so H/W is inverse
 
-        m_cachedPerspectiveMatrix(0, 0) *= aspectINV;
+        m_cachedPerspectiveMatrix[0][0] *= aspectINV;
     }
 }
 

@@ -77,7 +77,8 @@ void Skeleton::addMesh(Mesh* pMesh)
 void Skeleton::DebugDraw(GraphicsContext& context, RenderShader* shader, Mesh* mesh)
 {
     //Matrix4x4 scaleDebug = Matrix4x4::CreateScale(0.05f, 0.05f, 0.05f);
-    Matrix4x4 scaleDebug = Matrix4x4::CreateScale(1.0f, 1.0f, 1.0f);
+    Matrix4x4 scaleDebug;
+    scaleDebug.make_scale(1.0f);
 
     for (auto it = m_bones.begin(); it != m_bones.end(); ++it) {
         uint nodeIndex = (*it).linkedNode;
@@ -91,9 +92,9 @@ void Skeleton::DebugDraw(GraphicsContext& context, RenderShader* shader, Mesh* m
         uint parentIndex = m_nodes[nodeIndex].parent;
         if (parentIndex != 0u) {
             Matrix4x4 const& nodeTransform = m_nodeTransforms[nodeIndex];
-            Vector3 nodePos = Vector3(nodeTransform(0, 3), nodeTransform(1, 3), nodeTransform(2, 3));
+            Vector3 const& nodePos = nodeTransform[3].truncate_dimension();
             Matrix4x4 const& parentTransform = m_nodeTransforms[parentIndex];
-            Vector3 parentPos = Vector3(parentTransform(0, 3), parentTransform(1, 3), parentTransform(2, 3));
+            Vector3 const& parentPos = parentTransform[3].truncate_dimension();
             context.drawLine(nodePos, parentPos, Color(1.0f, 0.0f, 0.0f, 1.0f));
         }
     }
@@ -121,19 +122,19 @@ void Skeleton::bindPose()
     }
 }
 
-Vector3 Skeleton::nodePosition(uint index) const
+Vector3 const& Skeleton::nodePosition(uint index) const
 {
-    return Vector3(m_nodeTransforms[index](0, 3), m_nodeTransforms[index](1, 3), m_nodeTransforms[index](2, 3));
+    return m_nodeTransforms[index][3].truncate_dimension();
 }
 
-Vector3 Skeleton::bindPoseNodeOrientation(uint index) const
+Vector3 const& Skeleton::bindPoseNodeOrientation(uint index) const
 {
-    return Vector3(m_bindPose[index](0, 1), m_bindPose[index](1, 1), m_bindPose[index](2, 1));
+    return m_bindPose[index][1].truncate_dimension();
 }
 
-Vector3 Skeleton::currentNodeUp(uint index) const
+Vector3 const& Skeleton::currentNodeUp(uint index) const
 {
-    return Vector3(m_nodeTransforms[index](0, 1), m_nodeTransforms[index](1, 1), m_nodeTransforms[index](2, 1));
+    return m_nodeTransforms[index][1].truncate_dimension();
 }
 
 

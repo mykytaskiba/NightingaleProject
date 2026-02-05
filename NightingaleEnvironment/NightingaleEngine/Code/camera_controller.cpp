@@ -10,8 +10,8 @@ void CameraController::init()
 {
     s_instance = this;
 
-    m_rotationX = Matrix4x4::Identity();
-    m_rotationY = Matrix4x4::Identity();
+    m_rotationX.make_identity();
+    m_rotationY.make_identity();
 
     m_rotationSpeed = 0.2f;
 
@@ -31,8 +31,10 @@ void CameraController::tick()
 {
 
     if (Input::MouseDown(MouseButton::Right)) {
-        Matrix4x4 rotationDeltaY = Matrix4x4::CreateRotationY(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[0]);
-        Matrix4x4 rotationDeltaX = Matrix4x4::CreateRotationX(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[1]);
+        Matrix4x4 rotationDeltaY; 
+        rotationDeltaY.make_rotation_y(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[0]);
+        Matrix4x4 rotationDeltaX;
+        rotationDeltaX.make_rotation_x(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[1]);
         m_rotationY = rotationDeltaY * m_rotationY;
         m_rotationX = rotationDeltaX * m_rotationX;
 
@@ -46,24 +48,23 @@ void CameraController::tick()
     if (m_zoom > m_zoomMax) {
         m_zoom = m_zoomMax;
     }
-    Matrix4x4 zoomMatrix = Matrix4x4::CreateTranslation(0.0f, 0.0f, -m_zoom);
+    Matrix4x4 zoomMatrix;
+    zoomMatrix.make_translation(0.0f, 0.0f, -m_zoom);
 
     if (Input::MouseDown(MouseButton::Left) || Input::MouseDown(MouseButton::Middle)) {
         if (Input::KeyDown(Key::Shift)) {
-            Vector4 forwardVec4 = m_rotationY.transpose() * Vector4(0.0f, 0.0f, 1.0f, 1.0f);
-            Vector4 rightVec4 = m_rotationY.transpose() * Vector4(1.0f, 0.0f, 0.0f, 1.0f);
-            Vector3 forwardVec(forwardVec4[0], 0.0f, forwardVec4[2]);
-            Vector3 rightVec(rightVec4[0], 0.0f, rightVec4[2]);
-
-            forwardVec.normalize_equal();
-            rightVec.normalize_equal();
-
-            Vector3 moveDelta = forwardVec * Input::MouseDelta()[1] + rightVec * Input::MouseDelta()[0];
+            Matrix4x4 transposed = rotationMatrix.transpose();
+            Vector3 forward = transposed[2].truncate_dimension().normalized();
+            Vector3 right = transposed[0].truncate_dimension().normalized();
+            Vector3 moveDelta =
+                forward * Input::MouseDelta()[1] +
+                right * Input::MouseDelta()[0];
             moveDelta *= EngineFunctions::DeltaTime();
             m_position += moveDelta;
         }
     }
-    Matrix4x4 translationMatrix = Matrix4x4::CreateTranslation(1.0f * m_position);
+    Matrix4x4 translationMatrix;
+    translationMatrix.make_translation(-1.0f * m_position);
 
 
     Matrix4x4 viewMatrix = zoomMatrix * rotationMatrix * translationMatrix;

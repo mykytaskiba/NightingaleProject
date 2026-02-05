@@ -8,57 +8,47 @@ template <typename T, unsigned int DIM_ROW, unsigned int DIM_COL>
 class Matrix {
 
 private:
-    T data[DIM_ROW][DIM_COL]; //ROW MAJOR
 
+    using COL_VECTOR = Vector<T, DIM_ROW>;
+    COL_VECTOR data[DIM_COL];
 
 
 public:
 
-    Matrix() {}
+    Matrix() = default;
     Matrix(Matrix<T, DIM_ROW, DIM_COL> const& other) = default;
 
-
-    static Matrix Garbage() {
-        return Matrix;
+    COL_VECTOR& operator[](uint index_col) {
+        assert(index_col < DIM_COL);
+        return data[index_col];
     }
 
-    static Matrix Zero() {
-        Matrix result;
-        for (uint loop_row = 0; loop_row < DIM_ROW; loop_row++) {
-            for (uint loop_col = 0; loop_col < DIM_COL; loop_col++) {
-                result.data[loop_row][loop_col] = 0;
+    COL_VECTOR operator[](uint index_col) const {
+        assert(index_col < DIM_COL);
+        return data[index_col];
+    }
+
+    Matrix& transpose_equal() {
+        for (uint loop_col = 0; loop_col < DIM_COL; ++loop_col) {
+            for (uint loop_row = loop_col+1; loop_row < DIM_ROW; ++loop_row) {
+                std::swap(data[loop_row][loop_col],data[loop_col][loop_row]);
             }
         }
-        return result;
-    }
-
-    static Matrix Identity() {
-        Matrix result = Matrix::Zero();
-        constexpr uint diagonal_min = std::min(DIM_ROW, DIM_COL);
-        for (uint loop = 0; loop < diagonal_min; loop++) {
-            result.data[loop][loop] = 1;
-        }
-
-        return result;
+        return *this;
     }
 
     Matrix transpose() const {
-        Matrix result;
-        for (uint loop_row = 0; loop_row < DIM_ROW; loop_row++) {
-            for (uint loop_col = 0; loop_col < DIM_COL; loop_col++) {
-                result.data[loop_col][loop_row] = data[loop_row][loop_col];
-            }
-        }
-        return result;
+        Matrix result{ *this };
+        return result.transpose_equal();
     }
 
     Vector<T, DIM_ROW> operator*(const Vector<T, DIM_COL>& vec) const {
         Vector<T, DIM_ROW> result;
 
-        for (int loop_row = 0; loop_row < DIM_ROW; loop_row++) {
-            result[loop_row] = T();
-            for (int loop_col = 0; loop_col < DIM_COL; loop_col++) {
-                result[loop_row] += data[loop_row][loop_col] * vec[loop_col];
+        for (uint row = 0; row < DIM_ROW; ++row) {
+            result[row] = 0;
+            for (uint col = 0; col < DIM_COL; ++col) {
+                result[row] += data[col][row] * vec[col];
             }
         }
 
@@ -68,12 +58,13 @@ public:
     template <unsigned int OUTER_DIM>
     Matrix<T, DIM_ROW, OUTER_DIM> operator*(const Matrix<T, DIM_COL, OUTER_DIM>& rhs) const {
         Matrix<T, DIM_ROW, OUTER_DIM> result;
-
-        for (int loop_row = 0; loop_row < DIM_ROW; loop_row++) {
-            for (int loop_outer = 0; loop_outer < OUTER_DIM; loop_outer++) {
-                result.data[loop_row][loop_outer] = T();
-                for (int loop_col = 0; loop_col < DIM_COL; loop_col++) {
-                    result.data[loop_row][loop_outer] += data[loop_row][loop_col] * rhs.data[loop_col][loop_outer];
+        
+        for (uint col = 0; col < OUTER_DIM; ++col) {
+            for (uint row = 0; row < DIM_ROW; ++row) {
+                result.data[col][row] = 0;
+                for (uint k = 0; k < DIM_COL; ++k) {
+                    result.data[col][row] +=
+                        data[k][row] * rhs.data[col][k];
                 }
             }
         }
@@ -81,141 +72,144 @@ public:
         return result;
     }
 
-    T& operator() (uint row, uint col) {
-
-        assert(row < DIM_ROW);
-        assert(col < DIM_COL);
-
-        return data[row][col];
-    }
-
-    T const& operator() (uint row, uint col) const {
-
-        assert(row < DIM_ROW);
-        assert(col < DIM_COL);
-
-        return data[row][col];
-    }
-
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateTranslation(T x, T y, T z)
-        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix translation = Matrix::Identity();
-
-        translation.data[0][3] = x;
-        translation.data[1][3] = y;
-        translation.data[2][3] = z;
-        return translation;
-    }
-
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateTranslation(Vector3 vec)
+    Matrix& make_identity()
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-        return CreateTranslation(vec[0], vec[1], vec[2]);
+        Matrix& m = *this;
+
+        //transposed for memory locality
+        m[0][0] = 1; m[0][1] = 0; m[0][2] = 0; m[0][3] = 0;
+        m[1][0] = 0; m[1][1] = 1; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = 0; m[2][1] = 0; m[2][2] = 1; m[2][3] = 0;
+        m[3][0] = 0; m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
+
+        return *this;
     }
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateRotationX(T angle)
+
+    Matrix& make_translation(T x, T y, T z)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix rotation = Matrix::Identity();
 
-        T cos_a = cos(angle);
-        T sin_a = sin(angle);
+        Matrix& m = *this;
 
-        rotation.data[1][1] = cos_a;
-        rotation.data[2][2] = cos_a;
-        rotation.data[2][1] = sin_a;
-        rotation.data[1][2] = -sin_a;
-
-        return rotation;
+        //transposed for memory locality
+        m[0][0] = 1; m[0][1] = 0; m[0][2] = 0; m[0][3] = 0; 
+        m[1][0] = 0; m[1][1] = 1; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = 0; m[2][1] = 0; m[2][2] = 1; m[2][3] = 0;
+        m[3][0] = x; m[3][1] = y; m[3][2] = z; m[3][3] = 1;
+        
+        return *this;
     }
 
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateRotationY(T angle)
+    Matrix& make_translation(Vector3 const& vec)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix rotation = Matrix::Identity();
-
-        T cos_a = cos(angle);
-        T sin_a = sin(angle);
-
-        rotation.data[0][0] = cos_a;
-        rotation.data[2][2] = cos_a;
-        rotation.data[2][0] = -sin_a;
-        rotation.data[0][2] = sin_a;
-
-        return rotation;
+        return make_translation(vec[0], vec[1], vec[2]);
     }
 
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateRotationZ(T angle)
+    Matrix& make_rotation_x(T angle)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix rotation = Matrix::Identity();
 
-        T cos_a = cos(angle);
-        T sin_a = sin(angle);
+        Matrix& m = *this;
+        T c = cos(angle);
+        T s = sin(angle);
 
-        rotation.data[0][0] = cos_a;
-        rotation.data[1][1] = cos_a;
-        rotation.data[0][1] = -sin_a;
-        rotation.data[1][0] = sin_a;
+        //transposed for memory locality
+        m[0][0] = 1; m[0][1] = 0; m[0][2] = 0; m[0][3] = 0;
+        m[1][0] = 0; m[1][1] = c; m[1][2] = s; m[1][3] = 0;
+        m[2][0] = 0; m[2][1] =-s; m[2][2] = c; m[2][3] = 0;
+        m[3][0] = 0; m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
 
-        return rotation;
+        return *this;
     }
-
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateScale(T uniformScale)
+    Matrix& make_rotation_y(T angle)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix scale = Matrix::Identity();
 
-        scale.data[0][0] = uniformScale;
-        scale.data[1][1] = uniformScale;
-        scale.data[2][2] = uniformScale;
+        Matrix& m = *this;
+        T c = cos(angle);
+        T s = sin(angle);
 
-        return scale;
+        //transposed for memory locality
+        m[0][0] = c; m[0][1] = 0; m[0][2] =-s; m[0][3] = 0;
+        m[1][0] = 0; m[1][1] = 1; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = s; m[2][1] = 0; m[2][2] = c; m[2][3] = 0;
+        m[3][0] = 0; m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
+
+        return *this;
     }
-
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateScale(T scaleX, T scaleY, T scaleZ)
-        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix scale = Matrix::Identity();
-
-        scale.data[0][0] = scaleX;
-        scale.data[1][1] = scaleY;
-        scale.data[2][2] = scaleZ;
-
-        return scale;
-    }
-
-    static
-        Matrix<T, DIM_ROW, DIM_COL> CreateScale(Vector3 scaleVec)
-        requires (std::same_as<T, float> && DIM_ROW == 4 && DIM_COL == 4) {
-
-        return CreateScale(scaleVec[0], scaleVec[1], scaleVec[2]);
-
-    }
-
-
-
-    static
-        Matrix<T, DIM_ROW, DIM_COL>  CreatePerspective(T front, T back, T fov)
+    Matrix& make_rotation_z(T angle)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
-        Matrix<T, DIM_ROW, DIM_COL>  perspective = Matrix::Zero();
+
+        Matrix& m = *this;
+        T c = cos(angle);
+        T s = sin(angle);
+
+        //transposed for memory locality
+        m[0][0] = c; m[0][1] = s; m[0][2] = 0; m[0][3] = 0;
+        m[1][0] =-s; m[1][1] = c; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = 0; m[2][1] = 0; m[2][2] = 1; m[2][3] = 0;
+        m[3][0] = 0; m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
+
+        return *this;
+    }
+    Matrix& make_scale(T x, T y, T z)
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+
+        Matrix& m = *this;
+
+        //transposed for memory locality
+        m[0][0] = x; m[0][1] = 0; m[0][2] = 0; m[0][3] = 0;
+        m[1][0] = 0; m[1][1] = y; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = 0; m[2][1] = 0; m[2][2] = z; m[2][3] = 0;
+        m[3][0] = 0; m[3][1] = 0; m[3][2] = 0; m[3][3] = 1;
+
+        return *this;
+    }
+
+    Matrix& make_scale(T uniformScale)
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        return make_scale(uniformScale, uniformScale, uniformScale);
+    }
+    Matrix& make_scale(Vector3 const& vec)
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        return make_scale(vec[0], vec[1], vec[2]);
+    }
+
+    Matrix& make_perspective(T front, T back, T fov)
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+
+        Matrix& m = *this;
 
         assert(fov > 0.0f);
         assert(front > 0.0f);
         assert(back > 0.0f);
         assert(front < back);
 
+        //tan of the FOV
+        T t = 1.0f / tan(fov / 2.0f);
+        T a = -(back + front) / (back - front); //Col 2 Row 2
+        T b = -(2.0f * front * back) / (back - front); //Col 3 Row 2
 
-        T tan_fov = 1.0f / tan(fov / 2.0f);
+        //transposed for memory locality
+        m[0][0] = t; m[0][1] = 0; m[0][2] = 0; m[0][3] = 0;
+        m[1][0] = 0; m[1][1] = t; m[1][2] = 0; m[1][3] = 0;
+        m[2][0] = 0; m[2][1] = 0; m[2][2] = a; m[2][3] =-1;
+        m[3][0] = 0; m[3][1] = 0; m[3][2] = b; m[3][3] = 0;
 
-        perspective.data[0][0] = tan_fov;
-        perspective.data[1][1] = tan_fov;
-        perspective.data[2][2] = -(back + front) / (back - front);
-        perspective.data[2][3] = -(2.0f * front * back) / (back - front);
-        perspective.data[3][2] = -1.0f;
-
-        return perspective;
+        return *this;
     }
+
+    //STATIC CREATOR FUNCTIONS
+    static Matrix& identity()
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        Matrix matrix;
+        return matrix.make_identity();
+    }
+
+    static Matrix& perspective(T front, T back, T fov)
+        requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
+        Matrix matrix;
+        return matrix.make_perspective(front,back,fov);
+    }
+
+
 };
 
 //Matrix defines

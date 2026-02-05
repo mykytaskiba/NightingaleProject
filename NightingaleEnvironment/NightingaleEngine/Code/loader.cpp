@@ -130,25 +130,25 @@ Matrix4x4 Loader::fromAIMatrix(aiMatrix4x4 const& aiMat)
 {
     Matrix4x4 outMatrix;
 
-    outMatrix(0, 0) = aiMat.a1;
-    outMatrix(1, 0) = aiMat.b1;
-    outMatrix(2, 0) = aiMat.c1;
-    outMatrix(3, 0) = aiMat.d1;
+    outMatrix[0][0] = aiMat.a1;
+    outMatrix[0][1] = aiMat.a2;
+    outMatrix[0][2] = aiMat.a3;
+    outMatrix[0][3] = aiMat.a4;
 
-    outMatrix(0, 1) = aiMat.a2;
-    outMatrix(1, 1) = aiMat.b2;
-    outMatrix(2, 1) = aiMat.c2;
-    outMatrix(3, 1) = aiMat.d2;
+    outMatrix[1][0] = aiMat.b1;
+    outMatrix[1][1] = aiMat.b2;
+    outMatrix[1][2] = aiMat.b3;
+    outMatrix[1][3] = aiMat.b4;
 
-    outMatrix(0, 2) = aiMat.a3;
-    outMatrix(1, 2) = aiMat.b3;
-    outMatrix(2, 2) = aiMat.c3;
-    outMatrix(3, 2) = aiMat.d3;
+    outMatrix[2][0] = aiMat.c1;
+    outMatrix[2][1] = aiMat.c2;
+    outMatrix[2][3] = aiMat.c4;
+    outMatrix[2][2] = aiMat.c3;
 
-    outMatrix(0, 3) = aiMat.a4;
-    outMatrix(1, 3) = aiMat.b4;
-    outMatrix(2, 3) = aiMat.c4;
-    outMatrix(3, 3) = aiMat.d4;
+    outMatrix[3][0] = aiMat.d1;
+    outMatrix[3][1] = aiMat.d2;
+    outMatrix[3][2] = aiMat.d3;
+    outMatrix[3][3] = aiMat.d4;
     return outMatrix;
 }
 

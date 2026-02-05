@@ -116,7 +116,8 @@ void GraphicsContext::drawCube(Vector3 const& center, Vector3 const& scale, Colo
     transform.scale = 1.0f;
     transform.position = center;
 
-    Matrix4x4 scaleMatrix = Matrix4x4::CreateScale(scale);
+    Matrix4x4 scaleMatrix;
+    scaleMatrix.make_scale(scale);
     Matrix4x4 transformMatrix = transform.getMatrix() * scaleMatrix;
 
     m_pUnlitShader->transferByName("uModelMatrix", transformMatrix);

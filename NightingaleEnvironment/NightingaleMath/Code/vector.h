@@ -9,13 +9,8 @@ private:
 
 public:
 
-    static Vector<T, DIM> garbage_vector() {
-        return Vector<T, DIM>();
-    }
-
+    Vector() = default;
     Vector(Vector const& other) = default;
-
-    Vector() {}
 
     Vector(T x, T y) requires (DIM == 2) {
         data[0] = x;
@@ -84,8 +79,8 @@ public:
         return dotProduct;
     }
 
-    Vector<T, DIM + 1u> add_dimension(T value) const {
-        Vector<T, DIM + 1u> result = Vector<T, DIM + 1u>::garbage_vector();
+    Vector<T, DIM + 1u> add_dimension(T value = 0.0f) const {
+        Vector<T, DIM + 1u> result = Vector<T, DIM + 1u>();
 
         for (uint loop = 0; loop < DIM; loop++) {
             result[loop] = data[loop];
@@ -96,12 +91,10 @@ public:
     }
 
     Vector<T, DIM - 1u> truncate_dimension() const {
-        Vector<T, DIM - 1u> result = Vector<T, DIM - 1u>::garbage_vector();
-
-        for (uint loop = 0; loop < DIM - 1u; loop++) {
+        Vector<T, DIM - 1u> result;
+        for (uint loop = 0; loop < DIM - 1u; ++loop) {
             result[loop] = data[loop];
         }
-
         return result;
     }
 

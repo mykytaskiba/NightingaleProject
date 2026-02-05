@@ -50,20 +50,27 @@ Matrix4x4 Quaternion::getRotation() const
 {
     assert(magnitude() == 1.0f);
 
-    Matrix4x4 result = Matrix4x4::Identity();
-    result(0, 0) = 1.0f - 2.0f * y * y - 2.0f * z * z;
-    result(1, 0) = 2.0f * x * y + 2.0f * z * w;
-    result(2, 0) = 2.0f * x * z - 2.0f * y * w;
+    Matrix4x4 result;
 
-    result(0, 1) = 2.0f * x * y - 2.0f * z * w;
-    result(1, 1) = 1.0f - 2.0f * x * x - 2.0f * z * z;
-    result(2, 1) = 2.0f * y * z + 2.0f * x * w;
+    result[0][0] = 1.0f - 2.0f * y * y - 2.0f * z * z;
+    result[0][1] = 2.0f * x * y + 2.0f * z * w;
+    result[0][2] = 2.0f * x * z - 2.0f * y * w;
+    result[0][3] = 0.0f;
 
-    result(0, 2) = 2.0f * x * z + 2.0f * y * w;
-    result(1, 2) = 2.0f * y * z - 2.0f * x * w;
-    result(2, 2) = 1.0f - 2.0f * x * x - 2.0f * y * y;
+    result[1][0] = 2.0f * x * y - 2.0f * z * w;
+    result[1][1] = 1.0f - 2.0f * x * x - 2.0f * z * z;
+    result[1][2] = 2.0f * y * z + 2.0f * x * w;
+    result[1][3] = 0.0f;
 
-    result(3, 3) = 1.0f;
+    result[2][0] = 2.0f * x * z + 2.0f * y * w;
+    result[2][1] = 2.0f * y * z - 2.0f * x * w;
+    result[2][2] = 1.0f - 2.0f * x * x - 2.0f * y * y;
+    result[2][3] = 0.0f;
+
+    result[3][0] = 0.0f;
+    result[3][1] = 0.0f;
+    result[3][2] = 0.0f;
+    result[3][3] = 1.0f;
 
     return result;
 }
@@ -159,6 +166,7 @@ Quaternion Quaternion::operator+(Quaternion const& other) const
 
 Vector3 Quaternion::rotate(Vector3 const& vector) const
 {
+    //TO DO optimize this
     Vector3 result = (getRotation() * vector.add_dimension(1.0f)).truncate_dimension();
     return result;
     //quat a*b multiplicaiton
