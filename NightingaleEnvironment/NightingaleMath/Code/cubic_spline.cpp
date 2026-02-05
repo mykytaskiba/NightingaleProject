@@ -1,4 +1,4 @@
-#include "defines-ngmath.h"
+#include "defines.h"
 #include "cubic_spline.h"
 #include <cmath>
 

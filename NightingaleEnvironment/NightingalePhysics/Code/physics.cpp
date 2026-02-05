@@ -6,7 +6,6 @@ Physics::Physics()
 	setTargetUpdateRate(DEFAULT_PHYSICS_FRAMERATE);
 }
 
-#include <iostream>
 void Physics::update(TTimePhys frameDelta)
 {
 	m_accumulatedTime += frameDelta;

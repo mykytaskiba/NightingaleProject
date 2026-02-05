@@ -38,8 +38,6 @@ void Engine::defaultSettings_CoreCommands() {
     
     //All console commands must be registered here
     //Core commands
-    registerSingleCommand(new EchoCommand());
-    registerSingleCommand(new CPackCommand());
     registerSingleCommand(new VerifyCommand());
     registerSingleCommand(new DropStateCommand());
     registerSingleCommand(new DefineCommand());
