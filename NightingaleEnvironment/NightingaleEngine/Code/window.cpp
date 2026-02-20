@@ -24,6 +24,8 @@ void Window::init()
     glfwGetFramebufferSize(m_pWindow, &width, &height);
     resizeCallback(m_pWindow, width, height);
 
+    //Turn off VSYNC
+    glfwSwapInterval(0);
 }
 
 void Window::update()
