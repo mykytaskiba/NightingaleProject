@@ -1,0 +1,20 @@
+
+load_scale 0.01
+mesh_load cube_mesh data/core/cube.fbx
+@verify
+mesh_load sphere_mesh data/core/sphere.fbx
+@verify
+mesh_load smooth_sphere_mesh data/core/smooth_sphere.fbx
+@verify
+
+create gameobject
+attach_rendermesh cube_mesh
+setposition 0 -8 0
+
+create gameobject
+attach_rendermesh sphere_mesh
+setposition -4 -8 0
+
+create gameobject
+attach_rendermesh smooth_sphere_mesh
+setposition 4 -8 0
