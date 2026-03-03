@@ -73,3 +73,4 @@ NightingaleEnvironment/.vs/NightingaleEnvironment/v16/Solution.VC.db-shm
 NightingaleEnvironment/.vs/NightingaleEnvironment/v16/Solution.VC.db-wal
 *.db-shm
 *.db-wal
+!CS560FinalBuild.exe
