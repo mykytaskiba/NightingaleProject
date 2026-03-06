@@ -1,6 +1,6 @@
 #pragma once
 #include "defines.h"
-
+#include  "argument_impl.h"
 
 class GameObject;
 class RenderNode;
@@ -11,7 +11,21 @@ struct ExecutionState {
 
     map<string, string> defines{};
 
-    float extract_float_with_default(string const& key, float default_val) const;
+    template<typename T> 
+    T extract_or_default(string const& key, T const& default_val) const {
+        bool bHasKey = defines.find(key) != defines.end();
+
+        if (bHasKey) {
+            string value(defines.at(key));
+            ParsingResult parsingResult;
+            T result = ArgumentExtractor<T>::parse(value, parsingResult);
+
+            if (parsingResult.bSuccess) {
+                return result;
+            }
+        }
+        return default_val;
+    }
 
     //log
     bool bCreateLog{ false };
