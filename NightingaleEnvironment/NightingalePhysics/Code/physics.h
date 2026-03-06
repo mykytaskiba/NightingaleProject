@@ -18,7 +18,7 @@ public:
 	void setMaxUpdatesPerFrame(uint maxUpdatePerFrame);
 	void setDiscardUnusedTime(bool bDiscardUnusedTime);
 
-	void addBody(Body* pBody);
+	void addBody(PhysicsBody* pBody);
 
 private:
 
@@ -28,5 +28,5 @@ private:
 	uint m_maxUpdatesPerFrame{1u};
 	bool m_bDiscardUnusedTime{ true };
 
-	vector<Body*> m_activeBodies{};
+	vector<PhysicsBody*> m_activeBodies{};
 };

@@ -4,7 +4,7 @@
 
 //Any physics body that needs to be simulated
 //Could be rigid or soft
-class Body {
+class PhysicsBody {
 public:
 	AxisAlignedBox globalBox;
 	AxisAlignedBox localBox;

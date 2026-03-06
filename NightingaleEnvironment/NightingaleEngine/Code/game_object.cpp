@@ -10,3 +10,11 @@ void GameObject::execute_on_hiearchy(TGameObjectFunc functor)
         (*it)->execute_on_hiearchy(functor);
     }
 }
+
+void GameObject::sync_to_physics()
+{
+    if (m_pPhysicsBody == nullptr) {
+        return;
+    }
+    m_transform.position = m_pPhysicsBody->position;
+}

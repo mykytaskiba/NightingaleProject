@@ -2,6 +2,7 @@
 #include "core_interface.h"
 #include "defines.h"
 #include "ngmath.h"
+#include "ngphys.h"
 
 class Component;
 class GameObject;
@@ -24,6 +25,7 @@ protected:
     vector<GameObject*> m_children{};
     GameObject* m_pParent{ nullptr };
     RenderNode* m_pRenderNode{ nullptr };
+
     Transform m_transform{};
 
     virtual void init() {}
@@ -33,14 +35,15 @@ protected:
 
 
     void execute_on_hiearchy(TGameObjectFunc functor);
-
+    
 
 public:
     Transform& getTransform() {
         return m_transform;
     }
 
+    void sync_to_physics();
 
-
+    PhysicsBody* m_pPhysicsBody{ nullptr };
 
 };

@@ -31,7 +31,7 @@ void Physics::subUpdate(TTimePhys deltaT)
 
 	//Gravity application step: TO DO: REFACTOR THIS!!!
 	Vector3 gravity{ 0.0f,-9.8f,0.0f };
-	for (Body*& pBody : m_activeBodies) {
+	for (PhysicsBody*& pBody : m_activeBodies) {
 		if (!pBody->bUseGravity) {
 			continue;
 		}
@@ -40,8 +40,8 @@ void Physics::subUpdate(TTimePhys deltaT)
 
 
 	//Collision check step
-	for (Body* pBody : m_activeBodies) {
-		for (Body* pOther : m_activeBodies) {
+	for (PhysicsBody* pBody : m_activeBodies) {
+		for (PhysicsBody* pOther : m_activeBodies) {
 			if (pBody == pOther) continue;
 
 			if (pBody->globalBox.isOverlap(pOther->globalBox)) {
@@ -51,7 +51,7 @@ void Physics::subUpdate(TTimePhys deltaT)
 		}
 	}
 
-	for (Body*& pBody : m_activeBodies) {
+	for (PhysicsBody*& pBody : m_activeBodies) {
 		pBody->update(deltaT);
 	}
 }
@@ -76,7 +76,7 @@ void Physics::setDiscardUnusedTime(bool bDiscardUnusedTime)
 	m_bDiscardUnusedTime = bDiscardUnusedTime;
 }
 
-void Physics::addBody(Body* pBody)
+void Physics::addBody(PhysicsBody* pBody)
 {
 	m_activeBodies.push_back(pBody);
 }

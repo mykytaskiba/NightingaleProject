@@ -16,6 +16,7 @@ public:
 
     TGameObjectFunc m_tickFunc;
     TGameObjectFunc m_renderFunc;
+    TGameObjectFunc m_syncPhysicsFunc;
 
     void init();
 

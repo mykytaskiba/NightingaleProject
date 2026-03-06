@@ -21,11 +21,16 @@ void Scene::init()
         gameObject.render();
     };
 
+    m_syncPhysicsFunc = [](GameObject& gameObject) {
+        gameObject.sync_to_physics();
+    };
+
 
 }
 void Scene::tick()
 {
     m_root.execute_on_hiearchy(m_tickFunc);
+    m_root.execute_on_hiearchy(m_syncPhysicsFunc);
 
     for (auto it = m_packages.begin(); it != m_packages.end(); ++it) {
         (*it).processPackage();

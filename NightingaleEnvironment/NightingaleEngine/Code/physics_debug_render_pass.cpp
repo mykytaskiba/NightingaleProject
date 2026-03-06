@@ -5,9 +5,11 @@
 
 void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 {
-	for (Body* pBody : m_physics.m_activeBodies) {
+	glDisable(GL_DEPTH_TEST);
+	for (PhysicsBody* pBody : m_physics.m_activeBodies) {
 		context.drawAxisAlignedBox(pBody->globalBox);
 	}
+	glEnable(GL_DEPTH_TEST);
 }
 
 void PhysicsDebugRenderPass::registerRenderable(RenderNode* renderable)

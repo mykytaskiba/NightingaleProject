@@ -135,12 +135,13 @@ void Engine::setDefaultSettings()
 #include "physics_debug_render_pass.h"
 void Engine::CS550TempTestFuncInit()
 {
+    /*
     GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
     RenderMeshNode* pRenderNode = new RenderMeshNode();
     pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
-
+    */
     int ySize = 2;
     int xSize = 2;
     int zSize = 2;
@@ -157,7 +158,7 @@ void Engine::CS550TempTestFuncInit()
                 Vector3 position{ (float)x,(float)y,(float)z };
                 position *= offset * cubeSize;
                     
-                Body* pBody = new Body();
+                PhysicsBody* pBody = new PhysicsBody();
                 pBody->localBox = AxisAlignedBox({ 0,0,0 }, { cubeSize,cubeSize,cubeSize });
                 pBody->position = position;
                 pBody->velocity = (position - center).normalized() * velocityFromCenter;
@@ -165,6 +166,14 @@ void Engine::CS550TempTestFuncInit()
                 pBody->bUseGravity = true;
 
                 pBody->update(0.0f);
+
+                GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+                RenderMeshNode* pRenderNode = new RenderMeshNode();
+                pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+                EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+                pGameObject->m_pPhysicsBody = pBody;
+
             }
         }
     }
@@ -174,7 +183,7 @@ void Engine::CS550TempTestFuncInit()
     m_renderer.registerRenderPass(pPhysicsPass);
 
 
-    Body* pFloor = new Body();
+    PhysicsBody* pFloor = new PhysicsBody();
     pFloor->localBox = AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f });
     pFloor->position = Vector3(0, -10.0f, 0);
     pFloor->update(0.0f);
