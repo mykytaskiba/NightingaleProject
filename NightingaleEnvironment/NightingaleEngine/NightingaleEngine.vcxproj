@@ -227,7 +227,6 @@
     <ClCompile Include="Code\engine_internals.cpp" />
     <ClCompile Include="Code\engine_system_binding.cpp" />
     <ClCompile Include="Code\environment.cpp" />
-    <ClCompile Include="Code\execution_state.cpp" />
     <ClCompile Include="Code\forward_render_pass.cpp" />
     <ClCompile Include="Code\frame_controller.cpp" />
     <ClCompile Include="Code\gameobject_commands.cpp" />
