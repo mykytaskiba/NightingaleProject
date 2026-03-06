@@ -183,7 +183,6 @@
     <ClInclude Include="Code\loader_commands.h" />
     <ClInclude Include="Code\logger.h" />
     <ClInclude Include="Code\mesh.h" />
-    <ClInclude Include="Code\mesh_object.h" />
     <ClInclude Include="Code\pch.h" />
     <ClInclude Include="Code\project_four_coobject.h" />
     <ClInclude Include="Code\project_one_gameobject.h" />
@@ -242,7 +241,6 @@
     <ClCompile Include="Code\loader_commands.cpp" />
     <ClCompile Include="Code\logger.cpp" />
     <ClCompile Include="Code\mesh.cpp" />
-    <ClCompile Include="Code\mesh_object.cpp" />
     <ClCompile Include="Code\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>

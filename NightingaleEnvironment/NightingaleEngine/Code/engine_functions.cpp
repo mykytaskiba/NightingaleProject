@@ -14,14 +14,6 @@ void EngineFunctions::Setup(GameObject* pGameObject)
     SetParent(pGameObject, pParent);
 
     pGameObject->init();
-
-    //This could return null, in this case this gameObject is not renderable
-    RenderNode* pRenderNode = pGameObject->createRenderNode();
-    if (pRenderNode != nullptr) {
-        AssignRenderNode(pGameObject, pRenderNode);
-    }
-
-
 }
 
 void EngineFunctions::PreSetup(GameObject* setup)

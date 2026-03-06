@@ -18,24 +18,22 @@ class GameObject {
     friend class Scene;
 protected:
 
-    GameObject();
-
-    vector<Component*> m_components;
-    vector<GameObject*> m_children;
-    GameObject* m_pParent;
-    RenderNode* m_pRenderNode;
-
+    GameObject() {};
+     
+    vector<Component*> m_components{};
+    vector<GameObject*> m_children{};
+    GameObject* m_pParent{ nullptr };
+    RenderNode* m_pRenderNode{ nullptr };
+    Transform m_transform{};
 
     virtual void init() {}
     virtual void tick() {}
     virtual void render() {}
     virtual void shutdown() {}
 
-    virtual RenderNode* createRenderNode() { return nullptr; }
 
-    void execute(TGameObjectFunc functor);
+    void execute_on_hiearchy(TGameObjectFunc functor);
 
-    Transform m_transform{};
 
 public:
     Transform& getTransform() {
