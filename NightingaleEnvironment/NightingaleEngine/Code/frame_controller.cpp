@@ -16,7 +16,7 @@ void FrameController::frameEnd()
 {
 	m_frameEndTime = glfwGetTime();
 
-	while ( (m_deltaTime = m_frameEndTime - m_frameStartTime)  < m_targetFrameRate) {
+	while ( (m_deltaTime = m_frameEndTime - m_frameStartTime)  < m_targetDeltaTime) {
 		m_frameEndTime = glfwGetTime();
 	}
 
@@ -27,6 +27,13 @@ void FrameController::frameEnd()
 void FrameController::setTargetFrameRate(uint target)
 { 
 	assert(target != 0);
-	m_targetFrameRate = 1.0 / ((TTimeAbs)target);
+	if (target == 0) {
+		target = DEFAULT_FRAMERATE_TARGET; //prevent crash, assume default framerate target 
+	}
+	m_targetDeltaTime = 1.0 / ((TTimeAbs)target);
 }
 
+float FrameController::getTargetFrameRate()
+{
+	return 1.0f / m_targetDeltaTime;
+}

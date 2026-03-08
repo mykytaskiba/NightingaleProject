@@ -39,6 +39,8 @@ public:
 
     static void SetWindowTitle(string const& title);
     static void SetTargetFramerate(int framerate);
+    static float getTargetFramerate();
+    static uint getTargetFramerateInt();
 
     static CallbackHandler& getUpdateCallback();
 

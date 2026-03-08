@@ -14,6 +14,7 @@ public:
     void frameEnd();
 
     void setTargetFrameRate(uint target);
+    float getTargetFrameRate();
 
 
     TTimeDelta getDeltaTime() { return m_deltaTime; }
@@ -23,7 +24,7 @@ private:
 
     TTimeAbs m_frameStartTime{ 0.0 };
     TTimeAbs m_frameEndTime{ 0.0 };
-    TTimeAbs m_targetFrameRate{ 0.0 };
+    TTimeAbs m_targetDeltaTime{ 0.0 };
 
     TTimeDelta m_deltaTime{ 0.0 };
 
