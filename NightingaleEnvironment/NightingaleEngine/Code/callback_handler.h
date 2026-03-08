@@ -4,8 +4,7 @@
 
 
 struct CallbackRef {
-	PriorityFunction* m_pFunction;
-	set<PriorityFunction>::iterator it;
+	set<PriorityFunction>::iterator m_iterator;
 };
 
 class CallbackHandler {
@@ -15,6 +14,6 @@ private:
 
 public:
 	CallbackRef addCallback(PriorityFunction function);
-	bool removeCallback(CallbackRef& ref);
-	void execute();
+	bool removeCallback(CallbackRef ref);
+	void execute() const;
 };

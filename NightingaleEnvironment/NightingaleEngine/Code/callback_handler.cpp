@@ -3,33 +3,26 @@
 
 CallbackRef CallbackHandler::addCallback(PriorityFunction function)
 {
-    PriorityFunction* pFunction = new PriorityFunction(function);
-    m_vFunctions.insert(pFunction);
+    auto pairReturn = m_vFunctions.insert(function);
 
-    CallbackRef ref = { pFunction };
-    return ref;
-}
-
-bool CallbackHandler::removeCallback(CallbackRef& ref)
-{
-    if (ref.m_pFunction == nullptr) return false;
-
-    auto it = m_vFunctions.find(ref.m_pFunction);
-    if (it == m_vFunctions.end()) {
-        return false;
+    if (pairReturn.second == true) {
+        CallbackRef ref{ pairReturn.first };
+        return ref;
     }
 
-    m_vFunctions.erase(it);
+    return CallbackRef{};
+}
 
-    delete ref.m_pFunction;
-    ref.m_pFunction = nullptr;
+bool CallbackHandler::removeCallback(CallbackRef ref)
+{
 
+    m_vFunctions.erase(ref.m_iterator);
     return true;
 }
 
-void CallbackHandler::execute()
+void CallbackHandler::execute() const
 {
-    for (PriorityFunction* pFunction : m_vFunctions) {
-        (pFunction->function)();
+    for (const PriorityFunction& pFunction : m_vFunctions) {
+        (pFunction.function)();
     }
 }
