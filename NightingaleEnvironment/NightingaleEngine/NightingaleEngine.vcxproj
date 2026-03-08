@@ -211,6 +211,7 @@
     <ClInclude Include="Code\physics_debug_render_pass.h" />
     <ClInclude Include="Code\render_debug_panel.h" />
     <ClInclude Include="Code\debug_panel_commands.h" />
+    <ClInclude Include="execution_order_enums.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -254,6 +255,7 @@
     <ClCompile Include="Code\project_three_coobject.cpp" />
     <ClCompile Include="Code\project_two_coobject.cpp" />
     <ClCompile Include="Code\renderer.cpp" />
+    <ClCompile Include="Code\render_debug_panel.cpp" />
     <ClCompile Include="Code\render_mesh.cpp" />
     <ClCompile Include="Code\render_shader.cpp" />
     <ClCompile Include="Code\render_skinned.cpp" />

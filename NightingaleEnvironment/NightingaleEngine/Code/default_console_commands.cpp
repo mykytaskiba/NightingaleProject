@@ -4,6 +4,7 @@
 #include "engine.h"
 #include "loader_commands.h"
 #include "gameobject_commands.h"
+#include "debug_panel_commands.h"
 
 
 void Engine::defaultSettings_CoreCommands() {
@@ -29,6 +30,9 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SetPositionCommand());
     m_settings.console_commands.push_back(new SetScaleCommand());
     m_settings.console_commands.push_back(new SetColorCommand());
+
+    //debug panels
+    m_settings.console_commands.push_back(new RenderDebugCommand());
 }
 
 

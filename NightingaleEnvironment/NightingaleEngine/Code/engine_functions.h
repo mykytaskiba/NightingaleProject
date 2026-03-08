@@ -5,6 +5,7 @@
 class GameObject;
 class Camera;
 class RenderNode;
+class CallbackHandler;
 
 class EngineFunctions {
     friend struct SceneChangePackage;
@@ -38,5 +39,7 @@ public:
 
     static void SetWindowTitle(string const& title);
     static void SetTargetFramerate(int framerate);
+
+    static CallbackHandler& getUpdateCallback();
 
 };

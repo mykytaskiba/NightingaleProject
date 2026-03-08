@@ -81,3 +81,13 @@ void EngineFunctions::SetTargetFramerate(int framerate)
     EngineInternals::pEngine->m_frameController.setTargetFrameRate(framerate);
 }
 
+CallbackHandler& EngineFunctions::getUpdateCallback()
+{
+    assert(EngineInternals::pEngine != nullptr);
+    if (EngineInternals::pEngine == nullptr) {
+        //TO DO: return a dummy callback handler to prevent nullptr
+    }
+
+    return EngineInternals::pEngine->m_updateCallback;
+}
+

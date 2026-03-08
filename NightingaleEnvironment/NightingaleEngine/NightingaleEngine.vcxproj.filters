@@ -81,6 +81,9 @@
     <Filter Include="Header Files\Core\Callbacks">
       <UniqueIdentifier>{1a42e5c1-403e-4651-b3af-3715339a233a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\DebugPanels">
+      <UniqueIdentifier>{b27327d2-3efe-47dc-bd77-ddefd02208df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\pch.cpp">
@@ -258,6 +261,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\callback_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\render_debug_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -459,6 +465,9 @@
     </ClInclude>
     <ClInclude Include="Code\priority_function.h">
       <Filter>Header Files\Core\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="execution_order_enums.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
