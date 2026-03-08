@@ -14,7 +14,7 @@
 #include "priority_function.h"
 #include "ngphys.h"
 #include "ngrender.h"
-
+#include "callback_handler.h"
 
 
 class Engine {
@@ -43,14 +43,9 @@ private:
     void setDefaultSettings();
     void defaultSettings_CoreCommands();
 
-    set<PriorityFunction> m_initFunctions;
-    set<PriorityFunction> m_updateFunctions;
-    set<PriorityFunction> m_shutdownFunctions;
-
-    void executeFunctionsInSet(set<PriorityFunction>& set);
-    void register_init(uint priority, FEngineProcedure function);
-    void register_update(uint priority, FEngineProcedure function);
-    void register_shutdown(uint priority, FEngineProcedure function);
+    CallbackHandler m_initCallback;
+    CallbackHandler m_updateCallback;
+    CallbackHandler m_shutdownCallback;
 
     Window m_window;
     Renderer m_renderer;

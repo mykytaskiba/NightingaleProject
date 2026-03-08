@@ -32,26 +32,26 @@ Engine::Engine()
 
 void Engine::register_systems()
 {
-    register_init(74, [this] {m_window.init(); });
-    register_init(75, [this] {m_debugUI.init(m_window); });
-    register_init(80, [this] {m_input.init(); });
-    register_init(90, [this] {m_scene.init(); });
-    register_init(95, [this] {  loadCommands(); });
-    register_init(100, [this] {m_renderer.init(); });
-    register_init(110, [this] {CS550TempTestFuncInit(); });
+    m_initCallback.addCallback({ 74, [this] {m_window.init(); } });
+    m_initCallback.addCallback({ 75, [this] {m_debugUI.init(m_window); } });
+    m_initCallback.addCallback({ 80, [this] {m_input.init(); } });
+    m_initCallback.addCallback({ 90, [this] {m_scene.init(); } });
+    m_initCallback.addCallback({ 95, [this] {  loadCommands(); } });
+    m_initCallback.addCallback({ 100, [this] {m_renderer.init(); } });
+    m_initCallback.addCallback({ 110, [this] {CS550TempTestFuncInit(); } });
     
-    register_update(60, [this] {m_frameController.frameStart(); });
-    register_update(70, [this] {m_debugUI.newFrame(); });
-    register_update(80, [this] {m_input.captureInputState(); });
-    register_update(90, [this] {m_scene.tick(); });
-    register_update(100, [this] {m_console.tick(); });
-    register_update(190, [this] {m_physics.update(m_frameController.getDeltaTime()); });
-    register_update(200, [this] {m_renderer.render(); });
-    register_update(230, [this] {m_debugUI.endFrame(); });
-    register_update(240, [this] {m_window.update(); });
-    register_update(250, [this] {m_frameController.frameEnd(); });
-
-    register_shutdown(100, [this] {m_debugUI.shutdown(); });
+    m_updateCallback.addCallback({ 60, [this] {m_frameController.frameStart(); } });
+    m_updateCallback.addCallback({ 70, [this] {m_debugUI.newFrame(); } });
+    m_updateCallback.addCallback({ 80, [this] {m_input.captureInputState(); } });
+    m_updateCallback.addCallback({ 90, [this] {m_scene.tick(); } });
+    m_updateCallback.addCallback({ 100, [this] {m_console.tick(); } });
+    m_updateCallback.addCallback({ 190, [this] {m_physics.update(m_frameController.getDeltaTime()); } });
+    m_updateCallback.addCallback({ 200, [this] {m_renderer.render(); } });
+    m_updateCallback.addCallback({ 230, [this] {m_debugUI.endFrame(); } });
+    m_updateCallback.addCallback({ 240, [this] {m_window.update(); } });
+    m_updateCallback.addCallback({ 250, [this] {m_frameController.frameEnd(); } });
+    
+    m_shutdownCallback.addCallback({ 100, [this] {m_debugUI.shutdown(); } });
 
 }
 
@@ -63,7 +63,7 @@ void Engine::init()
     m_scriptEnvironment.init();
     registerConsoleCommands();
 
-    executeFunctionsInSet(m_initFunctions);
+    m_initCallback.execute();
 }
 
 void Engine::update()
@@ -71,7 +71,7 @@ void Engine::update()
 
     while (!Termination::NeedTermination())
     {
-        executeFunctionsInSet(m_updateFunctions);
+        m_updateCallback.execute();
     }
 
     
@@ -80,7 +80,7 @@ void Engine::update()
 
 void Engine::shutdown()
 {
-    executeFunctionsInSet(m_shutdownFunctions);
+    m_shutdownCallback.execute();
 }
 
 void Engine::registerConsoleCommands()
@@ -97,32 +97,6 @@ void Engine::loadCommands()
         assert(result.bSuccess);
     }
 }
-
-void Engine::executeFunctionsInSet(set<PriorityFunction>& set)
-{
-    for (auto it{ set.begin() }; it != set.end(); ++it) {
-        (*it)();
-    }
-}
-
-void Engine::register_init(uint priority, FEngineProcedure function)
-{
-    PriorityFunction func(priority, function);
-    m_initFunctions.insert(func);
-}
-
-void Engine::register_update(uint priority, FEngineProcedure function)
-{
-    PriorityFunction func(priority, function);
-    m_updateFunctions.insert(func);
-}
-
-void Engine::register_shutdown(uint priority, FEngineProcedure function)
-{
-    PriorityFunction func(priority, function);
-    m_shutdownFunctions.insert(func);
-}
-
 
 void Engine::setDefaultSettings()
 {

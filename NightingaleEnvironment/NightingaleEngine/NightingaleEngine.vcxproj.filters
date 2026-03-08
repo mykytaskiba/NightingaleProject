@@ -78,6 +78,9 @@
     <Filter Include="Header Files\DebugPanels">
       <UniqueIdentifier>{ec442aa7-3603-40e1-b3e4-f293ce5f985a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core\Callbacks">
+      <UniqueIdentifier>{1a42e5c1-403e-4651-b3af-3715339a233a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\pch.cpp">
@@ -239,9 +242,6 @@
     <ClCompile Include="Code\argument_helpers.cpp">
       <Filter>Source Files\Scripting</Filter>
     </ClCompile>
-    <ClCompile Include="Code\engine_system_binding.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
     <ClCompile Include="Code\forward_render_pass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -249,6 +249,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\physics_debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\debug_panel_commands.cpp">
+      <Filter>Source Files\CoreConsoleCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\debug_panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\callback_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -427,15 +436,6 @@
     <ClInclude Include="Code\gameobject_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
-    <ClInclude Include="Code\priority_function.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\engine_system.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\engine_system_binding.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Code\forward_render_pass.h">
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
@@ -445,8 +445,20 @@
     <ClInclude Include="Code\physics_debug.h">
       <Filter>Header Files\PhysicsVisualizer</Filter>
     </ClInclude>
-    <ClInclude Include="Code\panel.h">
+    <ClInclude Include="Code\debug_panel.h">
       <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\render_debug_panel.h">
+      <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\debug_panel_commands.h">
+      <Filter>Header Files\CoreConsoleCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\callback_handler.h">
+      <Filter>Header Files\Core\Callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\priority_function.h">
+      <Filter>Header Files\Core\Callbacks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,7 +2,6 @@
 #include "game_object.h"
 #include "defines.h"
 #include "scripting.h"
-#include "engine_system.h"
 
 
 class ConsoleCommand;
