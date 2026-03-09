@@ -64,20 +64,20 @@ void GraphicsContext::drawAxisAlignedBox(AxisAlignedBox const& box, Color const&
     Vector3 up = { 0,extends[1],0 };
     Vector3 forward = { 0,0,extends[2] };
 
-    drawLine(min, min + up);
-    drawLine(min + right, min + up + right);
-    drawLine(min + forward, min + up + forward);
-    drawLine(max, max - up);
+    drawLine(min, min + up, color);
+    drawLine(min + right, min + up + right, color);
+    drawLine(min + forward, min + up + forward, color);
+    drawLine(max, max - up, color);
 
-    drawLine(min, min + right);
-    drawLine(min, min + forward);
-    drawLine(max - up, max - up - forward);
-    drawLine(max - up, max - up - right);
+    drawLine(min, min + right, color);
+    drawLine(min, min + forward, color);
+    drawLine(max - up, max - up - forward, color);
+    drawLine(max - up, max - up - right, color);
 
-    drawLine(max, max - right);
-    drawLine(max, max - forward);
-    drawLine(min + up, min + up + right);
-    drawLine(min + up, min + up + forward);
+    drawLine(max, max - right, color);
+    drawLine(max, max - forward, color);
+    drawLine(min + up, min + up + right, color);
+    drawLine(min + up, min + up + forward, color);
 
 }
 

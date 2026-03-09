@@ -32,7 +32,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SetColorCommand());
 
     //debug panels
-    m_settings.console_commands.push_back(new RenderDebugCommand());
+    m_settings.console_commands.push_back(new RenderPanelCommand());
 }
 
 

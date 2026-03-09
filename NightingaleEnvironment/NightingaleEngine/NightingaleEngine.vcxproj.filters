@@ -266,6 +266,9 @@
     <ClCompile Include="Code\render_debug_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\imgui_helpers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -468,6 +471,9 @@
     </ClInclude>
     <ClInclude Include="execution_order_enums.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\imgui_helpers.h">
+      <Filter>Header Files\IMGUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

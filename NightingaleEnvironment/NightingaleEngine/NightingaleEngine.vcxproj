@@ -212,6 +212,7 @@
     <ClInclude Include="Code\render_debug_panel.h" />
     <ClInclude Include="Code\debug_panel_commands.h" />
     <ClInclude Include="execution_order_enums.h" />
+    <ClInclude Include="Code\imgui_helpers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -267,6 +268,7 @@
     <ClCompile Include="Code\termination.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Code\default_console_commands.cpp" />
+    <ClCompile Include="Code\imgui_helpers.cpp" />
     <ClCompile Include="Lib\imgui-master\backends\imgui_impl_glfw.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>

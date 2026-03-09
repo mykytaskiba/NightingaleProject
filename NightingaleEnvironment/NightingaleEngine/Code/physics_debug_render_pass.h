@@ -11,6 +11,8 @@ public:
 
 	Physics& m_physics;
 
+	Color m_AABBColor{ 0.627f, 0.0f,0.627f,1.0f };
+
 	void executeRenderPass(GraphicsContext& context) override;
 
 	void registerRenderable(RenderNode* renderable) override;

@@ -3,12 +3,9 @@
 #include "callback_handler.h"
 #include "render_debug_panel.h"
 
-class RenderDebugCommand : public Command<bool> {
+class RenderPanelCommand : public Command<Nothing> {
 public:
-    RenderDebugCommand() : Command<bool>("set_render_debug") {}
-    virtual void execute_command(ArgumentList<bool>& args, ExecutionState& state, ExecutionResult& result) override;
-
-    bool m_bActive{ false };
-    CallbackRef m_updateLoopRef{};
+    RenderPanelCommand() : Command<Nothing>("render_panel") {}
+    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
     RenderDebugPanel m_panel;
 };

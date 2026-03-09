@@ -8,5 +8,6 @@ public:
 	void deactivate() override {};
 	void render_update() override;
 
+
 	void render_pass_debug(RenderPass* pRenderPass);
 };

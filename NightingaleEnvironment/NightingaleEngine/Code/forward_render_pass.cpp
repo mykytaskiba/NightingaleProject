@@ -7,6 +7,7 @@
 #include "ngmath.h"
 #include "graphics_library.h"
 #include "render_node.h"
+#include "imgui_helpers.h"
 
 void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
 {
@@ -15,7 +16,7 @@ void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
 
 
     GL::setViewport(0, 0, context.m_currentScreenDims.Width, context.m_currentScreenDims.Height);
-    GL::setClearColor(Color(0.5, 0.5, 0.7, 1.0));
+    GL::setClearColor(m_clearColor);
     GL::clear();
     GL::clearDepth();
 
@@ -31,5 +32,14 @@ void ForwardRenderPass::debugUIFunction()
 {
     if (!ImGui::CollapsingHeader("Forward Render Pass")) return;
 
-    ImGui::Text("Fotward Render Pass Data");
+    float width = ImGui::GetContentRegionAvail().x;
+    ImGui::BeginChild("RENDER_PASS_FORWARD", ImVec2(width, 0), ImGuiChildFlags_AutoResizeY | ImGuiChildFlags_Border, ImGuiWindowFlags_MenuBar);
+
+    ImGui::Text("Forward Render Pass Data");
+
+    if (ImGui::CollapsingHeader("Clear Color")) {
+        ImGuiHelpers::ColorPicker3("",m_clearColor);
+    }
+
+    ImGui::EndChild();
 }

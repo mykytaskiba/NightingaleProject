@@ -38,8 +38,8 @@ void RenderDebugPanel::render_update()
 
     ImGui::End();
 
-    if (!bRemainOpen) {
-        EngineFunctions::ExecuteCommand("set_render_debug false");
+    if (!bRemainOpen && m_bActive) {
+        toggle();
     }
 }
 
