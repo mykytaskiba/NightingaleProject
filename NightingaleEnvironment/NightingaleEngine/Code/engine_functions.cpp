@@ -102,3 +102,8 @@ CallbackHandler& EngineFunctions::getUpdateCallback()
     return EngineInternals::pEngine->m_updateCallback;
 }
 
+Renderer& EngineFunctions::Renderer()
+{
+    return EngineInternals::pEngine->m_renderer;
+}
+

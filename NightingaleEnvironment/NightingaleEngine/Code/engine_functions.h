@@ -6,6 +6,7 @@ class GameObject;
 class Camera;
 class RenderNode;
 class CallbackHandler;
+class Renderer;
 
 class EngineFunctions {
     friend struct SceneChangePackage;
@@ -43,5 +44,7 @@ public:
     static uint getTargetFramerateInt();
 
     static CallbackHandler& getUpdateCallback();
+
+    static Renderer& Renderer();
 
 };

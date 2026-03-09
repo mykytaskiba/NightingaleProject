@@ -15,3 +15,8 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 void PhysicsDebugRenderPass::registerRenderable(RenderNode* renderable)
 {
 }
+
+void PhysicsDebugRenderPass::debugUIFunction()
+{
+	ImGui::Text("Physics Debug Pass");
+}

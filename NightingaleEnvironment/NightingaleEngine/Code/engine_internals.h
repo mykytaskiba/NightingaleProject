@@ -21,7 +21,6 @@ private:
 
     static void init(Engine& engine);
 
-    static Renderer& Renderer();
 
     static Scene& Scene();
 
@@ -29,5 +28,6 @@ private:
 
 public:
 
+    static Renderer& Renderer();
 
 };

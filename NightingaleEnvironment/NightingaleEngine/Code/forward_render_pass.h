@@ -4,4 +4,5 @@
 class ForwardRenderPass : public RenderPass {
 public:
 	void executeRenderPass(GraphicsContext& context) override;
+	void debugUIFunction() override;
 };

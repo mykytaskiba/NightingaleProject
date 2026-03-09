@@ -14,4 +14,6 @@ public:
 	void executeRenderPass(GraphicsContext& context) override;
 
 	void registerRenderable(RenderNode* renderable) override;
+
+	void debugUIFunction() override;
 };

@@ -29,6 +29,8 @@ public:
     void registerRenderPass(RenderPass*);
     void registerRenderable(RenderNode*);
 
+    vector<RenderPass*> const& getActiveRenderPasses() { return m_renderpasses; }
+
 private:
 
     vector<RenderPass*> m_renderpasses;

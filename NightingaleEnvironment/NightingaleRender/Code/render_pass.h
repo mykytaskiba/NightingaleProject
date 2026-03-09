@@ -12,6 +12,8 @@ public:
 
 	//by default each render pass is interested in all the nodes
 	virtual void registerRenderable(RenderNode* renderable);
+
+	virtual void debugUIFunction() = 0;
 protected:
 
 

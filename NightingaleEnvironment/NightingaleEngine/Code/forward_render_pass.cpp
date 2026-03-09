@@ -26,3 +26,10 @@ void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
     }
 
 }
+
+void ForwardRenderPass::debugUIFunction()
+{
+    if (!ImGui::CollapsingHeader("Forward Render Pass")) return;
+
+    ImGui::Text("Fotward Render Pass Data");
+}
