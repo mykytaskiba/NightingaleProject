@@ -32,7 +32,7 @@ public:
     EngineMenuCommand() : PanelCommand<EngineMenuBar>("engine_menu") {}
 };
 
-class RenderPanelCommand : public PanelCommand<EngineMenuBar> {
+class RenderPanelCommand : public PanelCommand<RenderDebugPanel> {
 public:
-    RenderPanelCommand() : PanelCommand<EngineMenuBar>("render_panel") {}
+    RenderPanelCommand() : PanelCommand<RenderDebugPanel>("render_panel") {}
 };
