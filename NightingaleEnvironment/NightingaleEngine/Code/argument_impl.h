@@ -110,6 +110,33 @@ struct ArgumentExtractor<bool> {
     }
 };
 
+//TRIBOOL
+template<>
+struct ArgumentExtractor<TriBool> {
+    static string usage() { return "true/false/toggle"; }
+    static TriBool parse(string& args, ParsingResult& result)
+    {
+        string valueStr = ArgumentHelpers::getNextWithDefines(args);
+
+        if (valueStr == "true") {
+            result.bSuccess = true;
+            return TriBool::TRUE;
+        }
+        if (valueStr == "false") {
+            result.bSuccess = true;
+            return TriBool::FALSE;
+        }
+        if (valueStr == "" || valueStr == "toggle") {
+            result.bSuccess = true;
+            return TriBool::TOGGLE;
+        }
+
+        result.bSuccess = false;
+        result.errorMessage = valueStr + " is not a value for bool type";
+        return TriBool::FALSE;
+    }
+};
+
 //ALL TEXT
 template<>
 struct ArgumentExtractor<AllText> {

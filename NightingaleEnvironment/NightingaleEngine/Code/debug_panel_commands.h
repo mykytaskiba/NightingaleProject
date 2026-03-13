@@ -5,17 +5,34 @@
 #include "engine_menu_bar.h"
 
 
-
-class EngineMenuCommand : public Command<Nothing> {
+template <typename TPanel> requires std::derived_from<TPanel, DebugPanel>
+class PanelCommand : public Command<TriBool> {
 public:
-    EngineMenuCommand() : Command<Nothing>("engine_menu") {}
-    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
-    EngineMenuBar m_panel;
+    PanelCommand(std::string command) : Command<TriBool>(command) {};
+
+    virtual void execute_command(ArgumentList<TriBool>& args, ExecutionState& state, ExecutionResult& result) override {
+        if (args.get<0>() == TriBool::TOGGLE) {
+            m_panel.toggle();
+        }
+        if (args.get<0>() == TriBool::TRUE) {
+            m_panel.toggle_set(true);
+        }
+        if (args.get<0>() == TriBool::FALSE) {
+            m_panel.toggle_set(false);
+        }
+    }
+    
+protected:
+    TPanel m_panel;
 };
 
-class RenderPanelCommand : public Command<Nothing> {
+
+class EngineMenuCommand : public PanelCommand<EngineMenuBar> {
 public:
-    RenderPanelCommand() : Command<Nothing>("render_panel") {}
-    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
-    RenderDebugPanel m_panel;
+    EngineMenuCommand() : PanelCommand<EngineMenuBar>("engine_menu") {}
+};
+
+class RenderPanelCommand : public PanelCommand<EngineMenuBar> {
+public:
+    RenderPanelCommand() : PanelCommand<EngineMenuBar>("render_panel") {}
 };

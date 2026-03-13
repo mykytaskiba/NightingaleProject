@@ -226,7 +226,6 @@
     <ClCompile Include="Code\console_command.cpp" />
     <ClCompile Include="Code\core_commands.cpp" />
     <ClCompile Include="Code\debug_panel.cpp" />
-    <ClCompile Include="Code\debug_panel_commands.cpp" />
     <ClCompile Include="Code\debug_ui.cpp" />
     <ClCompile Include="Code\engine.cpp" />
     <ClCompile Include="Code\engine_functions.cpp" />

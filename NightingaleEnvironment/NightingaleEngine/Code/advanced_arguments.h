@@ -3,5 +3,4 @@
 
 struct ExistingFile {
 	string path;
-	
 };

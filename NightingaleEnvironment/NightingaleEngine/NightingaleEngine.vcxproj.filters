@@ -254,9 +254,6 @@
     <ClCompile Include="Code\physics_debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\debug_panel_commands.cpp">
-      <Filter>Source Files\CoreConsoleCommands</Filter>
-    </ClCompile>
     <ClCompile Include="Code\debug_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

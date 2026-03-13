@@ -38,3 +38,22 @@ struct Path {
 struct Nothing {
 
 };
+
+//A tri bool, is a bool (true/false) or a toggle
+enum class TriBool {
+	TRUE,
+	FALSE,
+	TOGGLE
+};
+
+static void EvaluateTriBool(bool& bValue, TriBool triBool) {
+	if (triBool == TriBool::TRUE) {
+		bValue = true;
+	}
+	if (triBool == TriBool::FALSE) {
+		bValue = false;
+	}
+	if (triBool == TriBool::TOGGLE) {
+		bValue = !bValue;
+	}
+}

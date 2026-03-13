@@ -28,3 +28,10 @@ void DebugPanel::toggle()
     m_bActive = bNextState;
 
 }
+
+void DebugPanel::toggle_set(bool bState)
+{
+    if (bState != m_bActive) {
+        toggle();
+    }
+}
