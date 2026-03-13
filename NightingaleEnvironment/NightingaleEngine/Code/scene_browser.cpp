@@ -4,3 +4,4 @@
 void SceneBrowser::render_update()
 {
 }
+

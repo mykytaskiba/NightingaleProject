@@ -29,8 +29,7 @@ void RenderDebugPanel::render_update()
 
     vector<RenderPass*> const& vActiveRenderPasses = EngineFunctions::Renderer().getActiveRenderPasses();
     for (RenderPass* pRenderPass : vActiveRenderPasses) {
-        render_pass_debug(pRenderPass);
-
+        pRenderPass->debugUIFunction();
     }
 
     ImGui::EndChild();
@@ -43,9 +42,3 @@ void RenderDebugPanel::render_update()
     }
 }
 
-void RenderDebugPanel::render_pass_debug(RenderPass* pRenderPass)
-{
-    pRenderPass->debugUIFunction();
-
-    //ImGui::Text("Unknown render pass");
-}

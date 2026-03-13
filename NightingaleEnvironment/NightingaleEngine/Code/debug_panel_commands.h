@@ -3,6 +3,7 @@
 #include "callback_handler.h"
 #include "render_debug_panel.h"
 #include "engine_menu_bar.h"
+#include "resource_browsers.h"
 
 
 template <typename TPanel> requires std::derived_from<TPanel, DebugPanel>
@@ -24,15 +25,4 @@ public:
     
 protected:
     TPanel m_panel;
-};
-
-
-class EngineMenuCommand : public PanelCommand<EngineMenuBar> {
-public:
-    EngineMenuCommand() : PanelCommand<EngineMenuBar>("engine_menu") {}
-};
-
-class RenderPanelCommand : public PanelCommand<RenderDebugPanel> {
-public:
-    RenderPanelCommand() : PanelCommand<RenderDebugPanel>("render_panel") {}
 };

@@ -32,8 +32,9 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SetColorCommand());
 
     //debug panels
-    m_settings.console_commands.push_back(new RenderPanelCommand());
-    m_settings.console_commands.push_back(new EngineMenuCommand());
+    m_settings.console_commands.push_back(new PanelCommand<EngineMenuBar>("engine_menu"));
+    m_settings.console_commands.push_back(new PanelCommand<RenderDebugPanel>("render_panel"));
+    m_settings.console_commands.push_back(new PanelCommand<ShaderResourceBrowser>("shader_browser"));
 }
 
 

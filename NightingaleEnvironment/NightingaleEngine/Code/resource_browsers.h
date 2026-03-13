@@ -1,8 +1,7 @@
 #pragma once
 #include "debug_panel.h"
-#include "ngrender.h"
 
-class RenderDebugPanel : public DebugPanel {
+class ShaderResourceBrowser : public DebugPanel {
 public:
 	void activate() override {};
 	void deactivate() override {};

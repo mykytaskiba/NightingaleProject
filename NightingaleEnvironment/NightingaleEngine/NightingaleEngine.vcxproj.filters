@@ -272,6 +272,9 @@
     <ClCompile Include="Code\scene_browser.cpp">
       <Filter>Source Files\DebugPanels</Filter>
     </ClCompile>
+    <ClCompile Include="Code\resource_browsers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -479,6 +482,9 @@
       <Filter>Header Files\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\scene_browser.h">
+      <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\resource_browsers.h">
       <Filter>Header Files\DebugPanels</Filter>
     </ClInclude>
   </ItemGroup>

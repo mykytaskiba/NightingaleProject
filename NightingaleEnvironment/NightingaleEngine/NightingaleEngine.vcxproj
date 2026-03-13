@@ -214,6 +214,7 @@
     <ClInclude Include="Code\execution_order_enums.h" />
     <ClInclude Include="Code\imgui_helpers.h" />
     <ClInclude Include="Code\engine_menu_bar.h" />
+    <ClInclude Include="Code\resource_browsers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -261,6 +262,7 @@
     <ClCompile Include="Code\render_mesh.cpp" />
     <ClCompile Include="Code\render_shader.cpp" />
     <ClCompile Include="Code\render_skinned.cpp" />
+    <ClCompile Include="Code\resource_browsers.cpp" />
     <ClCompile Include="Code\scene.cpp" />
     <ClCompile Include="Code\scene_browser.cpp" />
     <ClCompile Include="Code\screen.cpp" />
