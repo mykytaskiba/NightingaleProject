@@ -3,15 +3,10 @@
 
 CallbackRef CallbackHandler::addCallback(PriorityFunction function)
 {
-
     auto pairReturn = m_vFunctions.insert(function);
 
-    if (pairReturn.second == true) {
-        CallbackRef ref{ pairReturn.first }; 
-        return ref;
-    }
-
-    return CallbackRef{};
+    CallbackRef ref{ pairReturn }; 
+    return ref;
 }
 
 bool CallbackHandler::removeCallback(CallbackRef ref)

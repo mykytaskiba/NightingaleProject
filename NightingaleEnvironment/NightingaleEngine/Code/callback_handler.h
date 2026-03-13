@@ -1,19 +1,19 @@
 #pragma once
 #include "defines.h"
 #include "priority_function.h"
+#include <set>
 
 
 struct CallbackRef {
-	set<PriorityFunction>::iterator m_iterator;
+	std::multiset<PriorityFunction>::iterator m_iterator;
 };
 
 class CallbackHandler {
 
 private:
-	set<PriorityFunction> m_vFunctions;
+	std::multiset<PriorityFunction> m_vFunctions;
 	
 	bool m_bExecuting{ false };
-	vector<CallbackRef> m_deferredAdds; //deffer additions if called mid execution
 	vector<CallbackRef> m_deferredRemovals; //deffer removals if called mid execution
 
 
