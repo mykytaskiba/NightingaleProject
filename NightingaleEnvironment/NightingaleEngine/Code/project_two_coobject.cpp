@@ -63,7 +63,7 @@ void ProjectTwo::tick()
 
         m_curveLengthSpeedFactor = m_arcLengthTable.getTotalLength() / 200.0f; //magic number in this case
 
-        m_tDistValue += m_travelSpeed * 1.0f / m_curveLengthSpeedFactor * EngineFunctions::DeltaTime();
+        m_tDistValue += m_travelSpeed * 1.0f / m_curveLengthSpeedFactor * EngineFunctions::delta_time();
         if (m_tDistValue >= 1.0f) {
             m_tDistValue = 1.0f;
             m_bPlaybackActive = false;

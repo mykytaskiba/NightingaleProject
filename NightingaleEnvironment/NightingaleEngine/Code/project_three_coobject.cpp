@@ -107,7 +107,7 @@ void ProjectThree::tick()
         m_IKTarget = m_IKevaluator.endEffector();
 
         Vector3 toTarget = m_realTarget - m_IKTarget;
-        float maxMoveThisFrame = m_smoothMoveSpeed * EngineFunctions::DeltaTime();
+        float maxMoveThisFrame = m_smoothMoveSpeed * EngineFunctions::delta_time();
         if (toTarget.magnitude() > maxMoveThisFrame) {
             toTarget.normalize_equal() *= maxMoveThisFrame;
         }

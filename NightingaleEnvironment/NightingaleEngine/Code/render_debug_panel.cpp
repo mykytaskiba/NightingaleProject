@@ -12,7 +12,7 @@ void RenderDebugPanel::render_update()
 
     ImGui::Begin("Render Debug", &bRemainOpen);
 
-    float fps = 1.0f / EngineFunctions::DeltaTime();
+    float fps = 1.0f / EngineFunctions::delta_time();
     string fpsStr = "FPS: " + std::to_string(fps);
     ImGui::Text(fpsStr.c_str());
     

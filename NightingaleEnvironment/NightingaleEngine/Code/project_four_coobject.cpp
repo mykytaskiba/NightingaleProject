@@ -62,7 +62,7 @@ void ProjectFour::tick()
 
 
     if (m_bSimulate) {
-        physicsTick(EngineFunctions::DeltaTime());
+        physicsTick(EngineFunctions::delta_time());
     }
 }
 

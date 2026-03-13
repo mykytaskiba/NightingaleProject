@@ -34,7 +34,7 @@ public:
     static int ScreenWidth();
     static int ScreenHeight();
 
-    static TTimeDelta DeltaTime();
+    static TTimeDelta delta_time();
 
     //Commands
     static ExecutionResult ExecuteCommand(string const&);

@@ -47,7 +47,7 @@ void ProjectOneGameObject::tick()
 
     ImGui::Begin("ControlPanel");
 
-    float FPS = 1.0f / EngineFunctions::DeltaTime();
+    float FPS = 1.0f / EngineFunctions::delta_time();
     //FPS Estimation
     ImGui::Text("FrameRate: %.1f", FPS);
 
@@ -92,7 +92,7 @@ void ProjectOneGameObject::tick()
     }
 
     if(m_bPlaying) {
-        m_tValue += EngineFunctions::DeltaTime() * m_playbackSpeed;
+        m_tValue += EngineFunctions::delta_time() * m_playbackSpeed;
         while (m_tValue > 1.0f) {
             m_tValue += -1.0f;
             if (m_currentAnimation == m_pAnimKick) {
@@ -202,7 +202,7 @@ void ProjectOneGameObject::extras()
         movement = movement[0] * right + movement[2] * forward;
 
         movement.normalize_equal();
-        getTransform().position += movement * m_movementSpeed * EngineFunctions::DeltaTime();
+        getTransform().position += movement * m_movementSpeed * EngineFunctions::delta_time();
         
         if (m_bCameraFollowPlayer) {
             CameraController::s_instance->setPosition(getTransform().position);

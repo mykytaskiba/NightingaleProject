@@ -32,9 +32,9 @@ void CameraController::tick()
 
     if (Input::MouseDown(MouseButton::Right)) {
         Matrix4x4 rotationDeltaY; 
-        rotationDeltaY.make_rotation_y(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[0]);
+        rotationDeltaY.make_rotation_y(m_rotationSpeed * EngineFunctions::delta_time() * Input::MouseDelta()[0]);
         Matrix4x4 rotationDeltaX;
-        rotationDeltaX.make_rotation_x(m_rotationSpeed * EngineFunctions::DeltaTime() * Input::MouseDelta()[1]);
+        rotationDeltaX.make_rotation_x(m_rotationSpeed * EngineFunctions::delta_time() * Input::MouseDelta()[1]);
         m_rotationY = rotationDeltaY * m_rotationY;
         m_rotationX = rotationDeltaX * m_rotationX;
 
@@ -59,7 +59,7 @@ void CameraController::tick()
             Vector3 moveDelta =
                 forward * Input::MouseDelta()[1] +
                 right * Input::MouseDelta()[0];
-            moveDelta *= EngineFunctions::DeltaTime();
+            moveDelta *= EngineFunctions::delta_time();
             m_position += moveDelta;
         }
     }

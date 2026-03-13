@@ -61,7 +61,7 @@ int EngineFunctions::ScreenHeight()
     return EngineInternals::Renderer().m_screen.Height;
 }
 
-TTimeDelta EngineFunctions::DeltaTime()
+TTimeDelta EngineFunctions::delta_time()
 {
     return EngineInternals::pEngine->m_frameController.getDeltaTime();
 }
