@@ -29,8 +29,8 @@ void Scene::init()
 }
 void Scene::tick()
 {
-    m_root.execute_on_hiearchy(m_tickFunc);
-    m_root.execute_on_hiearchy(m_syncPhysicsFunc);
+    m_root.execute_on_hierarchy(m_tickFunc);
+    m_root.execute_on_hierarchy(m_syncPhysicsFunc);
 
     for (auto it = m_packages.begin(); it != m_packages.end(); ++it) {
         (*it).processPackage();
@@ -40,7 +40,7 @@ void Scene::tick()
 
 void Scene::render()
 {
-    m_root.execute_on_hiearchy(m_renderFunc);
+    m_root.execute_on_hierarchy(m_renderFunc);
 }
 
 void SceneChangePackage::processPackage()

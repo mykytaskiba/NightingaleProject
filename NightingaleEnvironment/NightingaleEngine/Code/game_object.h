@@ -34,7 +34,7 @@ protected:
     virtual void shutdown() {}
 
 
-    void execute_on_hiearchy(TGameObjectFunc functor);
+    void execute_on_hierarchy(TGameObjectFunc functor);
     
 
 public:

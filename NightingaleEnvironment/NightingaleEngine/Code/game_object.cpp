@@ -2,12 +2,12 @@
 #include "game_object.h"
 
 
-void GameObject::execute_on_hiearchy(TGameObjectFunc functor)
+void GameObject::execute_on_hierarchy(TGameObjectFunc functor)
 {
     (*functor)(*this);
 
     for (auto it = m_children.begin(); it != m_children.end(); ++it) {
-        (*it)->execute_on_hiearchy(functor);
+        (*it)->execute_on_hierarchy(functor);
     }
 }
 
