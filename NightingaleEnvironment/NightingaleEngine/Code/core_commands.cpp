@@ -5,7 +5,6 @@
 #include "scripting.h"
 #include "argument.h"
 #include "engine_functions.h"
-#include "termination.h"
 /*
 
 ExecutionResult VerifyCommand::execute(string args, ExecutionState& state)
@@ -236,7 +235,7 @@ void SetWindowTitleCommand::execute_command(ArgumentList<AllText>& args, Executi
 
 void QuitCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
 {
-    Termination::SendTerminationSignal();
+    EngineFunctions::close_app();
 
     result.bSuccess = true;
     result.message = "App quit";

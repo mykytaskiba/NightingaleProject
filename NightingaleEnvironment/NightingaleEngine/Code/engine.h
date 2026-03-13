@@ -47,6 +47,9 @@ private:
     CallbackHandler m_updateCallback;
     CallbackHandler m_shutdownCallback;
 
+    //Main variable to determine if the engine needs to close or not
+    bool m_bRunning{ false };
+
     Window m_window;
     Renderer m_renderer;
     Input m_input;

@@ -4,7 +4,6 @@
 #include "engine_internals.h"
 #include "render_node.h"
 #include "asset_manager.h"
-#include "termination.h"
 
 void EngineFunctions::Setup(GameObject* pGameObject)
 {
@@ -110,6 +109,6 @@ Renderer& EngineFunctions::Renderer()
 
 void EngineFunctions::close_app()
 {
-    Termination::SendTerminationSignal();
+    EngineInternals::pEngine->m_bRunning = false;
 }
 

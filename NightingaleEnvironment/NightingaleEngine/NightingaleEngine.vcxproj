@@ -201,7 +201,6 @@
     <ClInclude Include="Code\skeleton.h" />
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />
-    <ClInclude Include="Code\termination.h" />
     <ClInclude Include="Code\window.h" />
     <ClInclude Include="Code\key_enum.h" />
     <ClInclude Include="Code\engine_settings.h" />
@@ -269,7 +268,6 @@
     <ClCompile Include="Code\shader_source.cpp" />
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />
-    <ClCompile Include="Code\termination.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Code\default_console_commands.cpp" />
     <ClCompile Include="Code\imgui_helpers.cpp" />

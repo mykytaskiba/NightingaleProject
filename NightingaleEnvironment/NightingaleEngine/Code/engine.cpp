@@ -2,7 +2,6 @@
 
 #include "engine.h"
 #include "logger.h"
-#include "termination.h"
 
 #include "engine_internals.h"
 #include "console.h"
@@ -18,8 +17,8 @@ EngineSettings& Engine::settings()
 void Engine::run()
 {
     register_systems();
-
-
+    
+    m_bRunning = true;
     init();
     update();
     shutdown();
@@ -69,7 +68,7 @@ void Engine::init()
 void Engine::update()
 {
 
-    while (!Termination::NeedTermination())
+    while (m_bRunning)
     {
         m_updateCallback.execute();
     }

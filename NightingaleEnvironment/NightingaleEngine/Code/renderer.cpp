@@ -9,7 +9,6 @@
 //TEMP INCLUDES
 #include "game_object.h"
 #include "render_shader.h"
-#include "termination.h"
 #include "loader.h"
 #include "mesh.h"
 #include "input.h"

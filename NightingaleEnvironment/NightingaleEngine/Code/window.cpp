@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "window.h"
 #include "graphics_library.h"
-#include "termination.h"
 #include "engine_internals.h"
+#include "engine_functions.h"
 
 void Window::init()
 {
@@ -33,7 +33,7 @@ void Window::update()
     bool bShouldClose = glfwWindowShouldClose(m_pWindow);
     
     if (bShouldClose) {
-        Termination::SendTerminationSignal();
+        EngineFunctions::close_app();
         return;
     }
 
