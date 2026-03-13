@@ -36,6 +36,7 @@ public:
 
     static TTimeDelta DeltaTime();
 
+    //Commands
     static ExecutionResult ExecuteCommand(string const&);
 
     static void SetWindowTitle(string const& title);
@@ -46,5 +47,7 @@ public:
     static CallbackHandler& getUpdateCallback();
 
     static Renderer& Renderer();
+
+    static void close_app();
 
 };
