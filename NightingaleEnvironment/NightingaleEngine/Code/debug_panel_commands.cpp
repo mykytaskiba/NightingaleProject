@@ -6,3 +6,8 @@ void RenderPanelCommand::execute_command(ArgumentList<Nothing>& args, ExecutionS
 {
     m_panel.toggle();
 }
+
+void EngineMenuCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
+{
+    m_panel.toggle();
+}

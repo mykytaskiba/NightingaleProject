@@ -84,6 +84,9 @@
     <Filter Include="Source Files\DebugPanels">
       <UniqueIdentifier>{b27327d2-3efe-47dc-bd77-ddefd02208df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Rendering\RenderPasses">
+      <UniqueIdentifier>{e7987b2a-7f48-4cb7-8a00-1e47e5761df6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\pch.cpp">
@@ -268,6 +271,12 @@
     </ClCompile>
     <ClCompile Include="Code\imgui_helpers.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\engine_menu_bar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\scene_browser.cpp">
+      <Filter>Source Files\DebugPanels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -469,11 +478,17 @@
     <ClInclude Include="Code\priority_function.h">
       <Filter>Header Files\Core\Callbacks</Filter>
     </ClInclude>
-    <ClInclude Include="execution_order_enums.h">
+    <ClInclude Include="Code\execution_order_enums.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\imgui_helpers.h">
       <Filter>Header Files\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\engine_menu_bar.h">
+      <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\scene_browser.h">
+      <Filter>Header Files\DebugPanels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

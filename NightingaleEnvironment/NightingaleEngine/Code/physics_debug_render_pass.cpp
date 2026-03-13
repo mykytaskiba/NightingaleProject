@@ -21,6 +21,8 @@ void PhysicsDebugRenderPass::debugUIFunction()
 {
     if (!ImGui::CollapsingHeader("Physics Debug Pass")) return;
 
+    ImGui::Checkbox("Enabled", &m_enabled);
+
     float width = ImGui::GetContentRegionAvail().x;
     ImGui::BeginChild("PHYSICS_DEBUG_PASS", ImVec2(width, 0), ImGuiChildFlags_AutoResizeY | ImGuiChildFlags_Border, ImGuiWindowFlags_MenuBar);
 

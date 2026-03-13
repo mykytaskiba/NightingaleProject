@@ -3,6 +3,7 @@
 
 CallbackRef CallbackHandler::addCallback(PriorityFunction function)
 {
+
     auto pairReturn = m_vFunctions.insert(function);
 
     if (pairReturn.second == true) {

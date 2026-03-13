@@ -20,8 +20,6 @@ void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
     GL::clear();
     GL::clearDepth();
 
-
-
     for (auto it = m_renderables.begin(); it != m_renderables.end(); ++it) {
         (*it)->render(context);
     }
@@ -30,7 +28,12 @@ void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
 
 void ForwardRenderPass::debugUIFunction()
 {
+
+
     if (!ImGui::CollapsingHeader("Forward Render Pass")) return;
+
+    ImGui::Checkbox("Enabled", &m_enabled);
+
 
     float width = ImGui::GetContentRegionAvail().x;
     ImGui::BeginChild("RENDER_PASS_FORWARD", ImVec2(width, 0), ImGuiChildFlags_AutoResizeY | ImGuiChildFlags_Border, ImGuiWindowFlags_MenuBar);

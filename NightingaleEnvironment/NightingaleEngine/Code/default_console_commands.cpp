@@ -33,6 +33,7 @@ void Engine::defaultSettings_CoreCommands() {
 
     //debug panels
     m_settings.console_commands.push_back(new RenderPanelCommand());
+    m_settings.console_commands.push_back(new EngineMenuCommand());
 }
 
 

@@ -152,6 +152,7 @@
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
     <ClInclude Include="Code\physics_debug.h" />
+    <ClInclude Include="Code\scene_browser.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
     <ClInclude Include="Code\animation_builder.h" />
@@ -211,8 +212,9 @@
     <ClInclude Include="Code\physics_debug_render_pass.h" />
     <ClInclude Include="Code\render_debug_panel.h" />
     <ClInclude Include="Code\debug_panel_commands.h" />
-    <ClInclude Include="execution_order_enums.h" />
+    <ClInclude Include="Code\execution_order_enums.h" />
     <ClInclude Include="Code\imgui_helpers.h" />
+    <ClInclude Include="Code\engine_menu_bar.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -245,6 +247,7 @@
     <ClCompile Include="Code\loader.cpp" />
     <ClCompile Include="Code\loader_commands.cpp" />
     <ClCompile Include="Code\logger.cpp" />
+    <ClCompile Include="Code\engine_menu_bar.cpp" />
     <ClCompile Include="Code\mesh.cpp" />
     <ClCompile Include="Code\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -261,6 +264,7 @@
     <ClCompile Include="Code\render_shader.cpp" />
     <ClCompile Include="Code\render_skinned.cpp" />
     <ClCompile Include="Code\scene.cpp" />
+    <ClCompile Include="Code\scene_browser.cpp" />
     <ClCompile Include="Code\screen.cpp" />
     <ClCompile Include="Code\shader_source.cpp" />
     <ClCompile Include="Code\skeleton.cpp" />

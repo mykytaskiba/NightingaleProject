@@ -31,10 +31,12 @@ void Renderer::init()
 
 void Renderer::render()
 {
-
-
-    for (auto it{ m_renderpasses.begin() }; it != m_renderpasses.end(); ++it) {
-        (*it)->executeRenderPass(m_graphicsContext);
+    
+    for (RenderPass* pRenderPass : m_renderpasses) {
+        if (!pRenderPass->isEnabled()) {
+            continue;
+        }
+        pRenderPass->executeRenderPass(m_graphicsContext);
     }
 
     m_graphicsContext.endFrame();
