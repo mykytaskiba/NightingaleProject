@@ -13,7 +13,17 @@ void EngineMenuBar::render_update()
     if (ImGui::Button("Render Panel")) {
         EngineFunctions::ExecuteCommand("render_panel");
     }
+    
 
+    if (ImGui::BeginMenu("Browsers")) {
+        if (ImGui::Button("Shader Browser")) {
+            EngineFunctions::ExecuteCommand("shader_browser");
+        }
+        
+        
+        ImGui::EndMenu();
+    }
+    
 
 
     if (ImGui::Button("Close")) {

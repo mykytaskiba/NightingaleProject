@@ -31,16 +31,20 @@ public:
         return true;
     }
 
-    /*
+    
     template <typename Functor>
     static void execute(Functor func) {
-        typename std::map<string, Resource*>::iterator it = _resources.begin();
-        while (it != _resources.end()) {
-            func((*it).second);
-            ++it;
+        for (auto& it : m_assetMap) {
+            func(it.second);
         }
-    }*/
+    }
 
+    template <typename Functor>
+    static void execute_key(Functor func) {
+        for (auto& it : m_assetMap) {
+            func(it.first, it.second);
+        }
+    }
 
 };
 

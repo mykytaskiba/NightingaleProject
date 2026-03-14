@@ -11,7 +11,6 @@ public:
     GL_Shader m_baseShader;
     vector<GL_Shader_Uniform> m_uniformList;
 
-
 public:
 
     RenderShader(GL_Shader baseShader) : m_baseShader(baseShader) {}
@@ -24,6 +23,7 @@ public:
     void transferArray(string const& name, vector<Matrix4x4> const& matricies);
 
     float const* getMatrixData(Matrix4x4 const& matrix);
+
 
 
 };
