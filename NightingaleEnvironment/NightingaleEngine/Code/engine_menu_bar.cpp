@@ -8,6 +8,7 @@ void EngineMenuBar::render_update()
 
 
     if (ImGui::Button("Console")) {
+        EngineFunctions::ExecuteCommand("console");
     }
 
     if (ImGui::Button("Render Panel")) {

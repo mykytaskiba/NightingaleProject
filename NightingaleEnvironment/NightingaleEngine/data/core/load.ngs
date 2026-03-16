@@ -22,3 +22,8 @@ load_mesh cube_mesh data/core/cube.fbx
 @verify
 
 @enablelog false
+
+
+//HOTKEY SECTION
+hotkey Tilda console
+hotkey LControl+Tilda engine_menu

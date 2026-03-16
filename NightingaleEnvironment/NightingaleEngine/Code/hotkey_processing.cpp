@@ -25,7 +25,7 @@ void HotkeyManager::processHotkeys()
 			}
 		}
 	}
-
+	 
 	if (pExecutedHotkey != nullptr) {
 		(pExecutedHotkey->m_callback)();
 	}

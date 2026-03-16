@@ -63,7 +63,6 @@
     <Filter Include="Header Files\Loading" />
     <Filter Include="Header Files\Input" />
     <Filter Include="Header Files\Game" />
-    <Filter Include="Header Files\Console" />
     <Filter Include="Header Files\AssetManagement" />
     <Filter Include="Header Files\Setup">
       <UniqueIdentifier>{1243eb7c-61a4-4be3-8e8b-3d673afd9307}</UniqueIdentifier>
@@ -367,9 +366,6 @@
     <ClInclude Include="Code\render_mesh.h">
       <Filter>Header Files\Rendering\RenderNodes</Filter>
     </ClInclude>
-    <ClInclude Include="Code\console.h">
-      <Filter>Header Files\Console</Filter>
-    </ClInclude>
     <ClInclude Include="Code\asset_manager.h">
       <Filter>Header Files\AssetManagement</Filter>
     </ClInclude>
@@ -510,6 +506,9 @@
     </ClInclude>
     <ClInclude Include="Code\hotkey_processing.h">
       <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\console.h">
+      <Filter>Header Files\DebugPanels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

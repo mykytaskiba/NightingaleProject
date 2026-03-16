@@ -6,79 +6,74 @@
 #include "loader_commands.h"
 #include "gameobject_commands.h"
 
-void Console::init()
+void Console::activate()
 {
+    m_bShownThisFrame = true;
 }
 
-void Console::tick()
+void Console::render_update()
 {
-    bool bShowConsolePressed = Input::KeyClicked(Key::Tilda);
-    if (bShowConsolePressed) {
-        m_consoleShown = !m_consoleShown;
-        m_consoleBuffer.clear();
-        ImGui::SetNextWindowFocus();
+    bool bRemainOpen{ true };
+
+    ImGui::Begin("Console", &bRemainOpen);
+
+    int screenWidth = EngineFunctions::ScreenWidth();
+
+    //ImGui::SetNextWindowPos(ImVec2(0, 0));
+    //ImGui::SetNextWindowSize(ImVec2(screenWidth, m_consoleHeight));
+
+    bool hasPreviousExecutedCommands = (m_executedCommands.size() != 0);
+
+
+    if (Input::KeyClicked(Key::UpArrow) && hasPreviousExecutedCommands) {
+        uint commandIndex = m_executedCommands.size() - m_executedCommandBrowser - 1;
+        m_consoleBuffer = m_executedCommands[commandIndex];
+
+        if (m_executedCommandBrowser + 1u < m_executedCommands.size()) {
+            m_executedCommandBrowser++;
+        }
+    }
+    if (Input::KeyClicked(Key::DownArrow) && hasPreviousExecutedCommands) {
+        if (m_executedCommandBrowser > 0) {
+            m_executedCommandBrowser--;
+        }
+
+        uint commandIndex = m_executedCommands.size() - m_executedCommandBrowser - 1;
+        m_consoleBuffer = m_executedCommands[commandIndex];
     }
 
-    if (m_consoleShown) {
-        int screenWidth = EngineFunctions::ScreenWidth();
-        
-        ImGui::SetNextWindowPos(ImVec2(0, 0));
-        ImGui::SetNextWindowSize(ImVec2(screenWidth, m_consoleHeight));
 
-        bool hasPreviousExecutedCommands = (m_executedCommands.size() != 0);
-        
+    if (m_bShownThisFrame) {
+        m_bShownThisFrame = false;
+        ImGui::SetKeyboardFocusHere();
+    }
+    if (ImGui::InputText("<--", &m_consoleBuffer)) {
+        m_executedCommandBrowser = 0;
+    }
+    ImGui::Text(m_consoleMessage.c_str());
 
-        if (Input::KeyClicked(Key::UpArrow) && hasPreviousExecutedCommands) {
-            uint commandIndex = m_executedCommands.size() - m_executedCommandBrowser - 1;
-                m_consoleBuffer = m_executedCommands[commandIndex];
+    //both keys are down and one of them was just clicked
+    bool commandEntered =
+        (Input::KeyDown(Key::LShift) && Input::KeyClicked(Key::Enter))
+        ||
+        (Input::KeyClicked(Key::LShift) && Input::KeyDown(Key::Enter));
 
-                if (m_executedCommandBrowser + 1u < m_executedCommands.size()) {
-                    m_executedCommandBrowser++;
-                }
-        }
-        if (Input::KeyClicked(Key::DownArrow) && hasPreviousExecutedCommands) {
-            if (m_executedCommandBrowser > 0) {
-                m_executedCommandBrowser--;
-            }
-            
-            uint commandIndex = m_executedCommands.size() - m_executedCommandBrowser - 1;
-            m_consoleBuffer = m_executedCommands[commandIndex];
-        }
 
-        ImGui::Begin("Console", NULL, 
-            ImGuiWindowFlags_NoCollapse | 
-            ImGuiWindowFlags_NoResize | 
-            ImGuiWindowFlags_NoTitleBar);
-
-        if (bShowConsolePressed) {
-            ImGui::SetKeyboardFocusHere();
-        }
-        if (ImGui::InputText("<--", &m_consoleBuffer)) {
+    if (commandEntered) {
+        string fullCommand = string(m_consoleBuffer);
+        assert(ScriptingEnvironment::getInstance() != nullptr);
+        ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
+        ExecutionResult executionResult = scriptingEnv.execute(fullCommand);
+        if (executionResult.bSuccess) {
+            m_consoleBuffer.clear();
+            m_executedCommands.push_back(fullCommand);
             m_executedCommandBrowser = 0;
         }
-        ImGui::Text(m_consoleMessage.c_str());
-        ImGui::End();
+        m_consoleMessage = executionResult.message;
+    }
+    ImGui::End();
 
-        //both keys are down and one of them was just clicked
-        bool commandEntered =
-            (Input::KeyDown(Key::LShift) && Input::KeyClicked(Key::Enter))
-            ||
-            (Input::KeyClicked(Key::LShift) && Input::KeyDown(Key::Enter));
-            
-
-        if (commandEntered) {
-            string fullCommand = string(m_consoleBuffer);
-            assert(ScriptingEnvironment::getInstance() != nullptr);
-            ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
-            ExecutionResult executionResult = scriptingEnv.execute(fullCommand);
-            if (executionResult.bSuccess) {
-                m_consoleBuffer.clear();
-                m_executedCommands.push_back(fullCommand);
-                m_executedCommandBrowser = 0;
-            }
-            m_consoleMessage = executionResult.message;
-        }
+    if (!bRemainOpen && m_bActive) {
+        toggle();
     }
 }
-
-

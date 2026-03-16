@@ -42,6 +42,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<ShaderResourceBrowser>("shader_browser"));
     m_settings.console_commands.push_back(new PanelCommand<PhysicsControlPanel>("physics_control"));
     m_settings.console_commands.push_back(new PanelCommand<LagSimulatorPanel>("lag_simulator"));
+    m_settings.console_commands.push_back(new PanelCommand<Console>("console"));
 
     //physics commands
     m_settings.console_commands.push_back(new PhysicsActiveCommand());
