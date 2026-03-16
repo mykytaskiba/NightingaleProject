@@ -43,6 +43,19 @@ public:
     SetTargetFramerateCommand() : Command("set_target_framerate") {}
     virtual void execute_command(ArgumentList<uint>& args, ExecutionState& state, ExecutionResult& result) override;
 };
+
+class HotkeyCommand : public Command<KeySequence, AllText> {
+public:
+    HotkeyCommand() : Command("hotkey") {}
+    virtual void execute_command(ArgumentList<KeySequence, AllText>& args, ExecutionState& state, ExecutionResult& result) override;
+
+};
+
+class ClearHotkeyCommand : public Command<KeySequence> {
+public:
+    ClearHotkeyCommand() : Command("hotkey_clear") {}
+    virtual void execute_command(ArgumentList<KeySequence>& args, ExecutionState& state, ExecutionResult& result) override;
+};
 /*
 
 /*

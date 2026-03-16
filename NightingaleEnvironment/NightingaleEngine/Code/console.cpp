@@ -61,9 +61,9 @@ void Console::tick()
 
         //both keys are down and one of them was just clicked
         bool commandEntered =
-            (Input::KeyDown(Key::Shift) && Input::KeyClicked(Key::Enter))
+            (Input::KeyDown(Key::LShift) && Input::KeyClicked(Key::Enter))
             ||
-            (Input::KeyClicked(Key::Shift) && Input::KeyDown(Key::Enter));
+            (Input::KeyClicked(Key::LShift) && Input::KeyDown(Key::Enter));
             
 
         if (commandEntered) {

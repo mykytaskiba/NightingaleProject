@@ -15,6 +15,7 @@
 #include "ngphys.h"
 #include "ngrender.h"
 #include "callback_handler.h"
+#include "hotkey_processing.h"
 
 
 class Engine {
@@ -53,6 +54,7 @@ private:
     Window m_window;
     Renderer m_renderer;
     Input m_input;
+    HotkeyManager m_hotkeyManager;
     DebugUI m_debugUI;
     Console m_console;
     ScriptingEnvironment m_scriptEnvironment;

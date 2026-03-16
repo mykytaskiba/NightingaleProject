@@ -52,7 +52,7 @@ void CameraController::tick()
     zoomMatrix.make_translation(0.0f, 0.0f, -m_zoom);
 
     if (Input::MouseDown(MouseButton::Left) || Input::MouseDown(MouseButton::Middle)) {
-        if (Input::KeyDown(Key::Shift)) {
+        if (Input::KeyDown(Key::LShift)) {
             Matrix4x4 transposed = rotationMatrix.transpose();
             Vector3 forward = transposed[2].truncate_dimension().normalized();
             Vector3 right = transposed[0].truncate_dimension().normalized();

@@ -5,6 +5,7 @@
 #include "scripting.h"
 #include "argument.h"
 #include "engine_functions.h"
+#include "hotkey_processing.h"
 /*
 
 ExecutionResult VerifyCommand::execute(string args, ExecutionState& state)
@@ -248,4 +249,27 @@ void SetTargetFramerateCommand::execute_command(ArgumentList<uint>& args, Execut
 
     result.bSuccess = true;
     result.message = "Target framerate set to " + std::to_string(framerate);
+}
+
+void HotkeyCommand::execute_command(ArgumentList<KeySequence, AllText>& args, ExecutionState& state, ExecutionResult& result)
+{
+    std::string executedCommand = *args.get<1>();
+    Hotkey hotkey{
+        args.get<0>().m_sequence ,
+        [executedCommand]() {
+            EngineFunctions::ExecuteCommand(executedCommand);
+        }
+    };
+    EngineFunctions::hotkeyManager().addHotkey(hotkey);
+
+    result.bSuccess = true;
+    result.message = "Added a hotkey";
+}
+
+void ClearHotkeyCommand::execute_command(ArgumentList<KeySequence>& args, ExecutionState& state, ExecutionResult& result)
+{
+    EngineFunctions::hotkeyManager().clearHotkey(args.get<0>().m_sequence);
+
+    result.bSuccess = true;
+    result.message = "Removed a hotkey";
 }

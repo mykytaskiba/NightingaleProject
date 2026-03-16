@@ -1,5 +1,6 @@
 #pragma once
 #include "defines.h"
+#include "key_enum.h"
 
 struct Line {
 	string line;
@@ -57,3 +58,7 @@ static void s_evaluateTriBool(bool& bValue, TriBool triBool) {
 		bValue = !bValue;
 	}
 }
+
+struct KeySequence {
+	std::set<Key> m_sequence;
+};

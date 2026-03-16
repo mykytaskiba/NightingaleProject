@@ -38,3 +38,16 @@ string ArgumentHelpers::getNextWithDefines(string& args)
 
     return arg;
 }
+
+std::vector<std::string> ArgumentHelpers::separateByDelimiter(std::string const& inString, char delimiter)
+{
+    std::vector<std::string> tokens;
+    std::string token;
+    std::stringstream ss(inString);
+
+    while (std::getline(ss, token, delimiter)) {
+        tokens.push_back(token);
+    }
+    return tokens;
+}
+

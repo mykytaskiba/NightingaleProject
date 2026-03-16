@@ -19,6 +19,8 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SetWindowTitleCommand());
     m_settings.console_commands.push_back(new QuitCommand());
     m_settings.console_commands.push_back(new SetTargetFramerateCommand());
+    m_settings.console_commands.push_back(new HotkeyCommand());
+    m_settings.console_commands.push_back(new ClearHotkeyCommand());
 
     //Loader commands
     m_settings.console_commands.push_back(new ShaderLoadCommand());

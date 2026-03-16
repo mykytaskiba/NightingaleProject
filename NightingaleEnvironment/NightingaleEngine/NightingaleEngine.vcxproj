@@ -218,6 +218,7 @@
     <ClInclude Include="Code\engine_menu_bar.h" />
     <ClInclude Include="Code\resource_browsers.h" />
     <ClInclude Include="Code\lag_simulator.h" />
+    <ClInclude Include="Code\hotkey_processing.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -244,6 +245,7 @@
     <ClCompile Include="Code\gl_shader_uniform.cpp" />
     <ClCompile Include="Code\graphics_context.cpp" />
     <ClCompile Include="Code\graphics_library.cpp" />
+    <ClCompile Include="Code\hotkey_processing.cpp" />
     <ClCompile Include="Code\input.cpp" />
     <ClCompile Include="Code\inverse_kinematics_evaluator.cpp" />
     <ClCompile Include="Code\lag_simulator.cpp" />

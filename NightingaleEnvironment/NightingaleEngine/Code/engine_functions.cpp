@@ -112,6 +112,11 @@ Physics& EngineFunctions::physics()
     return EngineInternals::pEngine->m_physics;
 }
 
+HotkeyManager& EngineFunctions::hotkeyManager()
+{
+    return EngineInternals::pEngine->m_hotkeyManager;
+}
+
 void EngineFunctions::close_app()
 {
     EngineInternals::pEngine->m_bRunning = false;

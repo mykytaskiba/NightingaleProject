@@ -211,6 +211,33 @@ struct ArgumentExtractor<Vector3> {
     }
 };
 
+//KeySequence
+template<>
+struct ArgumentExtractor<KeySequence> {
+    static string usage() { return "key sequence"; }
+    static KeySequence parse(string& args, ParsingResult& result) {
+        std::string arg = ArgumentHelpers::getNextWithDefines(args);
+        
+        std::vector<std::string> vKeySequence = ArgumentHelpers::separateByDelimiter(arg, '+');
+        KeySequence sequence;
+
+        for (std::string const& key_str : vKeySequence) {
+            Key key = StringToKey(key_str);
+            if (key != Key::Invalid) {
+                sequence.m_sequence.insert(key);
+            }
+        }
+
+        result.bSuccess = true;
+        if (sequence.m_sequence.empty()) {
+            result.bSuccess = false;
+            result.errorMessage = "Sequence contains no keys";
+        }
+        
+        return sequence;
+    }
+
+};
 
 
 

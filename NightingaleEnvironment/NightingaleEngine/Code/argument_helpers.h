@@ -3,7 +3,9 @@
 
 class ArgumentHelpers {
 public:
-    static string getNextRaw(string&);
-    static string getNextWithDefines(string&);
+    static std::string getNextRaw(std::string&);
+    static std::string getNextWithDefines(std::string&);
+
+    static std::vector<std::string> separateByDelimiter(std::string const& inString, char delimiter);
 
 };
