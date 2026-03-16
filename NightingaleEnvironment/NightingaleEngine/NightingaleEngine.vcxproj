@@ -151,6 +151,8 @@
     <ClInclude Include="Code\callback_handler.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
+    <ClInclude Include="Code\physics_commands.h" />
+    <ClInclude Include="Code\physics_control_panel.h" />
     <ClInclude Include="Code\physics_debug.h" />
     <ClInclude Include="Code\scene_browser.h" />
     <ClInclude Include="Code\scripting.h" />
@@ -215,6 +217,7 @@
     <ClInclude Include="Code\imgui_helpers.h" />
     <ClInclude Include="Code\engine_menu_bar.h" />
     <ClInclude Include="Code\resource_browsers.h" />
+    <ClInclude Include="Code\lag_simulator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -243,6 +246,7 @@
     <ClCompile Include="Code\graphics_library.cpp" />
     <ClCompile Include="Code\input.cpp" />
     <ClCompile Include="Code\inverse_kinematics_evaluator.cpp" />
+    <ClCompile Include="Code\lag_simulator.cpp" />
     <ClCompile Include="Code\loader.cpp" />
     <ClCompile Include="Code\loader_commands.cpp" />
     <ClCompile Include="Code\logger.cpp" />
@@ -251,6 +255,8 @@
     <ClCompile Include="Code\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Code\physics_commands.cpp" />
+    <ClCompile Include="Code\physics_control_panel.cpp" />
     <ClCompile Include="Code\physics_debug.cpp" />
     <ClCompile Include="Code\physics_debug_render_pass.cpp" />
     <ClCompile Include="Code\project_four_coobject.cpp" />

@@ -7,6 +7,7 @@ class Camera;
 class RenderNode;
 class CallbackHandler;
 class Renderer;
+class Physics;
 
 class EngineFunctions {
     friend struct SceneChangePackage;
@@ -47,6 +48,7 @@ public:
     static CallbackHandler& getUpdateCallback();
 
     static Renderer& Renderer();
+    static Physics& physics();
 
     static void close_app();
 

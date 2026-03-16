@@ -275,6 +275,15 @@
     <ClCompile Include="Code\resource_browsers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\physics_control_panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\physics_commands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\lag_simulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -485,6 +494,15 @@
       <Filter>Header Files\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\resource_browsers.h">
+      <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\physics_control_panel.h">
+      <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\physics_commands.h">
+      <Filter>Header Files\CoreConsoleCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\lag_simulator.h">
       <Filter>Header Files\DebugPanels</Filter>
     </ClInclude>
   </ItemGroup>

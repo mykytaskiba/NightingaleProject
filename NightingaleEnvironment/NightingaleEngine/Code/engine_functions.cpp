@@ -107,6 +107,11 @@ Renderer& EngineFunctions::Renderer()
     return EngineInternals::pEngine->m_renderer;
 }
 
+Physics& EngineFunctions::physics()
+{
+    return EngineInternals::pEngine->m_physics;
+}
+
 void EngineFunctions::close_app()
 {
     EngineInternals::pEngine->m_bRunning = false;

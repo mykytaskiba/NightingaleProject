@@ -1,5 +1,6 @@
 #include "physics.h"
 #include "nightingale_assert.h"
+#include <iostream>
 
 Physics::Physics()
 {
@@ -8,6 +9,11 @@ Physics::Physics()
 
 void Physics::update(TTimePhys frameDelta)
 {
+
+	if (!m_bActive) {
+		return;
+	}
+
 	m_accumulatedTime += frameDelta;
 
 	uint updatesThisFrame{ 0u };
@@ -62,19 +68,13 @@ void Physics::setTargetUpdateRate(uint updatesPerSecond)
 		assert(false);
 		return;
 	}
+
+	m_infoUpdatesPerSecond = updatesPerSecond; 
+
 	m_updateRate = (1.0f / (TTimePhys)updatesPerSecond);
 	m_accumulatedTime = 0.0f;
 }
 
-void Physics::setMaxUpdatesPerFrame(uint maxUpdatePerFrame)
-{
-	m_maxUpdatesPerFrame = maxUpdatePerFrame;
-}
-
-void Physics::setDiscardUnusedTime(bool bDiscardUnusedTime)
-{
-	m_bDiscardUnusedTime = bDiscardUnusedTime;
-}
 
 void Physics::addBody(PhysicsBody* pBody)
 {

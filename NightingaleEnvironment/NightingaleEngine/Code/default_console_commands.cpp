@@ -5,6 +5,9 @@
 #include "loader_commands.h"
 #include "gameobject_commands.h"
 #include "debug_panel_commands.h"
+#include "physics_control_panel.h"
+#include "physics_commands.h"
+#include "lag_simulator.h"
 
 
 void Engine::defaultSettings_CoreCommands() {
@@ -35,6 +38,11 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<EngineMenuBar>("engine_menu"));
     m_settings.console_commands.push_back(new PanelCommand<RenderDebugPanel>("render_panel"));
     m_settings.console_commands.push_back(new PanelCommand<ShaderResourceBrowser>("shader_browser"));
+    m_settings.console_commands.push_back(new PanelCommand<PhysicsControlPanel>("physics_control"));
+    m_settings.console_commands.push_back(new PanelCommand<LagSimulatorPanel>("lag_simulator"));
+
+    //physics commands
+    m_settings.console_commands.push_back(new PhysicsActiveCommand());
 }
 
 

@@ -46,7 +46,7 @@ enum class TriBool {
 	TOGGLE
 };
 
-static void EvaluateTriBool(bool& bValue, TriBool triBool) {
+static void s_evaluateTriBool(bool& bValue, TriBool triBool) {
 	if (triBool == TriBool::TRUE) {
 		bValue = true;
 	}

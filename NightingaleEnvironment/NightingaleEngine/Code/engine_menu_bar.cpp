@@ -13,6 +13,9 @@ void EngineMenuBar::render_update()
     if (ImGui::Button("Render Panel")) {
         EngineFunctions::ExecuteCommand("render_panel");
     }
+    if (ImGui::Button("Physics Control")) {
+        EngineFunctions::ExecuteCommand("physics_control");
+    }
     
 
     if (ImGui::BeginMenu("Browsers")) {
@@ -23,11 +26,23 @@ void EngineMenuBar::render_update()
         
         ImGui::EndMenu();
     }
-    
+
+    if (ImGui::BeginMenu("Advanced")) {
+        if (ImGui::Button("Lag Simulator")) {
+            EngineFunctions::ExecuteCommand("lag_simulator");
+        }
+
+        if (ImGui::Button("Close App")) {
+            EngineFunctions::ExecuteCommand("quit");
+        }
+
+
+        ImGui::EndMenu();
+    }
 
 
     if (ImGui::Button("Close")) {
-        EngineFunctions::close_app();
+        EngineFunctions::ExecuteCommand("engine_menu false");
     }
 
     ImGui::EndMainMenuBar();
