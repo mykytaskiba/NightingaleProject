@@ -23,7 +23,10 @@ void EngineMenuBar::render_update()
         if (ImGui::Button("Shader Browser")) {
             EngineFunctions::ExecuteCommand("shader_browser");
         }
-        
+
+        if (ImGui::Button("Mesh Browser")) {
+            EngineFunctions::ExecuteCommand("mesh_browser");
+        }
         
         ImGui::EndMenu();
     }

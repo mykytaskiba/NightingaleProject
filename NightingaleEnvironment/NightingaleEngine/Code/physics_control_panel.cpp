@@ -37,7 +37,7 @@ void PhysicsControlPanel::render_update()
     }
 
     int maxUpdatesPerFrame = EngineFunctions::physics().getMaxUpdatesPerFrame();
-    if (ImGui::SliderInt("Max Updates Per Frame", &maxUpdatesPerFrame, 1, 20)); {
+    if (ImGui::InputInt("Max Updates Per Frame", &maxUpdatesPerFrame, 1)); {
         EngineFunctions::physics().setMaxUpdatesPerFrame(maxUpdatesPerFrame);
     }
 
@@ -46,6 +46,12 @@ void PhysicsControlPanel::render_update()
     PhysicsDebugRenderPass* pDebugPass = findDebugPass();
     if (pDebugPass != nullptr) {
         pDebugPass->debugUIFunction();
+    }
+    else {
+        if (ImGui::Button("Create a Debug Render Pass")) {
+            pDebugPass = new PhysicsDebugRenderPass(EngineFunctions::physics());
+            EngineFunctions::Renderer().registerRenderPass(pDebugPass);
+        }
     }
 
     ImGui::End();

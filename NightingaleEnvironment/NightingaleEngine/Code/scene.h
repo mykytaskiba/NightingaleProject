@@ -19,7 +19,6 @@ public:
     TGameObjectFunc m_syncPhysicsFunc;
 
     void init();
-
     void tick();
     void render();
 

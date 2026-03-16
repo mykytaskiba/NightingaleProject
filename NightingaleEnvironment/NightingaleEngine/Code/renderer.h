@@ -29,7 +29,10 @@ public:
     void registerRenderPass(RenderPass*);
     void registerRenderable(RenderNode*);
 
-    vector<RenderPass*> const& getActiveRenderPasses() { return m_renderpasses; }
+    vector<RenderPass*> const& getActiveRenderPasses() const { return m_renderpasses; }
+    vector<RenderPass*>& getActiveRenderPasses() { return m_renderpasses; }
+    void removeRenderPass(RenderPass*&);
+    void clearAllRenderPasses();
 
 private:
 

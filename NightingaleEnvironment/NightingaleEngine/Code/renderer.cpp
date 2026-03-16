@@ -31,6 +31,12 @@ void Renderer::init()
 void Renderer::render()
 {
     
+    if (m_renderpasses.empty()) {
+        //fallback for a no render pass moment, just draw black screen
+        GL::setClearColor(Color(0.0f, 0.0f, 0.0f, 1.0f));
+        GL::clear();
+    }
+
     for (RenderPass* pRenderPass : m_renderpasses) {
         if (!pRenderPass->isEnabled()) {
             continue;
@@ -71,4 +77,20 @@ void Renderer::registerRenderable(RenderNode* pRenderNode)
     for (auto it{ m_renderpasses.begin() }; it != m_renderpasses.end(); ++it) {
         (*it)->registerRenderable(pRenderNode);
     }
+}
+
+void Renderer::removeRenderPass(RenderPass*& pRenderPass)
+{
+    m_renderpasses.erase(std::remove(m_renderpasses.begin(), m_renderpasses.end(), pRenderPass), m_renderpasses.end());
+    delete pRenderPass;
+
+    pRenderPass = nullptr;
+}
+
+void Renderer::clearAllRenderPasses()
+{
+    for (RenderPass* pRenderPass : m_renderpasses) {
+        delete pRenderPass;
+    }
+    m_renderpasses.clear();
 }

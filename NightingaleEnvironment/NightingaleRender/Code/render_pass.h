@@ -8,12 +8,16 @@ class RenderPass {
 
 public:
 
+	RenderPass(std::string infoName) : m_infoName(infoName) {}
+
 	virtual void executeRenderPass(GraphicsContext& context) = 0;
 
 	//by default each render pass is interested in all the nodes
 	virtual void registerRenderable(RenderNode* renderable);
 
 	bool isEnabled() { return m_enabled; };
+
+	std::string const& getInfoName() { return m_infoName; }
 
 	virtual void debugUIFunction() = 0;
 protected:
@@ -23,7 +27,9 @@ protected:
 
 
 	//render nodes of interest for this specific pass
-	vector<RenderNode*> m_renderables;
+	vector<RenderNode*> m_renderables{};
+
+	std::string m_infoName;
 
 	
 

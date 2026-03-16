@@ -40,6 +40,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<EngineMenuBar>("engine_menu"));
     m_settings.console_commands.push_back(new PanelCommand<RenderDebugPanel>("render_panel"));
     m_settings.console_commands.push_back(new PanelCommand<ShaderResourceBrowser>("shader_browser"));
+    m_settings.console_commands.push_back(new PanelCommand<MeshBrowser>("mesh_browser"));
     m_settings.console_commands.push_back(new PanelCommand<PhysicsControlPanel>("physics_control"));
     m_settings.console_commands.push_back(new PanelCommand<LagSimulatorPanel>("lag_simulator"));
     m_settings.console_commands.push_back(new PanelCommand<Console>("console"));

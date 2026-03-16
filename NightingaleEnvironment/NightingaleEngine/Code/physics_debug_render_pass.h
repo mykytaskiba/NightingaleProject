@@ -7,7 +7,7 @@ class PhysicsDebugRenderPass : public RenderPass {
 
 public:
 
-	PhysicsDebugRenderPass(Physics& physics) : m_physics(physics) {}
+	PhysicsDebugRenderPass(Physics& physics) : RenderPass("Physics Debug Pass"), m_physics(physics) {}
 
 	Physics& m_physics;
 

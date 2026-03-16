@@ -1,7 +1,7 @@
 #pragma once
 #include "debug_panel.h"
 
-class SceneBrowser : public DebugPanel {
+class SceneHierarchy : public DebugPanel {
 public:
 	void activate() override {};
 	void deactivate() override {};

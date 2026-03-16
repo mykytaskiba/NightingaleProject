@@ -149,11 +149,6 @@ void Engine::CS550TempTestFuncInit()
         }
     }
 
-    //TO DO: This definitely creates a memory leak
-    PhysicsDebugRenderPass* pPhysicsPass = new PhysicsDebugRenderPass(m_physics);
-    m_renderer.registerRenderPass(pPhysicsPass);
-
-
     PhysicsBody* pFloor = new PhysicsBody();
     pFloor->localBox = AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f });
     pFloor->position = Vector3(0, -10.0f, 0);

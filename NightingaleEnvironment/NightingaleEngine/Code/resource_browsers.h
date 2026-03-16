@@ -7,3 +7,10 @@ public:
 	void deactivate() override {};
 	void render_update() override;
 };
+
+class MeshBrowser : public DebugPanel {
+public:
+	void activate() override {};
+	void deactivate() override {};
+	void render_update() override;
+};
