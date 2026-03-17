@@ -9,6 +9,7 @@ class CallbackHandler;
 class Renderer;
 class Physics;
 class HotkeyManager;
+class Scene;
 
 class EngineFunctions {
     friend struct SceneChangePackage;
@@ -50,6 +51,8 @@ public:
 
     static Renderer& Renderer();
     static Physics& physics();
+    static Scene& scene();
+
     static HotkeyManager& hotkeyManager();
 
     static void close_app();

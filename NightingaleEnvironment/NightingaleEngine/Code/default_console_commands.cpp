@@ -8,6 +8,7 @@
 #include "physics_control_panel.h"
 #include "physics_commands.h"
 #include "lag_simulator.h"
+#include "scene_browser.h"
 
 
 void Engine::defaultSettings_CoreCommands() {
@@ -44,6 +45,8 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<PhysicsControlPanel>("physics_control"));
     m_settings.console_commands.push_back(new PanelCommand<LagSimulatorPanel>("lag_simulator"));
     m_settings.console_commands.push_back(new PanelCommand<Console>("console"));
+    m_settings.console_commands.push_back(new PanelCommand<SceneHierarchy>("scene_hierarchy"));
+    m_settings.console_commands.push_back(new PanelCommand<ImGUIDemoPanel>("imgui_demo"));
 
     //physics commands
     m_settings.console_commands.push_back(new PhysicsActiveCommand());

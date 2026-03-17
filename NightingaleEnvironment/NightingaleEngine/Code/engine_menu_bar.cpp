@@ -17,6 +17,9 @@ void EngineMenuBar::render_update()
     if (ImGui::Button("Physics Control")) {
         EngineFunctions::ExecuteCommand("physics_control");
     }
+    if (ImGui::Button("Scene Hierarchy")) {
+        EngineFunctions::ExecuteCommand("scene_hierarchy");
+    }
     
 
     if (ImGui::BeginMenu("Browsers")) {
@@ -36,10 +39,13 @@ void EngineMenuBar::render_update()
             EngineFunctions::ExecuteCommand("lag_simulator");
         }
 
+        if (ImGui::Button("ImGUI Demo Window")) {
+            EngineFunctions::ExecuteCommand("imgui_demo");
+        }
+
         if (ImGui::Button("Close App")) {
             EngineFunctions::ExecuteCommand("quit");
         }
-
 
         ImGui::EndMenu();
     }
@@ -50,4 +56,9 @@ void EngineMenuBar::render_update()
     }
 
     ImGui::EndMainMenuBar();
+}
+
+void ImGUIDemoPanel::render_update()
+{
+    ImGui::ShowDemoWindow();
 }

@@ -25,6 +25,8 @@ void Scene::init()
         gameObject.sync_to_physics();
     };
 
+    m_root.setAlias("scene_root");
+
 
 }
 void Scene::tick()
@@ -41,6 +43,11 @@ void Scene::tick()
 void Scene::render()
 {
     m_root.execute_on_hierarchy(m_renderFunc);
+}
+
+void Scene::execute_on_root(TGameObjectFunc func)
+{
+    m_root.execute_on_hierarchy(func);
 }
 
 void SceneChangePackage::processPackage()

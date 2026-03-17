@@ -36,6 +36,7 @@ void RenderDebugPanel::render_update()
 
     vector<RenderPass*>& vActiveRenderPasses = EngineFunctions::Renderer().getActiveRenderPasses();
 
+    bool bNextMoveUp{ false };
     uint passCount{ 0u };
     for (RenderPass* pRenderPass : vActiveRenderPasses) {
         if (pRenderPass == nullptr) {
@@ -49,7 +50,7 @@ void RenderDebugPanel::render_update()
 
         bool bShowingPass = ImGui::CollapsingHeader(pRenderPass->getInfoName().c_str(), ImGuiTreeNodeFlags_AllowOverlap);
         ImGui::SameLine(0.0f, 30.0f);
-        if (ImGui::Button("Move Up")) {
+        if (ImGui::Button("Move Up") || bNextMoveUp) {
             if (*vActiveRenderPasses.begin() != pRenderPass) {
                 auto it_found = std::find(vActiveRenderPasses.begin(), vActiveRenderPasses.end(), pRenderPass);
                 auto it_prev = it_found - 1;
@@ -61,7 +62,7 @@ void RenderDebugPanel::render_update()
         }
         ImGui::SameLine();
         if (ImGui::Button("Move Down")) {
-
+            bNextMoveUp = true;
         }
         ImGui::SameLine();
         if (ImGui::Button("X")) {

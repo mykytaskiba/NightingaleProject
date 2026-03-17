@@ -21,6 +21,8 @@ public:
     void init();
     void tick();
     void render();
+    
+    void execute_on_root(TGameObjectFunc func);
 
 };
 

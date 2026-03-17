@@ -113,6 +113,7 @@ void Engine::CS550TempTestFuncInit()
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
     */
+    /*
     int ySize = 2;
     int xSize = 2;
     int zSize = 2;
@@ -154,7 +155,7 @@ void Engine::CS550TempTestFuncInit()
     pFloor->position = Vector3(0, -10.0f, 0);
     pFloor->update(0.0f);
     m_physics.addBody(pFloor);
-
+    */
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);
 }

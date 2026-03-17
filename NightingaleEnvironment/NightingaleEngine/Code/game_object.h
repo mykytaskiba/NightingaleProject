@@ -20,6 +20,8 @@ class GameObject {
 protected:
 
     GameObject() {};
+
+    std::string m_alias{ "gameobject" };
      
     vector<Component*> m_components{};
     vector<GameObject*> m_children{};
@@ -41,6 +43,9 @@ public:
     Transform& getTransform() {
         return m_transform;
     }
+
+    std::string const& getAlias() const { return m_alias; }
+    void setAlias(std::string const& alias) { m_alias = alias; }
 
     void sync_to_physics();
 

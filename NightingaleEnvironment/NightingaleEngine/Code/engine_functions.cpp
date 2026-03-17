@@ -112,6 +112,11 @@ Physics& EngineFunctions::physics()
     return EngineInternals::pEngine->m_physics;
 }
 
+Scene& EngineFunctions::scene()
+{
+    return EngineInternals::pEngine->m_scene;
+}
+
 HotkeyManager& EngineFunctions::hotkeyManager()
 {
     return EngineInternals::pEngine->m_hotkeyManager;
