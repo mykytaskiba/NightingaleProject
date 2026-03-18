@@ -156,6 +156,14 @@ void Engine::CS550TempTestFuncInit()
     pFloor->update(0.0f);
     m_physics.addBody(pFloor);
     */
+
+
+    GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+    RenderMeshNode* pRenderNode = new RenderMeshNode();
+    pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+    EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);
 }

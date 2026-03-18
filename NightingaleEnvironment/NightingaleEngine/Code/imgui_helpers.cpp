@@ -22,3 +22,8 @@ bool ImGuiHelpers::ColorPicker4(const char* label, Color& color, ImGuiColorEditF
     color.a = colorArr[3];
     return bChanged;
 }
+
+bool ImGuiHelpers::Vector3Input(const char* label, Vector3& vector, float vSpeed, float vMin, float vMax, const char* format, ImGuiSliderFlags flags)
+{
+    return ImGui::DragFloat3(label, &vector[0], vSpeed, vMin, vMax, format, flags);
+}

@@ -80,18 +80,14 @@ void Inspector::render_update()
 
     GUID selectedGUID = EngineFunctions::execution_state().getSelectedGUID();
 
-    string selectedGUIDSTR = "Selected GUID: " + selectedGUID.string();
-    ImGui::Text(selectedGUIDSTR.c_str());
-
     GameObject* pGameObject = EngineFunctions::scene().find_object(selectedGUID);
     if (pGameObject == nullptr) {
         ImGui::Text("Object not found");
     }
     else {
-
-        string aliasStr = "Alias: " + pGameObject->getAlias();
-        ImGui::Text(aliasStr.c_str());
+        pGameObject->render_update_debugMenu();
     }
+
 
     ImGui::Separator();
 

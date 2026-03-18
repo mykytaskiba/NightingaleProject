@@ -60,4 +60,5 @@ public:
     vector<GameObject*> const& get_children() const { return m_children; }
     vector<GameObject*>& get_children() { return m_children; }
 
+    virtual void render_update_debugMenu();
 };

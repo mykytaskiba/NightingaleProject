@@ -74,9 +74,6 @@
     <Filter Include="Header Files\PhysicsVisualizer">
       <UniqueIdentifier>{f205ae2b-723e-4217-83f2-b3276d67da74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\DebugPanels">
-      <UniqueIdentifier>{ec442aa7-3603-40e1-b3e4-f293ce5f985a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Core\Callbacks">
       <UniqueIdentifier>{1a42e5c1-403e-4651-b3af-3715339a233a}</UniqueIdentifier>
     </Filter>
@@ -85,6 +82,12 @@
     </Filter>
     <Filter Include="Header Files\Rendering\RenderPasses">
       <UniqueIdentifier>{e7987b2a-7f48-4cb7-8a00-1e47e5761df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus">
+      <UniqueIdentifier>{c63b3b72-8c23-49d1-87bb-192f2778de1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Menus\DebugPanels">
+      <UniqueIdentifier>{ec442aa7-3603-40e1-b3e4-f293ce5f985a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +295,9 @@
     <ClCompile Include="Code\execution_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\transform_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -472,10 +478,10 @@
       <Filter>Header Files\PhysicsVisualizer</Filter>
     </ClInclude>
     <ClInclude Include="Code\debug_panel.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_debug_panel.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\debug_panel_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
@@ -493,31 +499,34 @@
       <Filter>Header Files\IMGUI</Filter>
     </ClInclude>
     <ClInclude Include="Code\engine_menu_bar.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\scene_browser.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\resource_browsers.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics_control_panel.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
     </ClInclude>
     <ClInclude Include="Code\lag_simulator.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\hotkey_processing.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="Code\console.h">
-      <Filter>Header Files\DebugPanels</Filter>
+      <Filter>Header Files\Menus\DebugPanels</Filter>
     </ClInclude>
     <ClInclude Include="Code\guid.h">
       <Filter>Header Files\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\transform_menu.h">
+      <Filter>Header Files\Menus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
