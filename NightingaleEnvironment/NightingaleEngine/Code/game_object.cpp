@@ -6,8 +6,13 @@ void GameObject::execute_on_hierarchy(TGameObjectFunc functor)
 {
     (*functor)(*this);
 
+    execute_on_children(functor);
+}
+
+void GameObject::execute_on_children(TGameObjectFunc functor)
+{
     for (auto it = m_children.begin(); it != m_children.end(); ++it) {
-        (*it)->execute_on_hierarchy(functor);
+        (*functor)(**it);
     }
 }
 

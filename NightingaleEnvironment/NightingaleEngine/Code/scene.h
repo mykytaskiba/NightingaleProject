@@ -7,7 +7,13 @@ struct SceneChangePackage;
 class Scene {
     friend class EngineFunctions;
 private:
-    GameObject m_root;
+
+    class SceneRootObject : public GameObject {
+    public:
+        SceneRootObject() : GameObject("scene_root") {}
+    };
+
+    SceneRootObject m_root;
 
     vector<SceneChangePackage> m_packages;
     void addPackage(SceneChangePackage package);
@@ -15,16 +21,19 @@ private:
 public:
 
     TGameObjectFunc m_tickFunc;
-    TGameObjectFunc m_renderFunc;
     TGameObjectFunc m_syncPhysicsFunc;
 
     void init();
     void tick();
-    void render();
     
     void execute_on_root(TGameObjectFunc func);
 
+    GameObject* get_root() {
+        return &m_root;
+    }
+
 };
+
 
 //when a something in the scene changes, this is packages the change
 struct SceneChangePackage {

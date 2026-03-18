@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "lag_simulator.h"
+#include <thread>
 
 void LagSimulatorPanel::render_update()
 {

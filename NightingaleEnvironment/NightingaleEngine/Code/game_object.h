@@ -16,10 +16,10 @@ typedef void (*TComponentFunc)(Component&);
 class GameObject {
 
     friend class EngineFunctions;
-    friend class Scene;
 protected:
 
     GameObject() {};
+    GameObject(std::string const& alias) : m_alias(alias) {};
 
     std::string m_alias{ "gameobject" };
      
@@ -30,13 +30,9 @@ protected:
 
     Transform m_transform{};
 
-    virtual void init() {}
-    virtual void tick() {}
-    virtual void render() {}
     virtual void shutdown() {}
 
 
-    void execute_on_hierarchy(TGameObjectFunc functor);
     
 
 public:
@@ -48,7 +44,15 @@ public:
     void setAlias(std::string const& alias) { m_alias = alias; }
 
     void sync_to_physics();
+    virtual void init() {}
+    virtual void tick() {}
 
     PhysicsBody* m_pPhysicsBody{ nullptr };
+
+    void execute_on_hierarchy(TGameObjectFunc functor);
+    void execute_on_children(TGameObjectFunc functor);
+
+    vector<GameObject*> const& get_children() const { return m_children; }
+    vector<GameObject*>& get_children() { return m_children; }
 
 };

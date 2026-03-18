@@ -17,10 +17,6 @@ void Scene::init()
         gameObject.tick();
     };
 
-    m_renderFunc = [](GameObject& gameObject) {
-        gameObject.render();
-    };
-
     m_syncPhysicsFunc = [](GameObject& gameObject) {
         gameObject.sync_to_physics();
     };
@@ -40,10 +36,6 @@ void Scene::tick()
     m_packages.clear();
 }
 
-void Scene::render()
-{
-    m_root.execute_on_hierarchy(m_renderFunc);
-}
 
 void Scene::execute_on_root(TGameObjectFunc func)
 {
