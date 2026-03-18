@@ -25,4 +25,7 @@ protected:
 public:
     static CameraController* s_instance;
     void setPosition(Vector3);
+
+    CameraController() : GameObject("camera_controller") {}
+
 };

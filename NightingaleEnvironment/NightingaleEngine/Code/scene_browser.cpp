@@ -10,13 +10,12 @@ void SceneHierarchy::render_update()
 
     ImGui::Begin("Scene Hierarchy", &bRemainOpen);
 
+    ImGui::Checkbox("Show GUIDs", &m_bShowGUID);
 
     if (ImGui::BeginMenu("Create")) {
-        if (ImGui::Button("GameObject")) {
+        if (ImGui::Button("gameobject")) {
             EngineFunctions::ExecuteCommand("create_gameobject gameobject");
         }
-
-
         ImGui::EndMenu();
     }
 
@@ -37,11 +36,68 @@ void SceneHierarchy::drawSceneTree(GameObject* pGameObject)
         assert(false);
         return;
     }
-    if (ImGui::TreeNode(pGameObject->getAlias().c_str())) {
+
+    std::string gameObjectAliasString = pGameObject->getAlias();
+    if (m_bShowGUID) {
+        gameObjectAliasString += ":";
+    }
+    else {
+        gameObjectAliasString += "##";
+    }
+    gameObjectAliasString += pGameObject->getGUID().string();
+
+    ImGuiTreeNodeFlags nodeFlags = ImGuiTreeNodeFlags_OpenOnArrow  | ImGuiTreeNodeFlags_OpenOnDoubleClick;
+
+    GUID selectedGUID = EngineFunctions::execution_state().getSelectedGUID();
+    if (pGameObject->getGUID() == selectedGUID) {
+        nodeFlags |= ImGuiTreeNodeFlags_Selected;
+    }
+
+    bool bNodeOpen = ImGui::TreeNodeEx(gameObjectAliasString.c_str(), nodeFlags);
+    bool bNodeClicked = ImGui::IsItemClicked(0);
+    bool bNodeRightClicked = ImGui::IsItemClicked(1);
+
+    if (bNodeOpen) {
         for (GameObject* pChild : pGameObject->get_children()) {
             drawSceneTree(pChild);
         }
         ImGui::TreePop();
     }
+    
+    if (bNodeClicked) {
+        EngineFunctions::execution_state().setSelectedGUID(pGameObject->getGUID());
+    }
+
+
+
 }
 
+void Inspector::render_update()
+{
+    bool bRemainOpen{ true };
+
+    ImGui::Begin("Inspector", &bRemainOpen);
+
+    GUID selectedGUID = EngineFunctions::execution_state().getSelectedGUID();
+
+    string selectedGUIDSTR = "Selected GUID: " + selectedGUID.string();
+    ImGui::Text(selectedGUIDSTR.c_str());
+
+    GameObject* pGameObject = EngineFunctions::scene().find_object(selectedGUID);
+    if (pGameObject == nullptr) {
+        ImGui::Text("Object not found");
+    }
+    else {
+
+        string aliasStr = "Alias: " + pGameObject->getAlias();
+        ImGui::Text(aliasStr.c_str());
+    }
+
+    ImGui::Separator();
+
+    ImGui::End();
+
+    if (!bRemainOpen && m_bActive) {
+        toggle();
+    }
+}

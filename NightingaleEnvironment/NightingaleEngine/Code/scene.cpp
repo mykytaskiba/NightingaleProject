@@ -42,6 +42,21 @@ void Scene::execute_on_root(TGameObjectFunc func)
     m_root.execute_on_hierarchy(func);
 }
 
+GameObject* Scene::find_object(GUID const& guid)
+{
+    GameObject* pResult = nullptr;
+
+    execute_on_root(
+        [this, &guid, &pResult](GameObject& gameObject) {
+            if (gameObject.getGUID() == guid) {
+                pResult = &gameObject;
+            }
+        }
+    );
+
+    return pResult;
+}
+
 void SceneChangePackage::processPackage()
 {
     EngineFunctions::Setup(pGameObject);

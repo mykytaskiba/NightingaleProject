@@ -3,13 +3,15 @@
 #include "defines.h"
 #include "ngmath.h"
 #include "ngphys.h"
+#include "guid.h"
 
 class Component;
 class GameObject;
 class RenderNode;
 
 //typedef for different function types
-typedef void (*TGameObjectFunc)(GameObject&);
+//typedef void (*TGameObjectFunc)(GameObject&);
+using TGameObjectFunc = std::function<void(GameObject&)>;
 typedef void (*TComponentFunc)(Component&);
 
 //Core gameobject class that keeps track of a parent-children hierarchy 
@@ -18,10 +20,11 @@ class GameObject {
     friend class EngineFunctions;
 protected:
 
-    GameObject() {};
-    GameObject(std::string const& alias) : m_alias(alias) {};
+    GameObject();
+    GameObject(std::string const& alias);
 
     std::string m_alias{ "gameobject" };
+    GUID m_guid{};
      
     vector<Component*> m_components{};
     vector<GameObject*> m_children{};
@@ -41,6 +44,8 @@ public:
     }
 
     std::string const& getAlias() const { return m_alias; }
+    GUID const& getGUID() const { return m_guid; }
+
     void setAlias(std::string const& alias) { m_alias = alias; }
 
     void sync_to_physics();

@@ -20,6 +20,9 @@ void EngineMenuBar::render_update()
     if (ImGui::Button("Scene Hierarchy")) {
         EngineFunctions::ExecuteCommand("scene_hierarchy");
     }
+    if (ImGui::Button("Inspector")) {
+        EngineFunctions::ExecuteCommand("inspector");
+    }
     
 
     if (ImGui::BeginMenu("Browsers")) {

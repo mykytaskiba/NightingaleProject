@@ -26,6 +26,9 @@
 
         void trimWhitespace(string&) const;
 
+        ExecutionState const& getExecutionState() const { return m_executionState; }
+        ExecutionState& getExecutionState() { return m_executionState; }
+
     private:
 
         static ScriptingEnvironment* m_pInstance;//singleton

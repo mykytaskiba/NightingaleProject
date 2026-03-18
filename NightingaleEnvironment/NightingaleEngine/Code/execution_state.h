@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
 #include  "argument_impl.h"
+#include "guid.h"
 
 class GameObject;
 class RenderNode;
@@ -26,6 +27,9 @@ struct ExecutionState {
         }
         return default_val;
     }
+
+    GUID getSelectedGUID() const;
+    void setSelectedGUID(GUID const&);
 
     //log
     bool bCreateLog{ false };

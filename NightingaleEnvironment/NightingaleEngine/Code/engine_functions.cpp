@@ -117,6 +117,11 @@ Scene& EngineFunctions::scene()
     return EngineInternals::pEngine->m_scene;
 }
 
+ExecutionState& EngineFunctions::execution_state()
+{
+    return EngineInternals::pEngine->m_scriptEnvironment.getExecutionState();
+}
+
 HotkeyManager& EngineFunctions::hotkeyManager()
 {
     return EngineInternals::pEngine->m_hotkeyManager;

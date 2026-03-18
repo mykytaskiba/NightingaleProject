@@ -53,6 +53,8 @@ public:
     static Physics& physics();
     static Scene& scene();
 
+    static ExecutionState& execution_state();
+
     static HotkeyManager& hotkeyManager();
 
     static void close_app();

@@ -28,6 +28,8 @@ public:
     
     void execute_on_root(TGameObjectFunc func);
 
+    GameObject* find_object(GUID const& guid);
+
     GameObject* get_root() {
         return &m_root;
     }

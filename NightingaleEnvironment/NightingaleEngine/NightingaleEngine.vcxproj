@@ -151,6 +151,7 @@
     <ClInclude Include="Code\callback_handler.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
+    <ClInclude Include="Code\guid.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
     <ClInclude Include="Code\physics_debug.h" />
@@ -236,6 +237,7 @@
     <ClCompile Include="Code\engine_functions.cpp" />
     <ClCompile Include="Code\engine_internals.cpp" />
     <ClCompile Include="Code\environment.cpp" />
+    <ClCompile Include="Code\execution_state.cpp" />
     <ClCompile Include="Code\forward_render_pass.cpp" />
     <ClCompile Include="Code\frame_controller.cpp" />
     <ClCompile Include="Code\gameobject_commands.cpp" />
@@ -245,6 +247,7 @@
     <ClCompile Include="Code\gl_shader_uniform.cpp" />
     <ClCompile Include="Code\graphics_context.cpp" />
     <ClCompile Include="Code\graphics_library.cpp" />
+    <ClCompile Include="Code\guid.cpp" />
     <ClCompile Include="Code\hotkey_processing.cpp" />
     <ClCompile Include="Code\input.cpp" />
     <ClCompile Include="Code\inverse_kinematics_evaluator.cpp" />

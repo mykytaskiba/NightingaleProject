@@ -47,6 +47,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<Console>("console"));
     m_settings.console_commands.push_back(new PanelCommand<SceneHierarchy>("scene_hierarchy"));
     m_settings.console_commands.push_back(new PanelCommand<ImGUIDemoPanel>("imgui_demo"));
+    m_settings.console_commands.push_back(new PanelCommand<Inspector>("inspector"));
 
     //physics commands
     m_settings.console_commands.push_back(new PhysicsActiveCommand());

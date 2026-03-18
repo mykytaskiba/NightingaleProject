@@ -286,6 +286,12 @@
     <ClCompile Include="Code\hotkey_processing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\guid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\execution_state.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -509,6 +515,9 @@
     </ClInclude>
     <ClInclude Include="Code\console.h">
       <Filter>Header Files\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\guid.h">
+      <Filter>Header Files\Logic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
