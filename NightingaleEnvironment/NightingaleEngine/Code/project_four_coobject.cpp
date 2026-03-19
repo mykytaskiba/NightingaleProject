@@ -222,7 +222,9 @@ void ProjectFour::resetObject()
     m_massSum = 0.0f;
 
     m_objectTransform.position = m_startPosition;
-    m_objectTransform.scale = m_startScale;
+
+    assert(false);
+    //-->m_objectTransform.scale = m_startScale;
     m_objectTransform.rotation = Quaternion(Vector3(1.0f, 1.0f, 1.0f).normalized(), m_startAngle / 360.0f * 2.0f * pi);
 
 
@@ -255,7 +257,9 @@ void ProjectFour::resetObject()
 void ProjectFour::addCube(float size, Vector3 offset)
 {
     Transform cubeSpace;
-    cubeSpace.scale = size;
+    
+    assert(false);
+    //-->cubeSpace.scale = size;
     cubeSpace.position = offset;
 
     uint i0 = addMassPoint(cubeSpace.transform(Vector3(-1.0f, -1.0f, -1.0f))); //0 shared with 2 lower

@@ -15,7 +15,9 @@ void ProjectThreeRenderHook::render(GraphicsContext& context)
     if (m_projectThree.m_bSmoothMoveTarget && m_projectThree.m_IKevaluator.m_bDrawEndEffector) {
         Transform transform;
         transform.position = m_projectThree.m_realTarget;
-        transform.scale = 0.09f;
+
+        assert(false);
+        //-->transform.scale = 0.09f;
 
         context.setCurrentShader(m_pUnlitShader);
         m_pUnlitShader->transferByName("uColor", Color(0.1f, 0.1f, 0.9f, 1.0f));

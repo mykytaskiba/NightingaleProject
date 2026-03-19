@@ -6,7 +6,7 @@
 //a transform class represents a position, scale and a rotation in the world
 class Transform {
 public:
-    float scale{ 1.0f };
+    Vector3 scale{ 1.0f, 1.0f, 1.0f };
     Vector3 position{ 0.0f,0.0f,0.0f };
     Quaternion rotation{ 0.0f,0.0f,0.0f,1.0f };
 

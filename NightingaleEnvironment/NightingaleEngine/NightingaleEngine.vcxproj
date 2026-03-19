@@ -221,6 +221,7 @@
     <ClInclude Include="Code\resource_browsers.h" />
     <ClInclude Include="Code\lag_simulator.h" />
     <ClInclude Include="Code\hotkey_processing.h" />
+    <ClInclude Include="Code\render_node_menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -312,6 +313,7 @@
     <ClCompile Include="Lib\imgui-master\misc\cpp\imgui_stdlib.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Code\render_node_menu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleMath\NightingaleMath.vcxproj">

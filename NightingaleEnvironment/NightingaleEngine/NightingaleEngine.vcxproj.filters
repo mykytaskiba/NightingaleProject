@@ -298,6 +298,9 @@
     <ClCompile Include="Code\transform_menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\render_node_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -526,6 +529,9 @@
       <Filter>Header Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Code\transform_menu.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\render_node_menu.h">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
   </ItemGroup>

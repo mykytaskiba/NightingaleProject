@@ -99,7 +99,7 @@ void GraphicsContext::drawSphere(Vector3 const& at, float scale, Color const& co
     setCurrentShader(m_pUnlitShader);
 
     Transform transform;
-    transform.scale = scale;
+    transform.scale = Vector3(scale, scale, scale);
     transform.position = at;
 
     m_pUnlitShader->transferByName("uModelMatrix", transform.getMatrix());
@@ -113,7 +113,6 @@ void GraphicsContext::drawCube(Vector3 const& center, Vector3 const& scale, Colo
     setCurrentShader(m_pUnlitShader);
 
     Transform transform;
-    transform.scale = 1.0f;
     transform.position = center;
 
     Matrix4x4 scaleMatrix;

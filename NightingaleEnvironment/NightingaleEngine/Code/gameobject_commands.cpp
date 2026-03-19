@@ -115,8 +115,8 @@ void SetScaleCommand::execute_command(ArgumentList<float>& args, ExecutionState&
         return;
     }
 
-    float scale = args.get<0>();
-    state.pGameObject->getTransform().scale = scale;
+    //float scale = args.get<0>();
+    //state.pGameObject->getTransform().scale = scale;
 
     result.bSuccess = true;
     result.message = "scale has been set";

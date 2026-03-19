@@ -61,4 +61,7 @@ public:
     vector<GameObject*>& get_children() { return m_children; }
 
     virtual void render_update_debugMenu();
+    
+    bool hasRenderNode() { return m_pRenderNode != nullptr; }
+    RenderNode* getRenderNode() { return m_pRenderNode; }
 };

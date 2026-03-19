@@ -32,11 +32,16 @@ void MeshBrowser::render_update()
 
     AssetManager<Mesh>::execute_key(
         [this](std::string const& key, Mesh* pMesh) {
-            if (!ImGui::CollapsingHeader(key.c_str())) return;
 
-            ImGui::Text("MESH");
-            ImGui::Text("MESH");
-            ImGui::Text("MESH");
+
+            //if (!ImGui::CollapsingHeader(key.c_str())) return;
+
+            if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_OpenOnArrow)) {
+
+                ImGui::TreePop();
+            }
+
+
         }
     );
 

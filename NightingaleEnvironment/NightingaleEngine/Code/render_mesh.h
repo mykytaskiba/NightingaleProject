@@ -13,10 +13,13 @@ public:
     void render(GraphicsContext& context) override;
 
     void setMesh(Mesh* pMesh);
-    void setColor(Color const& color);
+
+    Color const& getColor() const { return m_color; }
+    void setColor(Color const& color) { m_color = color; }
+
 private:
-    Mesh* m_pMesh;
-    RenderShader* m_pShader;
-    GameObject* m_pGameObject;
+    Mesh* m_pMesh{ nullptr };
+    RenderShader* m_pShader{ nullptr };
+    GameObject* m_pGameObject{ nullptr };
     Color m_color{ 1.0f,1.0f,1.0f,1.0f}; //White by default
 };

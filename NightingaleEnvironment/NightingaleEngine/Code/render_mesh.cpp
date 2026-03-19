@@ -31,7 +31,3 @@ void RenderMeshNode::setMesh(Mesh* pMesh)
     m_pMesh = pMesh;
 }
 
-void RenderMeshNode::setColor(Color const& color)
-{
-    m_color = color;
-}

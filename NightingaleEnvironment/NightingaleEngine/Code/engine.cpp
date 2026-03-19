@@ -113,6 +113,7 @@ void Engine::CS550TempTestFuncInit()
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
     */
+    
     /*
     int ySize = 2;
     int xSize = 2;
@@ -150,6 +151,7 @@ void Engine::CS550TempTestFuncInit()
         }
     }
 
+    /*
     PhysicsBody* pFloor = new PhysicsBody();
     pFloor->localBox = AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f });
     pFloor->position = Vector3(0, -10.0f, 0);

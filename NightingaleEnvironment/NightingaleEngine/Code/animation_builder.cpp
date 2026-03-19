@@ -96,7 +96,9 @@ void AnimationBuilder::loadChannel(aiNodeAnim const* animChannel, uint channelId
         
         superTransform.position = Loader::fromAIVector3(posKey.mValue);
         superTransform.rotation = Loader::fromAIQuat(rotKey.mValue);
-        superTransform.scale = sclKey.mValue.x;
+        
+        assert(false);
+        //-->superTransform.scale = sclKey.mValue.x;
     }
 
     channel.values.resize(m_numKeys, superTransform);
@@ -112,7 +114,8 @@ void AnimationBuilder::loadChannel(aiNodeAnim const* animChannel, uint channelId
 
         if (animChannel->mNumScalingKeys == m_numKeys) {
             aiVectorKey const& key = animChannel->mScalingKeys[i];
-            keyTransform.scale = key.mValue.x;
+            assert(false);
+            //-->keyTransform.scale = key.mValue.x;
         }
 
         if (animChannel->mNumRotationKeys == m_numKeys) {

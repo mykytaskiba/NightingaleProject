@@ -2,6 +2,7 @@
 #include "game_object.h"
 #include "engine_functions.h"
 #include "transform_menu.h"
+#include "render_node_menu.h"
 
 
 void GameObject::execute_on_hierarchy(TGameObjectFunc functor)
@@ -34,14 +35,7 @@ void GameObject::render_update_debugMenu()
 
     ImGui::Separator();
 
-    if (m_pRenderNode == nullptr) {
-        ImGui::Text("No Render Node");
-
-        if (ImGui::Button("Attach RenderMesh Node")) {
-            EngineFunctions::execution_state().pGameObject = this;
-            EngineFunctions::ExecuteCommand("attach_rendermesh cube_mesh");
-        }
-    }
+    RenderNodeMenu::render_update(*this);
 
 
 }

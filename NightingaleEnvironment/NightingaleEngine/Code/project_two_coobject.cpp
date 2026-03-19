@@ -219,7 +219,9 @@ void ProjectTwoRenderHook::render(GraphicsContext& context)
 {
     if (!m_projectTwo.m_drawCurve) return;
     Transform t;
-    t.scale = 0.5f;
+    
+    assert(false);
+    //-->t.scale = 0.5f;
     t.position = Vector3(5.0f, -12.0f, 0.0f);
     //t.scale = 0.05f;
     
