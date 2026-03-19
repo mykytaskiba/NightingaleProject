@@ -24,6 +24,8 @@ public:
 
     void init();
     void tick();
+    void sync_gameobjects_to_physics();
+    void sync_physics_to_gameobjects();
     
     void execute_on_root(TGameObjectFunc func);
 

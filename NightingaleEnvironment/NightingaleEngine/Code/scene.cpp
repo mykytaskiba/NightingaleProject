@@ -24,18 +24,30 @@ void Scene::init()
 }
 void Scene::tick()
 {
-    m_root.execute_on_hierarchy(
-        [](GameObject& gameObject) {
-            gameObject.sync_gameobject_to_physics();
-        }
-    );
-
     m_root.execute_on_hierarchy(m_tickFunc);
 
     for (auto it = m_packages.begin(); it != m_packages.end(); ++it) {
         (*it).processPackage();
     }
     m_packages.clear();
+}
+
+void Scene::sync_gameobjects_to_physics()
+{
+    m_root.execute_on_hierarchy(
+        [](GameObject& gameObject) {
+            gameObject.sync_gameobject_to_physics();
+        }
+    );
+}
+
+void Scene::sync_physics_to_gameobjects()
+{
+    m_root.execute_on_hierarchy(
+        [](GameObject& gameObject) {
+            gameObject.sync_physics_to_gameobject();
+        }
+    );
 }
 
 

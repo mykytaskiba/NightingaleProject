@@ -43,7 +43,9 @@ void Engine::register_systems()
     m_updateCallback.addCallback({ 70, [this] {m_debugUI.newFrame(); } });
     m_updateCallback.addCallback({ 80, [this] {m_input.captureInputState(); } });
     m_updateCallback.addCallback({ 81, [this] {m_hotkeyManager.processHotkeys(); } });
+    m_updateCallback.addCallback({ 85, [this] {m_scene.sync_gameobjects_to_physics(); } });
     m_updateCallback.addCallback({ 90, [this] {m_scene.tick(); } });
+    m_updateCallback.addCallback({ 185, [this] {m_scene.sync_physics_to_gameobjects(); } });
     m_updateCallback.addCallback({ 190, [this] {m_physics.update(m_frameController.getDeltaTime()); } });
     m_updateCallback.addCallback({ 200, [this] {m_renderer.render(); } });
     m_updateCallback.addCallback({ 230, [this] {m_debugUI.endFrame(); } });
