@@ -21,7 +21,6 @@ private:
 public:
 
     TGameObjectFunc m_tickFunc;
-    TGameObjectFunc m_syncPhysicsFunc;
 
     void init();
     void tick();

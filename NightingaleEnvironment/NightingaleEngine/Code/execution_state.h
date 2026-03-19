@@ -5,6 +5,7 @@
 
 class GameObject;
 class RenderNode;
+class ExecutionResult;
 
 struct ExecutionState {
 
@@ -30,6 +31,8 @@ struct ExecutionState {
 
     GUID getSelectedGUID() const;
     void setSelectedGUID(GUID const&);
+
+    bool getSelectedObject(GameObject*&, ExecutionResult&) const;
 
     //log
     bool bCreateLog{ false };

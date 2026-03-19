@@ -1,9 +1,23 @@
 #include "pch.h"
 #include "game_object.h"
 #include "engine_functions.h"
-#include "transform_menu.h"
-#include "render_node_menu.h"
 
+
+void GameObject::sync_physics_to_gameobject()
+{
+    if (m_pPhysicsBody == nullptr) {
+        return;
+    }
+    m_pPhysicsBody->setPosition(m_transform.position);
+}
+
+void GameObject::sync_gameobject_to_physics()
+{
+    if (m_pPhysicsBody == nullptr) {
+        return;
+    }
+    m_transform.position = m_pPhysicsBody->getPosition();
+}
 
 void GameObject::execute_on_hierarchy(TGameObjectFunc functor)
 {
@@ -19,27 +33,6 @@ void GameObject::execute_on_children(TGameObjectFunc functor)
     }
 }
 
-void GameObject::render_update_debugMenu()
-{
-    string selectedGUIDSTR = "GUID: " + m_guid.string();
-    ImGui::Text(selectedGUIDSTR.c_str());
-
-    string aliasStr{ m_alias };
-    ImGui::InputText("Alias", &aliasStr);
-    
-    setAlias(aliasStr);
-
-    ImGui::Separator();
-    
-    TransformMenu::render_update(m_transform);
-
-    ImGui::Separator();
-
-    RenderNodeMenu::render_update(*this);
-
-
-}
-
 GameObject::GameObject()
 {
     m_guid = GUID::Generate();
@@ -50,10 +43,3 @@ GameObject::GameObject(std::string const& alias) : m_alias(alias)
     m_guid = GUID::Generate();
 }
 
-void GameObject::sync_to_physics()
-{
-    if (m_pPhysicsBody == nullptr) {
-        return;
-    }
-    m_transform.position = m_pPhysicsBody->position;
-}

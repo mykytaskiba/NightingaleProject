@@ -2,8 +2,17 @@
 
 void PhysicsBody::update(TTimePhys deltaT)
 {
-	position += velocity * deltaT;
+	m_position += m_velocity * deltaT;
+	calculateGlobalBox();
+}
 
-	globalBox = localBox;
-	globalBox.translate(position);
+void PhysicsBody::calculateGlobalBox()
+{
+	m_globalBox = m_localBox;
+	m_globalBox.translate(m_position);
+}
+
+void PhysicsBody::setLocalBox(AxisAlignedBox const& localBox) {
+	m_localBox = localBox;
+	calculateGlobalBox();
 }

@@ -51,6 +51,8 @@ void Engine::defaultSettings_CoreCommands() {
 
     //physics commands
     m_settings.console_commands.push_back(new PhysicsActiveCommand());
+    m_settings.console_commands.push_back(new AttachPhysicsBodyCommand());
+
 }
 
 

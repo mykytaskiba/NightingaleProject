@@ -17,7 +17,7 @@ Vector3 AxisAlignedBox::center() const
 	return (m_max + m_min) / 2.0f;
 }
 
-Vector3 AxisAlignedBox::extends() const
+Vector3 AxisAlignedBox::extents() const
 {
 	return (m_max - m_min);
 }
@@ -31,7 +31,7 @@ AxisAlignedBox::AxisAlignedBox(Vector3 position, Vector3 extends)
 	m_min = position - extends * 0.5f;
 }
 
-void AxisAlignedBox::setPositionExtends(Vector3 const& position, Vector3 const& extends)
+void AxisAlignedBox::setPositionExtents(Vector3 const& position, Vector3 const& extends)
 {
 	Vector3 extendsCopy{ extends };
 	if (extendsCopy[0] < 0.0f) { extendsCopy[0] *= -1.0f; }

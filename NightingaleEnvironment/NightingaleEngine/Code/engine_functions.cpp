@@ -45,6 +45,17 @@ void EngineFunctions::AssignRenderNode(GameObject* pGameObject, RenderNode* pRen
     EngineInternals::Renderer().registerRenderable(pRenderNode);
 }
 
+void EngineFunctions::AttachPhysicsBody(GameObject* pGameObject)
+{
+    assert(pGameObject != nullptr);
+
+    PhysicsBody* pBody = new PhysicsBody();
+    physics().addBody(pBody);
+    pGameObject->m_pPhysicsBody = pBody;
+
+    pBody->update(0.0f);
+}
+
 Camera& EngineFunctions::Camera()
 {
     return EngineInternals::Camera();

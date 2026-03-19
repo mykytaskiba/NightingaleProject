@@ -30,6 +30,7 @@ protected:
     vector<GameObject*> m_children{};
     GameObject* m_pParent{ nullptr };
     RenderNode* m_pRenderNode{ nullptr };
+    PhysicsBody* m_pPhysicsBody{ nullptr };
 
     Transform m_transform{};
 
@@ -48,11 +49,13 @@ public:
 
     void setAlias(std::string const& alias) { m_alias = alias; }
 
-    void sync_to_physics();
+    void sync_physics_to_gameobject();
+    void sync_gameobject_to_physics();
+
+
     virtual void init() {}
     virtual void tick() {}
 
-    PhysicsBody* m_pPhysicsBody{ nullptr };
 
     void execute_on_hierarchy(TGameObjectFunc functor);
     void execute_on_children(TGameObjectFunc functor);
@@ -60,8 +63,13 @@ public:
     vector<GameObject*> const& get_children() const { return m_children; }
     vector<GameObject*>& get_children() { return m_children; }
 
-    virtual void render_update_debugMenu();
     
     bool hasRenderNode() { return m_pRenderNode != nullptr; }
+    RenderNode const* getRenderNode() const { return m_pRenderNode; }
     RenderNode* getRenderNode() { return m_pRenderNode; }
+
+    bool hasPhysicsBody() { return m_pPhysicsBody != nullptr; }
+    PhysicsBody const* getPhysicsBody() const { return m_pPhysicsBody; }
+    PhysicsBody* getPhysicsBody() { return m_pPhysicsBody; } 
+
 };

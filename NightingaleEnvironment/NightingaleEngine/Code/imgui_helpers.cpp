@@ -27,3 +27,20 @@ bool ImGuiHelpers::Vector3Input(const char* label, Vector3& vector, float vSpeed
 {
     return ImGui::DragFloat3(label, &vector[0], vSpeed, vMin, vMax, format, flags);
 }
+
+bool ImGuiHelpers::AxisAlignedBoxInput(const char* label, AxisAlignedBox& AxisAlignedBox, float vSpeed, float vMin, float vMax, const char* format, ImGuiSliderFlags flags)
+{
+    Vector3 offset = AxisAlignedBox.center();
+    std::string offsetLabel{ std::string{label} + " offset" };
+
+    Vector3 extents = AxisAlignedBox.extents();
+    std::string extendsLabel{ std::string{label} + " extents" };
+
+    bool bChanged{ false };
+    bChanged |= Vector3Input(offsetLabel.c_str(), offset, vSpeed, vMin, vMax, format, flags);
+    bChanged |= Vector3Input(extendsLabel.c_str(), extents, vSpeed, vMin, vMax, format, flags);
+
+    AxisAlignedBox.setPositionExtents(offset, extents);
+
+    return bChanged;
+}

@@ -32,6 +32,8 @@ public:
 
     static void AssignRenderNode(GameObject* pGameObject, RenderNode* pRenderNode);
 
+    static void AttachPhysicsBody(GameObject* pGameObject);
+
     static Camera& Camera();
 
     static int ScreenWidth();

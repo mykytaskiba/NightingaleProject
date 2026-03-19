@@ -151,6 +151,7 @@
     <ClInclude Include="Code\callback_handler.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
+    <ClInclude Include="Code\gameobject_menu.h" />
     <ClInclude Include="Code\guid.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
@@ -222,6 +223,7 @@
     <ClInclude Include="Code\lag_simulator.h" />
     <ClInclude Include="Code\hotkey_processing.h" />
     <ClInclude Include="Code\render_node_menu.h" />
+    <ClInclude Include="Code\physics_body_menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -244,6 +246,7 @@
     <ClCompile Include="Code\frame_controller.cpp" />
     <ClCompile Include="Code\gameobject_commands.cpp" />
     <ClCompile Include="Code\gameobject_factory.cpp" />
+    <ClCompile Include="Code\gameobject_menu.cpp" />
     <ClCompile Include="Code\game_object.cpp" />
     <ClCompile Include="Code\gl_shader.cpp" />
     <ClCompile Include="Code\gl_shader_uniform.cpp" />
@@ -262,6 +265,7 @@
     <ClCompile Include="Code\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Code\physics_body_menu.cpp" />
     <ClCompile Include="Code\physics_commands.cpp" />
     <ClCompile Include="Code\physics_control_panel.cpp" />
     <ClCompile Include="Code\physics_debug.cpp" />

@@ -301,6 +301,12 @@
     <ClCompile Include="Code\render_node_menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\physics_body_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\gameobject_menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -532,6 +538,12 @@
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_node_menu.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\physics_body_menu.h">
+      <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\gameobject_menu.h">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
   </ItemGroup>

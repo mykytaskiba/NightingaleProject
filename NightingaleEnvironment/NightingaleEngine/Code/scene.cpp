@@ -17,9 +17,6 @@ void Scene::init()
         gameObject.tick();
     };
 
-    m_syncPhysicsFunc = [](GameObject& gameObject) {
-        gameObject.sync_to_physics();
-    };
 
     m_root.setAlias("scene_root");
 
@@ -27,8 +24,13 @@ void Scene::init()
 }
 void Scene::tick()
 {
+    m_root.execute_on_hierarchy(
+        [](GameObject& gameObject) {
+            gameObject.sync_gameobject_to_physics();
+        }
+    );
+
     m_root.execute_on_hierarchy(m_tickFunc);
-    m_root.execute_on_hierarchy(m_syncPhysicsFunc);
 
     for (auto it = m_packages.begin(); it != m_packages.end(); ++it) {
         (*it).processPackage();

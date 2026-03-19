@@ -38,10 +38,10 @@ void Physics::subUpdate(TTimePhys deltaT)
 	//Gravity application step: TO DO: REFACTOR THIS!!!
 	Vector3 gravity{ 0.0f,-9.8f,0.0f };
 	for (PhysicsBody*& pBody : m_activeBodies) {
-		if (!pBody->bUseGravity) {
+		if (!pBody->useGravity()) {
 			continue;
 		}
-		pBody->velocity += gravity * deltaT;
+		pBody->setVelocity(gravity * deltaT + pBody->getVelocity());
 	}
 
 
@@ -50,8 +50,8 @@ void Physics::subUpdate(TTimePhys deltaT)
 		for (PhysicsBody* pOther : m_activeBodies) {
 			if (pBody == pOther) continue;
 
-			if (pBody->globalBox.isOverlap(pOther->globalBox)) {
-				pBody->velocity = Vector3(0, 0, 0);
+			if (pBody->getGlobalBox().isOverlap(pOther->getGlobalBox())) {
+				pBody->setVelocity(Vector3(0, 0, 0));
 			}
 
 		}

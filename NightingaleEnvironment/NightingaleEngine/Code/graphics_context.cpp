@@ -59,7 +59,7 @@ void GraphicsContext::drawAxisAlignedBox(AxisAlignedBox const& box, Color const&
 {
     Vector3 min = box.min();
     Vector3 max = box.max();
-    Vector3 extends = box.extends();
+    Vector3 extends = box.extents();
     Vector3 right = { extends[0],0,0 };
     Vector3 up = { 0,extends[1],0 };
     Vector3 forward = { 0,0,extends[2] };

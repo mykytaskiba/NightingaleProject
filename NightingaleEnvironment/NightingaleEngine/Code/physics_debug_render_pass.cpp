@@ -15,7 +15,7 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 
 
 	for (PhysicsBody* pBody : m_physics.m_activeBodies) {
-		context.drawAxisAlignedBox(pBody->globalBox, m_AABBColor);
+		context.drawAxisAlignedBox(pBody->getGlobalBox(), m_AABBColor);
 	}
 }
 

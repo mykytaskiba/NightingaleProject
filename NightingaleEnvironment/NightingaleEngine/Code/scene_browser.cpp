@@ -3,6 +3,7 @@
 #include "engine_functions.h"
 #include "scene.h"
 #include "game_object.h"
+#include "gameobject_menu.h"
 
 void SceneHierarchy::render_update()
 {
@@ -80,16 +81,20 @@ void Inspector::render_update()
 
     GUID selectedGUID = EngineFunctions::execution_state().getSelectedGUID();
 
+    std::string selectedGUIDStr = "Selected GUID: " + selectedGUID.string();
+    ImGui::Text(selectedGUIDStr.c_str());
+
+    ImGui::Separator();
+
     GameObject* pGameObject = EngineFunctions::scene().find_object(selectedGUID);
     if (pGameObject == nullptr) {
         ImGui::Text("Object not found");
     }
     else {
-        pGameObject->render_update_debugMenu();
+        GameObjectMenu::render_update(pGameObject);
     }
 
 
-    ImGui::Separator();
 
     ImGui::End();
 

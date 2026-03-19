@@ -6,3 +6,11 @@ public:
     PhysicsActiveCommand() : Command<TriBool>("physics_active") {}
     virtual void execute_command(ArgumentList<TriBool>& args, ExecutionState& state, ExecutionResult& result) override;
 };
+
+//attach a single physics body to selected guid object
+class AttachPhysicsBodyCommand : public Command<Nothing> {
+public:
+    AttachPhysicsBodyCommand() : Command("attach_physicsbody") {}
+    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
+
+};
