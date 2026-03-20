@@ -11,13 +11,14 @@
 #include "ngmath.h"
 #include "scene.h"
 
-void CreateGameObjectCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
+void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string type = *args.get<0>();
+    GameObject* pParent = *args.get<0>();
+    string type = *args.get<1>();
     
     GameObject* pCreatedObject = nullptr;
 
-    if (!GameObjectFactory::instantiateFromType(type, pCreatedObject)) {
+    if (!GameObjectFactory::instantiateFromType(type, pCreatedObject, pParent)) {
         result.message = "failed instantiating object of type " + type;
         result.bSuccess = false;
         return;

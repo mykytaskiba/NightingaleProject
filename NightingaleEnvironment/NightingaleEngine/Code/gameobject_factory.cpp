@@ -7,18 +7,19 @@
 #include "camera_controller.h"
 #include "project_one_gameobject.h"
 
-bool GameObjectFactory::instantiateFromType(string const& type, GameObject*& pResult)
+//TO DO REFACTOR THIS, GET PPARENT OUT OF HERE!!!
+bool GameObjectFactory::instantiateFromType(string const& type, GameObject*& pResult, GameObject* pParent)
 {
     pResult = nullptr;
 
     if (type == "gameobject") {
-        pResult = EngineFunctions::InstantiateGameObject<GameObject>();
+        pResult = EngineFunctions::InstantiateGameObject<GameObject>(pParent);
     }
     if (type == "cameracontroller") {
-        pResult = EngineFunctions::InstantiateGameObject<CameraController>();
+        pResult = EngineFunctions::InstantiateGameObject<CameraController>(pParent);
     }
     if (type == "project1gameobject") {
-        pResult = EngineFunctions::InstantiateGameObject<ProjectOneGameObject>();
+        pResult = EngineFunctions::InstantiateGameObject<ProjectOneGameObject>(pParent);
     }
 
     return pResult != nullptr;

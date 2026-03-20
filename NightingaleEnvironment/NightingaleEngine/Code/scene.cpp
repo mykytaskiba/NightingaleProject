@@ -85,11 +85,12 @@ void Scene::delete_object(GameObject* pGameObject)
         return;
     }
 
-    pParent->removeChild(pGameObject);
 
     for (GameObject* pChild : pGameObject->getChildren()) {
         delete_object(pChild);
     }
+
+    pParent->removeChild(pGameObject);
 
     pGameObject->freeResources();
     

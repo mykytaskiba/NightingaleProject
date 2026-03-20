@@ -6,5 +6,5 @@ class GameObject;
 //simple class to create all types of gameobjects
 class GameObjectFactory {
 public:
-    static bool instantiateFromType(string const& type, GameObject*& result);
+    static bool instantiateFromType(string const& type, GameObject*& result, GameObject* pParent);
 };

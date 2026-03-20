@@ -42,7 +42,9 @@ void GameObject::execute_on_hierarchy(TGameObjectFunc functor)
 {
     (functor)(*this);
 
-    execute_on_children(functor);
+    for (auto it = m_vChildren.begin(); it != m_vChildren.end(); ++it) {
+        (*it)->execute_on_hierarchy(functor);
+    }
 }
 
 void GameObject::execute_on_children(TGameObjectFunc functor)

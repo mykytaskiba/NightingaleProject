@@ -3,10 +3,10 @@
 #include "command.h"
 
 
-class CreateGameObjectCommand : public Command<Line> {
+class CreateGameObjectCommand : public Command<SelectedGameObject, Line> {
 public:
     CreateGameObjectCommand() : Command("create_gameobject") {}
-    virtual void execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result) override;
+    virtual void execute_command(ArgumentList<SelectedGameObject, Line>& args, ExecutionState& state, ExecutionResult& result) override;
 };
 
 //attach a single rendermesh to the game object, mesh must be in the AssetManager already

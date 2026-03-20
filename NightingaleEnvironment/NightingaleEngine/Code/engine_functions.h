@@ -14,19 +14,19 @@ class Scene;
 class EngineFunctions {
     friend struct SceneChangePackage;
 private:
-    static void Setup(GameObject* setup);
+    static void Setup(GameObject* setup, GameObject* pParent);
 
     //to do rename
-    static void PreSetup(GameObject* setup);
+    static void PreSetup(GameObject* setup, GameObject* pParent);
 
     static void SetParent(GameObject* pGameObject, GameObject* pParent);
 
 public:
     
     template <typename TGameObject>
-    static TGameObject* InstantiateGameObject() {
+    static TGameObject* InstantiateGameObject(GameObject* pParent = nullptr) {
         TGameObject* pGameObject = new TGameObject();
-        PreSetup(pGameObject);
+        PreSetup(pGameObject, pParent);
         return pGameObject;
     }
 

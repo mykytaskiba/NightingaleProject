@@ -6,6 +6,7 @@ load_mesh plane_mesh data/core/plane.fbx
 @verify
 
 
+selected_guid=0
 create_gameobject cameracontroller
 
 //.execute data/load_simple_scene.ngs

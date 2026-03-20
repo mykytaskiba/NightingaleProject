@@ -5,9 +5,8 @@
 #include "render_node.h"
 #include "asset_manager.h"
 
-void EngineFunctions::Setup(GameObject* pGameObject)
+void EngineFunctions::Setup(GameObject* pGameObject, GameObject* pParent)
 {
-    GameObject* pParent = &EngineInternals::Scene().m_root;
     assert(pGameObject != nullptr);
     assert(pParent != nullptr);
 
@@ -16,10 +15,14 @@ void EngineFunctions::Setup(GameObject* pGameObject)
     pGameObject->init();
 }
 
-void EngineFunctions::PreSetup(GameObject* pGameObject)
+void EngineFunctions::PreSetup(GameObject* pGameObject, GameObject* pParent)
 {
-    scene().addDeferredFunction([pGameObject] {
-            EngineFunctions::Setup(pGameObject);
+    if (pParent == nullptr) {
+        pParent = &EngineInternals::Scene().m_root;
+    }
+
+    scene().addDeferredFunction([pGameObject, pParent] {
+            EngineFunctions::Setup(pGameObject,pParent);
         }
     );
 }
