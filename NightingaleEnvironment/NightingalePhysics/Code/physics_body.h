@@ -25,7 +25,7 @@ public:
 
 	Vector3 const& getPosition() const { return m_position; }
 	Vector3& getPosition() { return m_position; }
-	void setPosition(Vector3 const& position) { m_position = position; }
+	void setPosition(Vector3 const& position);
 
 	Vector3 const& getVelocity() const { return m_velocity; }
 	Vector3& getVelocity() { return m_velocity; }

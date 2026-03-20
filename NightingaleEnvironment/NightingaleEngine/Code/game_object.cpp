@@ -3,6 +3,18 @@
 #include "engine_functions.h"
 
 
+Transform const& GameObject::getRenderTransform() const
+{   
+    //TO DO: Not sure what to do here, this is just a work around at this 
+    if (m_pPhysicsBody == nullptr) {
+        return m_transform;
+    }
+    if (!EngineFunctions::physics().getInterpolateBetweenFrames()) {
+        return m_transform;
+ }
+    return m_renderTransform;
+}
+
 void GameObject::sync_physics_to_gameobject()
 {
     if (m_pPhysicsBody == nullptr) {
@@ -17,6 +29,10 @@ void GameObject::sync_gameobject_to_physics()
         return;
     }
     m_transform.position = m_pPhysicsBody->getPosition();
+
+    if (EngineFunctions::physics().getInterpolateBetweenFrames()) {
+        m_renderTransform.position = m_transform.position + m_pPhysicsBody->getVelocity() * EngineFunctions::physics().getAccumulatedTime();
+    }
 }
 
 void GameObject::execute_on_hierarchy(TGameObjectFunc functor)

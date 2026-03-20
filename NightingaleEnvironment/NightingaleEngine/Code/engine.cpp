@@ -116,7 +116,7 @@ void Engine::CS550TempTestFuncInit()
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
     */
     
-    /*
+    
     int ySize = 2;
     int xSize = 2;
     int zSize = 2;
@@ -132,22 +132,19 @@ void Engine::CS550TempTestFuncInit()
             for (int y = -ySize; y <= ySize; y++) {
                 Vector3 position{ (float)x,(float)y,(float)z };
                 position *= offset * cubeSize;
-                    
-                PhysicsBody* pBody = new PhysicsBody();
-                pBody->localBox = AxisAlignedBox({ 0,0,0 }, { cubeSize,cubeSize,cubeSize });
-                pBody->position = position;
-                pBody->velocity = (position - center).normalized() * velocityFromCenter;
-                m_physics.addBody(pBody);
-                pBody->bUseGravity = true;
-
-                pBody->update(0.0f);
 
                 GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
                 RenderMeshNode* pRenderNode = new RenderMeshNode();
                 pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
 
                 EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
-                pGameObject->m_pPhysicsBody = pBody;
+                EngineFunctions::AttachPhysicsBody(pGameObject);
+
+                PhysicsBody* pBody = pGameObject->getPhysicsBody();
+                pBody->setLocalBox(AxisAlignedBox({ 0,0,0 }, { cubeSize,cubeSize,cubeSize }));
+                pGameObject->getTransform().position = position;
+                pBody->setVelocity((position - center).normalized() * velocityFromCenter);
+                pBody->setGravity(true);
 
             }
         }

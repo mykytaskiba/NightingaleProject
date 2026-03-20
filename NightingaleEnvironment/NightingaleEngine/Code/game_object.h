@@ -34,6 +34,8 @@ protected:
 
     Transform m_transform{};
 
+    Transform m_renderTransform{};
+
     virtual void shutdown() {}
 
 
@@ -43,6 +45,12 @@ public:
     Transform& getTransform() {
         return m_transform;
     }
+
+    Transform const& getTransform() const {
+        return m_transform;
+    } 
+
+    Transform const& getRenderTransform() const;
 
     std::string const& getAlias() const { return m_alias; }
     GUID const& getGUID() const { return m_guid; }

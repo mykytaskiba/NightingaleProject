@@ -21,7 +21,7 @@ void RenderMeshNode::render(GraphicsContext& context)
     assert(m_pShader != nullptr);
 
     context.setCurrentShader(m_pShader);
-    m_pShader->transferByName("uModelMatrix", m_pGameObject->getTransform().getMatrix());
+    m_pShader->transferByName("uModelMatrix", m_pGameObject->getRenderTransform().getMatrix());
     m_pShader->transferByName("uColor", m_color);
     m_pMesh->Draw();
 }

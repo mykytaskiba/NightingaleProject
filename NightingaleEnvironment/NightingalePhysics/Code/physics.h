@@ -26,6 +26,9 @@ public:
 	bool getDiscardUnusedTime() const { return m_bDiscardUnusedTime; }
 	void setDiscardUnusedTime(bool bDiscardUnusedTime) { m_bDiscardUnusedTime = bDiscardUnusedTime; }
 
+	bool getInterpolateBetweenFrames() const { return m_bInterpolateBetweenFrames; }
+	void setInterpolateBetweenFrames(bool bInterpolateBetweenFrames) { m_bInterpolateBetweenFrames = bInterpolateBetweenFrames; }
+
 	uint getUpdatesPerSecond() const { return m_infoUpdatesPerSecond; }
 	void setTargetUpdateRate(uint updatesPerSecond);
 
@@ -44,6 +47,7 @@ private:
 
 	uint m_maxUpdatesPerFrame{1u};
 	bool m_bDiscardUnusedTime{ true };
+	bool m_bInterpolateBetweenFrames{ false };
 
 	vector<PhysicsBody*> m_activeBodies{};
 };

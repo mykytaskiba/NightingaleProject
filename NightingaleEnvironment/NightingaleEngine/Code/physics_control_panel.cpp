@@ -36,6 +36,11 @@ void PhysicsControlPanel::render_update()
         EngineFunctions::physics().setDiscardUnusedTime(bDiscardUnusedTime);
     }
 
+    bool bInterpolateBetweenFrames = physics.getInterpolateBetweenFrames();
+    if (ImGui::Checkbox("Interpolate Between Frames", &bInterpolateBetweenFrames)) {
+        EngineFunctions::physics().setInterpolateBetweenFrames(bDiscardUnusedTime);
+    }
+
     int maxUpdatesPerFrame = EngineFunctions::physics().getMaxUpdatesPerFrame();
     if (ImGui::InputInt("Max Updates Per Frame", &maxUpdatesPerFrame, 1)); {
         EngineFunctions::physics().setMaxUpdatesPerFrame(maxUpdatesPerFrame);
