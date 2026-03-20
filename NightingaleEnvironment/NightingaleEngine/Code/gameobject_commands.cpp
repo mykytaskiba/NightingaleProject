@@ -172,3 +172,11 @@ void DeleteGameObjectCommand::execute_command(ArgumentList<SelectedGameObject>& 
     
 
 }
+
+void ClearSceneCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
+{
+    EngineFunctions::scene().clearScene();
+
+    result.bSuccess = true;
+    result.message = "Scene cleared sucessfully";
+}

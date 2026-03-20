@@ -47,3 +47,9 @@ class DeleteGameObjectCommand : public Command<SelectedGameObject> {
         DeleteGameObjectCommand() : Command("delete_gameobject") {}
         virtual void execute_command(ArgumentList<SelectedGameObject>& args, ExecutionState& state, ExecutionResult& result) override;
 };
+
+class ClearSceneCommand : public Command<Nothing> {
+public:
+    ClearSceneCommand() : Command("clear_scene") {}
+    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
+};

@@ -126,4 +126,10 @@ void PhysicsControlPanel::setTestCase()
             }
         }
     }
+
+    GameObject* pFloor = EngineFunctions::InstantiateGameObject<GameObject>();
+    EngineFunctions::AttachPhysicsBody(pFloor);
+    pFloor->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f }));
+    pFloor->getTransform().position = (Vector3(0, -10.0f, 0));
+
 }

@@ -37,6 +37,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new SetScaleCommand());
     m_settings.console_commands.push_back(new SetColorCommand());
     m_settings.console_commands.push_back(new DeleteGameObjectCommand());
+    m_settings.console_commands.push_back(new ClearSceneCommand());
 
     //debug panels
     m_settings.console_commands.push_back(new PanelCommand<EngineMenuBar>("engine_menu"));

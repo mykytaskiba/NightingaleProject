@@ -23,6 +23,11 @@ void SceneHierarchy::render_update()
         ImGui::EndMenu();
     }
 
+
+    if (ImGui::Button("Clear Scene")) {
+        EngineFunctions::ExecuteCommand("clear_scene");
+    }
+
     ImGui::Separator();
 
     drawSceneTree(EngineFunctions::scene().get_root());
