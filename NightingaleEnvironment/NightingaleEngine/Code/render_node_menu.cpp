@@ -41,9 +41,12 @@ void RenderNodeMenu::render_update(RenderMeshNode* pRenderMesh)
 
     ImGui::Text("Render Mesh");
 
-    Color color = pRenderMesh->getColor();
-    if (ImGuiHelpers::ColorPicker4("Color", color)) {
-        pRenderMesh->setColor(color);
+
+    if (ImGui::TreeNodeEx("Color", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+        Color color = pRenderMesh->getColor();
+        if (ImGuiHelpers::ColorPicker4("Color", color)) {
+            pRenderMesh->setColor(color);
+        }
     }
 
     if (ImGui::InputText("Mesh", &meshCache)) {
