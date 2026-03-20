@@ -11,4 +11,6 @@ public:
 
 private:
 	PhysicsDebugRenderPass* findDebugPass();
+
+	void setTestCase();
 };

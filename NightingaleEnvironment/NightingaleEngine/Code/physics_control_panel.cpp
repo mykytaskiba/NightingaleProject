@@ -4,6 +4,10 @@
 #include "engine_functions.h"
 #include "renderer.h"
 #include "physics_debug_render_pass.h"
+#include "scene.h"
+#include "camera_controller.h"
+#include "render_mesh.h"
+#include "asset_manager.h"
 
 void PhysicsControlPanel::render_update()
 {
@@ -38,12 +42,16 @@ void PhysicsControlPanel::render_update()
 
     bool bInterpolateBetweenFrames = physics.getInterpolateBetweenFrames();
     if (ImGui::Checkbox("Interpolate Between Frames", &bInterpolateBetweenFrames)) {
-        EngineFunctions::physics().setInterpolateBetweenFrames(bDiscardUnusedTime);
+        EngineFunctions::physics().setInterpolateBetweenFrames(bInterpolateBetweenFrames);
     }
 
     int maxUpdatesPerFrame = EngineFunctions::physics().getMaxUpdatesPerFrame();
     if (ImGui::InputInt("Max Updates Per Frame", &maxUpdatesPerFrame, 1)); {
         EngineFunctions::physics().setMaxUpdatesPerFrame(maxUpdatesPerFrame);
+    }
+
+    if (ImGui::Button("Test Case")) {
+        setTestCase();
     }
 
     ImGui::Separator();
@@ -78,4 +86,44 @@ PhysicsDebugRenderPass* PhysicsControlPanel::findDebugPass()
     }
 
     return pDebugPass;
+}
+
+void PhysicsControlPanel::setTestCase()
+{
+    EngineFunctions::scene().clearScene();
+
+    EngineFunctions::InstantiateGameObject<CameraController>();
+
+    int ySize = 2;
+    int xSize = 2;
+    int zSize = 2;
+
+    float offset = 3.0f;
+    float cubeSize = 1.0f;
+
+    float velocityFromCenter = 10.0f;
+    Vector3 center = { 0,0,0 };
+
+    for (int x = -xSize; x <= xSize; x++) {
+        for (int z = -zSize; z <= zSize; z++) {
+            for (int y = -ySize; y <= ySize; y++) {
+                Vector3 position{ (float)x,(float)y,(float)z };
+                position *= offset * cubeSize;
+
+                GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+                RenderMeshNode* pRenderNode = new RenderMeshNode();
+                pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+                EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+                EngineFunctions::AttachPhysicsBody(pGameObject);
+
+                PhysicsBody* pBody = pGameObject->getPhysicsBody();
+                pBody->setLocalBox(AxisAlignedBox({ 0,0,0 }, { cubeSize,cubeSize,cubeSize }));
+                pGameObject->getTransform().position = position;
+                pBody->setVelocity((position - center).normalized() * velocityFromCenter);
+                pBody->setGravity(true);
+
+            }
+        }
+    }
 }

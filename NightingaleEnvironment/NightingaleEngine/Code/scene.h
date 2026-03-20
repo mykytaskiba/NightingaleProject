@@ -35,4 +35,7 @@ public:
         return &m_root;
     }
     void delete_object(GameObject* pGameObject);
+    void deleteChildren(GameObject* pGameObject);
+
+    void clearScene();
 };

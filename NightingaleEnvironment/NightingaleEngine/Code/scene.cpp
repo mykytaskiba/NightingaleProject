@@ -85,10 +85,7 @@ void Scene::delete_object(GameObject* pGameObject)
         return;
     }
 
-
-    for (GameObject* pChild : pGameObject->getChildren()) {
-        delete_object(pChild);
-    }
+    deleteChildren(pGameObject);
 
     pParent->removeChild(pGameObject);
 
@@ -96,4 +93,27 @@ void Scene::delete_object(GameObject* pGameObject)
     
     delete pGameObject;
     pGameObject = nullptr;
+}
+
+void Scene::deleteChildren(GameObject* pGameObject)
+{
+    while (!pGameObject->getChildren().empty()) {
+        auto it = pGameObject->getChildren().end() - 1u;
+
+        GameObject* pChild = *it;
+        pGameObject->getChildren().erase(it);
+        if (pChild == nullptr) {
+            assert(false);
+            return;
+        }
+
+        delete_object(pChild);
+    }
+
+    assert(pGameObject->getChildren().empty());
+}
+
+void Scene::clearScene()
+{
+    deleteChildren(get_root());
 }
