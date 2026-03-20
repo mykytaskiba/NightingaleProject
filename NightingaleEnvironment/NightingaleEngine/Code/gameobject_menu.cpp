@@ -36,14 +36,22 @@ void GameObjectMenu::render_update(GameObject* pGameObject)
     }
 
     ImGui::Separator();
+    
+    ImGuiTreeNodeFlags subViewsFlags = ImGuiTreeNodeFlags_NoTreePushOnOpen;
 
-    TransformMenu::render_update(pGameObject->getTransform());
+    if (ImGui::TreeNodeEx("Transform ", subViewsFlags)) {
+        TransformMenu::render_update(pGameObject->getTransform());
+    }
 
     ImGui::Separator();
 
-    RenderNodeMenu::render_update(*pGameObject);
+    if (ImGui::TreeNodeEx("Render Properties", subViewsFlags)) {
+        RenderNodeMenu::render_update(*pGameObject);
+    }
 
     ImGui::Separator();
 
-    PhysicsBodyMenu::render_update(*pGameObject);
+    if (ImGui::TreeNodeEx("Physics Properties", subViewsFlags)) {
+        PhysicsBodyMenu::render_update(*pGameObject);
+    }
 }
