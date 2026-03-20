@@ -8,9 +8,8 @@ public:
 };
 
 //attach a single physics body to selected guid object
-class AttachPhysicsBodyCommand : public Command<Nothing> {
+class AttachPhysicsBodyCommand : public Command<SelectedGameObject> {
 public:
     AttachPhysicsBodyCommand() : Command("attach_physicsbody") {}
-    virtual void execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result) override;
-
+    virtual void execute_command(ArgumentList<SelectedGameObject>& args, ExecutionState& state, ExecutionResult& result) override;
 };

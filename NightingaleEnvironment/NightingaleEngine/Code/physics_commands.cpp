@@ -11,11 +11,13 @@ void PhysicsActiveCommand::execute_command(ArgumentList<TriBool>& args, Executio
 	EngineFunctions::physics().setActive(bValue);
 }
 
-void AttachPhysicsBodyCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
+void AttachPhysicsBodyCommand::execute_command(ArgumentList<SelectedGameObject>& args, ExecutionState& state, ExecutionResult& result)
 {
 
-	GameObject* pGameObject{ nullptr };
-	if (!state.getSelectedObject(pGameObject, result)) {
+	GameObject* pGameObject = *args.get<0>();
+
+	if (pGameObject == nullptr) {
+		assert(false);
 		return;
 	}
 

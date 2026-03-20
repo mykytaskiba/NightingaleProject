@@ -2,6 +2,9 @@
 #include "defines.h"
 #include "key_enum.h"
 
+class ParsingResult;
+class GameObject;
+
 struct Line {
 	string line;
 	
@@ -61,4 +64,15 @@ static void s_evaluateTriBool(bool& bValue, TriBool triBool) {
 
 struct KeySequence {
 	std::set<Key> m_sequence;
+};
+
+struct SelectedGameObject {
+	GameObject* m_pGameObject{ nullptr };
+
+	GameObject* operator*() const {
+		return m_pGameObject;
+	}
+
+	//retrieve from state
+	bool retrieve(ParsingResult& result);
 };

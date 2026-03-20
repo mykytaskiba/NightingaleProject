@@ -32,8 +32,6 @@ struct ExecutionState {
     GUID getSelectedGUID() const;
     void setSelectedGUID(GUID const&);
 
-    bool getSelectedObject(GameObject*&, ExecutionResult&) const;
-
     //log
     bool bCreateLog{ false };
     string log{};

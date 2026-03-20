@@ -239,5 +239,17 @@ struct ArgumentExtractor<KeySequence> {
 
 };
 
+template<>
+struct ArgumentExtractor<SelectedGameObject> {
+    static string usage() { return ""; }
+    static SelectedGameObject parse(string & args, ParsingResult & result) {
+        SelectedGameObject selectedGameObject;
+        selectedGameObject.retrieve(result);
+        return selectedGameObject;
+    }
+
+private:
+};
+
 
 

@@ -286,6 +286,7 @@
     <ClCompile Include="Code\shader_source.cpp" />
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />
+    <ClCompile Include="Code\special_arguments.cpp" />
     <ClCompile Include="Code\transform_menu.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Code\default_console_commands.cpp" />
