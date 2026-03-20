@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "game_object.h"
 #include "engine_functions.h"
+#include "ngphys.h"
+#include "ngrender.h"
+#include "renderer.h"
 
 
 Transform const& GameObject::getRenderTransform() const
@@ -44,10 +47,38 @@ void GameObject::execute_on_hierarchy(TGameObjectFunc functor)
 
 void GameObject::execute_on_children(TGameObjectFunc functor)
 {
-    for (auto it = m_children.begin(); it != m_children.end(); ++it) {
+    for (auto it = m_vChildren.begin(); it != m_vChildren.end(); ++it) {
         (functor)(**it);
     }
 }
+
+bool GameObject::removeChild(GameObject* pChild)
+{
+    auto itFound = std::find(m_vChildren.begin(), m_vChildren.end(), pChild);
+    if (itFound == m_vChildren.end()) {
+        return false; //we did not find the child
+    }
+    m_vChildren.erase(itFound);
+    return true;
+}
+
+void GameObject::freeResources()
+{
+    if (m_pRenderNode != nullptr) {
+        EngineFunctions::Renderer().removeRenderable(m_pRenderNode);
+        delete m_pRenderNode;
+        m_pRenderNode = nullptr;
+    }
+    if (m_pPhysicsBody != nullptr) {
+        EngineFunctions::physics().removeBody(m_pPhysicsBody);
+        delete m_pPhysicsBody;
+        m_pPhysicsBody = nullptr;
+    }
+
+    assert(m_pRenderNode == nullptr);
+    assert(m_pPhysicsBody == nullptr);
+}
+
 
 GameObject::GameObject()
 {

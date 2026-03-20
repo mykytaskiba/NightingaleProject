@@ -16,11 +16,12 @@ void EngineFunctions::Setup(GameObject* pGameObject)
     pGameObject->init();
 }
 
-void EngineFunctions::PreSetup(GameObject* setup)
+void EngineFunctions::PreSetup(GameObject* pGameObject)
 {
-    SceneChangePackage package;
-    package.pGameObject = setup;
-    EngineInternals::Scene().addPackage(package);
+    scene().addDeferredFunction([pGameObject] {
+            EngineFunctions::Setup(pGameObject);
+        }
+    );
 }
 
 void EngineFunctions::SetParent(GameObject* pGameObject, GameObject* pParent)
@@ -31,7 +32,7 @@ void EngineFunctions::SetParent(GameObject* pGameObject, GameObject* pParent)
     assert(pGameObject->m_pParent == nullptr);
 
     pGameObject->m_pParent = pParent;
-    pParent->m_children.push_back(pGameObject);
+    pParent->m_vChildren.push_back(pGameObject);
 }
 
 void EngineFunctions::AssignRenderNode(GameObject* pGameObject, RenderNode* pRenderNode)

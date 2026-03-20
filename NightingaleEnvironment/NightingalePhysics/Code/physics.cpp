@@ -81,3 +81,14 @@ void Physics::addBody(PhysicsBody* pBody)
 	m_activeBodies.push_back(pBody);
 }
 
+void Physics::removeBody(PhysicsBody* pBody)
+{
+	auto it = std::find(m_activeBodies.begin(), m_activeBodies.end(), pBody);
+	if (it == m_activeBodies.end()) {
+		assert(false);
+		return;
+	}
+	m_activeBodies.erase(it);
+
+}
+

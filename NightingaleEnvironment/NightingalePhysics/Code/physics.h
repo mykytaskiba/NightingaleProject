@@ -16,6 +16,7 @@ public:
 
 
 	void addBody(PhysicsBody* pBody);
+	void removeBody(PhysicsBody* pBody);
 
 	bool isActive() const { return m_bActive; }
 	void setActive(bool bActive) { m_bActive = bActive; }

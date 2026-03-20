@@ -9,6 +9,7 @@
 #include "skeleton.h"
 #include "render_skinned.h"
 #include "ngmath.h"
+#include "scene.h"
 
 void CreateGameObjectCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
@@ -149,4 +150,24 @@ void SetColorCommand::execute_command(ArgumentList<float, float, float>& args, E
     result.message = "color has been set";
 
     return;
+}
+
+void DeleteGameObjectCommand::execute_command(ArgumentList<SelectedGameObject>& args, ExecutionState& state, ExecutionResult& result)
+{
+    GameObject* pGameObject =*args.get<0>();
+    if (pGameObject == nullptr) {
+        assert(false);
+        return;
+    }
+
+    GUID guid = pGameObject->getGUID();
+
+    EngineFunctions::scene().delete_object(pGameObject);
+    pGameObject = nullptr;
+
+    result.bSuccess = true;
+    result.message = "Object sucessfully deleted " + guid.string();
+
+    
+
 }

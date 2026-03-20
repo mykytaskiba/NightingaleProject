@@ -94,3 +94,22 @@ void Renderer::clearAllRenderPasses()
     }
     m_renderpasses.clear();
 }
+
+void Renderer::removeRenderable(RenderNode* pRenderNode)
+{
+    auto itFound = std::find(m_renderables.begin(), m_renderables.end(), pRenderNode);
+    if (itFound == m_renderables.end()) {
+        assert(false);
+        return;
+    }
+
+    m_renderables.erase(itFound);
+
+    for (RenderPass* pRenderPass : m_renderpasses) {
+        if (pRenderPass == nullptr) {
+            assert(false);
+            continue;
+        }
+        pRenderPass->removeRenderable(pRenderNode);
+    }
+}

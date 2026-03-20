@@ -14,6 +14,7 @@ public:
 
 	//by default each render pass is interested in all the nodes
 	virtual void registerRenderable(RenderNode* renderable);
+	virtual void removeRenderable(RenderNode* pRenderNode);
 
 	bool isEnabled() { return m_enabled; };
 

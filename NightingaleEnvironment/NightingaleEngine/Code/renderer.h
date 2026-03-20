@@ -34,6 +34,7 @@ public:
     void removeRenderPass(RenderPass*&);
     void clearAllRenderPasses();
 
+    void removeRenderable(RenderNode*);
 private:
 
     vector<RenderPass*> m_renderpasses;

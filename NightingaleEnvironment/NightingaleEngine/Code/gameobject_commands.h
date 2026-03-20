@@ -40,3 +40,10 @@ public:
     SetColorCommand() : Command("setcolor") {}
     virtual void execute_command(ArgumentList<float, float, float>& args, ExecutionState& state, ExecutionResult& result) override;
 };
+
+//attach a single rendermesh to the game object, mesh must be in the AssetManager already
+class DeleteGameObjectCommand : public Command<SelectedGameObject> {
+    public:
+        DeleteGameObjectCommand() : Command("delete_gameobject") {}
+        virtual void execute_command(ArgumentList<SelectedGameObject>& args, ExecutionState& state, ExecutionResult& result) override;
+};

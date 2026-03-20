@@ -2,8 +2,6 @@
 #include "game_object.h"
 #include "defines.h"
 
-struct SceneChangePackage;
-
 class Scene {
     friend class EngineFunctions;
 private:
@@ -13,10 +11,12 @@ private:
         SceneRootObject() : GameObject("scene_root") {}
     };
 
+    using TDeferredFunction = std::function<void()>;
+
     SceneRootObject m_root;
 
-    vector<SceneChangePackage> m_packages;
-    void addPackage(SceneChangePackage package);
+    std::vector<TDeferredFunction> m_defferedFunctions;
+    void addDeferredFunction(TDeferredFunction function);
 
 public:
 
@@ -34,13 +34,5 @@ public:
     GameObject* get_root() {
         return &m_root;
     }
-
-};
-
-
-//when a something in the scene changes, this is packages the change
-struct SceneChangePackage {
-    GameObject* pGameObject;
-
-    void processPackage();
+    void delete_object(GameObject* pGameObject);
 };

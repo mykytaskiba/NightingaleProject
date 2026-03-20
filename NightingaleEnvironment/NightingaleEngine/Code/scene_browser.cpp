@@ -13,9 +13,12 @@ void SceneHierarchy::render_update()
 
     ImGui::Checkbox("Show GUIDs", &m_bShowGUID);
 
-    if (ImGui::BeginMenu("Create")) {
-        if (ImGui::Button("gameobject")) {
+    if (ImGui::BeginMenu("Selected Object")) {
+        if (ImGui::Button("Create gameobject")) {
             EngineFunctions::ExecuteCommand("create_gameobject gameobject");
+        }
+        if (ImGui::Button("Delete")) {
+            EngineFunctions::ExecuteCommand("delete_gameobject");
         }
         ImGui::EndMenu();
     }
@@ -58,8 +61,9 @@ void SceneHierarchy::drawSceneTree(GameObject* pGameObject)
     bool bNodeClicked = ImGui::IsItemClicked(0);
     bool bNodeRightClicked = ImGui::IsItemClicked(1);
 
+
     if (bNodeOpen) {
-        for (GameObject* pChild : pGameObject->get_children()) {
+        for (GameObject* pChild : pGameObject->getChildren()) {
             drawSceneTree(pChild);
         }
         ImGui::TreePop();

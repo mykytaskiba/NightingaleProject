@@ -6,9 +6,9 @@
 #include "loader.h"
 #include "render_mesh.h"
 
-void Scene::addPackage(SceneChangePackage package)
+void Scene::addDeferredFunction(TDeferredFunction function)
 {
-    m_packages.push_back(package);
+    m_defferedFunctions.push_back(function);
 }
 
 void Scene::init()
@@ -26,10 +26,10 @@ void Scene::tick()
 {
     m_root.execute_on_hierarchy(m_tickFunc);
 
-    for (auto it = m_packages.begin(); it != m_packages.end(); ++it) {
-        (*it).processPackage();
+    for (TDeferredFunction const& function : m_defferedFunctions) {
+        function();
     }
-    m_packages.clear();
+    m_defferedFunctions.clear();
 }
 
 void Scene::sync_gameobjects_to_physics()
@@ -71,7 +71,28 @@ GameObject* Scene::find_object(GUID const& guid)
     return pResult;
 }
 
-void SceneChangePackage::processPackage()
+
+void Scene::delete_object(GameObject* pGameObject)
 {
-    EngineFunctions::Setup(pGameObject);
+    if (pGameObject == nullptr) {
+        assert(false); //why are we deleting something that already null? 
+        return;
+    }
+
+    GameObject* pParent = pGameObject->getParent();
+    if (pParent == nullptr) {
+        assert(false); //we should never delete anything that doesnt have a parent. Including the scene root
+        return;
+    }
+
+    pParent->removeChild(pGameObject);
+
+    for (GameObject* pChild : pGameObject->getChildren()) {
+        delete_object(pChild);
+    }
+
+    pGameObject->freeResources();
+    
+    delete pGameObject;
+    pGameObject = nullptr;
 }

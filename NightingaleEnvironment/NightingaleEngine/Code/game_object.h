@@ -27,7 +27,7 @@ protected:
     GUID m_guid{};
      
     vector<Component*> m_components{};
-    vector<GameObject*> m_children{};
+    vector<GameObject*> m_vChildren{};
     GameObject* m_pParent{ nullptr };
     RenderNode* m_pRenderNode{ nullptr };
     PhysicsBody* m_pPhysicsBody{ nullptr };
@@ -68,8 +68,14 @@ public:
     void execute_on_hierarchy(TGameObjectFunc functor);
     void execute_on_children(TGameObjectFunc functor);
 
-    vector<GameObject*> const& get_children() const { return m_children; }
-    vector<GameObject*>& get_children() { return m_children; }
+    vector<GameObject*> const& getChildren() const { return m_vChildren; }
+    vector<GameObject*>& getChildren() { return m_vChildren; }
+
+    bool removeChild(GameObject*);
+
+    void freeResources();
+
+    GameObject* getParent() { return m_pParent; }
 
     
     bool hasRenderNode() { return m_pRenderNode != nullptr; }

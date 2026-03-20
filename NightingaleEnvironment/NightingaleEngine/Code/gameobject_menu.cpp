@@ -54,4 +54,10 @@ void GameObjectMenu::render_update(GameObject* pGameObject)
     if (ImGui::TreeNodeEx("Physics Properties", subViewsFlags)) {
         PhysicsBodyMenu::render_update(*pGameObject);
     }
+
+    ImGui::Separator();
+    if (ImGui::Button("Delete")) {
+        EngineFunctions::ExecuteCommand(".define selected_guid " + pGameObject->getGUID().string());
+        EngineFunctions::ExecuteCommand("delete_gameobject");
+    }
 }
