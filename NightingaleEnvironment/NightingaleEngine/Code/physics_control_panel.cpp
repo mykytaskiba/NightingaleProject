@@ -51,6 +51,11 @@ void PhysicsControlPanel::render_update()
         EngineFunctions::physics().setMaxUpdatesPerFrame(maxUpdatesPerFrame);
     }
 
+    float maxAccumulatedTime = physics.getMaxAccumulatedTime();
+    if (ImGui::InputFloat("Max Accumulated Time", &maxAccumulatedTime)) {
+        physics.setMaxAccumulatedTime(maxAccumulatedTime);
+    }
+
     if (ImGui::Button("Test Case")) {
         setTestCase();
     }

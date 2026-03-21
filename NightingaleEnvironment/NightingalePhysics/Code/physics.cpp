@@ -27,6 +27,9 @@ void Physics::update(TTimePhys frameDelta)
 			if (m_bDiscardUnusedTime) {
 				m_accumulatedTime = 0.0f;
 			}
+			if (m_accumulatedTime > m_maxAccumulatedTime) {
+				m_accumulatedTime = m_maxAccumulatedTime;
+			}
 			break;
 		}
 	}

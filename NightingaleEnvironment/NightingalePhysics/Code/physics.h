@@ -32,6 +32,9 @@ public:
 	uint getUpdatesPerSecond() const { return m_infoUpdatesPerSecond; }
 	void setTargetUpdateRate(uint updatesPerSecond);
 
+	TTimePhys getMaxAccumulatedTime() const { return m_maxAccumulatedTime; }
+	void setMaxAccumulatedTime(TTimePhys maxAccumulatedTime) { m_maxAccumulatedTime = maxAccumulatedTime; }
+
 	void addAccumulatedTime(TTimePhys time);
 
 	TTimePhys getAccumulatedTime() const { return m_accumulatedTime; }
@@ -46,6 +49,7 @@ private:
 
 	TTimePhys m_updateRate{ 0.0f };
 	TTimePhys m_accumulatedTime{ 0.0f };
+	TTimePhys m_maxAccumulatedTime{ 100.0f };
 
 	uint m_maxUpdatesPerFrame{1u};
 	bool m_bDiscardUnusedTime{ true };
