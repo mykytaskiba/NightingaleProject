@@ -32,6 +32,7 @@ void PhysicsControlPanel::render_update()
         }
     }
 
+
     ImGui::Text("Accumulated Time: %f", physics.getAccumulatedTime());
     ImGui::Text("Update Rate: %f", physics.getUpdateRate());
 
@@ -67,6 +68,28 @@ void PhysicsControlPanel::render_update()
         }
     }
 
+    ImGui::Separator();
+
+    ImGui::Spacing();
+    if (ImGui::TreeNodeEx("Step Simulation", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+        if (ImGui::InputInt("Simulation Frame Count", &m_simulationFrames)) {}
+        if (ImGui::Button("Simulate Frames")) {
+            float frameToSimulationTime = ((float)m_simulationFrames) * physics.getUpdateRate();;
+            forceSimulatePhysics(frameToSimulationTime);
+
+        }
+
+        if (ImGui::InputFloat("Simulation Step Time", &m_simulationTime)) {}
+        if (ImGui::Button("Simulate Step")) {
+            forceSimulatePhysics(m_simulationTime);
+        }
+
+        if (ImGui::InputFloat("Added Accumulation Time", &m_addedAccumulationTime)) {}
+        if (ImGui::Button("Add Accumulation Time")) {
+            physics.addAccumulatedTime(m_addedAccumulationTime);
+        }
+    }
+
     ImGui::End();
 
     if (!bRemainOpen && m_bActive) {
@@ -90,6 +113,7 @@ PhysicsDebugRenderPass* PhysicsControlPanel::findDebugPass()
 
 void PhysicsControlPanel::setTestCase()
 {
+    EngineFunctions::physics().setActive(false);
     EngineFunctions::scene().clearScene();
 
     EngineFunctions::InstantiateGameObject<CameraController>();
@@ -132,4 +156,16 @@ void PhysicsControlPanel::setTestCase()
     pFloor->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f }));
     pFloor->getTransform().position = (Vector3(0, -10.0f, 0));
 
+}
+
+void PhysicsControlPanel::forceSimulatePhysics(float simulateTime)
+{
+    Physics& physics = EngineFunctions::physics();
+    physics.setActive(true);
+    uint currentMaxUpdatesPerFrame = physics.getMaxUpdatesPerFrame();
+    physics.setMaxUpdatesPerFrame(100000u);
+    physics.update(simulateTime);
+    physics.setActive(false);
+    physics.setMaxUpdatesPerFrame(currentMaxUpdatesPerFrame);
+    EngineFunctions::scene().sync_gameobjects_to_physics();
 }

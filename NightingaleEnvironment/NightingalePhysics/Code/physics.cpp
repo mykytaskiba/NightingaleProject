@@ -75,6 +75,10 @@ void Physics::setTargetUpdateRate(uint updatesPerSecond)
 	m_accumulatedTime = 0.0f;
 }
 
+void Physics::addAccumulatedTime(TTimePhys addedTime) {
+	m_accumulatedTime += addedTime;
+}
+
 
 void Physics::addBody(PhysicsBody* pBody)
 {

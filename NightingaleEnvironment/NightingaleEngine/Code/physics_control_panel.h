@@ -12,5 +12,10 @@ public:
 private:
 	PhysicsDebugRenderPass* findDebugPass();
 
+	int m_simulationFrames{ 1u };
+	float m_simulationTime{ 1.0f };
+	float m_addedAccumulationTime{ 1.0f };
+	
 	void setTestCase();
+	void forceSimulatePhysics(float simulateTime);
 };

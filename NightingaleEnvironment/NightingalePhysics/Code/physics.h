@@ -14,7 +14,6 @@ public:
 	void update(TTimePhys frameDelta);
 	void subUpdate(TTimePhys deltaT);
 
-
 	void addBody(PhysicsBody* pBody);
 	void removeBody(PhysicsBody* pBody);
 
@@ -32,6 +31,8 @@ public:
 
 	uint getUpdatesPerSecond() const { return m_infoUpdatesPerSecond; }
 	void setTargetUpdateRate(uint updatesPerSecond);
+
+	void addAccumulatedTime(TTimePhys time);
 
 	TTimePhys getAccumulatedTime() const { return m_accumulatedTime; }
 	TTimePhys getUpdateRate() const { return m_updateRate; }
