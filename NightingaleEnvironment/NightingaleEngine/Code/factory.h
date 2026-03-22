@@ -22,6 +22,7 @@ template <typename TKey, typename TValue>
 class Factory {
 public:
 	using FCreationFunc = std::function<TValue* ()>;
+	using FKeyFunc = std::function<void(TKey const&)>;
 
 private:
 	std::map<TKey, FCreationFunc> m_map{};
@@ -68,4 +69,9 @@ public:
 		return true;
 	}
 
+	void foreach_key(FKeyFunc const& func) const {
+		for (auto const&[key, creationFunc] : m_map) {
+			func(key);
+		}
+	}
 };

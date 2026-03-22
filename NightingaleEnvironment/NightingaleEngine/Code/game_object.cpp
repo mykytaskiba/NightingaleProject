@@ -87,7 +87,8 @@ void GameObject::jsonOperation()
 {
     nlohmann::json jsonObject;
     JSONOperation operation{ JSONMode::Serialize,jsonObject };
-    
+
+    operation.serialize_only("factory_key", getFactoryKey());
     operation.link("alias", m_alias);
 
     Loader::saveToFile("jsonTest/json.json", jsonObject, FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);

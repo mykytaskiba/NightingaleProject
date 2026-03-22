@@ -22,7 +22,8 @@ void GameObjectMenu::render_update(GameObject* pGameObject)
         return;
     }
 
-    if (EngineFunctions::scene().get_root() == pGameObject) {
+    Scene::SceneRootObject* pSceneRoot = dynamic_cast<Scene::SceneRootObject*>(pGameObject);
+    if (pSceneRoot != nullptr) {
         ImGui::Text("Scene Root");
         ImGui::Text("No Modifiable Properties");
         return;

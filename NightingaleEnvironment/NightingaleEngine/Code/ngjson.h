@@ -23,4 +23,19 @@ struct JSONOperation {
 			}
 		}
 	}
+
+	template <typename T>
+	void serialize_only(std::string const& key, T const& value) {
+		if (m_mode == JSONMode::Serialize) {
+			T valueCpy = { value };
+			link(key, valueCpy);
+		}
+	}
+
+	template <typename T>
+	void deserialize_only(std::string const& key, T& value) {
+		if (m_mode == JSONMode::Deserialize) {
+			link(key, value);
+		}
+	}
 };

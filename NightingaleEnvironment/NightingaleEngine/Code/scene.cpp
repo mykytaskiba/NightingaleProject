@@ -17,14 +17,29 @@ void Scene::init()
         gameObject.tick();
     };
 
+    GameObject* pGameObjectRoot{ nullptr };
+    EngineFunctions::factoryGameObject().create("scene_root_object", pGameObjectRoot);
 
-    m_root.setAlias("scene_root");
+    if (pGameObjectRoot == nullptr) {
+        assert(false);
+        return;
+    }
+
+    m_pRoot = dynamic_cast<SceneRootObject*>(pGameObjectRoot);
+    if (m_pRoot == nullptr) {
+        assert(false);
+        return;
+    }
 
 
 }
 void Scene::tick()
 {
-    m_root.execute_on_hierarchy(m_tickFunc);
+    if (m_pRoot == nullptr) {
+        assert(false);
+        return;
+    }
+    m_pRoot->execute_on_hierarchy(m_tickFunc);
 
     for (TDeferredFunction const& function : m_defferedFunctions) {
         function();
@@ -34,7 +49,7 @@ void Scene::tick()
 
 void Scene::sync_gameobjects_to_physics()
 {
-    m_root.execute_on_hierarchy(
+    execute_on_root(
         [](GameObject& gameObject) {
             gameObject.sync_gameobject_to_physics();
         }
@@ -43,7 +58,7 @@ void Scene::sync_gameobjects_to_physics()
 
 void Scene::sync_physics_to_gameobjects()
 {
-    m_root.execute_on_hierarchy(
+    execute_on_root(
         [](GameObject& gameObject) {
             gameObject.sync_physics_to_gameobject();
         }
@@ -53,7 +68,12 @@ void Scene::sync_physics_to_gameobjects()
 
 void Scene::execute_on_root(TGameObjectFunc func)
 {
-    m_root.execute_on_hierarchy(func);
+
+    if (m_pRoot == nullptr) {
+        assert(false);
+        return;
+    }
+    m_pRoot->execute_on_hierarchy(func);
 }
 
 GameObject* Scene::find_object(GUID const& guid)

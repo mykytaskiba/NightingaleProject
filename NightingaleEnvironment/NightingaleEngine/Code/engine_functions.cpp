@@ -18,7 +18,7 @@ void EngineFunctions::Setup(GameObject* pGameObject, GameObject* pParent)
 void EngineFunctions::PreSetup(GameObject* pGameObject, GameObject* pParent)
 {
     if (pParent == nullptr) {
-        pParent = &EngineInternals::Scene().m_root;
+        pParent = EngineInternals::Scene().get_root();
     }
 
     scene().addDeferredFunction([pGameObject, pParent] {

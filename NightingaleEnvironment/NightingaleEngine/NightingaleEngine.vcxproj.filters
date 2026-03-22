@@ -271,9 +271,6 @@
     <ClCompile Include="Code\engine_menu_bar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\scene_browser.cpp">
-      <Filter>Source Files\DebugPanels</Filter>
-    </ClCompile>
     <ClCompile Include="Code\resource_browsers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -315,6 +312,9 @@
     </ClCompile>
     <ClCompile Include="Code\default_gameobject_factory.cpp">
       <Filter>Engine Data</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\scene_browser.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

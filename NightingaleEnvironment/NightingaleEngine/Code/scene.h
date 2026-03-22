@@ -4,16 +4,19 @@
 
 class Scene {
     friend class EngineFunctions;
-private:
 
+public:
     class SceneRootObject : public GameObject {
     public:
         SceneRootObject() : GameObject("scene_root") {}
     };
+private:
+
 
     using TDeferredFunction = std::function<void()>;
 
-    SceneRootObject m_root;
+    //ptr for factory integration
+    SceneRootObject* m_pRoot;
 
     std::vector<TDeferredFunction> m_defferedFunctions;
     void addDeferredFunction(TDeferredFunction function);
@@ -32,7 +35,7 @@ public:
     GameObject* find_object(GUID const& guid);
 
     GameObject* get_root() {
-        return &m_root;
+        return m_pRoot;
     }
     void delete_object(GameObject* pGameObject);
     void deleteChildren(GameObject* pGameObject);
