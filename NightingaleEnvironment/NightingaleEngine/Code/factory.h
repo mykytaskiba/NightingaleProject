@@ -17,6 +17,7 @@ public:
 	TKey const& getFactoryKey() const { return m_factoryKey; }
 };
 
+
 template <typename TKey, typename TValue>
 class Factory {
 public:
