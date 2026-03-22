@@ -51,8 +51,9 @@ struct JSONUpgrader {
 				m_json.erase(key);
 				return true;
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	bool renamed_variable(uint version, std::string const& original_key, std::string const& renamed_key) {
@@ -62,8 +63,9 @@ struct JSONUpgrader {
 				m_json.erase(original_key);
 				return true;
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	template <typename TVal>
@@ -73,8 +75,9 @@ struct JSONUpgrader {
 				m_json[key] = val;
 				return true;
 			}
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 

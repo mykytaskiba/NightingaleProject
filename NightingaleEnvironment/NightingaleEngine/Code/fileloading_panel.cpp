@@ -108,12 +108,12 @@ void JSONUpgraderPanel::render_update()
         }
         {//high version
             nlohmann::json jsonTemp;
-            jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 1;
+            jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 10;
             jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = SampleObject::c_JSONType;
 
             jsonTemp["future_data_1"] = 15;
-            jsonTemp["future_data_1"] = "TEST";
-            jsonTemp["future_data_1"] = 1.5f;
+            jsonTemp["future_data_2"] = "TEST";
+            jsonTemp["future_data_3"] = 1.5f;
             Loader::saveToFile(m_path + "sample_v10_highversion", jsonTemp);
         }
     }
@@ -170,7 +170,7 @@ bool JSONUpgraderPanel::SampleObject::upgradeJSON(JSONUpgrader& upgrader)
     upgrader.added_variable(3, "added_int", 15);
     upgrader.deleted_variable(4, "deleted_int");
 
-    return false;
+    return true;
 }
 
 bool JSONUpgraderPanel::SampleObject::jsonOperation(JSONOperation& operation)
