@@ -52,6 +52,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<ImGUIDemoPanel>("imgui_demo"));
     m_settings.console_commands.push_back(new PanelCommand<Inspector>("inspector"));
     m_settings.console_commands.push_back(new PanelCommand<FileSavingPanel>("file_saving_panel"));
+    m_settings.console_commands.push_back(new PanelCommand<JSONUpgraderPanel>("json_upgrader_panel"));
 
     //physics commands
     m_settings.console_commands.push_back(new PhysicsActiveCommand());

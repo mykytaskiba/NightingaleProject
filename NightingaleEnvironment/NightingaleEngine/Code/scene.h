@@ -1,15 +1,22 @@
 #pragma once
 #include "game_object.h"
 #include "defines.h"
+#include "ngjson.h"
 
 class Scene {
-    friend class EngineFunctions;
 
 public:
     class SceneRootObject : public GameObject {
     public:
         SceneRootObject() : GameObject("scene_root") {}
     };
+
+    constexpr static char c_JSONType[] = "json.scene";
+    constexpr static uint c_JsonVersion = 1u;
+    using JSONRepresentation = JSONRepresentation<Scene, c_JsonVersion, c_JSONType>;
+    static bool upgradeJSON(JSONUpgrader& upgrader);
+    bool jsonOperation(JSONOperation& opeartion);
+
 private:
 
 
@@ -27,18 +34,19 @@ public:
 
     void init();
     void tick();
-    void sync_gameobjects_to_physics();
-    void sync_physics_to_gameobjects();
+    void syncObjectToPhysics();
+    void syncPhysicsToObject();
     
-    void execute_on_root(TGameObjectFunc func);
+    void executeOnRoot(TGameObjectFunc func);
 
-    GameObject* find_object(GUID const& guid);
+    GameObject* findObject(GUID const& guid);
 
-    GameObject* get_root() {
+    GameObject* getRoot() {
         return m_pRoot;
     }
-    void delete_object(GameObject* pGameObject);
+    void deleteObject(GameObject* pGameObject);
     void deleteChildren(GameObject* pGameObject);
+    void addObject(GameObject* pGameObject, GameObject* pParent);
 
     void clearScene();
 };

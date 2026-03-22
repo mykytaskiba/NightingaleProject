@@ -6,6 +6,17 @@
 #include "loader.h"
 #include "render_mesh.h"
 
+
+bool Scene::upgradeJSON(JSONUpgrader& upgrader)
+{
+    return true;
+}
+
+bool Scene::jsonOperation(JSONOperation& operation)
+{
+    return true;
+}
+
 void Scene::addDeferredFunction(TDeferredFunction function)
 {
     m_defferedFunctions.push_back(function);
@@ -47,18 +58,18 @@ void Scene::tick()
     m_defferedFunctions.clear();
 }
 
-void Scene::sync_gameobjects_to_physics()
+void Scene::syncObjectToPhysics()
 {
-    execute_on_root(
+    executeOnRoot(
         [](GameObject& gameObject) {
             gameObject.sync_gameobject_to_physics();
         }
     );
 }
 
-void Scene::sync_physics_to_gameobjects()
+void Scene::syncPhysicsToObject()
 {
-    execute_on_root(
+    executeOnRoot(
         [](GameObject& gameObject) {
             gameObject.sync_physics_to_gameobject();
         }
@@ -66,7 +77,7 @@ void Scene::sync_physics_to_gameobjects()
 }
 
 
-void Scene::execute_on_root(TGameObjectFunc func)
+void Scene::executeOnRoot(TGameObjectFunc func)
 {
 
     if (m_pRoot == nullptr) {
@@ -76,11 +87,11 @@ void Scene::execute_on_root(TGameObjectFunc func)
     m_pRoot->execute_on_hierarchy(func);
 }
 
-GameObject* Scene::find_object(GUID const& guid)
+GameObject* Scene::findObject(GUID const& guid)
 {
     GameObject* pResult = nullptr;
 
-    execute_on_root(
+    executeOnRoot(
         [this, &guid, &pResult](GameObject& gameObject) {
             if (gameObject.getGUID() == guid) {
                 pResult = &gameObject;
@@ -92,7 +103,7 @@ GameObject* Scene::find_object(GUID const& guid)
 }
 
 
-void Scene::delete_object(GameObject* pGameObject)
+void Scene::deleteObject(GameObject* pGameObject)
 {
     if (pGameObject == nullptr) {
         assert(false); //why are we deleting something that already null? 
@@ -127,13 +138,21 @@ void Scene::deleteChildren(GameObject* pGameObject)
             return;
         }
 
-        delete_object(pChild);
+        deleteObject(pChild);
     }
 
     assert(pGameObject->getChildren().empty());
 }
 
+void Scene::addObject(GameObject* pGameObject, GameObject* pParent)
+{
+    addDeferredFunction([pGameObject, pParent] {
+        EngineFunctions::Setup(pGameObject, pParent);
+        }
+    );
+}
+
 void Scene::clearScene()
 {
-    deleteChildren(get_root());
+    deleteChildren(getRoot());
 }

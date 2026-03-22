@@ -172,5 +172,5 @@ void PhysicsControlPanel::forceSimulatePhysics(float simulateTime)
     physics.update(simulateTime);
     physics.setActive(false);
     physics.setMaxUpdatesPerFrame(currentMaxUpdatesPerFrame);
-    EngineFunctions::scene().sync_gameobjects_to_physics();
+    EngineFunctions::scene().syncObjectToPhysics();
 }

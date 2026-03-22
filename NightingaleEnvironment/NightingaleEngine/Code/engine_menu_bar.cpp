@@ -41,15 +41,15 @@ void EngineMenuBar::render_update()
         if (ImGui::Button("Lag Simulator")) {
             EngineFunctions::ExecuteCommand("lag_simulator");
         }
-
         if (ImGui::Button("ImGUI Demo Window")) {
             EngineFunctions::ExecuteCommand("imgui_demo");
         }
-
         if (ImGui::Button("File Saving Panel")) {
             EngineFunctions::ExecuteCommand("file_saving_panel");
         }
-
+        if (ImGui::Button("JSON Upgrader Panel")) {
+            EngineFunctions::ExecuteCommand("json_upgrader_panel");
+        }
         if (ImGui::Button("Close App")) {
             EngineFunctions::ExecuteCommand("quit");
         }

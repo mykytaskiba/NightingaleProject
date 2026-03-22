@@ -35,8 +35,8 @@ public:
 
     static vector<string> read_file_contents_by_line(string const& path);
 
-    static bool saveToFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags = FileCreationFlags::None);
-    static bool saveToFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::None);
+    static bool saveToFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
+    static bool saveToFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
     
     static bool createDirectories(std::filesystem::path const& path);
 

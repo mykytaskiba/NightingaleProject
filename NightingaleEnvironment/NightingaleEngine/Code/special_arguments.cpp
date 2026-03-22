@@ -14,7 +14,7 @@ bool SelectedGameObject::retrieve(ParsingResult& result)
         return false;
     }
 
-    m_pGameObject = EngineFunctions::scene().find_object(guid);
+    m_pGameObject = EngineFunctions::scene().findObject(guid);
     if (m_pGameObject == nullptr) {
         result.bSuccess = false;
         result.errorMessage = "Selected Object not found by GUID " + guid.string();

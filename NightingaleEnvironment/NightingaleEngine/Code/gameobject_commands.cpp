@@ -167,7 +167,7 @@ void DeleteGameObjectCommand::execute_command(ArgumentList<SelectedGameObject>& 
 
     GUID guid = pGameObject->getGUID();
 
-    EngineFunctions::scene().delete_object(pGameObject);
+    EngineFunctions::scene().deleteObject(pGameObject);
     pGameObject = nullptr;
 
     result.bSuccess = true;

@@ -44,9 +44,9 @@ void Engine::register_systems()
     m_updateCallback.addCallback({ 70, [this] {m_debugUI.newFrame(); } });
     m_updateCallback.addCallback({ 80, [this] {m_input.captureInputState(); } });
     m_updateCallback.addCallback({ 81, [this] {m_hotkeyManager.processHotkeys(); } });
-    m_updateCallback.addCallback({ 85, [this] {m_scene.sync_gameobjects_to_physics(); } });
+    m_updateCallback.addCallback({ 85, [this] {m_scene.syncObjectToPhysics(); } });
     m_updateCallback.addCallback({ 90, [this] {m_scene.tick(); } });
-    m_updateCallback.addCallback({ 185, [this] {m_scene.sync_physics_to_gameobjects(); } });
+    m_updateCallback.addCallback({ 185, [this] {m_scene.syncPhysicsToObject(); } });
     m_updateCallback.addCallback({ 190, [this] {m_physics.update(m_frameController.getDeltaTime()); } });
     m_updateCallback.addCallback({ 200, [this] {m_renderer.render(); } });
     m_updateCallback.addCallback({ 230, [this] {m_debugUI.endFrame(); } });
@@ -116,6 +116,8 @@ void Engine::populateGameObjectFactory()
 
 #include "render_mesh.h"
 #include "physics_debug_render_pass.h"
+#include "ngjson.h"
+#include "loader.h"
 void Engine::CS550TempTestFuncInit()
 {
     /*
@@ -138,7 +140,10 @@ void Engine::CS550TempTestFuncInit()
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);*/
 
-    m_scene.get_root()->jsonOperation();
+    auto sceneJSON = Scene::JSONRepresentation(EngineFunctions::scene());
+    sceneJSON.executeOperation(JSONMode::Serialize);
+
+    Loader::saveToFile(std::filesystem::path("jsonTest/scene.json"), sceneJSON.getJSON());
 
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);

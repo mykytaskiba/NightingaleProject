@@ -35,7 +35,7 @@ void SceneHierarchy::render_update()
 
     ImGui::Separator();
 
-    drawSceneTree(EngineFunctions::scene().get_root());
+    drawSceneTree(EngineFunctions::scene().getRoot());
 
     ImGui::End();
 
@@ -100,7 +100,7 @@ void Inspector::render_update()
 
     ImGui::Separator();
 
-    GameObject* pGameObject = EngineFunctions::scene().find_object(selectedGUID);
+    GameObject* pGameObject = EngineFunctions::scene().findObject(selectedGUID);
     if (pGameObject == nullptr) {
         ImGui::Text("Object not found");
     }
