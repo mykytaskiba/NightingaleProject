@@ -172,9 +172,6 @@
     <ClCompile Include="Code\gameobject_commands.cpp">
       <Filter>Source Files\Console</Filter>
     </ClCompile>
-    <ClCompile Include="Code\gameobject_factory.cpp">
-      <Filter>Source Files\Loading</Filter>
-    </ClCompile>
     <ClCompile Include="Code\skeleton.cpp">
       <Filter>Source Files\Rendering\Skeleton</Filter>
     </ClCompile>
@@ -398,9 +395,6 @@
     </ClInclude>
     <ClInclude Include="Code\asset_manager.h">
       <Filter>Header Files\AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\gameobject_factory.h">
-      <Filter>Header Files\Loading</Filter>
     </ClInclude>
     <ClInclude Include="Code\skeleton.h">
       <Filter>Header Files\Rendering\Skeleton</Filter>

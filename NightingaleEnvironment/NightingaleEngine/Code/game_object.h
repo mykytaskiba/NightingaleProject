@@ -4,6 +4,7 @@
 #include "ngmath.h"
 #include "ngphys.h"
 #include "guid.h"
+#include "factory.h"
 
 class Component;
 class GameObject;
@@ -15,7 +16,7 @@ using TGameObjectFunc = std::function<void(GameObject&)>;
 typedef void (*TComponentFunc)(Component&);
 
 //Core gameobject class that keeps track of a parent-children hierarchy 
-class GameObject {
+class GameObject : public FactoryElement<std::string, GameObject> {
 
     friend class EngineFunctions;
 protected:

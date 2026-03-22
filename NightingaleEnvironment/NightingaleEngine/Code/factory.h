@@ -4,6 +4,20 @@
 #include "nightingale_assert.h"
 
 template <typename TKey, typename TValue>
+class FactoryElement {
+	template <typename TKey, typename TValue>
+	friend class Factory;
+private:
+	void setFactoryKey(TKey const& key) {
+		m_factoryKey = key;
+	}
+
+	TKey m_factoryKey{};
+public:
+	TKey const& getFactoryKey() const { return m_factoryKey; }
+};
+
+template <typename TKey, typename TValue>
 class Factory {
 public:
 	using FCreationFunc = std::function<TValue* ()>;
@@ -43,8 +57,14 @@ public:
 		}
 
 		outValue = it->second();
-		return true;
 
+		if (outValue == nullptr) {
+			assert(false);
+			return false;
+		}
+
+		outValue->setFactoryKey(key);
+		return true;
 	}
 
 };

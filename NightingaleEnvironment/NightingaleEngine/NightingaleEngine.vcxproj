@@ -180,7 +180,6 @@
     <ClInclude Include="Code\environment.h" />
     <ClInclude Include="Code\frame_controller.h" />
     <ClInclude Include="Code\gameobject_commands.h" />
-    <ClInclude Include="Code\gameobject_factory.h" />
     <ClInclude Include="Code\game_object.h" />
     <ClInclude Include="Code\gl_shader.h" />
     <ClInclude Include="Code\gl_shader_uniform.h" />
@@ -250,7 +249,6 @@
     <ClCompile Include="Code\forward_render_pass.cpp" />
     <ClCompile Include="Code\frame_controller.cpp" />
     <ClCompile Include="Code\gameobject_commands.cpp" />
-    <ClCompile Include="Code\gameobject_factory.cpp" />
     <ClCompile Include="Code\gameobject_menu.cpp" />
     <ClCompile Include="Code\game_object.cpp" />
     <ClCompile Include="Code\gl_shader.cpp" />

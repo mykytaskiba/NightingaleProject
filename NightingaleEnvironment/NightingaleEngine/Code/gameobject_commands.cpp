@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "gameobject_commands.h"
 #include "game_object.h"
-#include "gameobject_factory.h"
 #include "mesh.h"
 #include "asset_manager.h"
 #include "render_mesh.h"
