@@ -4,7 +4,7 @@
 #include "ngphys.h"
 #include "ngrender.h"
 #include "renderer.h"
-
+#include "json.hpp"
 
 Transform const& GameObject::getRenderTransform() const
 {   
@@ -79,6 +79,18 @@ void GameObject::freeResources()
 
     assert(m_pRenderNode == nullptr);
     assert(m_pPhysicsBody == nullptr);
+}
+
+#include "loader.h"
+#include "ngjson.h"
+void GameObject::jsonOperation()
+{
+    nlohmann::json jsonObject;
+    JSONOperation operation{ JSONMode::Serialize,jsonObject };
+    
+    operation.link("alias", m_alias);
+
+    Loader::saveToFile("jsonTest/json.json", jsonObject, FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
 }
 
 

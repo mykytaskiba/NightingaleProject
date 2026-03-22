@@ -16,6 +16,7 @@
 #include "ngrender.h"
 #include "callback_handler.h"
 #include "hotkey_processing.h"
+#include "factory.h"
 
 
 class Engine {
@@ -67,5 +68,9 @@ private:
     static Engine* m_pEngine;
 
     void CS550TempTestFuncInit();
+
+    Factory<std::string, GameObject> m_factoryGameObject;
+    void populateGameObjectFactory();
+    void defaultGameObjectFactory();
 
 };

@@ -120,6 +120,66 @@ vector<string> Loader::read_file_contents_by_line(string const& path)
     return lines;
 }
 
+bool Loader::saveToFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags)
+{
+    std::filesystem::path absolutePath = std::filesystem::absolute(path);
+
+    bool bFileExists = std::filesystem::exists(absolutePath);
+
+    bool bIsDirectory = std::filesystem::is_directory(absolutePath) && bFileExists;
+    if (bIsDirectory) {
+        return false;
+    }
+
+    std::filesystem::path directoryPath = absolutePath.parent_path();
+    
+    bool bDirectoryExists = std::filesystem::exists(directoryPath);
+
+    if (bFileExists) {
+        if ((flags & FileCreationFlags::Overwrite) == FileCreationFlags::None) {
+            return false;
+        }
+    }
+    if (!bDirectoryExists) {
+        if ((flags & FileCreationFlags::CreateDirectory) == FileCreationFlags::None) {
+            return false;
+        }
+    }
+
+    if (!bDirectoryExists) {
+        if (!std::filesystem::create_directories(directoryPath)) {
+            return false;
+        }
+    }
+
+    std::ofstream fileStream(absolutePath);
+
+    if (!fileStream) {
+        //Failed to open or create file
+        return false;
+    }
+
+    fileStream << contents;
+    bool bWriteSuccess = fileStream.good();
+    fileStream.close();
+    return bWriteSuccess;
+}
+
+bool Loader::saveToFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags)
+{
+    if ((flags & FileCreationFlags::JSONSingleLine) == FileCreationFlags::None) {
+        return saveToFile(path, json.dump(s_jsonIndent), flags);
+    }
+    else {
+        return saveToFile(path, to_string(json), flags);
+    }
+}
+
+bool Loader::createDirectories(std::filesystem::path const& path)
+{
+    return false;
+}
+
 bool Loader::loadTexture(string const& path)
 {
     return false;

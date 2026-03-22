@@ -20,8 +20,6 @@ class GameObject {
     friend class EngineFunctions;
 protected:
 
-    GameObject();
-    GameObject(std::string const& alias);
 
     std::string m_alias{ "gameobject" };
     GUID m_guid{};
@@ -42,6 +40,9 @@ protected:
     
 
 public:
+    GameObject();
+    GameObject(std::string const& alias);
+
     Transform& getTransform() {
         return m_transform;
     }
@@ -86,4 +87,5 @@ public:
     PhysicsBody const* getPhysicsBody() const { return m_pPhysicsBody; }
     PhysicsBody* getPhysicsBody() { return m_pPhysicsBody; } 
 
+    void jsonOperation();
 };

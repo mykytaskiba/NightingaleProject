@@ -148,11 +148,15 @@
     <ClInclude Include="Code\argument_helpers.h" />
     <ClInclude Include="Code\argument_impl.h" />
     <ClInclude Include="Code\advanced_arguments.h" />
+    <ClInclude Include="Code\bitwise_enum.hpp" />
     <ClInclude Include="Code\callback_handler.h" />
+    <ClInclude Include="Code\factory.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
     <ClInclude Include="Code\gameobject_menu.h" />
     <ClInclude Include="Code\guid.h" />
+    <ClInclude Include="Code\json.hpp" />
+    <ClInclude Include="Code\ngjson.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
     <ClInclude Include="Code\physics_debug.h" />
@@ -198,7 +202,6 @@
     <ClInclude Include="Code\render_node.h" />
     <ClInclude Include="Code\render_shader.h" />
     <ClInclude Include="Code\render_skinned.h" />
-    <ClInclude Include="Code\root_object.h" />
     <ClInclude Include="Code\scene.h" />
     <ClInclude Include="Code\screen.h" />
     <ClInclude Include="Code\shader_source.h" />
@@ -224,6 +227,7 @@
     <ClInclude Include="Code\hotkey_processing.h" />
     <ClInclude Include="Code\render_node_menu.h" />
     <ClInclude Include="Code\physics_body_menu.h" />
+    <ClInclude Include="Code\fileloading_panel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -242,6 +246,7 @@
     <ClCompile Include="Code\engine_internals.cpp" />
     <ClCompile Include="Code\environment.cpp" />
     <ClCompile Include="Code\execution_state.cpp" />
+    <ClCompile Include="Code\fileloading_panel.cpp" />
     <ClCompile Include="Code\forward_render_pass.cpp" />
     <ClCompile Include="Code\frame_controller.cpp" />
     <ClCompile Include="Code\gameobject_commands.cpp" />
@@ -270,6 +275,7 @@
     <ClCompile Include="Code\physics_control_panel.cpp" />
     <ClCompile Include="Code\physics_debug.cpp" />
     <ClCompile Include="Code\physics_debug_render_pass.cpp" />
+    <ClCompile Include="Code\default_gameobject_factory.cpp" />
     <ClCompile Include="Code\project_four_coobject.cpp" />
     <ClCompile Include="Code\project_one_gameobject.cpp" />
     <ClCompile Include="Code\project_three_coobject.cpp" />

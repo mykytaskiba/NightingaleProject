@@ -64,9 +64,6 @@
     <Filter Include="Header Files\Input" />
     <Filter Include="Header Files\Game" />
     <Filter Include="Header Files\AssetManagement" />
-    <Filter Include="Header Files\Setup">
-      <UniqueIdentifier>{1243eb7c-61a4-4be3-8e8b-3d673afd9307}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\CoreConsoleCommands">
       <UniqueIdentifier>{2c371785-5bca-44ba-b6c7-b44fb8b65f10}</UniqueIdentifier>
     </Filter>
@@ -88,6 +85,12 @@
     </Filter>
     <Filter Include="Header Files\Menus\DebugPanels">
       <UniqueIdentifier>{ec442aa7-3603-40e1-b3e4-f293ce5f985a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\JSON">
+      <UniqueIdentifier>{ae4769a2-e60d-4443-80c7-b77206a95553}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Factory">
+      <UniqueIdentifier>{f03d413a-d91a-4b57-aeec-25d1544991fc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +313,12 @@
     <ClCompile Include="Code\special_arguments.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\fileloading_panel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\default_gameobject_factory.cpp">
+      <Filter>Engine Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -340,9 +349,6 @@
       <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\game_object.h">
-      <Filter>Header Files\Logic</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\root_object.h">
       <Filter>Header Files\Logic</Filter>
     </ClInclude>
     <ClInclude Include="Code\core_interface.h">
@@ -450,9 +456,6 @@
     <ClInclude Include="Code\key_enum.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Code\engine_settings.h">
-      <Filter>Header Files\Setup</Filter>
-    </ClInclude>
     <ClInclude Include="Code\execution_state.h">
       <Filter>Header Files\Scripting</Filter>
     </ClInclude>
@@ -548,6 +551,24 @@
     </ClInclude>
     <ClInclude Include="Code\gameobject_menu.h">
       <Filter>Header Files\Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\fileloading_panel.h">
+      <Filter>Header Files\Menus\DebugPanels</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\bitwise_enum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\engine_settings.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\json.hpp">
+      <Filter>Header Files\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\ngjson.h">
+      <Filter>Header Files\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\factory.h">
+      <Filter>Header Files\Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "scripting.h"
+#include "factory.h"
 
 class GameObject;
 class Camera;
@@ -16,13 +17,14 @@ class EngineFunctions {
 private:
     static void Setup(GameObject* setup, GameObject* pParent);
 
-    //to do rename
-    static void PreSetup(GameObject* setup, GameObject* pParent);
 
     static void SetParent(GameObject* pGameObject, GameObject* pParent);
 
 public:
-    
+
+    //to do rename
+    static void PreSetup(GameObject* setup, GameObject* pParent);
+
     template <typename TGameObject>
     static TGameObject* InstantiateGameObject(GameObject* pParent = nullptr) {
         TGameObject* pGameObject = new TGameObject();
@@ -60,5 +62,7 @@ public:
     static HotkeyManager& hotkeyManager();
 
     static void close_app();
+
+    static Factory<std::string, GameObject> const& factoryGameObject();
 
 };

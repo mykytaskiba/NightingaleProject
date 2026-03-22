@@ -2,16 +2,28 @@
 #include "defines.h"
 #include "assimp/Importer.hpp"
 #include "ngmath.h"
+#include <filesystem>
+#include "bitwise_enum.hpp"
+#include "json.hpp"
 
 class Mesh;
 class Skeleton;
 class Animation;
 
-struct Loader {
+enum class FileCreationFlags : uint {
+    None = 0,
+    CreateDirectory = 1 << 0,
+    Overwrite = 1 << 1,
+    JSONSingleLine = 1 << 2,
+};
+ENABLE_ENUM_BITWISE_OPERATORS(FileCreationFlags);
+
+class Loader{
 private:
 
+    static constexpr unsigned int s_jsonIndent{ 4u };
+
 public:
-    string identifier;
 
     static Mesh* fbxSingleMesh(string const& path, float importScale);
     static Skeleton* fbxSkeleton(string const& path, float importScale);
@@ -22,6 +34,11 @@ public:
     static string read_file_contents(string const& path);
 
     static vector<string> read_file_contents_by_line(string const& path);
+
+    static bool saveToFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags = FileCreationFlags::None);
+    static bool saveToFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::None);
+    
+    static bool createDirectories(std::filesystem::path const& path);
 
     static bool loadTexture(string const& path);
 

@@ -46,6 +46,10 @@ void EngineMenuBar::render_update()
             EngineFunctions::ExecuteCommand("imgui_demo");
         }
 
+        if (ImGui::Button("File Saving Panel")) {
+            EngineFunctions::ExecuteCommand("file_saving_panel");
+        }
+
         if (ImGui::Button("Close App")) {
             EngineFunctions::ExecuteCommand("quit");
         }

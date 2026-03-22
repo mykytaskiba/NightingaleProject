@@ -18,11 +18,16 @@ void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, L
     
     GameObject* pCreatedObject = nullptr;
 
-    if (!GameObjectFactory::instantiateFromType(type, pCreatedObject, pParent)) {
+    bool bSuccess = EngineFunctions::factoryGameObject().create(type, pCreatedObject);
+    if (!bSuccess) {
         result.message = "failed instantiating object of type " + type;
         result.bSuccess = false;
         return;
+
     }
+
+    EngineFunctions::PreSetup(pCreatedObject, pParent);
+
 
     state.pGameObject = pCreatedObject;
 

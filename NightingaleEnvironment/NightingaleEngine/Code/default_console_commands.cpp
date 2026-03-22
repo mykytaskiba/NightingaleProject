@@ -9,6 +9,7 @@
 #include "physics_commands.h"
 #include "lag_simulator.h"
 #include "scene_browser.h"
+#include "fileloading_panel.h"
 
 
 void Engine::defaultSettings_CoreCommands() {
@@ -50,6 +51,7 @@ void Engine::defaultSettings_CoreCommands() {
     m_settings.console_commands.push_back(new PanelCommand<SceneHierarchy>("scene_hierarchy"));
     m_settings.console_commands.push_back(new PanelCommand<ImGUIDemoPanel>("imgui_demo"));
     m_settings.console_commands.push_back(new PanelCommand<Inspector>("inspector"));
+    m_settings.console_commands.push_back(new PanelCommand<FileSavingPanel>("file_saving_panel"));
 
     //physics commands
     m_settings.console_commands.push_back(new PhysicsActiveCommand());

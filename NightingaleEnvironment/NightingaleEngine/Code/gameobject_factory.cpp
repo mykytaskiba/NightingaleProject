@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "gameobject_factory.h"
 #include "engine_functions.h"
-
+/*
 //Game Object includes
 #include "game_object.h";
 #include "camera_controller.h"
@@ -24,3 +24,4 @@ bool GameObjectFactory::instantiateFromType(string const& type, GameObject*& pRe
 
     return pResult != nullptr;
 }
+*/

@@ -31,6 +31,7 @@ Engine::Engine()
 
 void Engine::register_systems()
 {
+    m_initCallback.addCallback({ 50, [this] {populateGameObjectFactory(); } });
     m_initCallback.addCallback({ 74, [this] {m_window.init(); } });
     m_initCallback.addCallback({ 75, [this] {m_debugUI.init(m_window); } });
     m_initCallback.addCallback({ 80, [this] {m_input.init(); } });
@@ -104,6 +105,15 @@ void Engine::setDefaultSettings()
     defaultSettings_CoreCommands();
 }
 
+void Engine::populateGameObjectFactory()
+{
+    defaultGameObjectFactory();
+
+    if (m_settings.m_setupFactoryCallback != nullptr) {
+        m_settings.m_setupFactoryCallback(m_factoryGameObject);
+    }
+}
+
 #include "render_mesh.h"
 #include "physics_debug_render_pass.h"
 void Engine::CS550TempTestFuncInit()
@@ -128,6 +138,9 @@ void Engine::CS550TempTestFuncInit()
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);*/
 
+    m_scene.get_root()->jsonOperation();
+
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);
 }
+
