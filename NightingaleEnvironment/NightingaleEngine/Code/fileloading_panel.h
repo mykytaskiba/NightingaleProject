@@ -43,6 +43,12 @@ public:
 		constexpr static uint c_JsonVersion = 5u;
 		using JSONRepresentation = JSONRepresentation<SampleObject, c_JsonVersion, c_JSONType>;
 		static bool upgradeJSON(JSONUpgrader& upgrader);
-		bool jsonOperation(JSONOperation& operation);
+
+		template <typename TPropertyVisitor>
+		void properties(TPropertyVisitor& visitor) {
+			visitor("added_int", m_addedInt);
+			visitor("original_float", m_originalFloat);
+			visitor("renamed_string_var", m_renamedVariable);
+		}
 	};
 };

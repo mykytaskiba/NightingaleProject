@@ -28,6 +28,19 @@ bool ImGuiHelpers::Vector3Input(const char* label, Vector3& vector, float vSpeed
     return ImGui::DragFloat3(label, &vector[0], vSpeed, vMin, vMax, format, flags);
 }
 
+bool ImGuiHelpers::QuaternionInput(const char* label, Quaternion& quat, float vSpeed, float vMin, float vMax, const char* format, ImGuiSliderFlags flags)
+{
+    float quatArr[4]{ quat.x,quat.y,quat.z,quat.w };
+    if (ImGui::DragFloat4(label, &quatArr[0], vSpeed, vMin, vMax, format, flags)) {
+        quat.x = quatArr[0];
+        quat.y = quatArr[1];
+        quat.z = quatArr[2];
+        quat.w = quatArr[3];
+        return true;
+    }
+    return false;
+}
+
 bool ImGuiHelpers::AxisAlignedBoxInput(const char* label, AxisAlignedBox& AxisAlignedBox, float vSpeed, float vMin, float vMax, const char* format, ImGuiSliderFlags flags)
 {
     Vector3 offset = AxisAlignedBox.center();

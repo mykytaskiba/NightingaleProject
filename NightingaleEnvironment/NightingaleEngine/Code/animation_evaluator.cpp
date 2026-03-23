@@ -3,6 +3,7 @@
 #include "animation.h"
 #include "skeleton.h"
 #include "ngmath.h"
+#include "transform.h"
 
 using TPositionChannel = Animation::TPositionChannel;
 using TRotationChannel = Animation::TRotationChannel;

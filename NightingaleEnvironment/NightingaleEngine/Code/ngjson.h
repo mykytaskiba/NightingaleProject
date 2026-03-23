@@ -1,42 +1,51 @@
 #pragma once
 #include "json.hpp"
+#include "properties.h"
 
-enum class JSONMode {
-	Serialize = 0,
-	Deserialize = 1,
-
-};
-
-struct JSONOperation {
-	JSONMode m_mode;
+struct JSONSerializerVisitor {
 	nlohmann::json& m_json;
 
-	template<typename T>
-	void link(std::string const& key, T& value) {
-		if (m_mode == JSONMode::Serialize) {
-			m_json[key] = value;
-		} 
-		else if (m_mode == JSONMode::Deserialize) {
-			if (m_json.contains(key)) {
-				value = m_json[key].get<T>();
-			}
+	template<typename TValue, typename... TMeta >
+	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
+		m_json[key] = value;
+	}
+
+	template<typename TValue, typename... TMeta >
+	requires HasProperties<TValue>
+	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
+		JSONSerializerVisitor childSerializer{ m_json[key] };
+		value.properties(childSerializer);
+	}
+
+};
+
+struct JSONDeserializerVisitor {
+	nlohmann::json const& m_json;
+
+	template<typename TValue, typename... TMeta >
+	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
+		if (Meta::has<Meta::ReadOnly>(meta...)) {
+			return;
+		}
+		if (m_json.contains(key)) {
+			value = m_json[key].get<TValue>();
 		}
 	}
 
-	template <typename T>
-	void serialize_only(std::string const& key, T const& value) {
-		if (m_mode == JSONMode::Serialize) {
-			m_json[key] = value;
+	template<typename TValue, typename... TMeta >
+	requires HasProperties<TValue>
+		void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
+		if (Meta::has<Meta::ReadOnly>(meta...)) {
+			return;
 		}
-	}
 
-	template <typename T>
-	void deserialize_only(std::string const& key, T& value) {
-		if (m_mode == JSONMode::Deserialize) {
-			link(key, value);
+		if (m_json.contains(key)) {
+			JSONDeserializerVisitor childSerializer{ m_json[key] };
+			value.properties(childSerializer);
 		}
 	}
 };
+
 
 struct JSONUpgrader {
 
@@ -91,39 +100,43 @@ template <typename TTarget, unsigned int CVersion, const char* CType>
 class JSONRepresentation {
 
 private:
-	TTarget& m_target;
 
 	static constexpr const char* s_type = CType;
 	static constexpr const uint s_version = CVersion;
-	nlohmann::json m_json{};
 
 public:
-	JSONRepresentation(TTarget& target) : m_target(target) {}
-	JSONRepresentation(TTarget& target, nlohmann::json const& jsonSource) : m_target(target), m_json(jsonSource) {}
+	JSONRepresentation() {}
+	
 
-	void executeOperation(JSONMode mode) {
-		//before the of the links, see if we need to see if we need to convert to our version
-		if (mode == JSONMode::Deserialize) {
-			if (!upgradeJSON()) {
-				//Couldnt update JSON
-				return;
-			}
-		}
+	static 
+	nlohmann::json serialize(TTarget& target) {
+		nlohmann::json json;
 
-		JSONOperation operation{ mode, m_json };
-		
-		if (mode == JSONMode::Serialize) {
-			JSONOperation metaOP{ mode, m_json[JSON_META_KEY] };
-			metaOP.serialize_only(JSON_VERSION_KEY,s_version);
-			metaOP.serialize_only(JSON_TYPE_KEY,s_type);
-		}
+		//Meta Data
+		json[JSON_META_KEY][JSON_VERSION_KEY] = s_version;
+		json[JSON_META_KEY][JSON_TYPE_KEY] = s_type;
 
-		m_target.jsonOperation(operation);
+		JSONSerializerVisitor serializer{ json };
+		target.properties(serializer);
+
+		return json;
 	}
 
-	bool upgradeJSON() {
-		if (!m_json.contains(JSON_META_KEY)) return false;
-		nlohmann::json& metaJSON = m_json[JSON_META_KEY];
+	static
+	void deserialize(nlohmann::json& json, TTarget& target) {
+		if (!upgradeJSON(json)) {
+			//Couldnt update JSON
+			return;
+		}
+
+		JSONDeserializerVisitor deserializer{ json };
+		target.properties(deserializer);
+	}
+
+	static
+	bool upgradeJSON(nlohmann::json& json) {
+		if (!json.contains(JSON_META_KEY)) return false;
+		nlohmann::json& metaJSON = json[JSON_META_KEY];
 		if (!metaJSON.contains(JSON_VERSION_KEY)) return false;
 		if (!metaJSON.contains(JSON_TYPE_KEY)) return false;
 
@@ -139,7 +152,7 @@ public:
 		}
 
 		if (fileVersion < s_version) {
-			JSONUpgrader upgrader(m_json, fileVersion);
+			JSONUpgrader upgrader(json, fileVersion);
 			while (fileVersion < s_version) {
 				bool bVersionJumpSuccess = TTarget::upgradeJSON(upgrader);
 				if (!bVersionJumpSuccess) {
@@ -150,7 +163,7 @@ public:
 			}
 		}
 		if (fileVersion == s_version) {
-			m_json[JSON_META_KEY][JSON_VERSION_KEY] = fileVersion;
+			json[JSON_META_KEY][JSON_VERSION_KEY] = fileVersion;
 			return true;
 		}
 		assert(false);
@@ -160,10 +173,6 @@ public:
 	//TTarget must implement functions
 	//member bool jsonOperation(JSONOperation& operation);
 	//static bool TTarget::upgradeJSON(JSONUpgrader&);
-
-	nlohmann::json const& getJSON() const {
-		return m_json;
-	}
 };
 
 //Argument serialization/deserialization section
@@ -180,6 +189,3 @@ void from_json(nlohmann::json const& json, Vector4& vec);
 
 void to_json(nlohmann::json& json, const Quaternion& quat);
 void from_json(nlohmann::json const& json, Quaternion& quat);
-
-void to_json(nlohmann::json& json, const Transform& transform);
-void from_json(nlohmann::json const& json, Transform& transform);

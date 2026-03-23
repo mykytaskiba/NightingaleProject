@@ -152,15 +152,15 @@ void JSONUpgraderPanel::performConversion(std::string path)
         return;
     }
 
-    SampleObject::JSONRepresentation sampleObjectJson(sample, data);
-
-    sampleObjectJson.executeOperation(JSONMode::Deserialize);
+    SampleObject::JSONRepresentation::deserialize(data,sample);
 
     std::filesystem::path export_path = std::filesystem::path{ path };
     std::string filename = export_path.filename().string();
     export_path.replace_filename(filename + "_result");
 
-    Loader::saveToFile(export_path, sampleObjectJson.getJSON());
+    nlohmann::json dataExported = SampleObject::JSONRepresentation::serialize(sample);
+
+    Loader::saveToFile(export_path, dataExported);
 }
 
 bool JSONUpgraderPanel::SampleObject::upgradeJSON(JSONUpgrader& upgrader)
@@ -170,13 +170,5 @@ bool JSONUpgraderPanel::SampleObject::upgradeJSON(JSONUpgrader& upgrader)
     upgrader.added_variable(3, "added_int", 15);
     upgrader.deleted_variable(4, "deleted_int");
 
-    return true;
-}
-
-bool JSONUpgraderPanel::SampleObject::jsonOperation(JSONOperation& operation)
-{
-    operation.link("added_int", m_addedInt);
-    operation.link("original_float", m_originalFloat);
-    operation.link("renamed_string_var", m_renamedVariable);
     return true;
 }

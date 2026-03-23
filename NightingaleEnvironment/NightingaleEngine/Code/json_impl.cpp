@@ -52,16 +52,3 @@ void from_json(nlohmann::json const& json, Quaternion& quat)
 	json.at("z").get_to(quat.z);
 }
 
-void to_json(nlohmann::json& json, const Transform& transform)
-{
-	json["position"] = transform.position;
-	json["rotation"] = transform.rotation;
-	json["scale"] = transform.scale;
-}
-
-void from_json(nlohmann::json const& json, Transform& transform)
-{
-	json.at("position").get_to(transform.position);
-	json.at("rotation").get_to(transform.rotation);
-	json.at("scale").get_to(transform.scale);
-}

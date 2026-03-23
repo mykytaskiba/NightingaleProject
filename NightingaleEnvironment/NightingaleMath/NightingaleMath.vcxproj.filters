@@ -36,9 +36,6 @@
     <ClInclude Include="Code\cubic_spline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\axis_aligned_box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -54,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\cubic_spline.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\axis_aligned_box.cpp">

@@ -1,5 +1,6 @@
 #pragma once
 #include "ngmath.h"
+#include "transform.h"
 
 template <typename T> 
 class AnimationChannel;

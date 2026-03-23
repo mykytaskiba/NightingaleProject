@@ -5,6 +5,8 @@
 #include "game_object.h"
 #include "gameobject_menu.h"
 #include "loader.h"
+#include "properties.h"
+#include "property_visitor.h"
 
 void SceneHierarchy::render_update()
 {
@@ -110,16 +112,19 @@ void Inspector::render_update()
 
         if (ImGui::Button("DebugJSON")) {
 
-            GameObject::JSONRepresentation json(*pGameObject);
-            json.executeOperation(JSONMode::Serialize);
-
-            Loader::saveToFile("jsonTest/gameobject.json", json.getJSON());
+            nlohmann::json json = GameObject::JSONRepresentation::serialize(*pGameObject);
+            
+            Loader::saveToFile("jsonTest/gameobject.json", json);
         }
     }
 
+    if (pGameObject != nullptr) {
+        ImGui::Separator();
+        ImGui::Text("Properties");
 
-
-
+        PropertyMenuVisitor menuVisitor{};
+        pGameObject->properties(menuVisitor);
+    }
     ImGui::End();
 
     if (!bRemainOpen && m_bActive) {

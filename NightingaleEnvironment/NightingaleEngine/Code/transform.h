@@ -1,7 +1,6 @@
 #pragma once
-#include "matrix.h"
-#include "vector.h"
-#include "quaternion.h"
+#include "ngmath.h"
+#include "properties.h"
 
 //a transform class represents a position, scale and a rotation in the world
 class Transform {
@@ -15,5 +14,13 @@ public:
     Matrix4x4 getMatrix() const;
 
     Vector3 transform(Vector3 const&) const;
+
+
+    template <typename TPropertyVisitor>
+    void properties(TPropertyVisitor& visitor) {
+        visitor("position", position);
+        visitor("rotation", rotation);
+        visitor("scale", scale);
+    }
 
 };

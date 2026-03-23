@@ -6,6 +6,7 @@
 #include "guid.h"
 #include "factory.h"
 #include "ngjson.h"
+#include "transform.h"
 
 class Component;
 class GameObject;
@@ -25,7 +26,7 @@ protected:
 
     std::string m_alias{ "gameobject" };
     GUID m_guid{};
-     
+
     vector<Component*> m_components{};
     vector<GameObject*> m_vChildren{};
     GameObject* m_pParent{ nullptr };
@@ -39,14 +40,23 @@ protected:
     virtual void shutdown() {}
 
 
-    
+
 
 public:
     constexpr static char c_JSONType[] = "json.gameobject";
     constexpr static uint c_JsonVersion = 1u;
     using JSONRepresentation = JSONRepresentation<GameObject, c_JsonVersion, c_JSONType>;
     static bool upgradeJSON(JSONUpgrader& upgrader) { return false; }
-    bool jsonOperation(JSONOperation& operation);
+
+    template <typename TPropertyVisitor>
+    void properties(TPropertyVisitor& visitor) {
+
+        std::string factoryKeyStr{ getFactoryKey() };
+        visitor("factory_key", factoryKeyStr, Meta::ReadOnly{});
+        visitor("alias", m_alias);
+
+        visitor("transform", m_transform);
+    }
 
     GameObject();
     GameObject(std::string const& alias);

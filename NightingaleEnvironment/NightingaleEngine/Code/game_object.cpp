@@ -14,7 +14,7 @@ Transform const& GameObject::getRenderTransform() const
     }
     if (!EngineFunctions::physics().getInterpolateBetweenFrames()) {
         return m_transform;
- }
+    }
     return m_renderTransform;
 }
 
@@ -82,15 +82,6 @@ void GameObject::freeResources()
 }
 
 
-bool GameObject::jsonOperation(JSONOperation& operation)
-{
-    operation.serialize_only("factory_key", getFactoryKey());
-    operation.link("alias", m_alias);
-
-    operation.link("transform", m_transform);
-    
-    return true;
-}
 
 GameObject::GameObject()
 {

@@ -2,6 +2,7 @@
 #include "render_node.h"
 #include "defines.h"
 #include "ngmath.h"
+#include "transform.h"
 
 class ProjectOneGameObject;
 class ProjectFour;

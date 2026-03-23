@@ -140,10 +140,9 @@ void Engine::CS550TempTestFuncInit()
 
     EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);*/
 
-    auto sceneJSON = Scene::JSONRepresentation(EngineFunctions::scene());
-    sceneJSON.executeOperation(JSONMode::Serialize);
+    nlohmann::json sceneJSON = Scene::JSONRepresentation::serialize(EngineFunctions::scene());
 
-    Loader::saveToFile(std::filesystem::path("jsonTest/scene.json"), sceneJSON.getJSON());
+    Loader::saveToFile(std::filesystem::path("jsonTest/scene.json"), sceneJSON);
 
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);

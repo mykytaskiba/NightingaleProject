@@ -7,15 +7,6 @@
 #include "render_mesh.h"
 
 
-bool Scene::upgradeJSON(JSONUpgrader& upgrader)
-{
-    return true;
-}
-
-bool Scene::jsonOperation(JSONOperation& operation)
-{
-    return true;
-}
 
 void Scene::addDeferredFunction(TDeferredFunction function)
 {

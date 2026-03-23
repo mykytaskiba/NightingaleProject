@@ -3,6 +3,7 @@
 #include "animation.h"
 #include "loader.h"
 #include "ngmath.h"
+#include "transform.h"
 
 AnimationBuilder::AnimationBuilder(aiScene const* pScene) {
 

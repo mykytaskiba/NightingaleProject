@@ -146,7 +146,6 @@
     <ClInclude Include="Code\color.h" />
     <ClInclude Include="Code\cubic_spline.h" />
     <ClInclude Include="Code\matrix.h" />
-    <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Includes\ngmath.h" />
     <ClInclude Include="Code\quaternion.h" />
     <ClInclude Include="Code\vector.h" />
@@ -157,7 +156,6 @@
     <ClCompile Include="Code\color.cpp" />
     <ClCompile Include="Code\cubic_spline.cpp" />
     <ClCompile Include="Code\quaternion.cpp" />
-    <ClCompile Include="Code\transform.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

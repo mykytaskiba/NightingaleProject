@@ -207,6 +207,7 @@
     <ClInclude Include="Code\skeleton.h" />
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />
+    <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Code\transform_menu.h" />
     <ClInclude Include="Code\window.h" />
     <ClInclude Include="Code\key_enum.h" />
@@ -227,6 +228,8 @@
     <ClInclude Include="Code\render_node_menu.h" />
     <ClInclude Include="Code\physics_body_menu.h" />
     <ClInclude Include="Code\fileloading_panel.h" />
+    <ClInclude Include="Code\properties.h" />
+    <ClInclude Include="Code\property_visitor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
@@ -292,6 +295,7 @@
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />
     <ClCompile Include="Code\special_arguments.cpp" />
+    <ClCompile Include="Code\transform.cpp" />
     <ClCompile Include="Code\transform_menu.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Code\default_console_commands.cpp" />

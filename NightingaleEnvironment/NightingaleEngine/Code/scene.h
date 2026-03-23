@@ -14,8 +14,12 @@ public:
     constexpr static char c_JSONType[] = "json.scene";
     constexpr static uint c_JsonVersion = 1u;
     using JSONRepresentation = JSONRepresentation<Scene, c_JsonVersion, c_JSONType>;
-    static bool upgradeJSON(JSONUpgrader& upgrader);
-    bool jsonOperation(JSONOperation& operation);
+    static bool upgradeJSON(JSONUpgrader& upgrader) { return false; }
+
+    template <typename TPropertyVisitor>
+    void properties(TPropertyVisitor& visitor) {
+
+    }
 
 private:
     using TDeferredFunction = std::function<void()>;

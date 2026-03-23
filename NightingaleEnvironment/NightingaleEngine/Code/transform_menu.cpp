@@ -2,6 +2,7 @@
 #include "transform_menu.h"
 #include "ngmath.h"
 #include "imgui_helpers.h"
+#include "transform.h"
 
 void TransformMenu::render_update(Transform& transform)
 {
