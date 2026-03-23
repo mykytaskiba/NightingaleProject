@@ -133,9 +133,11 @@ public:
 		}
 
 		uint fileVersion = metaJSON[JSON_VERSION_KEY].get<uint>();
+		
 		if (fileVersion > s_version) {
 			return false;
 		}
+
 		if (fileVersion < s_version) {
 			JSONUpgrader upgrader(m_json, fileVersion);
 			while (fileVersion < s_version) {
@@ -163,3 +165,21 @@ public:
 		return m_json;
 	}
 };
+
+//Argument serialization/deserialization section
+//====================================================
+
+//NGMath is safe to include here
+#include "ngmath.h"
+
+void to_json(nlohmann::json& json, const Vector3& vec);
+void from_json(nlohmann::json const& json, Vector3& vec);
+
+void to_json(nlohmann::json& json, const Vector4& vec);
+void from_json(nlohmann::json const& json, Vector4& vec);
+
+void to_json(nlohmann::json& json, const Quaternion& quat);
+void from_json(nlohmann::json const& json, Quaternion& quat);
+
+void to_json(nlohmann::json& json, const Transform& transform);
+void from_json(nlohmann::json const& json, Transform& transform);

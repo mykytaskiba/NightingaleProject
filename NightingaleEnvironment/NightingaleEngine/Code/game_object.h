@@ -5,6 +5,7 @@
 #include "ngphys.h"
 #include "guid.h"
 #include "factory.h"
+#include "ngjson.h"
 
 class Component;
 class GameObject;
@@ -41,6 +42,12 @@ protected:
     
 
 public:
+    constexpr static char c_JSONType[] = "json.gameobject";
+    constexpr static uint c_JsonVersion = 1u;
+    using JSONRepresentation = JSONRepresentation<GameObject, c_JsonVersion, c_JSONType>;
+    static bool upgradeJSON(JSONUpgrader& upgrader) { return false; }
+    bool jsonOperation(JSONOperation& operation);
+
     GameObject();
     GameObject(std::string const& alias);
 
@@ -88,5 +95,4 @@ public:
     PhysicsBody const* getPhysicsBody() const { return m_pPhysicsBody; }
     PhysicsBody* getPhysicsBody() { return m_pPhysicsBody; } 
 
-    void jsonOperation();
 };

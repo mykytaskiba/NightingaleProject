@@ -81,19 +81,16 @@ void GameObject::freeResources()
     assert(m_pPhysicsBody == nullptr);
 }
 
-#include "loader.h"
-#include "ngjson.h"
-void GameObject::jsonOperation()
-{
-    nlohmann::json jsonObject;
-    JSONOperation operation{ JSONMode::Serialize,jsonObject };
 
+bool GameObject::jsonOperation(JSONOperation& operation)
+{
     operation.serialize_only("factory_key", getFactoryKey());
     operation.link("alias", m_alias);
 
-    Loader::saveToFile("jsonTest/json.json", jsonObject, FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
+    operation.link("transform", m_transform);
+    
+    return true;
 }
-
 
 GameObject::GameObject()
 {

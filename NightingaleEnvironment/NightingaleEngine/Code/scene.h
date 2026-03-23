@@ -15,18 +15,17 @@ public:
     constexpr static uint c_JsonVersion = 1u;
     using JSONRepresentation = JSONRepresentation<Scene, c_JsonVersion, c_JSONType>;
     static bool upgradeJSON(JSONUpgrader& upgrader);
-    bool jsonOperation(JSONOperation& opeartion);
+    bool jsonOperation(JSONOperation& operation);
 
 private:
-
-
     using TDeferredFunction = std::function<void()>;
+
+    std::vector<TDeferredFunction> m_defferedFunctions;
+    void addDeferredFunction(TDeferredFunction function);
 
     //ptr for factory integration
     SceneRootObject* m_pRoot;
 
-    std::vector<TDeferredFunction> m_defferedFunctions;
-    void addDeferredFunction(TDeferredFunction function);
 
 public:
 

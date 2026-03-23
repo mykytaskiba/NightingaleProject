@@ -4,6 +4,7 @@
 #include "scene.h"
 #include "game_object.h"
 #include "gameobject_menu.h"
+#include "loader.h"
 
 void SceneHierarchy::render_update()
 {
@@ -106,7 +107,16 @@ void Inspector::render_update()
     }
     else {
         GameObjectMenu::render_update(pGameObject);
+
+        if (ImGui::Button("DebugJSON")) {
+
+            GameObject::JSONRepresentation json(*pGameObject);
+            json.executeOperation(JSONMode::Serialize);
+
+            Loader::saveToFile("jsonTest/gameobject.json", json.getJSON());
+        }
     }
+
 
 
 
