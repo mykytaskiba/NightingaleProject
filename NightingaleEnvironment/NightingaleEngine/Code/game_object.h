@@ -48,13 +48,11 @@ public:
     using JSONRepresentation = JSONRepresentation<GameObject, c_JsonVersion, c_JSONType>;
     static bool upgradeJSON(JSONUpgrader& upgrader) { return false; }
 
-    template <typename TPropertyVisitor>
-    void properties(TPropertyVisitor& visitor) {
+    virtual void properties(IPropertyVisitor& visitor) {
 
         std::string factoryKeyStr{ getFactoryKey() };
-        visitor("factory_key", factoryKeyStr, Meta::ReadOnly{});
+        visitor("factory_key", factoryKeyStr);
         visitor("alias", m_alias);
-
         visitor("transform", m_transform);
     }
 

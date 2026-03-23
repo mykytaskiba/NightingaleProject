@@ -44,8 +44,7 @@ public:
 		using JSONRepresentation = JSONRepresentation<SampleObject, c_JsonVersion, c_JSONType>;
 		static bool upgradeJSON(JSONUpgrader& upgrader);
 
-		template <typename TPropertyVisitor>
-		void properties(TPropertyVisitor& visitor) {
+		void properties(IPropertyVisitor& visitor) {
 			visitor("added_int", m_addedInt);
 			visitor("original_float", m_originalFloat);
 			visitor("renamed_string_var", m_renamedVariable);

@@ -6,42 +6,52 @@
 #include "ngmath.h"
 #include "imgui_helpers.h"
 
-struct PropertyMenuVisitor {
+struct PropertyMenuVisitor : public IPropertyVisitor {
 	
-	template<typename TValue, typename... TMeta >
-	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
-		if (Meta::has<Meta::ReadOnly>(meta...)) ImGui::BeginDisabled();
-		menu(key, value, std::forward<TMeta>(meta)...);
-		if (Meta::has<Meta::ReadOnly>(meta...)) ImGui::EndDisabled();
+	template<typename TValue>
+	void visit(std::string const& key, TValue& value, MetaData const& metaData) {
+		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		menu(key, value, metaData);
+		if (metaData.m_bReadOnly) ImGui::EndDisabled();
 	}
 
 
-	template<typename TValue, typename... TMeta >
-	void menu(std::string const& key, TValue& value, TMeta&&... meta) {
+	template<typename TValue>
+	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
 		ImGui::Text("Property editor not defined: %s", key.c_str());
 	}
 
-	template<typename TValue, typename... TMeta >
+	//NESTED PROPERTIES
+	template<typename TValue>
 	requires HasProperties<TValue>
-	void menu(std::string const& key, TValue& value, TMeta&&... meta) {
+	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
+		ImGui::Separator();
 		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
 			value.properties(*this); //no reason for child visitor since this visitor does not hold data
 		}
 	}
 
-	template<typename... TMeta >
-	void menu(std::string const& key, std::string& value, TMeta&&... meta) {
+	template<>
+	void menu(std::string const& key, std::string& value, MetaData const& metaData) {
 		ImGui::InputText(key.c_str(), &value);
 	}
 
-	template<typename... TMeta >
-	void menu(std::string const& key, Vector3& value, TMeta&&... meta) {
+	template<>
+	void menu(std::string const& key, Vector3& value, MetaData const& metaData) {
 		ImGuiHelpers::Vector3Input(key.c_str(), value);
 	}
 
-	template<typename... TMeta >
-	void menu(std::string const& key, Quaternion& value, TMeta&&... meta) {
+	template<>
+	void menu(std::string const& key, Quaternion& value, MetaData const& metaData) {
 		ImGuiHelpers::QuaternionInput(key.c_str(), value);
 	}
 
+	//DEFINE OVERRIDE FUNCTIONS
+#define X(TType) \
+	void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) override	\
+	{ visit(key, value, metaData); } \
+	//END																									
+
+	PROPERTY_TYPES
+#undef X
 };

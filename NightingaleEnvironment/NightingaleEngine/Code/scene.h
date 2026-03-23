@@ -16,8 +16,7 @@ public:
     using JSONRepresentation = JSONRepresentation<Scene, c_JsonVersion, c_JSONType>;
     static bool upgradeJSON(JSONUpgrader& upgrader) { return false; }
 
-    template <typename TPropertyVisitor>
-    void properties(TPropertyVisitor& visitor) {
+    void properties(IPropertyVisitor& visitor) {
 
     }
 

@@ -1,51 +1,8 @@
 #pragma once
 #include "json.hpp"
 #include "properties.h"
-
-struct JSONSerializerVisitor {
-	nlohmann::json& m_json;
-
-	template<typename TValue, typename... TMeta >
-	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
-		m_json[key] = value;
-	}
-
-	template<typename TValue, typename... TMeta >
-	requires HasProperties<TValue>
-	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
-		JSONSerializerVisitor childSerializer{ m_json[key] };
-		value.properties(childSerializer);
-	}
-
-};
-
-struct JSONDeserializerVisitor {
-	nlohmann::json const& m_json;
-
-	template<typename TValue, typename... TMeta >
-	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
-		if (Meta::has<Meta::ReadOnly>(meta...)) {
-			return;
-		}
-		if (m_json.contains(key)) {
-			value = m_json[key].get<TValue>();
-		}
-	}
-
-	template<typename TValue, typename... TMeta >
-	requires HasProperties<TValue>
-		void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
-		if (Meta::has<Meta::ReadOnly>(meta...)) {
-			return;
-		}
-
-		if (m_json.contains(key)) {
-			JSONDeserializerVisitor childSerializer{ m_json[key] };
-			value.properties(childSerializer);
-		}
-	}
-};
-
+#include "serializer_visitor.h"
+#include "deserializer_visitor.h"
 
 struct JSONUpgrader {
 

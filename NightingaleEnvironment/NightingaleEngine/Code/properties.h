@@ -1,4 +1,6 @@
 #pragma once
+#include "ngmath.h"
+#include "transform.h"
 
 /*
 struct VisitorTemplate {
@@ -11,37 +13,35 @@ class VisitorAcceptor {
 }
 */
 
-struct DummyVisitor {
-	template<typename TValue, typename... TMeta >
-	void operator()(std::string const& key, TValue& value, TMeta&&... meta) {
-	}
+
+struct MetaData {
+	bool m_bReadOnly{ false };
 };
 
+struct IPropertyVisitor {
 
-struct Meta {
+#define PROPERTY_TYPES \
+	X(float) \
+	X(int) \
+	X(unsigned int) \
+	X(std::string) \
+	X(Vector3) \
+	X(Quaternion) \
+	X(Transform) \
+	//END
 
-	struct ReadOnly {};   // force read-only of this data, even if non-const
-	struct DummyTrait {};
+#define X(TType) \
+	virtual void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) = 0; \
+	//END
 
-	template<typename TMetaValue, typename... TMeta>
-	static bool has(TMeta&&... meta) {
-		return (std::is_same_v<TMetaValue, std::decay_t<TMeta>> || ...);
-	}
+	//BUILD ABSTRACT FUNCTIONS
+	PROPERTY_TYPES
+#undef X
+
 
 };
 
 template <typename TObject>
-concept HasProperties = requires(TObject obj, DummyVisitor visitor) {
+concept HasProperties = requires(TObject obj, IPropertyVisitor visitor) {
 	obj.properties(visitor);
 };
-
-
-/* 
-this is AI Generated, does this work??
-template<typename TMetaValue, typename... Meta>
-TMetaValue get_or(Meta&&... meta, TMetaValue const& def) {
-	TMetaValue result = def;
-	((std::is_same_v<T, std::decay_t<Meta>> ? result = meta : void()), ...);
-	return result;
-}
-*/

@@ -28,4 +28,11 @@ public:
 
     CameraController() : GameObject("camera_controller") {}
 
+    void properties(IPropertyVisitor& visitor) override {
+        GameObject::properties(visitor);
+        visitor("zoom speed", m_zoomSpeed);
+        visitor("zoom", m_zoom);
+        visitor("zoomMin", m_zoomMin);
+        visitor("zoomMax", m_zoomMax);
+    }
 };
