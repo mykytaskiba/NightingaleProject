@@ -51,7 +51,7 @@ public:
     virtual void properties(IPropertyVisitor& visitor) {
 
         std::string factoryKeyStr{ getFactoryKey() };
-        visitor("factory_key", factoryKeyStr);
+        visitor("factory_key", factoryKeyStr, MetaData::ReadOnly());
         visitor("alias", m_alias);
         visitor("transform", m_transform);
     }
