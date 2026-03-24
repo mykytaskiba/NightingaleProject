@@ -55,13 +55,14 @@ public:
         visitor("alias", m_alias);
         visitor("transform", m_transform);
 
+        /*
         if (!m_vChildren.empty()) {
             visitor("child", m_vChildren[0]);
         }
         else {
             GameObject* pNullGameObject = (GameObject*) nullptr;
             visitor("child", pNullGameObject);
-        }
+        }*/
     }
 
 

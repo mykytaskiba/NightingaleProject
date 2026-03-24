@@ -231,7 +231,6 @@
     <ClInclude Include="Code\fileloading_panel.h" />
     <ClInclude Include="Code\properties.h" />
     <ClInclude Include="Code\property_visitor.h" />
-    <ClInclude Include="Code\deserializer_visitor.h" />
     <ClInclude Include="Code\json_upgrader.h" />
     <ClInclude Include="Code\json_object.h" />
     <ClInclude Include="Code\json_representation.h" />
@@ -347,9 +346,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Code\cpp.hint" />
-    <ClInclude Include="Code\json_visitors.tpp">
-      <FileType>CppHeader</FileType>
-    </ClInclude>
     <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

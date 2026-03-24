@@ -1,7 +1,7 @@
 #pragma once
 #include "game_object.h"
 #include "defines.h"
-#include "ngjson.h"
+#include "json_object.h"
 
 class Scene : public IJSONObject {
 
@@ -16,7 +16,7 @@ public:
     JSON_PARENT(Scene, 1u, "json.scene")
 
     void properties(IPropertyVisitor& visitor) {
-
+        visitor("root", m_pRoot);
     }
 
 private:
@@ -26,7 +26,7 @@ private:
     void addDeferredFunction(TDeferredFunction function);
 
     //ptr for factory integration
-    SceneRootObject* m_pRoot;
+    GameObject* m_pRoot;
 
 
 public:

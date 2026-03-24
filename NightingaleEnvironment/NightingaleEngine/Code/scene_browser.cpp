@@ -40,6 +40,31 @@ void SceneHierarchy::render_update()
 
     drawSceneTree(EngineFunctions::scene().getRoot());
 
+    ImGui::Separator();
+
+    if (ImGui::Button("Serialize Scene")) {
+
+        nlohmann::json json;
+        Scene& scene = EngineFunctions::scene();
+        if (scene.json()->serialize(json)) {
+            Loader::saveFile("jsonTest/scene.json", json);
+        }
+
+    }
+
+    if (ImGui::Button("Deserialize Scene")) {
+
+        nlohmann::json json;
+        Scene& scene = EngineFunctions::scene();
+        bool bReadSuccess = Loader::readFile("jsonTest/scene.json", json);
+
+        if (bReadSuccess) {
+            scene.json()->deserialize(json);
+        }
+
+
+    }
+
     ImGui::End();
 
     if (!bRemainOpen && m_bActive) {
@@ -124,8 +149,9 @@ void Inspector::render_update()
             nlohmann::json json;
             bool bReadSuccess = Loader::readFile("jsonTest/gameobject.json", json);
 
-            //GameObject* pDeserialized{ nullptr };
-            //GameObject::JSONRepresentation::deserialize(json, *pDeserialized);
+            GameObject* pDeserialized{ nullptr };
+            GameObject temp{};
+
 
         }
     }

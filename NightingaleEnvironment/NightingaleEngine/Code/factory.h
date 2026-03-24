@@ -49,7 +49,7 @@ public:
 	bool create(TKey const& key, TValue*& outValue) const {
 
 		if (outValue != nullptr) {
-			assert(false && "Must pass a nullptr into factory");
+			assert(false); //Must pass nullptr into factory
 			return false;
 		}
 

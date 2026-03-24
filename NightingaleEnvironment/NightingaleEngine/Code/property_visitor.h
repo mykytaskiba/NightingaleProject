@@ -40,6 +40,27 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	}
 
 	template<>
+	void menu(std::string const& key, int& value, MetaData const& metaData) {
+		ImGui::InputInt(key.c_str(), &value);
+	}
+
+	template<>
+	void menu(std::string const& key, uint& value, MetaData const& metaData) {
+		
+		int tempInt{ (int)value };
+		menu<int>(key, tempInt, metaData);
+		if (tempInt < 0) {
+			tempInt = 0;
+		}
+		value = tempInt;
+	}
+
+	template<>
+	void menu(std::string const& key, float& value, MetaData const& metaData) {
+		ImGui::InputFloat(key.c_str(), &value);
+	}
+
+	template<>
 	void menu(std::string const& key, Vector3& value, MetaData const& metaData) {
 		ImGuiHelpers::Vector3Input(key.c_str(), value);
 	}

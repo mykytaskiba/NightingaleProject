@@ -582,13 +582,7 @@
     <ClInclude Include="Code\json_visitors.h">
       <Filter>Header Files\JSON</Filter>
     </ClInclude>
-    <ClInclude Include="Code\deserializer_visitor.h">
-      <Filter>Header Files\JSON</Filter>
-    </ClInclude>
     <ClInclude Include="Code\json_upgrader.h">
-      <Filter>Header Files\JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\json_visitors.tpp">
       <Filter>Header Files\JSON</Filter>
     </ClInclude>
     <ClInclude Include="Code\json_object.h">
