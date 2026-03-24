@@ -25,7 +25,7 @@ void FileSavingPanel::render_update()
         if (m_bOverwriteFile) {
             flags |= FileCreationFlags::Overwrite;
         }
-        m_bLastResult = Loader::saveToFile(std::filesystem::path{ m_path }, m_contents, flags);
+        m_bLastResult = Loader::saveFile(std::filesystem::path{ m_path }, m_contents, flags);
     }
 
     ImGui::SameLine();
@@ -62,7 +62,7 @@ void JSONUpgraderPanel::render_update()
             jsonTemp["deleted_float"] = 1.0f;
             jsonTemp["original_string_var"] = "ABCD";
             jsonTemp["deleted_int"] = 10;
-            Loader::saveToFile(m_path + "sample_v1", jsonTemp);
+            Loader::saveFile(m_path + "sample_v1", jsonTemp);
         }
         {//v2
             nlohmann::json jsonTemp;
@@ -72,7 +72,7 @@ void JSONUpgraderPanel::render_update()
             jsonTemp["original_float"] = 0.0f;
             jsonTemp["deleted_int"] = 10;
             jsonTemp["original_string_var"] = "ABCD";
-            Loader::saveToFile(m_path + "sample_v2", jsonTemp);
+            Loader::saveFile(m_path + "sample_v2", jsonTemp);
         }
         {//v3
             nlohmann::json jsonTemp;
@@ -82,7 +82,7 @@ void JSONUpgraderPanel::render_update()
             jsonTemp["original_float"] = 0.0f;
             jsonTemp["deleted_int"] = 10;
             jsonTemp["renamed_string_var"] = "ABCD";
-            Loader::saveToFile(m_path + "sample_v3", jsonTemp);
+            Loader::saveFile(m_path + "sample_v3", jsonTemp);
         }
         {//v4
             nlohmann::json jsonTemp;
@@ -93,7 +93,7 @@ void JSONUpgraderPanel::render_update()
             jsonTemp["deleted_int"] = 10;
             jsonTemp["renamed_string_var"] = "ABCD";
             jsonTemp["added_int"] = 15;
-            Loader::saveToFile(m_path + "sample_v4", jsonTemp);
+            Loader::saveFile(m_path + "sample_v4", jsonTemp);
         }
         {//wrong type
             nlohmann::json jsonTemp;
@@ -104,7 +104,7 @@ void JSONUpgraderPanel::render_update()
             jsonTemp["wrong_data_2"] = 10;
             jsonTemp["wrong_data_3"] = "ABCD";
             jsonTemp["wrong_data_4"] = 15;
-            Loader::saveToFile(m_path + "sample_wrong_type", jsonTemp);
+            Loader::saveFile(m_path + "sample_wrong_type", jsonTemp);
         }
         {//high version
             nlohmann::json jsonTemp;
@@ -114,7 +114,7 @@ void JSONUpgraderPanel::render_update()
             jsonTemp["future_data_1"] = 15;
             jsonTemp["future_data_2"] = "TEST";
             jsonTemp["future_data_3"] = 1.5f;
-            Loader::saveToFile(m_path + "sample_v10_highversion", jsonTemp);
+            Loader::saveFile(m_path + "sample_v10_highversion", jsonTemp);
         }
     }
 
@@ -151,7 +151,7 @@ void JSONUpgraderPanel::performConversion(std::string path)
 
     nlohmann::json dataExported = SampleObject::JSONRepresentation::serialize(sample);
 
-    Loader::saveToFile(export_path, dataExported);
+    Loader::saveFile(export_path, dataExported);
 }
 
 bool JSONUpgraderPanel::SampleObject::upgradeJSON(JSONUpgrader& upgrader)

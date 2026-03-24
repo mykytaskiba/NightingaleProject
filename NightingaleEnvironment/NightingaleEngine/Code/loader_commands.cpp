@@ -31,8 +31,19 @@ void ShaderLoadCommand::execute_command(ArgumentList<Line, Line, Line>& args, Ex
         return;
     }
 
-    string vertexSource = Loader::read_file_contents(vertexShaderPath);
-    string fragmentSource = Loader::read_file_contents(fragmentShaderPath);
+    std::string vertexSource;
+    if (!Loader::readFile({ vertexShaderPath }, vertexSource)) {
+        result.message = "Failed reading vertex source";
+        result.bSuccess = false;
+        return;
+    }
+
+    std::string fragmentSource;
+    if (!Loader::readFile({ fragmentShaderPath }, fragmentSource)) {
+        result.message = "Failed reading fragment source";
+        result.bSuccess = false;
+        return;
+    }
 
     GL_Shader GLshader;
     if (!GL_Shader::compileShader(vertexSource.c_str(), fragmentSource.c_str(), GLshader)) {

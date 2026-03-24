@@ -114,7 +114,7 @@ void Inspector::render_update()
 
             nlohmann::json json = GameObject::JSONRepresentation::serialize(*pGameObject);
             
-            Loader::saveToFile("jsonTest/gameobject.json", json);
+            Loader::saveFile("jsonTest/gameobject.json", json);
         }
 
         if (ImGui::Button("Deserialize JSON")) {

@@ -30,20 +30,17 @@ public:
     static Animation* fbxAnimation(string const& path);
 
 
-    static string read_file_contents(string const& path);
-
     static bool fileExists(std::filesystem::path const& path);
 
     static bool parseJSON(std::string const& text, nlohmann::json& json);
     static bool readFile(std::filesystem::path const& path, std::string& out);
     static bool readFile(std::filesystem::path const& path, nlohmann::json& out);
+    static bool readFile(std::filesystem::path const& path, std::vector<std::string>& out);
 
-    static vector<string> read_file_contents_by_line(string const& path);
-
-    static bool saveToFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
-    static bool saveToFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
-    
     static bool createDirectories(std::filesystem::path const& path);
+    static bool saveFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
+    static bool saveFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
+    
 
     static bool loadTexture(string const& path);
 

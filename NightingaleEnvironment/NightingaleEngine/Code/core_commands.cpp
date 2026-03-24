@@ -173,16 +173,15 @@ void EchoCommand::execute_command(ArgumentList<AllText>& args, ExecutionState& s
 
 void ExecuteCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string path = *args.get<0>();
+    std::string path = *args.get<0>();
 
     result.bSuccess = false;
 
-    if (!Loader::fileExists(path)) {
-        result.message = "file not found: " + path;
+    std::vector<std::string> command_contents;
+    if (!Loader::readFile({ path }, command_contents)) {
+        result.message = "failed reading file: " + path;
         return;
     }
-
-    vector<string> command_contents = Loader::read_file_contents_by_line(path);
 
     ScriptingEnvironment& scripting_env = *ScriptingEnvironment::getInstance();
     for (auto it = command_contents.begin(); it != command_contents.end(); ++it) {

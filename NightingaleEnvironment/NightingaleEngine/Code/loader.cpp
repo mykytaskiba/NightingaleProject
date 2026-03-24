@@ -87,23 +87,6 @@ bool Loader::fileExists(std::filesystem::path const& path)
     return (filesystem::exists(path));
 }
 
-string Loader::read_file_contents(string const& path)
-{
-    ifstream file;
-    file.open(path);
-
-    if (!file.is_open()) {
-        assert(0);
-        return "";
-    }
-
-    string fileContents;
-    stringstream buffer;
-
-    buffer << file.rdbuf();
-    fileContents = buffer.str();
-    return fileContents;
-}
 
 bool Loader::parseJSON(std::string const& text, nlohmann::json& json)
 {
@@ -150,21 +133,30 @@ bool Loader::readFile(std::filesystem::path const& path, nlohmann::json& out)
     return parseJSON(fileText, out);
 }
 
-vector<string> Loader::read_file_contents_by_line(string const& path)
+bool Loader::readFile(const std::filesystem::path& path, std::vector<std::string>& out)
 {
-    string file_contents = read_file_contents(path);
+    std::string content;
+    if (!readFile(path, content)) {
+        return false;
+    }
 
-    std::vector<std::string> lines;
-    std::stringstream ss(file_contents);
+    std::vector<std::string> temp;
+    std::istringstream ss(content);
     std::string line;
 
-    while (std::getline(ss, line, '\n')) {
-        lines.push_back(line);
+    while (std::getline(ss, line)) {
+        if (!line.empty() && line.back() == '\r') { //this could be a helper
+            line.pop_back();
+        }
+        temp.push_back(std::move(line));
     }
-    return lines;
+
+    out = std::move(temp);
+    return true;
 }
 
-bool Loader::saveToFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags)
+
+bool Loader::saveFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags)
 {
     std::filesystem::path absolutePath = std::filesystem::absolute(path);
 
@@ -209,13 +201,13 @@ bool Loader::saveToFile(std::filesystem::path const& path, std::string const& co
     return bWriteSuccess;
 }
 
-bool Loader::saveToFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags)
+bool Loader::saveFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags)
 {
     if ((flags & FileCreationFlags::JSONSingleLine) == FileCreationFlags::None) {
-        return saveToFile(path, json.dump(s_jsonIndent), flags);
+        return saveFile(path, json.dump(s_jsonIndent), flags);
     }
     else {
-        return saveToFile(path, to_string(json), flags);
+        return saveFile(path, to_string(json), flags);
     }
 }
 
