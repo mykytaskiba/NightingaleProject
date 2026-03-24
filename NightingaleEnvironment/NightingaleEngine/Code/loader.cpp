@@ -82,9 +82,8 @@ Animation* Loader::fbxAnimation(string const& path)
 }
 
 
-bool Loader::file_exists(string const& pathIn)
+bool Loader::fileExists(std::filesystem::path const& path)
 {
-    filesystem::path path = pathIn;
     return (filesystem::exists(path));
 }
 
@@ -104,6 +103,51 @@ string Loader::read_file_contents(string const& path)
     buffer << file.rdbuf();
     fileContents = buffer.str();
     return fileContents;
+}
+
+bool Loader::parseJSON(std::string const& text, nlohmann::json& json)
+{
+    try {
+        nlohmann::json temp = nlohmann::json::parse(text);
+        json = std::move(temp);
+    }
+    catch (nlohmann::json::exception const&) {
+        return false;
+    }
+
+    return true;
+}
+
+bool Loader::readFile(std::filesystem::path const& path, std::string& out)
+{
+    std::ifstream fileStream(path, std::ios::binary);
+    if (!fileStream) {
+        return false;
+    }
+
+    try {
+        fileStream.seekg(0, std::ios::end);
+        std::string temp(fileStream.tellg(), '\0');
+        fileStream.seekg(0, std::ios::beg);
+
+        fileStream.read(temp.data(), temp.size());
+
+        out = std::move(temp);
+    }
+    catch (...) {
+        return false;
+    }
+
+    return true;
+}
+
+bool Loader::readFile(std::filesystem::path const& path, nlohmann::json& out)
+{
+    std::string fileText;
+    if (!readFile(path, fileText)) {
+        return false;
+    }
+    return parseJSON(fileText, out);
 }
 
 vector<string> Loader::read_file_contents_by_line(string const& path)

@@ -138,21 +138,12 @@ void JSONUpgraderPanel::performConversion(std::string path)
 {
     SampleObject sample;
 
-    std::ifstream f(path);
-
-    if (!f.is_open()) {
-        return;
-    }
-    nlohmann::json data;
-    try {
-        // Parse the JSON data from the file stream
-        data = nlohmann::json::parse(f);
-    }
-    catch (nlohmann::json::parse_error& e) {
-        return;
+    nlohmann::json inJSON;
+    if (!Loader::readFile({ path }, inJSON)) {
+        assert(false);
     }
 
-    SampleObject::JSONRepresentation::deserialize(data,sample);
+    SampleObject::JSONRepresentation::deserialize(inJSON,sample);
 
     std::filesystem::path export_path = std::filesystem::path{ path };
     std::string filename = export_path.filename().string();

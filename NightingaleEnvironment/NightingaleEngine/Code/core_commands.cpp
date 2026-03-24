@@ -177,7 +177,7 @@ void ExecuteCommand::execute_command(ArgumentList<Line>& args, ExecutionState& s
 
     result.bSuccess = false;
 
-    if (!Loader::file_exists(path)) {
+    if (!Loader::fileExists(path)) {
         result.message = "file not found: " + path;
         return;
     }

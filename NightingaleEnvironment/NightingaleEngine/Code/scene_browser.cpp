@@ -110,11 +110,18 @@ void Inspector::render_update()
     else {
         GameObjectMenu::render_update(pGameObject);
 
-        if (ImGui::Button("DebugJSON")) {
+        if (ImGui::Button("Serialize JSON")) {
 
             nlohmann::json json = GameObject::JSONRepresentation::serialize(*pGameObject);
             
             Loader::saveToFile("jsonTest/gameobject.json", json);
+        }
+
+        if (ImGui::Button("Deserialize JSON")) {
+
+            //nlohmann::json json = GameObject::JSONRepresentation::deserialize(*pGameObject);
+
+            //Loader::saveToFile("jsonTest/gameobject.json", json);
         }
     }
 

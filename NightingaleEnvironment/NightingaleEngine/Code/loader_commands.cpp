@@ -20,12 +20,12 @@ void ShaderLoadCommand::execute_command(ArgumentList<Line, Line, Line>& args, Ex
         return;
     }
 
-    if (!Loader::file_exists(vertexShaderPath)) {
+    if (!Loader::fileExists(vertexShaderPath)) {
         result.message = "vertex shader not found " + vertexShaderPath;
         result.bSuccess = false;
         return;
     }
-    if (!Loader::file_exists(fragmentShaderPath)) {
+    if (!Loader::fileExists(fragmentShaderPath)) {
         result.message = "fragment shader not found " + fragmentShaderPath;
         result.bSuccess = false;
         return;

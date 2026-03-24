@@ -29,9 +29,14 @@ public:
     static Skeleton* fbxSkeleton(string const& path, float importScale);
     static Animation* fbxAnimation(string const& path);
 
-    static bool file_exists(string const& path);
 
     static string read_file_contents(string const& path);
+
+    static bool fileExists(std::filesystem::path const& path);
+
+    static bool parseJSON(std::string const& text, nlohmann::json& json);
+    static bool readFile(std::filesystem::path const& path, std::string& out);
+    static bool readFile(std::filesystem::path const& path, nlohmann::json& out);
 
     static vector<string> read_file_contents_by_line(string const& path);
 
