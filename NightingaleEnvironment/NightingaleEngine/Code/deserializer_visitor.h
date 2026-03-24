@@ -2,6 +2,7 @@
 #include "json.hpp"
 #include "properties.h"
 #include "ngmath.h"
+#include "factory.h"
 
 struct JSONDeserializerVisitor : public IPropertyVisitor {
 	nlohmann::json const& m_json;
@@ -10,6 +11,25 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 
 	template<typename TValue>
 	void visit(std::string const& key, TValue& value, MetaData const& metaData) {
+		if (metaData.m_bReadOnly) {
+			return;
+		}
+		if constexpr (HasProperties<TValue>) {
+			if (m_json.contains(key)) {
+				JSONDeserializerVisitor childSerializer{ m_json[key] };
+				value.properties(childSerializer);
+			}
+		}
+		else {
+			if (m_json.contains(key)) {
+				value = m_json[key].get<TValue>();
+			}
+		}
+	}
+
+	template<typename TValue>
+	requires IsFactoryObject<TValue>
+	void visit(std::string const& key, TValue*& value, MetaData const& metaData) {
 		if (metaData.m_bReadOnly) {
 			return;
 		}

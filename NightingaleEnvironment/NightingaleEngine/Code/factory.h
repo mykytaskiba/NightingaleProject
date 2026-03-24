@@ -75,3 +75,9 @@ public:
 		}
 	}
 };
+
+
+template <typename TObject>
+concept IsFactoryObject = requires(TObject obj) {
+	obj.getFactoryKey();
+};

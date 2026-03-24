@@ -81,8 +81,6 @@ void GameObject::freeResources()
     assert(m_pPhysicsBody == nullptr);
 }
 
-
-
 GameObject::GameObject()
 {
     m_guid = GUID::Generate();

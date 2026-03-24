@@ -111,17 +111,22 @@ void Inspector::render_update()
         GameObjectMenu::render_update(pGameObject);
 
         if (ImGui::Button("Serialize JSON")) {
-
-            nlohmann::json json = GameObject::JSONRepresentation::serialize(*pGameObject);
             
-            Loader::saveFile("jsonTest/gameobject.json", json);
+            nlohmann::json json;
+            if (pGameObject->json()->serialize(json)) {
+                Loader::saveFile("jsonTest/gameobject.json", json);
+            }
+            
         }
 
         if (ImGui::Button("Deserialize JSON")) {
 
-            //nlohmann::json json = GameObject::JSONRepresentation::deserialize(*pGameObject);
+            nlohmann::json json;
+            bool bReadSuccess = Loader::readFile("jsonTest/gameobject.json", json);
 
-            //Loader::saveToFile("jsonTest/gameobject.json", json);
+            //GameObject* pDeserialized{ nullptr };
+            //GameObject::JSONRepresentation::deserialize(json, *pDeserialized);
+
         }
     }
 

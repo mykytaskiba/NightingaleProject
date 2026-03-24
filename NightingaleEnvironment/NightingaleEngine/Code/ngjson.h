@@ -3,133 +3,111 @@
 #include "properties.h"
 #include "serializer_visitor.h"
 #include "deserializer_visitor.h"
-
-struct JSONUpgrader {
-
-	nlohmann::json& m_json;
-	uint m_fileVersion;
-
-	JSONUpgrader(nlohmann::json& json, uint version) : m_json(json), m_fileVersion(version) {}
-
-	bool deleted_variable(uint version, std::string const& key) {
-		if (m_fileVersion == version) {
-			if (m_json.contains(key)) {
-				m_json.erase(key);
-				return true;
-			}
-			return false;
-		}
-		return true;
-	}
-
-	bool renamed_variable(uint version, std::string const& original_key, std::string const& renamed_key) {
-		if (m_fileVersion == version) {
-			if (m_json.contains(original_key) && !m_json.contains(renamed_key)) {
-				m_json[renamed_key] = m_json[original_key];
-				m_json.erase(original_key);
-				return true;
-			}
-			return false;
-		}
-		return true;
-	}
-
-	template <typename TVal>
-	bool added_variable(uint version, std::string const& key, TVal const& val) {
-		if (m_fileVersion == version) {
-			if (!m_json.contains(key)) {
-				m_json[key] = val;
-				return true;
-			}
-			return false;
-		}
-		return true;
-	}
-
-
-};
+#include "json_upgrader.h"
 
 inline constexpr const char* JSON_META_KEY = "_meta_";
 inline constexpr const char* JSON_VERSION_KEY = "version";
 inline constexpr const char* JSON_TYPE_KEY = "type";
 
-template <typename TTarget, unsigned int CVersion, const char* CType>
-class JSONRepresentation {
 
-private:
-
-	static constexpr const char* s_type = CType;
-	static constexpr const uint s_version = CVersion;
-
+class IJSONRepresentation {
 public:
-	JSONRepresentation() {}
-	
+	virtual bool serialize(nlohmann::json& json) = 0;
+	virtual bool deserialize(nlohmann::json& json) = 0;
+	virtual bool upgrade(nlohmann::json& json) = 0;
+};
 
-	static 
-	nlohmann::json serialize(TTarget& target) {
-		nlohmann::json json;
+class IJSONObject {
+public:
+	virtual std::string jsonType() const = 0;
+	virtual uint jsonVersion() const = 0; //std::max(c_version, parent::jsonVersion); 
+	virtual bool jsonUpgrade(JSONUpgrader& upgrader) const { return true; };
+	virtual std::unique_ptr<IJSONRepresentation> json() = 0;
+};
 
+
+#define JSON_PARENT(CLASS, VERSION, TYPE_STRING)							\
+std::string jsonType() const override { return TYPE_STRING; };		\
+uint jsonVersion() const override { return VERSION; }	\
+std::unique_ptr<IJSONRepresentation> json() override { return std::make_unique<JSONRepresentation<CLASS>>(*this); } \
+//END
+
+#define JSON_CHILD(CLASS, VERSION, PARENT_CLASS)							\
+uint jsonVersion() const override { return std::max(VERSION,PARENT_CLASS::jsonVersion()); }	\
+std::unique_ptr<IJSONRepresentation> json() override { return std::make_unique<JSONRepresentation<CLASS>>(*this); } \
+//END
+
+
+template <typename TTarget>
+requires std::derived_from<TTarget, IJSONObject> && HasProperties<TTarget>
+class JSONRepresentation : public IJSONRepresentation {
+private:
+	TTarget& m_target;
+public:
+	JSONRepresentation(TTarget& target) : m_target(target) {}
+
+	bool serialize(nlohmann::json& json) override {
 		//Meta Data
-		json[JSON_META_KEY][JSON_VERSION_KEY] = s_version;
-		json[JSON_META_KEY][JSON_TYPE_KEY] = s_type;
+		json[JSON_META_KEY][JSON_VERSION_KEY] = m_target.jsonVersion();
+		json[JSON_META_KEY][JSON_TYPE_KEY] = m_target.jsonType();
 
 		JSONSerializerVisitor serializer{ json };
-		target.properties(serializer);
+		m_target.properties(serializer);
 
-		return json;
+		return true;
 	}
 
-	static
-	void deserialize(nlohmann::json& json, TTarget& target) {
-		if (!upgradeJSON(json)) {
-			//Couldnt update JSON
-			return;
+	bool deserialize(nlohmann::json& json) override {
+		if (!upgrade(json)) {
+			//Couldnt upgrade JSON
+			return false;
 		}
 
 		JSONDeserializerVisitor deserializer{ json };
-		target.properties(deserializer);
+		m_target.properties(deserializer);
+
+		return true;
 	}
 
-	static
-	bool upgradeJSON(nlohmann::json& json) {
+
+	bool upgrade(nlohmann::json& json) override {
+		std::string type = m_target.jsonType();
+		uint version = m_target.jsonVersion();
+
 		if (!json.contains(JSON_META_KEY)) return false;
 		nlohmann::json& metaJSON = json[JSON_META_KEY];
 		if (!metaJSON.contains(JSON_VERSION_KEY)) return false;
 		if (!metaJSON.contains(JSON_TYPE_KEY)) return false;
 
-		std::string type = metaJSON[JSON_TYPE_KEY].get<std::string>();
-		if (type != s_type) {
+		std::string fileType = metaJSON[JSON_TYPE_KEY].get<std::string>();
+		if (fileType != type) {
 			return false;
 		}
 
 		uint fileVersion = metaJSON[JSON_VERSION_KEY].get<uint>();
-		
-		if (fileVersion > s_version) {
+
+		if (fileVersion > version) {
 			return false;
 		}
 
-		if (fileVersion < s_version) {
+		if (fileVersion < version) {
 			JSONUpgrader upgrader(json, fileVersion);
-			while (fileVersion < s_version) {
-				bool bVersionJumpSuccess = TTarget::upgradeJSON(upgrader);
-				if (!bVersionJumpSuccess) {
+			while (fileVersion < version) {
+				if (!m_target.jsonUpgrade(upgrader)) {
 					return false;
 				}
 				++fileVersion;
 				upgrader.m_fileVersion = fileVersion;
 			}
 		}
-		if (fileVersion == s_version) {
+		if (fileVersion == version) {
 			json[JSON_META_KEY][JSON_VERSION_KEY] = fileVersion;
 			return true;
 		}
+
 		assert(false);
 		return false;
 	}
-
-	//TTarget must implement functions
-	//member bool jsonOperation(JSONOperation& operation);
-	//static bool TTarget::upgradeJSON(JSONUpgrader&);
 };
 
 //Argument serialization/deserialization section

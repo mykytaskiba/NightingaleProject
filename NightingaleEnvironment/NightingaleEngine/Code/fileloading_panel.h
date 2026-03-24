@@ -26,7 +26,7 @@ public:
 
 	void performConversion(std::string path);
 
-	struct SampleObject {
+	struct SampleObject : public IJSONObject {
 
 		//Past Data (for showcase)
 		//float m_deletedFloat; //v2
@@ -38,11 +38,8 @@ public:
 		float m_originalFloat;
 		std::string m_renamedVariable;
 
-
-		constexpr static char c_JSONType[] = "json.sampleobject";
-		constexpr static uint c_JsonVersion = 5u;
-		using JSONRepresentation = JSONRepresentation<SampleObject, c_JsonVersion, c_JSONType>;
-		static bool upgradeJSON(JSONUpgrader& upgrader);
+		JSON_PARENT(SampleObject, 5u, "json.sample")
+		bool jsonUpgrade(JSONUpgrader& upgrader) const override;
 
 		void properties(IPropertyVisitor& visitor) {
 			visitor("added_int", m_addedInt);

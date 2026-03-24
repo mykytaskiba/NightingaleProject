@@ -17,7 +17,28 @@ struct JSONSerializerVisitor : public IPropertyVisitor {
 		else {
 			m_json[key] = value;
 		}
-	}			
+	}
+
+	/*
+	template<typename TValue>
+	requires IsFactoryObject<TValue> && HasJSONRepresentation<TValue>
+		void visit(std::string const& key, TValue*& value, MetaData const& metaData) {
+		TValue::JSONRepresnetaiton;
+		if (metaData.m_bReadOnly) {
+			return;
+		}
+		if constexpr (HasProperties<TValue>) {
+			if (m_json.contains(key)) {
+				JSONDeserializerVisitor childSerializer{ m_json[key] };
+				value.properties(childSerializer);
+			}
+		}
+		else {
+			if (m_json.contains(key)) {
+				value = m_json[key].get<TValue>();
+			}
+		}
+	}*/
 
 	//DEFINE OVERRIDE FUNCTIONS
 	#define X(TType) \

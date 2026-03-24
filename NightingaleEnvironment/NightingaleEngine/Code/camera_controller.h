@@ -28,6 +28,8 @@ public:
 
     CameraController() : GameObject("camera_controller") {}
 
+    JSON_CHILD(CameraController, 4u, GameObject)
+
     void properties(IPropertyVisitor& visitor) override {
         GameObject::properties(visitor);
         visitor("zoom speed", m_zoomSpeed);

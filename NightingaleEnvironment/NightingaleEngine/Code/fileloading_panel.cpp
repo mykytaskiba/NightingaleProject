@@ -53,10 +53,12 @@ void JSONUpgraderPanel::render_update()
 
     if (ImGui::Button("Create Sample JSONs")) {
         
+        SampleObject temp;
+        std::string type = temp.jsonType();
         {//v1
             nlohmann::json jsonTemp;
             jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 1;
-            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = SampleObject::c_JSONType;
+            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = type;
             
             jsonTemp["original_float"] = 0.0f;
             jsonTemp["deleted_float"] = 1.0f;
@@ -67,7 +69,7 @@ void JSONUpgraderPanel::render_update()
         {//v2
             nlohmann::json jsonTemp;
             jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 2;
-            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = SampleObject::c_JSONType;
+            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = type;
 
             jsonTemp["original_float"] = 0.0f;
             jsonTemp["deleted_int"] = 10;
@@ -77,7 +79,7 @@ void JSONUpgraderPanel::render_update()
         {//v3
             nlohmann::json jsonTemp;
             jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 3;
-            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = SampleObject::c_JSONType;
+            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = type;
 
             jsonTemp["original_float"] = 0.0f;
             jsonTemp["deleted_int"] = 10;
@@ -87,7 +89,7 @@ void JSONUpgraderPanel::render_update()
         {//v4
             nlohmann::json jsonTemp;
             jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 4;
-            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = SampleObject::c_JSONType;
+            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = type;
 
             jsonTemp["original_float"] = 0.0f;
             jsonTemp["deleted_int"] = 10;
@@ -109,7 +111,7 @@ void JSONUpgraderPanel::render_update()
         {//high version
             nlohmann::json jsonTemp;
             jsonTemp[JSON_META_KEY][JSON_VERSION_KEY] = 10;
-            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = SampleObject::c_JSONType;
+            jsonTemp[JSON_META_KEY][JSON_TYPE_KEY] = type;
 
             jsonTemp["future_data_1"] = 15;
             jsonTemp["future_data_2"] = "TEST";
@@ -143,23 +145,26 @@ void JSONUpgraderPanel::performConversion(std::string path)
         assert(false);
     }
 
-    SampleObject::JSONRepresentation::deserialize(inJSON,sample);
+    bool bDeserializeSuccess = sample.json()->deserialize(inJSON);
+    if (!bDeserializeSuccess) return;
 
     std::filesystem::path export_path = std::filesystem::path{ path };
     std::string filename = export_path.filename().string();
     export_path.replace_filename(filename + "_result");
 
-    nlohmann::json dataExported = SampleObject::JSONRepresentation::serialize(sample);
+    nlohmann::json outJSON;
+    bool bSerializeSuccess = sample.json()->serialize(outJSON);
+    if (!bSerializeSuccess) return;
 
-    Loader::saveFile(export_path, dataExported);
+    Loader::saveFile(export_path, outJSON);
 }
 
-bool JSONUpgraderPanel::SampleObject::upgradeJSON(JSONUpgrader& upgrader)
+
+bool JSONUpgraderPanel::SampleObject::jsonUpgrade(JSONUpgrader& upgrader) const
 {
     upgrader.deleted_variable(1, "deleted_float");
     upgrader.renamed_variable(2, "original_string_var", "renamed_string_var");
     upgrader.added_variable(3, "added_int", 15);
     upgrader.deleted_variable(4, "deleted_int");
-
     return true;
 }

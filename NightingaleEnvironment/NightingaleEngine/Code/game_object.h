@@ -18,7 +18,7 @@ using TGameObjectFunc = std::function<void(GameObject&)>;
 typedef void (*TComponentFunc)(Component&);
 
 //Core gameobject class that keeps track of a parent-children hierarchy 
-class GameObject : public FactoryElement<std::string, GameObject> {
+class GameObject : public FactoryElement<std::string, GameObject>, public IJSONObject {
 
     friend class EngineFunctions;
 protected:
@@ -43,10 +43,8 @@ protected:
 
 
 public:
-    constexpr static char c_JSONType[] = "json.gameobject";
-    constexpr static uint c_JsonVersion = 1u;
-    using JSONRepresentation = JSONRepresentation<GameObject, c_JsonVersion, c_JSONType>;
-    static bool upgradeJSON(JSONUpgrader& upgrader) { return false; }
+
+    JSON_PARENT(GameObject, 1u, "json.gameobject")
 
     virtual void properties(IPropertyVisitor& visitor) {
 
@@ -55,6 +53,7 @@ public:
         visitor("alias", m_alias);
         visitor("transform", m_transform);
     }
+
 
     GameObject();
     GameObject(std::string const& alias);

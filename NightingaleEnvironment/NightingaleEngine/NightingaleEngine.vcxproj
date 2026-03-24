@@ -232,6 +232,7 @@
     <ClInclude Include="Code\properties.h" />
     <ClInclude Include="Code\property_visitor.h" />
     <ClInclude Include="Code\deserializer_visitor.h" />
+    <ClInclude Include="Code\json_upgrader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
