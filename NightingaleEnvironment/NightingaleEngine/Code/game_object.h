@@ -5,12 +5,14 @@
 #include "ngphys.h"
 #include "guid.h"
 #include "factory.h"
-#include "ngjson.h"
+#include "json_object.h"
+#include "properties.h"
 #include "transform.h"
 
 class Component;
 class GameObject;
 class RenderNode;
+class IPropertyVisitor;
 
 //typedef for different function types
 //typedef void (*TGameObjectFunc)(GameObject&);
@@ -52,6 +54,14 @@ public:
         visitor("factory_key", factoryKeyStr, MetaData::ReadOnly());
         visitor("alias", m_alias);
         visitor("transform", m_transform);
+
+        if (!m_vChildren.empty()) {
+            visitor("child", m_vChildren[0]);
+        }
+        else {
+            GameObject* pNullGameObject = (GameObject*) nullptr;
+            visitor("child", pNullGameObject);
+        }
     }
 
 

@@ -3,8 +3,11 @@
 #include "engine_functions.h"
 #include "input.h"
 #include "ngrender.h"
+#include "ngjson.h"
 
 CameraController* CameraController::s_instance = nullptr;
+
+JSON_IMPL(CameraController)
 
 void CameraController::init()
 {

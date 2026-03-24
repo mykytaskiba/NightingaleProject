@@ -2,18 +2,6 @@
 #include "ngmath.h"
 #include "transform.h"
 
-/*
-struct VisitorTemplate {
-	template<typename TValue, typename... TMeta >
-	void operator()(std::string const& key, TValue& value, TMeta&&... meta);
-};
-class VisitorAcceptor {
-	template <typename TPropertyVisitor>
-	void properties(TPropertyVisitor& visitor);
-}
-*/
-
-
 struct MetaData {
 	bool m_bReadOnly{ false };
 
@@ -23,6 +11,8 @@ struct MetaData {
 		return data;
 	}
 };
+
+class GameObject;
 
 struct IPropertyVisitor {
 
@@ -34,7 +24,10 @@ struct IPropertyVisitor {
 	X(Vector3) \
 	X(Quaternion) \
 	X(Transform) \
+	X(GameObject*) \
 	//END
+
+
 
 #define X(TType) \
 	virtual void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) = 0; \

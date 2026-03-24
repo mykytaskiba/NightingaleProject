@@ -15,6 +15,9 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 		if (metaData.m_bReadOnly) ImGui::EndDisabled();
 	}
 
+	template<typename TValue>
+	void visit(std::string const& key, TValue*& value, MetaData const& metaData) {
+	}
 
 	template<typename TValue>
 	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
@@ -45,6 +48,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	void menu(std::string const& key, Quaternion& value, MetaData const& metaData) {
 		ImGuiHelpers::QuaternionInput(key.c_str(), value);
 	}
+
 
 	//DEFINE OVERRIDE FUNCTIONS
 #define X(TType) \

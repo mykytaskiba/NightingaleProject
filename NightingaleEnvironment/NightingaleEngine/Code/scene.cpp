@@ -5,8 +5,11 @@
 #include "camera_controller.h"
 #include "loader.h"
 #include "render_mesh.h"
+#include "ngjson.h"
 
 
+JSON_IMPL(Scene)
+JSON_IMPL(Scene::SceneRootObject)
 
 void Scene::addDeferredFunction(TDeferredFunction function)
 {

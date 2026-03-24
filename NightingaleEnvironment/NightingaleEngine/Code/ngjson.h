@@ -1,41 +1,14 @@
 #pragma once
 #include "json.hpp"
 #include "properties.h"
-#include "serializer_visitor.h"
-#include "deserializer_visitor.h"
+#include "json_visitors.h"
 #include "json_upgrader.h"
+#include "json_object.h"
+#include "json_representation.h"
 
 inline constexpr const char* JSON_META_KEY = "_meta_";
 inline constexpr const char* JSON_VERSION_KEY = "version";
 inline constexpr const char* JSON_TYPE_KEY = "type";
-
-
-class IJSONRepresentation {
-public:
-	virtual bool serialize(nlohmann::json& json) = 0;
-	virtual bool deserialize(nlohmann::json& json) = 0;
-	virtual bool upgrade(nlohmann::json& json) = 0;
-};
-
-class IJSONObject {
-public:
-	virtual std::string jsonType() const = 0;
-	virtual uint jsonVersion() const = 0; //std::max(c_version, parent::jsonVersion); 
-	virtual bool jsonUpgrade(JSONUpgrader& upgrader) const { return true; };
-	virtual std::unique_ptr<IJSONRepresentation> json() = 0;
-};
-
-
-#define JSON_PARENT(CLASS, VERSION, TYPE_STRING)							\
-std::string jsonType() const override { return TYPE_STRING; };		\
-uint jsonVersion() const override { return VERSION; }	\
-std::unique_ptr<IJSONRepresentation> json() override { return std::make_unique<JSONRepresentation<CLASS>>(*this); } \
-//END
-
-#define JSON_CHILD(CLASS, VERSION, PARENT_CLASS)							\
-uint jsonVersion() const override { return std::max(VERSION,PARENT_CLASS::jsonVersion()); }	\
-std::unique_ptr<IJSONRepresentation> json() override { return std::make_unique<JSONRepresentation<CLASS>>(*this); } \
-//END
 
 
 template <typename TTarget>
@@ -109,6 +82,7 @@ public:
 		return false;
 	}
 };
+
 
 //Argument serialization/deserialization section
 //====================================================

@@ -168,3 +168,5 @@ bool JSONUpgraderPanel::SampleObject::jsonUpgrade(JSONUpgrader& upgrader) const
     upgrader.deleted_variable(4, "deleted_int");
     return true;
 }
+
+JSON_IMPL(JSONUpgraderPanel::SampleObject)

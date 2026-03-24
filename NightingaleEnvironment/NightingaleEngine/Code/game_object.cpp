@@ -5,6 +5,9 @@
 #include "ngrender.h"
 #include "renderer.h"
 #include "json.hpp"
+#include "ngjson.h"
+
+JSON_IMPL(GameObject)
 
 Transform const& GameObject::getRenderTransform() const
 {   
