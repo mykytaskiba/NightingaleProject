@@ -61,9 +61,14 @@ void SceneHierarchy::render_update()
         if (bReadSuccess) {
             scene.json()->deserialize(json);
         }
-
-
     }
+
+    ImGui::Separator();
+    ImGui::Text("Scene Properties");
+
+    PropertyMenuVisitor menuVisitor{};
+    Scene& scene = EngineFunctions::scene();
+    scene.properties(menuVisitor);
 
     ImGui::End();
 

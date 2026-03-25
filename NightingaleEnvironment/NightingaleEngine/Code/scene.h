@@ -15,8 +15,13 @@ public:
 
     JSON_PARENT(Scene, 1u, "json.scene")
 
+
+    int testInt;
+    std::vector<int> vectorInt;
+
     void properties(IPropertyVisitor& visitor) {
         visitor("root", m_pRoot);
+        visitor("test int", testInt);
     }
 
 private:

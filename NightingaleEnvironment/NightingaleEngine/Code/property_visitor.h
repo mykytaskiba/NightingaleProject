@@ -15,9 +15,10 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 		if (metaData.m_bReadOnly) ImGui::EndDisabled();
 	}
 
+	/*
 	template<typename TValue>
 	void visit(std::string const& key, TValue*& value, MetaData const& metaData) {
-	}
+	}*/
 
 	template<typename TValue>
 	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
