@@ -34,10 +34,7 @@ public:
 	AxisAlignedBox const& getLocalBox() const { return m_localBox; }
 	void setLocalBox(AxisAlignedBox const& localBox);
 
-
 	AxisAlignedBox const& getGlobalBox() { return m_globalBox; }
-
-	AxisAlignedBox const& getBounds() { return m_globalBox; }
 
 	void update(TTimePhys deltaT);
 };
