@@ -37,5 +37,7 @@ public:
 
 	AxisAlignedBox const& getGlobalBox() { return m_globalBox; }
 
+	AxisAlignedBox const& getBounds() { return m_globalBox; }
+
 	void update(TTimePhys deltaT);
 };

@@ -40,27 +40,26 @@ void Physics::subUpdate(TTimePhys deltaT)
 
 	//Gravity application step: TO DO: REFACTOR THIS!!!
 	Vector3 gravity{ 0.0f,-9.8f,0.0f };
-	for (PhysicsBody*& pBody : m_activeBodies) {
+	for (PhysicsBody*& pBody : m_vActiveBodies) {
 		if (!pBody->useGravity()) {
 			continue;
 		}
 		pBody->setVelocity(gravity * deltaT + pBody->getVelocity());
 	}
 
+	m_infoSpatialPairsCount = 0;
 
 	//Collision check step
-	for (PhysicsBody* pBody : m_activeBodies) {
-		for (PhysicsBody* pOther : m_activeBodies) {
-			if (pBody == pOther) continue;
-
+	m_spatialStructure.queryPairs(
+		[this](PhysicsBody* pBody, PhysicsBody* pOther) {
+			++m_infoSpatialPairsCount;
 			if (pBody->getGlobalBox().isOverlap(pOther->getGlobalBox())) {
 				pBody->setVelocity(Vector3(0, 0, 0));
 			}
-
 		}
-	}
+	);
 
-	for (PhysicsBody*& pBody : m_activeBodies) {
+	for (PhysicsBody*& pBody : m_vActiveBodies) {
 		pBody->update(deltaT);
 	}
 }
@@ -85,17 +84,14 @@ void Physics::addAccumulatedTime(TTimePhys addedTime) {
 
 void Physics::addBody(PhysicsBody* pBody)
 {
-	m_activeBodies.push_back(pBody);
+	m_vActiveBodies.push_back(pBody);
+	m_spatialStructure.insert(pBody);
 }
 
 void Physics::removeBody(PhysicsBody* pBody)
 {
-	auto it = std::find(m_activeBodies.begin(), m_activeBodies.end(), pBody);
-	if (it == m_activeBodies.end()) {
-		assert(false);
-		return;
-	}
-	m_activeBodies.erase(it);
+	std::erase(m_vActiveBodies, pBody);
+	m_spatialStructure.remove(pBody);
 
 }
 

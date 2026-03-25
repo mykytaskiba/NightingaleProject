@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "physics_body.h"
+#include "ngmath.h"
 
 #define DEFAULT_PHYSICS_FRAMERATE 10 
 //Main class for the physics system
@@ -40,6 +41,8 @@ public:
 	TTimePhys getAccumulatedTime() const { return m_accumulatedTime; }
 	TTimePhys getUpdateRate() const { return m_updateRate; }
 
+	uint getSpatialPairsCount() const { return m_infoSpatialPairsCount; };
+
 private:
 
 	//Whether all physics are active
@@ -55,5 +58,8 @@ private:
 	bool m_bDiscardUnusedTime{ true };
 	bool m_bInterpolateBetweenFrames{ false };
 
-	vector<PhysicsBody*> m_activeBodies{};
+	uint m_infoSpatialPairsCount{ 0u };
+
+	vector<PhysicsBody*> m_vActiveBodies{};
+	SpatialBucket<PhysicsBody, AxisAlignedBox> m_spatialStructure{};
 };

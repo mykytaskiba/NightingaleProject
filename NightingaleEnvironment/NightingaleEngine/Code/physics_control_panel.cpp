@@ -95,6 +95,8 @@ void PhysicsControlPanel::render_update()
         }
     }
 
+    ImGui::Text("Pairs generated %i", physics.getSpatialPairsCount());
+
     ImGui::End();
 
     if (!bRemainOpen && m_bActive) {
