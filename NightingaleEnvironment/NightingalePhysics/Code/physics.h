@@ -61,5 +61,5 @@ private:
 	uint m_infoSpatialPairsCount{ 0u };
 
 	vector<PhysicsBody*> m_vActiveBodies{};
-	SpatialBucket<PhysicsBody, AxisAlignedBox> m_spatialStructure{};
+	SpatialBucket<PhysicsBody> m_spatialStructure{};
 };

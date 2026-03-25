@@ -10,18 +10,30 @@ public:
     public:
         SceneRootObject() : GameObject("scene_root") {}
 
-        JSON_CHILD(SceneRootObject, 2u, GameObject)
+        JSON_CHILD(SceneRootObject, 1u, GameObject)
+
+        void properties(IPropertyVisitor& visitor) override {
+            std::string factoryKeyStr{ getFactoryKey() };
+            visitor("factory_key", factoryKeyStr, MetaData::ReadOnly());
+            visitor("alias", m_alias);
+        }
     };
 
     JSON_PARENT(Scene, 1u, "json.scene")
 
 
     int testInt;
-    std::vector<int> vectorInt;
+    std::vector<int> vectorInt{ 1,2,3,4,5,6 };
+
+    std::vector<GameObject*> m_vSceneObjects{};
 
     void properties(IPropertyVisitor& visitor) override {
         visitor("root", m_pRoot);
         visitor("test int", testInt);
+        visitor("vector int", vectorInt);
+
+        test_collect_objects();
+        visitor("gameobjects", m_vSceneObjects);
     }
 
 private:
@@ -42,6 +54,8 @@ public:
     void tick();
     void syncObjectToPhysics();
     void syncPhysicsToObject();
+
+    void test_collect_objects();
     
     void executeOnRoot(TGameObjectFunc func);
 

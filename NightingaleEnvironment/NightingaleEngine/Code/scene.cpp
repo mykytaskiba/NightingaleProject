@@ -70,6 +70,16 @@ void Scene::syncPhysicsToObject()
     );
 }
 
+void Scene::test_collect_objects()
+{
+    m_vSceneObjects.clear();
+    executeOnRoot(
+        [this](GameObject& gameObject) {
+            m_vSceneObjects.push_back(&gameObject);
+        }
+    );
+}
+
 
 void Scene::executeOnRoot(TGameObjectFunc func)
 {

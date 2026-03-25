@@ -18,10 +18,10 @@ struct IPropertyVisitor {
 	X(GameObject*) \
 	//END
 
-
-
 #define X(TType) \
 	virtual void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) = 0; \
+	virtual void operator()(std::string const& key, std::vector<TType>& value, MetaData const& metaData = {}) = 0; \
+
 	//END
 
 	//BUILD ABSTRACT FUNCTIONS

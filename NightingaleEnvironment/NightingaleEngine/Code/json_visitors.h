@@ -13,41 +13,56 @@ struct JSONSerializerVisitor : public IPropertyVisitor {
 
 	JSONSerializerVisitor(nlohmann::json& json) : m_json(json) {}
 
+
 	template<typename TValue>
-	void visit(std::string const& key, TValue& value, MetaData const& metaData)
-	{
+	void visit_internal(nlohmann::json& json, TValue& value, MetaData const& metaData) {
 		if constexpr (HasProperties<TValue>) {
-			JSONSerializerVisitor childSerializer{ m_json[key] };
+			JSONSerializerVisitor childSerializer{ json };
 			value.properties(childSerializer);
 		}
 		else {
-			m_json[key] = value;
+			json = value;
 		}
 	}
 
 	template<typename TValue>
-	void visit(std::string const& key, TValue*& pValue, MetaData const& metaData)
-	{
-		if (metaData.m_bReadOnly) {
-			return;
-		}
+	void visit_internal(nlohmann::json& json, TValue*& pValue, MetaData const& metaData) {
 		if (pValue == nullptr) {
-			m_json[key] = nullptr;
+			json = nullptr;
 			return;
 		}
 
-		nlohmann::json& jsonValue = m_json[key];
-		pValue->json()->serialize(jsonValue);
+		pValue->json()->serialize(json);
+	}
+
+	template<typename TValue>
+	void visit(std::string const& key, TValue& value, MetaData const& metaData)
+	{
+		visit_internal(m_json[key], value, metaData);
+	}
+
+	template<typename TValue>
+	void visit(std::string const& key, std::vector<TValue>& collection, MetaData const& metaData)
+	{
+		m_json[key] = nlohmann::json::array();
+		nlohmann::json& jsonArray = m_json[key];
+
+		for (auto& value : collection) {
+			nlohmann::json& serializedObject = jsonArray.emplace_back(nlohmann::json::value_t::object);
+			visit_internal(serializedObject, value, metaData);
+		}
 	}
 
 	//DEFINE OVERRIDE FUNCTIONS
-	#define X(TType) \
+#define X(TType) \
 	void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) override	\
+	{ visit(key, value, metaData); } \
+	void operator()(std::string const& key, std::vector<TType>& value, MetaData const& metaData = {}) override	\
 	{ visit(key, value, metaData); } \
 	//END																									
 
 	PROPERTY_TYPES
-	#undef X
+#undef X
 
 };
 
@@ -57,45 +72,70 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 
 	JSONDeserializerVisitor(nlohmann::json& json) : m_json(json) {}
 
+
+	template<typename TValue>
+	void visit_internal(nlohmann::json& json, TValue& value, MetaData const& metaData) {
+		if constexpr (HasProperties<TValue>) {
+			JSONDeserializerVisitor childSerializer{ json };
+			value.properties(childSerializer);
+		}
+		else {
+			json.get_to(value);
+		}
+	}
+
+	void visit_internal(nlohmann::json& json, GameObject*& pValue, MetaData const& metaData) {
+		if (pValue != nullptr) {
+			//return; //TO DO: THIS CREATES A MEMORY LEAK DEAL WITH THIS LATER
+			pValue = nullptr;
+		}
+
+		if (!json.contains("factory_key")) {
+			return;
+		}
+
+		std::string factoryKey = json["factory_key"];
+		if (EngineFunctions::factoryGameObject().create(factoryKey, pValue)) {
+			pValue->json()->deserialize(json);
+		}
+	}
+
 	template<typename TValue>
 	void visit(std::string const& key, TValue& value, MetaData const& metaData)
 	{
 		if (metaData.m_bReadOnly) {
 			return;
 		}
-		if constexpr (HasProperties<TValue>) {
-			if (m_json.contains(key)) {
-				JSONDeserializerVisitor childSerializer{ m_json[key] };
-				value.properties(childSerializer);
-			}
-		}
-		else {
-			if (m_json.contains(key)) {
-				value = m_json[key].get<TValue>();
-			}
+		if (m_json.contains(key)) {
+			visit_internal(m_json[key], value, metaData);
 		}
 	}
 
-	template<>
-	void visit(std::string const& key, GameObject*& pValue, MetaData const& metaData) {
-		if (pValue != nullptr) {
-			//return;
-			pValue = nullptr;
-		}
-
-		if (!m_json[key].contains("factory_key")) {
+	template<typename TValue>
+	void visit(std::string const& key, std::vector<TValue>& collection, MetaData const& metaData)
+	{
+		if (!m_json.contains(key) || !m_json[key].is_array()) {
 			return;
 		}
+		if (!collection.empty()) {
+			//return; TO DO: FIX THIS LATER
+			collection.clear();
+		}
 
-		std::string factoryKey = m_json[key]["factory_key"];
-		if (EngineFunctions::factoryGameObject().create(factoryKey, pValue)) {
-			pValue->json()->deserialize(m_json[key]);
+		nlohmann::json& jsonArray = m_json[key];
+
+		collection.resize(jsonArray.size());
+
+		for (size_t i = 0; i < jsonArray.size(); ++i) {
+			visit_internal(jsonArray[i], collection[i], metaData);
 		}
 	}
 
 	//DEFINE OVERRIDE FUNCTIONS
 #define X(TType) \
 	void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) override	\
+	{ visit(key, value, metaData); } \
+	void operator()(std::string const& key, std::vector<TType>& value, MetaData const& metaData = {}) override	\
 	{ visit(key, value, metaData); } \
 	//END																									
 

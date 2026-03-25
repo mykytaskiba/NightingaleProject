@@ -76,6 +76,8 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 #define X(TType) \
 	void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) override	\
 	{ visit(key, value, metaData); } \
+	void operator()(std::string const& key, std::vector<TType>& value, MetaData const& metaData = {}) override	\
+	{ visit(key, value, metaData); } \
 	//END																									
 
 	PROPERTY_TYPES
