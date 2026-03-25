@@ -591,6 +591,12 @@
     <ClInclude Include="Code\json_representation.h">
       <Filter>Header Files\JSON</Filter>
     </ClInclude>
+    <ClInclude Include="Code\property_provider.h">
+      <Filter>Header Files\JSON</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\property_metadata.h">
+      <Filter>Header Files\JSON</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Code\cpp.hint" />

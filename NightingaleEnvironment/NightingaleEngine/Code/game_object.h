@@ -6,8 +6,9 @@
 #include "guid.h"
 #include "factory.h"
 #include "json_object.h"
-#include "properties.h"
 #include "transform.h"
+#include "property_provider.h"
+#include "properties.h"
 
 class Component;
 class GameObject;
@@ -20,7 +21,7 @@ using TGameObjectFunc = std::function<void(GameObject&)>;
 typedef void (*TComponentFunc)(Component&);
 
 //Core gameobject class that keeps track of a parent-children hierarchy 
-class GameObject : public FactoryElement<std::string, GameObject>, public IJSONObject {
+class GameObject : public FactoryElement<std::string, GameObject>, public IJSONObject, public IPropertyProvider {
 
     friend class EngineFunctions;
 protected:
@@ -48,7 +49,7 @@ public:
 
     JSON_PARENT(GameObject, 1u, "json.gameobject")
 
-    virtual void properties(IPropertyVisitor& visitor) {
+    void properties(IPropertyVisitor& visitor) override {
 
         std::string factoryKeyStr{ getFactoryKey() };
         visitor("factory_key", factoryKeyStr, MetaData::ReadOnly());

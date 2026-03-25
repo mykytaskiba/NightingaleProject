@@ -3,7 +3,7 @@
 #include "defines.h"
 #include "json_object.h"
 
-class Scene : public IJSONObject {
+class Scene : public IJSONObject, public IPropertyProvider {
 
 public:
     class SceneRootObject : public GameObject {
@@ -19,7 +19,7 @@ public:
     int testInt;
     std::vector<int> vectorInt;
 
-    void properties(IPropertyVisitor& visitor) {
+    void properties(IPropertyVisitor& visitor) override {
         visitor("root", m_pRoot);
         visitor("test int", testInt);
     }

@@ -27,7 +27,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 
 	//NESTED PROPERTIES
 	template<typename TValue>
-	requires HasProperties<TValue>
+	requires std::derived_from<TValue, IPropertyProvider>
 	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
 		ImGui::Separator();
 		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {

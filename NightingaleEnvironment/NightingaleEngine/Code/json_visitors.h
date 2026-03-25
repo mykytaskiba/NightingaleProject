@@ -1,13 +1,12 @@
 #pragma once
 #include "json.hpp"
+#include "property_provider.h"
 #include "properties.h"
 #include "ngjson.h" 
 #include "ngmath.h"
 #include "game_object.h"
 #include "engine_functions.h"
 
-template < typename T, uint DIM >
-struct Vector;
 
 struct JSONSerializerVisitor : public IPropertyVisitor {
 	nlohmann::json& m_json;

@@ -1,16 +1,7 @@
 #pragma once
 #include "ngmath.h"
 #include "transform.h"
-
-struct MetaData {
-	bool m_bReadOnly{ false };
-
-	static MetaData ReadOnly() {
-		MetaData data{};
-		data.m_bReadOnly = true;
-		return data;
-	}
-};
+#include "property_metadata.h"
 
 class GameObject;
 
@@ -38,9 +29,4 @@ struct IPropertyVisitor {
 #undef X
 
 
-};
-
-template <typename TObject>
-concept HasProperties = requires(TObject obj, IPropertyVisitor visitor) {
-	obj.properties(visitor);
 };

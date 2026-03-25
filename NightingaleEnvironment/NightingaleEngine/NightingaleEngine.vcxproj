@@ -234,6 +234,8 @@
     <ClInclude Include="Code\json_upgrader.h" />
     <ClInclude Include="Code\json_object.h" />
     <ClInclude Include="Code\json_representation.h" />
+    <ClInclude Include="Code\property_provider.h" />
+    <ClInclude Include="Code\property_metadata.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

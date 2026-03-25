@@ -5,6 +5,7 @@
 #include "json_upgrader.h"
 #include "json_object.h"
 #include "json_representation.h"
+#include "property_provider.h"
 
 inline constexpr const char* JSON_META_KEY = "_meta_";
 inline constexpr const char* JSON_VERSION_KEY = "version";
@@ -12,7 +13,7 @@ inline constexpr const char* JSON_TYPE_KEY = "type";
 
 
 template <typename TTarget>
-requires std::derived_from<TTarget, IJSONObject> && HasProperties<TTarget>
+requires std::derived_from<TTarget, IJSONObject>
 class JSONRepresentation : public IJSONRepresentation {
 private:
 	TTarget& m_target;
