@@ -71,6 +71,26 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 		ImGuiHelpers::QuaternionInput(key.c_str(), value);
 	}
 
+	template<typename TValue>
+	void menu(std::string const& key, std::vector<TValue>& vector, MetaData const& metaData) {
+
+		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+
+			std::string plus = std::string{ "+##" } + key;
+			if (ImGui::Button(plus.c_str())) {
+				vector.push_back(TValue{});
+			}
+
+			uint idx{ 0u };
+			for (auto& value : vector) {
+				std::string idxStr = "[" + std::to_string(idx) + "]";
+				menu(idxStr, value, metaData);
+				++idx;
+			}
+		}
+
+	}
+
 
 	//DEFINE OVERRIDE FUNCTIONS
 #define X(TType) \
