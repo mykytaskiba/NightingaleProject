@@ -45,7 +45,6 @@
     <Filter Include="Engine Data">
       <UniqueIdentifier>{285b15ec-9c42-4e83-93e8-1054573cacef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Scripting" />
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
@@ -238,15 +237,6 @@
     <ClCompile Include="Code\default_console_commands.cpp">
       <Filter>Engine Data</Filter>
     </ClCompile>
-    <ClCompile Include="Code\argument.cpp">
-      <Filter>Source Files\Scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\environment.cpp">
-      <Filter>Source Files\Scripting</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\argument_helpers.cpp">
-      <Filter>Source Files\Scripting</Filter>
-    </ClCompile>
     <ClCompile Include="Code\forward_render_pass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -317,6 +307,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\environment.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\argument.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\argument_helpers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -555,21 +554,14 @@
     <ClInclude Include="Code\engine_settings.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Code\ngjson.h">
-      <Filter>Header Files\JSON</Filter>
-    </ClInclude>
     <ClInclude Include="Code\property_visitor.h">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Code\transform.h">
       <Filter>Header Files\Logic</Filter>
     </ClInclude>
-    <ClInclude Include="Code\json_visitors.h">
-      <Filter>Header Files\JSON</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Code\cpp.hint" />
     <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

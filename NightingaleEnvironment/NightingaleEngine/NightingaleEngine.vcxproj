@@ -153,7 +153,6 @@
     <ClInclude Include="Code\debug_panel.h" />
     <ClInclude Include="Code\gameobject_menu.h" />
     <ClInclude Include="Code\guid.h" />
-    <ClInclude Include="Code\ngjson.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
     <ClInclude Include="Code\physics_debug.h" />
@@ -200,7 +199,6 @@
     <ClInclude Include="Code\render_skinned.h" />
     <ClInclude Include="Code\scene.h" />
     <ClInclude Include="Code\screen.h" />
-    <ClInclude Include="Code\json_visitors.h" />
     <ClInclude Include="Code\shader_source.h" />
     <ClInclude Include="Code\skeleton.h" />
     <ClInclude Include="Code\skeleton_builder.h" />
@@ -337,7 +335,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Code\cpp.hint" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

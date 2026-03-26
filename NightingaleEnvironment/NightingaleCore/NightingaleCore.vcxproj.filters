@@ -54,5 +54,11 @@
     <ClInclude Include="properties.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ngjson.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="json_visitors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

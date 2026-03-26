@@ -27,6 +27,8 @@
     <ClInclude Include="json_object.h" />
     <ClInclude Include="json_representation.h" />
     <ClInclude Include="json_upgrader.h" />
+    <ClInclude Include="json_visitors.h" />
+    <ClInclude Include="ngjson.h" />
     <ClInclude Include="nightingale_assert.h" />
     <ClInclude Include="properties.h" />
     <ClInclude Include="property_metadata.h" />
