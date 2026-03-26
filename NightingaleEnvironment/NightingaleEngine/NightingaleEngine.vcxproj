@@ -148,15 +148,11 @@
     <ClInclude Include="Code\argument_helpers.h" />
     <ClInclude Include="Code\argument_impl.h" />
     <ClInclude Include="Code\advanced_arguments.h" />
-    <ClInclude Include="Code\bitwise_enum.hpp" />
     <ClInclude Include="Code\callback_handler.h" />
-    <ClInclude Include="Code\factory.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
     <ClInclude Include="Code\gameobject_menu.h" />
     <ClInclude Include="Code\guid.h" />
-    <ClInclude Include="Code\json.hpp" />
-    <ClInclude Include="Code\json_key_constants.h" />
     <ClInclude Include="Code\ngjson.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
@@ -206,7 +202,6 @@
     <ClInclude Include="Code\screen.h" />
     <ClInclude Include="Code\json_visitors.h" />
     <ClInclude Include="Code\shader_source.h" />
-    <ClInclude Include="Code\service_locator.h" />
     <ClInclude Include="Code\skeleton.h" />
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />
@@ -233,11 +228,6 @@
     <ClInclude Include="Code\fileloading_panel.h" />
     <ClInclude Include="Code\properties.h" />
     <ClInclude Include="Code\property_visitor.h" />
-    <ClInclude Include="Code\json_upgrader.h" />
-    <ClInclude Include="Code\json_object.h" />
-    <ClInclude Include="Code\json_representation.h" />
-    <ClInclude Include="Code\property_provider.h" />
-    <ClInclude Include="Code\property_metadata.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

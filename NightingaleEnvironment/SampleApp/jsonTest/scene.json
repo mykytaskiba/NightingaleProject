@@ -15,9 +15,9 @@
         },
         {
             "_meta_": {
-                "factory_key": "cameracontroller",
+                "factory_key": "",
                 "type": "json.gameobject",
-                "version": 4
+                "version": 1
             },
             "alias": "camera_controller",
             "transform": {
@@ -45,7 +45,1359 @@
         },
         {
             "_meta_": {
-                "factory_key": "gameobject",
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 0.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 0.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 0.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": -3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 0.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -6.0,
+                    "y": 6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 0.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 0.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 0.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": -3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 0.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": -3.0,
+                    "y": 6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
                 "type": "json.gameobject",
                 "version": 1
             },
@@ -54,6 +1406,1904 @@
                 "position": {
                     "x": 0.0,
                     "y": 0.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 0.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 0.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 0.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": -3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 0.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 3.0,
+                    "y": 6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 0.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 3.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 6.0,
+                    "z": -6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 0.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 3.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 6.0,
+                    "z": -3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 3.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 6.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 0.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 3.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 6.0,
+                    "z": 3.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": -3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 0.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 3.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 6.0,
+                    "y": 6.0,
+                    "z": 6.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
+        },
+        {
+            "_meta_": {
+                "factory_key": "",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": -10.0,
                     "z": 0.0
                 },
                 "rotation": {

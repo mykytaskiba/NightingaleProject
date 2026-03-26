@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bitwise_enum.hpp" />
+    <ClInclude Include="defines.h" />
+    <ClInclude Include="factory.h" />
+    <ClInclude Include="json.hpp" />
+    <ClInclude Include="json_key_constants.h" />
+    <ClInclude Include="json_object.h" />
+    <ClInclude Include="json_representation.h" />
+    <ClInclude Include="json_upgrader.h" />
+    <ClInclude Include="nightingale_assert.h" />
+    <ClInclude Include="property_metadata.h" />
+    <ClInclude Include="property_provider.h" />
+    <ClInclude Include="service_locator.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -139,10 +153,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="defines.h" />
-    <ClInclude Include="nightingale_assert.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
