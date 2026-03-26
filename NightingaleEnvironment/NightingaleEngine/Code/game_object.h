@@ -53,9 +53,7 @@ public:
         visitor("alias", m_alias);
         visitor("transform", m_transform);
 
-        if (m_pPhysicsBody != nullptr) {
-            visitor("physics_body", *m_pPhysicsBody);
-        }
+        visitor("physics_body", m_pPhysicsBody);
 
         /*
         if (!m_vChildren.empty()) {

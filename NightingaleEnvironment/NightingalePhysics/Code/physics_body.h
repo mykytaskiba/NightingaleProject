@@ -2,12 +2,15 @@
 #include "ngmath.h"
 #include "defines.h"
 #include "property_provider.h"
+#include "json_object.h"
+#include "factory.h"
+#include <memory>
 
 class IPropertyVisitor;
 
 //Any physics body that needs to be simulated
 //Could be rigid or soft
-class PhysicsBody : public IPropertyProvider {
+class PhysicsBody : public IPropertyProvider, public IJSONObject, public FactoryElement<std::string,PhysicsBody> {
 private:
 
 	bool m_bUseGravity{ false };
@@ -21,6 +24,8 @@ private:
 
 	void calculateGlobalBox();
 public:
+
+	JSON_PARENT(PhysicsBody, 1u, "json.physicsbody")
 
 	void properties(IPropertyVisitor& visitor) override;
 	

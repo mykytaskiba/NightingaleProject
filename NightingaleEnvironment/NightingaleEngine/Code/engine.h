@@ -23,7 +23,6 @@
 class Engine {
     friend class EngineInternals;
     friend class EngineFunctions;
-    friend class EngineSystemBinding;
 public:
 
     EngineSettings& settings();
@@ -71,7 +70,8 @@ private:
     void CS550TempTestFuncInit();
 
     Factory<std::string, GameObject> m_factoryGameObject;
-    void populateGameObjectFactory();
+    Factory<std::string, PhysicsBody> m_factoryPhysicsBody;
+        
     void defaultGameObjectFactory();
 
 };

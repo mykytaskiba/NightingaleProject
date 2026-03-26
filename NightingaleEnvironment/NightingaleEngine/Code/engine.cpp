@@ -31,7 +31,7 @@ Engine::Engine()
 
 void Engine::register_systems()
 {
-    m_initCallback.addCallback({ 50, [this] {populateGameObjectFactory(); } });
+    m_initCallback.addCallback({ 50, [this] {defaultGameObjectFactory(); } });
     m_initCallback.addCallback({ 74, [this] {m_window.init(); } });
     m_initCallback.addCallback({ 75, [this] {m_debugUI.init(m_window); } });
     m_initCallback.addCallback({ 80, [this] {m_input.init(); } });
@@ -70,12 +70,10 @@ void Engine::init()
 
 void Engine::update()
 {
-
     while (m_bRunning)
     {
         m_updateCallback.execute();
     }
-
 }
 
 void Engine::shutdown()
@@ -103,15 +101,6 @@ void Engine::setDefaultSettings()
     m_settings.load_commands.push_back(".execute data/core/load.ngs");
 
     defaultSettings_CoreCommands();
-}
-
-void Engine::populateGameObjectFactory()
-{
-    defaultGameObjectFactory();
-
-    if (m_settings.m_setupFactoryCallback != nullptr) {
-        m_settings.m_setupFactoryCallback(m_factoryGameObject);
-    }
 }
 
 #include "render_mesh.h"

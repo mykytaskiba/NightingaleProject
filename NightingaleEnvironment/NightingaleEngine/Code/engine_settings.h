@@ -10,5 +10,4 @@ struct EngineSettings {
 	vector<CommandInterface*> console_commands{};
 	vector<string> load_commands{};
 
-	std::function<void(Factory<std::string, GameObject>&)> m_setupFactoryCallback{ nullptr };
 };

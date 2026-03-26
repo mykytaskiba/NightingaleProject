@@ -8,6 +8,7 @@
 #include "property_provider.h"
 #include "factory.h"
 #include "property_visitor.h"
+#include <memory>
 
 
 template <typename TTarget>

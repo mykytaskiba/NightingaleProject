@@ -1,5 +1,8 @@
 #include "physics_body.h"
 #include "property_visitor.h"
+#include "ngjson.h"
+
+JSON_IMPL(PhysicsBody)
 
 void PhysicsBody::update(TTimePhys deltaT)
 {

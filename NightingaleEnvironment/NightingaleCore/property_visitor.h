@@ -24,7 +24,7 @@ struct IPropertyVisitor {
 	X(Transform) \
 	X(AxisAlignedBox) \
 	X(GameObject*) \
-	X(PhysicsBody) \
+	X(PhysicsBody*) \
 	//END
 
 #define X(TType) \
