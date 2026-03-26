@@ -118,7 +118,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(ProjectDir)Lib\glfw-3.4.bin.WIN64\include;$(ProjectDir)Lib\glew-2.1.0\include;$(ProjectDir)Lib\imgui-master\backends;$(ProjectDir)Lib\imgui-master;$(ProjectDir)Lib\assimp-6.0.2\include;$(ProjectDir)Lib\imgui-master\misc\cpp;$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingaleAssert;$(SolutionDir)NightingalePhysics\Includes;$(SolutionDir)NightingaleRender\Includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)Lib\glfw-3.4.bin.WIN64\include;$(ProjectDir)Lib\glew-2.1.0\include;$(ProjectDir)Lib\imgui-master\backends;$(ProjectDir)Lib\imgui-master;$(ProjectDir)Lib\assimp-6.0.2\include;$(ProjectDir)Lib\imgui-master\misc\cpp;$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingalePhysics\Includes;$(SolutionDir)NightingaleRender\Includes;$(SolutionDir)NightingaleCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
     </ClCompile>
