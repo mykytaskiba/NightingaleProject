@@ -48,6 +48,9 @@
     <ClInclude Include="Code\spatial_bucket.h">
       <Filter>Header Files\Spatial</Filter>
     </ClInclude>
+    <ClInclude Include="Code\json_math_impl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\color.cpp">
@@ -63,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\axis_aligned_box.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\json_math_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

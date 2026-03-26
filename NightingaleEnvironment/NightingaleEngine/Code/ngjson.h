@@ -1,13 +1,13 @@
 #pragma once
 #include "json.hpp"
-#include "properties.h"
 #include "json_visitors.h"
 #include "json_upgrader.h"
 #include "json_object.h"
+#include "json_key_constants.h"
 #include "json_representation.h"
 #include "property_provider.h"
 #include "factory.h"
-#include "json_key_constants.h"
+#include "properties.h"
 
 
 template <typename TTarget>
@@ -88,17 +88,3 @@ public:
 };
 
 
-//Argument serialization/deserialization section
-//====================================================
-
-//NGMath is safe to include here
-#include "ngmath.h"
-
-void to_json(nlohmann::json& json, const Vector3& vec);
-void from_json(nlohmann::json const& json, Vector3& vec);
-
-void to_json(nlohmann::json& json, const Vector4& vec);
-void from_json(nlohmann::json const& json, Vector4& vec);
-
-void to_json(nlohmann::json& json, const Quaternion& quat);
-void from_json(nlohmann::json const& json, Quaternion& quat);

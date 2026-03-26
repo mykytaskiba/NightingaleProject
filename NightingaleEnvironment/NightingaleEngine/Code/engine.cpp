@@ -116,7 +116,6 @@ void Engine::populateGameObjectFactory()
 
 #include "render_mesh.h"
 #include "physics_debug_render_pass.h"
-#include "ngjson.h"
 #include "loader.h"
 void Engine::CS550TempTestFuncInit()
 {

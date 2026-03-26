@@ -316,9 +316,6 @@
     <ClCompile Include="Code\scene_browser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\json_impl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -559,9 +556,6 @@
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Code\ngjson.h">
-      <Filter>Header Files\JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\properties.h">
       <Filter>Header Files\JSON</Filter>
     </ClInclude>
     <ClInclude Include="Code\property_visitor.h">

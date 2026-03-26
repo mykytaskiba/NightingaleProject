@@ -1,6 +1,7 @@
 #pragma once
 #include "debug_panel.h"
-#include "ngjson.h"
+#include "game_object.h"
+#include "transform.h"
 
 class FileSavingPanel : public DebugPanel {
 public:

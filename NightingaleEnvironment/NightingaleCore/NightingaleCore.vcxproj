@@ -28,6 +28,7 @@
     <ClInclude Include="json_representation.h" />
     <ClInclude Include="json_upgrader.h" />
     <ClInclude Include="nightingale_assert.h" />
+    <ClInclude Include="properties.h" />
     <ClInclude Include="property_metadata.h" />
     <ClInclude Include="property_provider.h" />
     <ClInclude Include="service_locator.h" />

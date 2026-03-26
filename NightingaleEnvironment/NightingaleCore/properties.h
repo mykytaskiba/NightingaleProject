@@ -1,9 +1,13 @@
 #pragma once
-#include "ngmath.h"
-#include "transform.h"
+#include <string>
 #include "property_metadata.h"
 
 class GameObject;
+class Transform;
+struct Quaternion;
+
+template < typename T, unsigned int DIM >
+struct Vector;
 
 struct IPropertyVisitor {
 

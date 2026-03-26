@@ -226,7 +226,6 @@
     <ClInclude Include="Code\render_node_menu.h" />
     <ClInclude Include="Code\physics_body_menu.h" />
     <ClInclude Include="Code\fileloading_panel.h" />
-    <ClInclude Include="Code\properties.h" />
     <ClInclude Include="Code\property_visitor.h" />
   </ItemGroup>
   <ItemGroup>
@@ -260,7 +259,6 @@
     <ClCompile Include="Code\hotkey_processing.cpp" />
     <ClCompile Include="Code\input.cpp" />
     <ClCompile Include="Code\inverse_kinematics_evaluator.cpp" />
-    <ClCompile Include="Code\json_impl.cpp" />
     <ClCompile Include="Code\lag_simulator.cpp" />
     <ClCompile Include="Code\loader.cpp" />
     <ClCompile Include="Code\loader_commands.cpp" />

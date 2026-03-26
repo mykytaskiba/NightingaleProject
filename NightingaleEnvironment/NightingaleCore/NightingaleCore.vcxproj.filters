@@ -51,5 +51,8 @@
     <ClInclude Include="service_locator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="properties.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

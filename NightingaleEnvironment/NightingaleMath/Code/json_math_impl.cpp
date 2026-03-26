@@ -1,6 +1,4 @@
-#include "pch.h"
-#include "ngjson.h"
-#include "ngmath.h"
+#include "json_math_impl.h"
 
 void to_json(nlohmann::json& json, const Vector3& vec)
 {
@@ -51,4 +49,3 @@ void from_json(nlohmann::json const& json, Quaternion& quat)
 	json.at("y").get_to(quat.y);
 	json.at("z").get_to(quat.z);
 }
-

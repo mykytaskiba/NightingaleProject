@@ -1,12 +1,9 @@
 #pragma once
+#include "factory.h"
 #include "json.hpp"
 #include "json_key_constants.h"
 #include "property_provider.h"
 #include "properties.h"
-#include "ngjson.h"
-#include "game_object.h"
-#include "engine_functions.h"
-#include "factory.h"
 #include "service_locator.h"
 
 struct JSONSerializerVisitor : public IPropertyVisitor {
