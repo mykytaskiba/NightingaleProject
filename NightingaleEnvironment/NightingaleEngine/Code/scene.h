@@ -23,7 +23,7 @@ public:
 
 
     int testInt;
-    std::vector<int> vectorInt{ 1,2,3,4,5,6 };
+    std::vector<uint> vectorInt{ 1,2,3,4,5,6 };
 
     std::vector<GameObject*> m_vSceneObjects{};
 

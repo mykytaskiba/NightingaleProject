@@ -156,6 +156,7 @@
     <ClInclude Include="Code\gameobject_menu.h" />
     <ClInclude Include="Code\guid.h" />
     <ClInclude Include="Code\json.hpp" />
+    <ClInclude Include="Code\json_key_constants.h" />
     <ClInclude Include="Code\ngjson.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />

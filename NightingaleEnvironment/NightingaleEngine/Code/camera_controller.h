@@ -28,7 +28,7 @@ public:
 
     CameraController() : GameObject("camera_controller") {}
 
-    JSON_CHILD(CameraController, 4u, GameObject)
+    JSON_CHILD(CameraController, 1u, GameObject)
 
     void properties(IPropertyVisitor& visitor) override {
         GameObject::properties(visitor);

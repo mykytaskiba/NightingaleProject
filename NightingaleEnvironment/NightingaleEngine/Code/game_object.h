@@ -50,9 +50,6 @@ public:
     JSON_PARENT(GameObject, 1u, "json.gameobject")
 
     void properties(IPropertyVisitor& visitor) override {
-
-        std::string factoryKeyStr{ getFactoryKey() };
-        visitor("factory_key", factoryKeyStr, MetaData::ReadOnly());
         visitor("alias", m_alias);
         visitor("transform", m_transform);
 

@@ -6,10 +6,8 @@
 #include "json_object.h"
 #include "json_representation.h"
 #include "property_provider.h"
-
-inline constexpr const char* JSON_META_KEY = "_meta_";
-inline constexpr const char* JSON_VERSION_KEY = "version";
-inline constexpr const char* JSON_TYPE_KEY = "type";
+#include "factory.h"
+#include "json_key_constants.h"
 
 
 template <typename TTarget>
@@ -24,6 +22,9 @@ public:
 		//Meta Data
 		json[JSON_META_KEY][JSON_VERSION_KEY] = m_target.jsonVersion();
 		json[JSON_META_KEY][JSON_TYPE_KEY] = m_target.jsonType();
+		if constexpr (IsFactoryObject<TTarget>)
+			json[JSON_META_KEY][JSON_FACTORY_KEY] = m_target.getFactoryKey();
+		
 
 		JSONSerializerVisitor serializer{ json };
 		m_target.properties(serializer);
@@ -52,6 +53,8 @@ public:
 		nlohmann::json& metaJSON = json[JSON_META_KEY];
 		if (!metaJSON.contains(JSON_VERSION_KEY)) return false;
 		if (!metaJSON.contains(JSON_TYPE_KEY)) return false;
+		if constexpr (IsFactoryObject<TTarget>)
+			if (!metaJSON.contains(JSON_FACTORY_KEY)) return false;
 
 		std::string fileType = metaJSON[JSON_TYPE_KEY].get<std::string>();
 		if (fileType != type) {

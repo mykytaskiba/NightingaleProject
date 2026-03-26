@@ -6,7 +6,7 @@
 #include "ngmath.h"
 #include "game_object.h"
 #include "engine_functions.h"
-
+#include "json_key_constants.h"
 
 struct JSONSerializerVisitor : public IPropertyVisitor {
 	nlohmann::json& m_json;
@@ -89,12 +89,15 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 			//return; //TO DO: THIS CREATES A MEMORY LEAK DEAL WITH THIS LATER
 			pValue = nullptr;
 		}
-
-		if (!json.contains("factory_key")) {
+		if (!json.contains(JSON_META_KEY)) {
+			return;
+		}
+		nlohmann::json& jsonMeta = json[JSON_META_KEY];
+		if (!json.contains(JSON_FACTORY_KEY)) {
 			return;
 		}
 
-		std::string factoryKey = json["factory_key"];
+		std::string factoryKey = jsonMeta[JSON_FACTORY_KEY];
 		if (EngineFunctions::factoryGameObject().create(factoryKey, pValue)) {
 			pValue->json()->deserialize(json);
 		}
