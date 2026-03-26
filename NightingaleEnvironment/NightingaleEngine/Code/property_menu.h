@@ -7,44 +7,46 @@
 #include "imgui_helpers.h"
 
 struct PropertyMenuVisitor : public IPropertyVisitor {
-	
+
+	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override {
+		ImGui::InputInt(key.c_str(), &value);
+	}
+	void operator()(std::string const& key, float& value, MetaData const& metaData = {}) override {
+		ImGui::InputFloat(key.c_str(), &value);
+	}
+	void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) override {
+		unsigned int step = 1;
+		ImGui::InputScalar(key.c_str(), ImGuiDataType_U32, &value, &step);
+	}
+	void operator()(std::string const& key, std::string& value, MetaData const& metaData = {}) override {
+		ImGui::InputText(key.c_str(), &value);
+	}
+
+protected:
+
+	bool enterScope(std::string const& key) override {
+		ImGui::Separator();
+		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+			return true;
+		}
+	}
+	void leaveScope() override { 
+	}
+
+	/*
 	template<typename TValue>
 	void visit(std::string const& key, TValue& value, MetaData const& metaData) {
 		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
 		menu(key, value, metaData);
 		if (metaData.m_bReadOnly) ImGui::EndDisabled();
-	}
+	}*/
 
 	/*
 	template<typename TValue>
 	void visit(std::string const& key, TValue*& value, MetaData const& metaData) {
 	}*/
 
-	template<typename TValue>
-	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
-		ImGui::Text("Property editor not defined: %s", key.c_str());
-	}
-
-	//NESTED PROPERTIES
-	template<typename TValue>
-	requires HasProperties<TValue>
-	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
-		ImGui::Separator();
-		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
-			value.properties(*this); //no reason for child visitor since this visitor does not hold data
-		}
-	}
-
-	template<>
-	void menu(std::string const& key, std::string& value, MetaData const& metaData) {
-		ImGui::InputText(key.c_str(), &value);
-	}
-
-	template<>
-	void menu(std::string const& key, int& value, MetaData const& metaData) {
-		ImGui::InputInt(key.c_str(), &value);
-	}
-
+	/*
 	template<>
 	void menu(std::string const& key, uint& value, MetaData const& metaData) {
 		
@@ -101,17 +103,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 			}
 		}
 
-	}
+	}*/
 
 
-	//DEFINE OVERRIDE FUNCTIONS
-#define X(TType) \
-	void operator()(std::string const& key, TType& value, MetaData const& metaData = {}) override	\
-	{ visit(key, value, metaData); } \
-	void operator()(std::string const& key, std::vector<TType>& value, MetaData const& metaData = {}) override	\
-	{ visit(key, value, metaData); } \
-	//END																									
-
-	PROPERTY_TYPES
-#undef X
 };

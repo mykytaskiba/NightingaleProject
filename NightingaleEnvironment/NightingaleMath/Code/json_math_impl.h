@@ -15,3 +15,18 @@ void from_json(nlohmann::json const& json, Quaternion& quat);
 
 void to_json(nlohmann::json& json, const AxisAlignedBox& box);
 void from_json(nlohmann::json const& json, AxisAlignedBox& box);
+
+#include "property_visitor.h"
+
+template<>
+inline void IPropertyVisitor::operator() < Vector3 > (std::string const& key, Vector3& value, MetaData const& metaData) {
+	handle_vector3(key, value[0], value[1], value[2], metaData);
+}
+template<>
+inline void IPropertyVisitor::operator() < Vector4 > (std::string const& key, Vector4& value, MetaData const& metaData) {
+	handle_vector4(key, value[0], value[1], value[2], value[3], metaData);
+}
+template<>
+inline void IPropertyVisitor::operator() < Quaternion > (std::string const& key, Quaternion& value, MetaData const& metaData) {
+	handle_vector4(key, value.w, value.x, value.y, value.z, metaData);
+}

@@ -16,15 +16,6 @@ void PhysicsBody::calculateGlobalBox()
 	m_globalBox.translate(m_position);
 }
 
-void PhysicsBody::properties(IPropertyVisitor& visitor)
-{
-	visitor("position",m_position, MetaData::ReadOnly());
-	visitor("velocity",m_velocity);
-
-	visitor("local_box", m_localBox);
-	visitor("global_box", m_globalBox, MetaData::ReadOnly());
-}
-
 void PhysicsBody::setPosition(Vector3 const& position) {
 	m_position = position;
 	calculateGlobalBox();

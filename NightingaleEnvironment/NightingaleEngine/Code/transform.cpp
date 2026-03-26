@@ -35,9 +35,3 @@ Vector3 Transform::transform(Vector3 const& point) const
     return rotation.rotate(point) + position;
 }
 
-void Transform::properties(IPropertyVisitor& visitor)
-{
-    visitor("position", position);
-    visitor("rotation", rotation);
-    visitor("scale", scale);
-}

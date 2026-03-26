@@ -1,7 +1,6 @@
 #pragma once
 #include "ngmath.h"
-
-class IPropertyVisitor;
+#include "property_visitor.h"
 
 //a transform class represents a position, scale and a rotation in the world
 class Transform {
@@ -17,6 +16,10 @@ public:
     Vector3 transform(Vector3 const&) const;
 
 
-    void properties(IPropertyVisitor& visitor);
+    void properties(IPropertyVisitor& visitor) {
+        visitor("position", position);
+        visitor("rotation", rotation);
+        visitor("scale", scale);
+    }
 
 };

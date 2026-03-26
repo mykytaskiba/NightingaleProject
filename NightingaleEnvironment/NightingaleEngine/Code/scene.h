@@ -28,12 +28,12 @@ public:
     std::vector<GameObject*> m_vSceneObjects{};
 
     void properties(IPropertyVisitor& visitor) override {
-        visitor("root", m_pRoot);
+        //visitor("root", m_pRoot);
         visitor("test int", testInt);
         visitor("vector int", vectorInt);
 
         test_collect_objects();
-        visitor("gameobjects", m_vSceneObjects);
+        //visitor("gameobjects", m_vSceneObjects);
     }
 
 private:
