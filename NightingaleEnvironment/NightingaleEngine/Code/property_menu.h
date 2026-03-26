@@ -2,7 +2,7 @@
 #include <string>
 #include <imgui.h>
 #include <imgui_stdlib.h>
-#include "properties.h"
+#include "property_visitor.h"
 #include "ngmath.h"
 #include "imgui_helpers.h"
 
@@ -27,7 +27,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 
 	//NESTED PROPERTIES
 	template<typename TValue>
-	requires std::derived_from<TValue, IPropertyProvider>
+	requires HasProperties<TValue>
 	void menu(std::string const& key, TValue& value, MetaData const& metaData) {
 		ImGui::Separator();
 		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
@@ -69,6 +69,18 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	template<>
 	void menu(std::string const& key, Quaternion& value, MetaData const& metaData) {
 		ImGuiHelpers::QuaternionInput(key.c_str(), value);
+	}
+
+	template<>
+	void menu(std::string const& key, AxisAlignedBox& value, MetaData const& metaData) {
+
+		if (metaData.m_bReadOnly) ImGui::EndDisabled(); //allow node to be toggled
+		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+			if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+			ImGuiHelpers::AxisAlignedBoxInput(key.c_str(), value);
+			if (metaData.m_bReadOnly) ImGui::EndDisabled();
+		}
+		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
 	}
 
 	template<typename TValue>

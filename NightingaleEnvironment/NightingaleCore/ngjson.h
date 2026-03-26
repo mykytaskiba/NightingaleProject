@@ -7,7 +7,7 @@
 #include "json_representation.h"
 #include "property_provider.h"
 #include "factory.h"
-#include "properties.h"
+#include "property_visitor.h"
 
 
 template <typename TTarget>

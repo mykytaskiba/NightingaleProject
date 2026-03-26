@@ -3,11 +3,14 @@
 #include "property_metadata.h"
 
 class GameObject;
+class PhysicsBody;
 class Transform;
 struct Quaternion;
-
 template < typename T, unsigned int DIM >
 struct Vector;
+struct AxisAlignedBox;
+
+using PropVector3 = Vector<float, 3u>;
 
 struct IPropertyVisitor {
 
@@ -16,10 +19,12 @@ struct IPropertyVisitor {
 	X(int) \
 	X(unsigned int) \
 	X(std::string) \
-	X(Vector3) \
+	X(PropVector3) \
 	X(Quaternion) \
 	X(Transform) \
+	X(AxisAlignedBox) \
 	X(GameObject*) \
+	X(PhysicsBody) \
 	//END
 
 #define X(TType) \

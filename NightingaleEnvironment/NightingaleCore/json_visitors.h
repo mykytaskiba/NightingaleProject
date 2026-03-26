@@ -3,7 +3,7 @@
 #include "json.hpp"
 #include "json_key_constants.h"
 #include "property_provider.h"
-#include "properties.h"
+#include "property_visitor.h"
 #include "service_locator.h"
 
 struct JSONSerializerVisitor : public IPropertyVisitor {

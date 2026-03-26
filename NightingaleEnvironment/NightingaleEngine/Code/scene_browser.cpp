@@ -5,8 +5,8 @@
 #include "game_object.h"
 #include "gameobject_menu.h"
 #include "loader.h"
-#include "properties.h"
 #include "property_visitor.h"
+#include "property_menu.h"
 
 void SceneHierarchy::render_update()
 {

@@ -49,3 +49,15 @@ void from_json(nlohmann::json const& json, Quaternion& quat)
 	json.at("y").get_to(quat.y);
 	json.at("z").get_to(quat.z);
 }
+
+void to_json(nlohmann::json& json, const AxisAlignedBox& box)
+{
+	json["min"] = box.min();
+	json["max"] = box.max();
+}
+
+void from_json(nlohmann::json const& json, AxisAlignedBox& box)
+{
+	json.at("min").get_to(box.min());
+	json.at("max").get_to(box.max());
+}

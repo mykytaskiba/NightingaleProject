@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\json">
+      <UniqueIdentifier>{0b50ed3c-116d-484c-a2f5-592d8514a170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\property">
+      <UniqueIdentifier>{5a729308-f338-415d-87fa-48bb335f4e1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitwise_enum.hpp">
@@ -24,41 +30,41 @@
     <ClInclude Include="factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="json.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="json_key_constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="json_object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="json_representation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="json_upgrader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="nightingale_assert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="property_metadata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="property_provider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="service_locator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="properties.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="json.hpp">
+      <Filter>Header Files\json</Filter>
     </ClInclude>
-    <ClInclude Include="ngjson.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="json_key_constants.h">
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="json_object.h">
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="json_representation.h">
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="json_upgrader.h">
+      <Filter>Header Files\json</Filter>
     </ClInclude>
     <ClInclude Include="json_visitors.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="ngjson.h">
+      <Filter>Header Files\json</Filter>
+    </ClInclude>
+    <ClInclude Include="property_provider.h">
+      <Filter>Header Files\property</Filter>
+    </ClInclude>
+    <ClInclude Include="property_visitor.h">
+      <Filter>Header Files\property</Filter>
+    </ClInclude>
+    <ClInclude Include="property_metadata.h">
+      <Filter>Header Files\property</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

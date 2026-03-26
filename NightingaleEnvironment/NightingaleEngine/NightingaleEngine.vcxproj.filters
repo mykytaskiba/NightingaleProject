@@ -554,7 +554,7 @@
     <ClInclude Include="Code\engine_settings.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Code\property_visitor.h">
+    <ClInclude Include="Code\property_menu.h">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
     <ClInclude Include="Code\transform.h">

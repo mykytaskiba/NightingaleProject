@@ -55,6 +55,7 @@ void Physics::subUpdate(TTimePhys deltaT)
 			++m_infoSpatialPairsCount;
 			if (pBody->getGlobalBox().isOverlap(pOther->getGlobalBox())) {
 				pBody->setVelocity(Vector3(0, 0, 0));
+				pOther->setVelocity(Vector3(0, 0, 0));
 			}
 		}
 	);

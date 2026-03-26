@@ -224,7 +224,7 @@
     <ClInclude Include="Code\render_node_menu.h" />
     <ClInclude Include="Code\physics_body_menu.h" />
     <ClInclude Include="Code\fileloading_panel.h" />
-    <ClInclude Include="Code\property_visitor.h" />
+    <ClInclude Include="Code\property_menu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

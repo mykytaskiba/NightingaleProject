@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "transform.h"
-#include "properties.h"
+#include "property_visitor.h"
 
 
 Transform Transform::interpolate(Transform const& a, Transform const& b, float t)

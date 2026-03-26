@@ -4,8 +4,10 @@
 class AxisAlignedBox {
 public:
 
-	Vector3 const& min() const;
-	Vector3 const& max() const;
+	Vector3& min() { return m_min; };
+	Vector3& max() { return m_max; };
+	Vector3 const& min() const { return m_min; };
+	Vector3 const& max() const { return m_max; };
 	Vector3 center() const;
 	Vector3 extents() const;
 

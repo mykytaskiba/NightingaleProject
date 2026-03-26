@@ -1,4 +1,5 @@
 #include "physics_body.h"
+#include "property_visitor.h"
 
 void PhysicsBody::update(TTimePhys deltaT)
 {
@@ -10,6 +11,15 @@ void PhysicsBody::calculateGlobalBox()
 {
 	m_globalBox = m_localBox;
 	m_globalBox.translate(m_position);
+}
+
+void PhysicsBody::properties(IPropertyVisitor& visitor)
+{
+	visitor("position",m_position, MetaData::ReadOnly());
+	visitor("velocity",m_velocity);
+
+	visitor("local_box", m_localBox);
+	visitor("global_box", m_globalBox, MetaData::ReadOnly());
 }
 
 void PhysicsBody::setPosition(Vector3 const& position) {

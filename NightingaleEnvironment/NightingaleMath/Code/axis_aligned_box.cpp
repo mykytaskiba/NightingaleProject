@@ -2,16 +2,6 @@
 #include "defines.h"
 #include <cmath>
 
-Vector3 const& AxisAlignedBox::min() const
-{
-	return m_min;
-}
-
-Vector3 const& AxisAlignedBox::max() const
-{
-	return m_max;
-}
-
 Vector3 AxisAlignedBox::center() const
 {
 	return (m_max + m_min) / 2.0f;

@@ -1,10 +1,13 @@
 #pragma once
 #include "ngmath.h"
 #include "defines.h"
+#include "property_provider.h"
+
+class IPropertyVisitor;
 
 //Any physics body that needs to be simulated
 //Could be rigid or soft
-class PhysicsBody {
+class PhysicsBody : public IPropertyProvider {
 private:
 
 	bool m_bUseGravity{ false };
@@ -19,6 +22,7 @@ private:
 	void calculateGlobalBox();
 public:
 
+	void properties(IPropertyVisitor& visitor) override;
 	
 	bool useGravity() const { return m_bUseGravity; }
 	void setGravity(bool bUseGravity) { m_bUseGravity = bUseGravity; }

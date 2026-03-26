@@ -1,7 +1,8 @@
 #pragma once
-#include "defines.h"
+#include "nightingale_assert.h"
+#include <cmath>
 
-template < typename T, uint DIM >
+template < typename T, unsigned int DIM >
 struct Vector {
 
 private:
@@ -31,12 +32,12 @@ public:
     }
 
 
-    T& operator[](uint index) {
+    T& operator[](unsigned int index) {
         assert(index < DIM);
         return data[index];
     }
 
-    T operator[](uint index) const {
+    T operator[](unsigned int index) const {
         assert(index < DIM);
         return data[index];
     }
@@ -44,28 +45,28 @@ public:
     // = equal operator
 
     Vector<T, DIM>& operator+=(Vector<T, DIM> const& other) {
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             data[loop] += other.data[loop];
         }
         return *this;
     }
 
     Vector<T, DIM>& operator-=(Vector<T, DIM> const& other) {
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             data[loop] -= other.data[loop];
         }
         return *this;
     }
 
     Vector<T, DIM>& operator*=(float scalar) {
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             data[loop] *= scalar;
         }
         return *this;
     }
 
     Vector<T, DIM>& operator/=(float scalar) {
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             data[loop] /= scalar;
         }
         return *this;
@@ -73,7 +74,7 @@ public:
 
     float dot(Vector<T, DIM> const& other) const {
         float dotProduct = 0.0f;
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             dotProduct += data[loop] * other.data[loop];
         }
         return dotProduct;
@@ -82,7 +83,7 @@ public:
     Vector<T, DIM + 1u> add_dimension(T value = 0.0f) const {
         Vector<T, DIM + 1u> result = Vector<T, DIM + 1u>();
 
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             result[loop] = data[loop];
         }
 
@@ -92,7 +93,7 @@ public:
 
     Vector<T, DIM - 1u> truncate_dimension() const {
         Vector<T, DIM - 1u> result;
-        for (uint loop = 0; loop < DIM - 1u; ++loop) {
+        for (unsigned int loop = 0; loop < DIM - 1u; ++loop) {
             result[loop] = data[loop];
         }
         return result;
@@ -101,7 +102,7 @@ public:
 
     float magnitude_squared() {
         float magn = 0.0f;
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             magn += data[loop] * data[loop];
         }
         return magn;
@@ -115,7 +116,7 @@ public:
         if (magn <= 0.0f) {
             return *this;
         }
-        for (uint loop = 0; loop < DIM; loop++) {
+        for (unsigned int loop = 0; loop < DIM; loop++) {
             data[loop] /= magn;
         }
         return *this;
@@ -165,7 +166,7 @@ public:
         Vector<T, DIM> result;
         float oneMinusT = 1.0f - t;
 
-        for (uint loop = 0; loop < DIM; ++loop) {
+        for (unsigned int loop = 0; loop < DIM; ++loop) {
             result[loop] = oneMinusT * a.data[loop] + t * b.data[loop];
         }
         return result;
@@ -173,24 +174,24 @@ public:
 
 };
 
-template < typename T, uint DIM >
+template < typename T, unsigned int DIM >
 static Vector<T, DIM> operator*(float scalar, Vector<T, DIM>const& vector) {
     return (vector * scalar);
 }
 
-template < typename T, uint DIM >
+template < typename T, unsigned int DIM >
 static Vector<T, DIM> operator/(float scalar, Vector<T, DIM>const& vector) {
     return (vector / scalar);
 }
 
 //Vector defines
-using Vector2 = Vector<float, 2>;
-using Vector3 = Vector<float, 3>;
-using Vector4 = Vector<float, 4>;
+using Vector2 = Vector<float, 2u>;
+using Vector3 = Vector<float, 3u>;
+using Vector4 = Vector<float, 4u>;
 
-using Vector2i = Vector<int, 3>;
-using Vector3i = Vector<int, 3>;
-using Vector4i = Vector<int, 3>;
+using Vector2i = Vector<int, 2u>;
+using Vector3i = Vector<int, 3u>;
+using Vector4i = Vector<int, 4u>;
 
 
 

@@ -30,7 +30,7 @@
     <ClInclude Include="json_visitors.h" />
     <ClInclude Include="ngjson.h" />
     <ClInclude Include="nightingale_assert.h" />
-    <ClInclude Include="properties.h" />
+    <ClInclude Include="property_visitor.h" />
     <ClInclude Include="property_metadata.h" />
     <ClInclude Include="property_provider.h" />
     <ClInclude Include="service_locator.h" />

@@ -3,7 +3,7 @@
 struct MetaData {
 	bool m_bReadOnly{ false };
 
-	static MetaData ReadOnly() {
+	static constexpr MetaData ReadOnly() {
 		MetaData data{};
 		data.m_bReadOnly = true;
 		return data;

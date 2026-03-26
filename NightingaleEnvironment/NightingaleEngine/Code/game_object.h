@@ -8,7 +8,7 @@
 #include "json_object.h"
 #include "transform.h"
 #include "property_provider.h"
-#include "properties.h"
+#include "property_visitor.h"
 
 class Component;
 class GameObject;
@@ -52,6 +52,10 @@ public:
     void properties(IPropertyVisitor& visitor) override {
         visitor("alias", m_alias);
         visitor("transform", m_transform);
+
+        if (m_pPhysicsBody != nullptr) {
+            visitor("physics_body", *m_pPhysicsBody);
+        }
 
         /*
         if (!m_vChildren.empty()) {
