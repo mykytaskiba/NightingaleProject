@@ -4,7 +4,6 @@
 #include "json_representation.h"
 
 class JSONUpgrader;
-class IJSONRepresentation;
 
 class IJSONObject {
 public:

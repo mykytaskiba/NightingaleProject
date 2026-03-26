@@ -206,6 +206,7 @@
     <ClInclude Include="Code\screen.h" />
     <ClInclude Include="Code\json_visitors.h" />
     <ClInclude Include="Code\shader_source.h" />
+    <ClInclude Include="Code\service_locator.h" />
     <ClInclude Include="Code\skeleton.h" />
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />

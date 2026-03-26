@@ -1,12 +1,13 @@
 #pragma once
 #include "json.hpp"
+#include "json_key_constants.h"
 #include "property_provider.h"
 #include "properties.h"
-#include "ngjson.h" 
-#include "ngmath.h"
+#include "ngjson.h"
 #include "game_object.h"
 #include "engine_functions.h"
-#include "json_key_constants.h"
+#include "factory.h"
+#include "service_locator.h"
 
 struct JSONSerializerVisitor : public IPropertyVisitor {
 	nlohmann::json& m_json;
@@ -84,7 +85,8 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 		}
 	}
 
-	void visit_internal(nlohmann::json& json, GameObject*& pValue, MetaData const& metaData) {
+	template<typename TValue>
+	void visit_internal(nlohmann::json& json, TValue*& pValue, MetaData const& metaData) {
 		if (pValue != nullptr) {
 			//return; //TO DO: THIS CREATES A MEMORY LEAK DEAL WITH THIS LATER
 			pValue = nullptr;
@@ -98,7 +100,12 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 		}
 
 		std::string factoryKey = jsonMeta[JSON_FACTORY_KEY];
-		if (EngineFunctions::factoryGameObject().create(factoryKey, pValue)) {
+		if (!ServiceLocator<Factory<std::string, TValue>>::hasService()) {
+			return;
+		}
+		Factory<std::string, TValue>& factory = *ServiceLocator< Factory<std::string, TValue> >::retrieve();
+
+		if (factory.create(factoryKey, pValue)) {
 			pValue->json()->deserialize(json);
 		}
 	}

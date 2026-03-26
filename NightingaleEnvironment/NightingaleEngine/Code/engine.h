@@ -16,6 +16,7 @@
 #include "ngrender.h"
 #include "callback_handler.h"
 #include "hotkey_processing.h"
+#include "game_object.h"
 #include "factory.h"
 
 

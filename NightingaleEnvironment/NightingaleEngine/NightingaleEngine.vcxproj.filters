@@ -600,6 +600,9 @@
     <ClInclude Include="Code\json_key_constants.h">
       <Filter>Header Files\JSON</Filter>
     </ClInclude>
+    <ClInclude Include="Code\service_locator.h">
+      <Filter>Header Files\Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Code\cpp.hint" />

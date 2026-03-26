@@ -2,6 +2,7 @@
 #include <map>
 #include <functional>
 #include "nightingale_assert.h"
+#include "service_locator.h"
 
 template <typename TKey, typename TValue>
 class FactoryElement {
@@ -23,6 +24,13 @@ class Factory {
 public:
 	using FCreationFunc = std::function<TValue* ()>;
 	using FKeyFunc = std::function<void(TKey const&)>;
+
+	Factory() {
+		ServiceLocator<Factory<TKey,TValue>>::provide(this);
+	}
+	~Factory() {
+		ServiceLocator<Factory<TKey, TValue>>::clear();
+	}
 
 private:
 	std::map<TKey, FCreationFunc> m_map{};

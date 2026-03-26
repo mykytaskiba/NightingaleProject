@@ -9,6 +9,8 @@
 #include "render_skinned.h"
 #include "ngmath.h"
 #include "scene.h"
+#include "factory.h"
+#include "service_locator.h"
 
 void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
@@ -17,7 +19,16 @@ void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, L
     
     GameObject* pCreatedObject = nullptr;
 
-    bool bSuccess = EngineFunctions::factoryGameObject().create(type, pCreatedObject);
+    using TGameObjectFactory = Factory<std::string, GameObject>;
+    bool bSuccess = ServiceLocator<TGameObjectFactory>::hasService();
+    if (!bSuccess) {
+        result.message = "failed finding factory";
+        result.bSuccess = false;
+        return;
+
+    }
+    Factory<std::string, GameObject>& factory = *ServiceLocator<TGameObjectFactory>::retrieve();
+    bSuccess = factory.create(type, pCreatedObject);
     if (!bSuccess) {
         result.message = "failed instantiating object of type " + type;
         result.bSuccess = false;
