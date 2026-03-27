@@ -30,22 +30,22 @@ public:
 	void operator()(std::string const& key, std::vector<TValue>& vector, MetaData const& metaData = {}) {
 		unsigned int idx{ 0u };
 		size_t vectorSize = vector.size();
-		if (enterCollection(key, vectorSize)) {
+		if (enterCollection(key, vectorSize, metaData)) {
 			vector.resize(vectorSize);
 			for (auto& value : vector) {
-				enumerateCollectionElement(idx);
+				enumerateCollectionElement(idx, metaData);
 				std::string idxKey = "[" + std::to_string(idx) + "]";
 				(*this)(idxKey, value, metaData);
 				++idx;
 			}
-			leaveCollection();
+			leaveCollection(metaData);
 		}
 	}
 
 	template<typename TValue>
-	requires IsFactoryObject<TValue>
-	void operator()(std::string const& key, TValue*& pValue, MetaData const& metaData = {}) {
-		if (enterScope(key, metaData)) {
+	requires IsFactoryObject<TValue> && HasProperties<TValue>
+	void operator()(std::string const& key, FactoryElement<std::string, TValue>*& pValue, MetaData const& metaData = {}) {
+		if (enterFactory(key, pValue, metaData)) {
 			value.properties(*this);
 			leaveScope(metaData);
 		}
@@ -67,10 +67,10 @@ protected:
 		leaveScope(metaData);
 	}
 
-	virtual bool enterFactory(std::string const& key, void*& pValue, MetaData const& metaData = {}) {
+	virtual bool enterFactory(std::string const& key, void*& pValue, MetaData const& metaData) {
 		return enterScope(key, metaData);
 	}
-	virtual void handleFactory(std::string const& key, void*& pValue, MetaData const& metaData = {}) = 0;
+	virtual void handleFactory(std::string const& key, void*& pValue, MetaData const& metaData) = 0;
 	virtual void leaveFactory(MetaData const& metaData) {
 		leaveScope(metaData);
 	}

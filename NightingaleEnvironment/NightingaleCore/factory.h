@@ -4,6 +4,8 @@
 #include "nightingale_assert.h"
 #include "service_locator.h"
 
+using TFactoryKey = std::string
+
 template <typename TKey, typename TValue>
 class FactoryElement {
 	template <typename TKey, typename TValue>

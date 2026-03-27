@@ -49,23 +49,6 @@ protected:
 
 		//pValue->json()->serialize(json);
 	}
-	/*
-	template<typename TValue>
-	void visit_internal(nlohmann::json& json, TValue*& pValue, MetaData const& metaData) {
-	}*/
-
-	/*
-	template<typename TValue>
-	void visit(std::string const& key, std::vector<TValue>& collection, MetaData const& metaData)
-	{
-		m_json[key] = nlohmann::json::array();
-		nlohmann::json& jsonArray = m_json[key];
-
-		for (auto& value : collection) {
-			nlohmann::json& serializedObject = jsonArray.emplace_back(nlohmann::json::value_t::object);
-			visit_internal(serializedObject, value, metaData);
-		}
-	}*/
 
 };
 
