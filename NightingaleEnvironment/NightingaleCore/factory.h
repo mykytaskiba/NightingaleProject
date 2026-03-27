@@ -4,42 +4,46 @@
 #include "nightingale_assert.h"
 #include "service_locator.h"
 
-using TFactoryKey = std::string
 
-template <typename TKey, typename TValue>
-class FactoryElement {
-	template <typename TKey, typename TValue>
+class IFactoryElement {
+	template <typename TValue>
 	friend class Factory;
+	using TFactoryKey = std::string;
 private:
-	void setFactoryKey(TKey const& key) {
+	void setFactoryKey(TFactoryKey const& key) {
 		m_factoryKey = key;
 	}
 
-	TKey m_factoryKey{};
+	TFactoryKey m_factoryKey{};
 public:
-	TKey const& getFactoryKey() const { return m_factoryKey; }
+	TFactoryKey const& getFactoryKey() const { return m_factoryKey; }
+	
+};
+
+class IFactory {
+public:
+	using TFactoryKey = std::string;
+	virtual bool create(TFactoryKey const& key, IFactoryElement*& outValue) const = 0;
 };
 
 
-template <typename TKey, typename TValue>
-class Factory {
-public:
+
+template <typename TValue>
+class Factory : public IFactory {
+private:
+	using FKeyFunc = std::function<void(TFactoryKey const&)>;
 	using FCreationFunc = std::function<TValue* ()>;
-	using FKeyFunc = std::function<void(TKey const&)>;
+	std::map<TFactoryKey, FCreationFunc> m_map{};
+public:
 
 	Factory() {
-		ServiceLocator<Factory<TKey,TValue>>::provide(this);
+		ServiceLocator<Factory<TValue>>::provide(this);
 	}
 	~Factory() {
-		ServiceLocator<Factory<TKey, TValue>>::clear();
+		ServiceLocator<Factory<TValue>>::clear();
 	}
 
-private:
-	std::map<TKey, FCreationFunc> m_map{};
-
-public:
-
-	void addToFactory(TKey const& key, FCreationFunc creationFunc) {
+	void addToFactory(TFactoryKey const& key, FCreationFunc creationFunc) {
 		if (m_map.contains(key)) {
 			assert(false && "Value already exists in the factory");
 			return;
@@ -49,16 +53,16 @@ public:
 
 	//Assumption: TValue added must have a no param constructor
 	template <typename TValueAdded> requires std::derived_from<TValueAdded, TValue>
-	void addToFactory(TKey const& key) {
+	void addToFactory(TFactoryKey const& key) {
 		addToFactory(key, []() {
 			return new TValueAdded();
 			}
 		);
 	}
 
-	bool create(TKey const& key, TValue*& outValue) const {
+	bool create(TFactoryKey const& key, IFactoryElement*& pOut) const override {
 
-		if (outValue != nullptr) {
+		if (pOut != nullptr) {
 			assert(false); //Must pass nullptr into factory
 			return false;
 		}
@@ -68,15 +72,30 @@ public:
 			return false;
 		}
 
-		outValue = it->second();
+		pOut = it->second();
 
-		if (outValue == nullptr) {
+		if (pOut == nullptr) {
 			assert(false);
 			return false;
 		}
 
-		outValue->setFactoryKey(key);
+		pOut->setFactoryKey(key);
 		return true;
+	}
+
+	bool create(TFactoryKey const& key, TValue*& pOut) const {
+		if (pOut != nullptr) {
+			assert(false); //Must pass nullptr into factory
+			return false;
+		}
+
+		IFactoryElement* pOutElement{ nullptr };
+		if (create(key, pOutElement)) {
+			// Since this is a Factory<TValue>, we know pBaseOut is a TValue
+			pOut = static_cast<TValue*>(pOutElement);
+			return true;
+		}
+		return false;
 	}
 
 	void foreach_key(FKeyFunc const& func) const {
@@ -88,6 +107,4 @@ public:
 
 
 template <typename TObject>
-concept IsFactoryObject = requires(TObject obj) {
-	obj.getFactoryKey();
-};
+concept IsFactoryObject = std::derived_from<TObject, IFactoryElement>;

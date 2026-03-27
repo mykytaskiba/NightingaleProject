@@ -2,6 +2,7 @@
 #include <string>
 #include "property_metadata.h"
 #include "property_provider.h"
+#include "factory.h"
 
 
 class IPropertyVisitor {
@@ -23,7 +24,8 @@ public:
 
 	template<typename TValue>
 	void operator()(std::string const& key, TValue& value, MetaData const& metaData = {}) {
-		static_assert(false, "Visitor definition couldnt be resolved");
+		//static_assert(false, "Visitor definition couldnt be resolved");
+		assert(false);
 	}
 
 	template<typename TValue>
@@ -44,10 +46,22 @@ public:
 
 	template<typename TValue>
 	requires IsFactoryObject<TValue> && HasProperties<TValue>
-	void operator()(std::string const& key, FactoryElement<std::string, TValue>*& pValue, MetaData const& metaData = {}) {
-		if (enterFactory(key, pValue, metaData)) {
-			value.properties(*this);
-			leaveScope(metaData);
+	void operator()(std::string const& key, TValue*& pValue, MetaData const& metaData = {}) {
+
+		if (!ServiceLocator<Factory<TValue>>::hasService()) {
+			assert(false);
+			return;
+		}
+		Factory<TValue>& factory = *ServiceLocator<Factory<TValue>>::retrieve();
+
+		if (enterFactory(key, pValue, factory, metaData)) {
+			if (pValue != nullptr) {
+				pValue->properties(*this);
+				leaveScope(metaData);
+			}
+			else {
+				assert(false);
+			}
 		}
 		
 	}
@@ -67,10 +81,9 @@ protected:
 		leaveScope(metaData);
 	}
 
-	virtual bool enterFactory(std::string const& key, void*& pValue, MetaData const& metaData) {
+	virtual bool enterFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) {
 		return enterScope(key, metaData);
 	}
-	virtual void handleFactory(std::string const& key, void*& pValue, MetaData const& metaData) = 0;
 	virtual void leaveFactory(MetaData const& metaData) {
 		leaveScope(metaData);
 	}

@@ -69,8 +69,8 @@ private:
 
     void CS550TempTestFuncInit();
 
-    Factory<std::string, GameObject> m_factoryGameObject;
-    Factory<std::string, PhysicsBody> m_factoryPhysicsBody;
+    Factory<GameObject> m_factoryGameObject;
+    Factory<PhysicsBody> m_factoryPhysicsBody;
         
     void defaultGameObjectFactory();
 

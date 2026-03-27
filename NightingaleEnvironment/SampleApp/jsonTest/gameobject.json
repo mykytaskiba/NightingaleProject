@@ -1,1 +1,9 @@
-"scene_root"
+{
+    "_meta_": {
+        "factory_key": "scene_root_object",
+        "type": "json.gameobject",
+        "version": 1
+    },
+    "alias": "scene_root",
+    "factory_key": "scene_root_object"
+}

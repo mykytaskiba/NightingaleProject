@@ -21,7 +21,7 @@ using TGameObjectFunc = std::function<void(GameObject&)>;
 typedef void (*TComponentFunc)(Component&);
 
 //Core gameobject class that keeps track of a parent-children hierarchy 
-class GameObject : public FactoryElement<std::string, GameObject>, public IJSONObject, public IPropertyProvider {
+class GameObject : public IFactoryElement, public IJSONObject, public IPropertyProvider {
 
     friend class EngineFunctions;
 protected:

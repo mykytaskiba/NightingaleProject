@@ -5,6 +5,7 @@
 #include "property_visitor.h"
 #include "ngmath.h"
 #include "imgui_helpers.h"
+#include "property_metadata.h"
 
 struct PropertyMenuVisitor : public IPropertyVisitor {
 
@@ -23,14 +24,13 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	}
 
 protected:
-
-	bool enterScope(std::string const& key) override {
+	bool enterScope(std::string const& key, MetaData const& metaData) override {
 		ImGui::Separator();
 		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
 			return true;
 		}
 	}
-	void leaveScope() override { 
+	void leaveScope(MetaData const& metaData) override {
 	}
 
 	/*

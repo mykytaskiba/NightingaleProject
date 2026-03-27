@@ -19,7 +19,7 @@ void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, L
     
     GameObject* pCreatedObject = nullptr;
 
-    using TGameObjectFactory = Factory<std::string, GameObject>;
+    using TGameObjectFactory = Factory<GameObject>;
     bool bSuccess = ServiceLocator<TGameObjectFactory>::hasService();
     if (!bSuccess) {
         result.message = "failed finding factory";
@@ -27,7 +27,7 @@ void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, L
         return;
 
     }
-    Factory<std::string, GameObject>& factory = *ServiceLocator<TGameObjectFactory>::retrieve();
+    Factory<GameObject>& factory = *ServiceLocator<TGameObjectFactory>::retrieve();
     bSuccess = factory.create(type, pCreatedObject);
     if (!bSuccess) {
         result.message = "failed instantiating object of type " + type;

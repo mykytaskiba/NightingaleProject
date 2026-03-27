@@ -63,6 +63,6 @@ public:
 
     static void close_app();
 
-    static Factory<std::string, GameObject> const& factoryGameObject();
+    static Factory<GameObject> const& factoryGameObject();
 
 };

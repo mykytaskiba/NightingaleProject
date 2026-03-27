@@ -10,7 +10,7 @@ class IPropertyVisitor;
 
 //Any physics body that needs to be simulated
 //Could be rigid or soft
-class PhysicsBody : public IPropertyProvider, public IJSONObject, public FactoryElement<std::string,PhysicsBody> {
+class PhysicsBody : public IPropertyProvider, public IJSONObject, public IFactoryElement {
 private:
 
 	bool m_bUseGravity{ false };
