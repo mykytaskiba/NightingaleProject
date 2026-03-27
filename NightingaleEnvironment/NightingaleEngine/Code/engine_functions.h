@@ -63,6 +63,5 @@ public:
 
     static void close_app();
 
-    static Factory<GameObject> const& factoryGameObject();
 
 };

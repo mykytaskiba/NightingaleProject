@@ -144,8 +144,4 @@ void EngineFunctions::close_app()
     EngineInternals::pEngine->m_bRunning = false;
 }
 
-Factory<GameObject> const& EngineFunctions::factoryGameObject()
-{
-    return EngineInternals::pEngine->m_factoryGameObject;
-}
 

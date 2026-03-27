@@ -17,13 +17,20 @@ void SceneHierarchy::render_update()
     ImGui::Checkbox("Show GUIDs", &m_bShowGUID);
 
     if (ImGui::BeginMenu("Create")) {
-        EngineFunctions::factoryGameObject().foreach_key([](std::string const& key) {
+
+        if (ServiceLocator<Factory<GameObject>>::hasService()) {
+            Factory<GameObject> factory = *ServiceLocator<Factory<GameObject>>::retrieve();
+            factory.foreach_key([](std::string const& key) {
                 if (ImGui::Button(key.c_str())) {
                     std::string executedCommand = "create_gameobject " + key;
                     EngineFunctions::ExecuteCommand(executedCommand);
                 }
-            }
-        );
+                }
+            );
+        }
+        else {
+            assert(false);
+        }
         ImGui::EndMenu();
     }
 
