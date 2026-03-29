@@ -33,7 +33,7 @@ public:
         visitor("vector int", vectorInt);
 
         test_collect_objects();
-        //visitor("gameobjects", m_vSceneObjects);
+        visitor("gameobjects", m_vSceneObjects);
     }
 
 private:

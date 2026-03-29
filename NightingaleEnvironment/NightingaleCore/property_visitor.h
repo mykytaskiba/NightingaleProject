@@ -29,6 +29,20 @@ public:
 	}
 
 	template<typename TValue>
+	requires IsFactoryObject<TValue>&& HasProperties<TValue>
+		void operator()(std::string const& key, TValue*& pValue, MetaData const& metaData = {}) {
+
+		if (!ServiceLocator<Factory<TValue>>::hasService()) {
+			assert(false);
+			return;
+		}
+		Factory<TValue>& factory = *ServiceLocator<Factory<TValue>>::retrieve();
+		IFactoryElement* pFactoryElement = pValue;
+		handleFactory(key, pFactoryElement, factory, metaData);
+
+	}
+
+	template<typename TValue>
 	void operator()(std::string const& key, std::vector<TValue>& vector, MetaData const& metaData = {}) {
 		unsigned int idx{ 0u };
 		size_t vectorSize = vector.size();
@@ -42,28 +56,6 @@ public:
 			}
 			leaveCollection(metaData);
 		}
-	}
-
-	template<typename TValue>
-	requires IsFactoryObject<TValue> && HasProperties<TValue>
-	void operator()(std::string const& key, TValue*& pValue, MetaData const& metaData = {}) {
-
-		if (!ServiceLocator<Factory<TValue>>::hasService()) {
-			assert(false);
-			return;
-		}
-		Factory<TValue>& factory = *ServiceLocator<Factory<TValue>>::retrieve();
-
-		if (enterFactory(key, pValue, factory, metaData)) {
-			if (pValue != nullptr) {
-				pValue->properties(*this);
-				leaveScope(metaData);
-			}
-			else {
-				assert(false);
-			}
-		}
-		
 	}
 
 protected:
@@ -81,12 +73,8 @@ protected:
 		leaveScope(metaData);
 	}
 
-	virtual bool enterFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) {
-		return enterScope(key, metaData);
-	}
-	virtual void leaveFactory(MetaData const& metaData) {
-		leaveScope(metaData);
-	}
+	virtual void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) = 0;
+
 
 	
 	virtual void handle_vector3(std::string const& key, float& x, float& y, float& z, MetaData const& metaData) {

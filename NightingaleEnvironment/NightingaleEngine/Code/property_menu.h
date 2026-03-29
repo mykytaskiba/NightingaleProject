@@ -33,6 +33,10 @@ protected:
 	void leaveScope(MetaData const& metaData) override {
 	}
 
+	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) override {
+
+	}
+
 	/*
 	template<typename TValue>
 	void visit(std::string const& key, TValue& value, MetaData const& metaData) {

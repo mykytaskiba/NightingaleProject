@@ -19,7 +19,7 @@ void SceneHierarchy::render_update()
     if (ImGui::BeginMenu("Create")) {
 
         if (ServiceLocator<Factory<GameObject>>::hasService()) {
-            Factory<GameObject> factory = *ServiceLocator<Factory<GameObject>>::retrieve();
+            Factory<GameObject>& factory = *ServiceLocator<Factory<GameObject>>::retrieve();
             factory.foreach_key([](std::string const& key) {
                 if (ImGui::Button(key.c_str())) {
                     std::string executedCommand = "create_gameobject " + key;
@@ -27,8 +27,7 @@ void SceneHierarchy::render_update()
                 }
                 }
             );
-        }
-        else {
+        } else {
             assert(false);
         }
         ImGui::EndMenu();

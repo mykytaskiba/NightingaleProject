@@ -52,7 +52,7 @@ public:
     void properties(IPropertyVisitor& visitor) override {
         visitor("alias", m_alias);
         visitor("transform", m_transform);
-        //visitor("physics_body", m_pPhysicsBody);
+        visitor("physics_body", m_pPhysicsBody);
 
         /*
         if (!m_vChildren.empty()) {

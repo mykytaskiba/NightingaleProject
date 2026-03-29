@@ -17,7 +17,7 @@ private:
 	TFactoryKey m_factoryKey{};
 public:
 	TFactoryKey const& getFactoryKey() const { return m_factoryKey; }
-	
+	virtual ~IFactoryElement() = default; //make this class virtual
 };
 
 class IFactory {
@@ -42,6 +42,9 @@ public:
 	~Factory() {
 		ServiceLocator<Factory<TValue>>::clear();
 	}
+
+	Factory(const Factory&) = delete;
+	Factory& operator=(Factory const&) = delete;
 
 	void addToFactory(TFactoryKey const& key, FCreationFunc creationFunc) {
 		if (m_map.contains(key)) {

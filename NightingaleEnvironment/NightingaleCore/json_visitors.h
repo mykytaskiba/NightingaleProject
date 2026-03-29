@@ -40,89 +40,26 @@ protected:
 		m_jsonStack.pop_back();
 	}
 
-	bool enterFactory(std::string const& key, void*& pValue, MetaData const& metaData) {
-		return false;
-		//if (pValue == nullptr) {
-		//	json()[key] = nullptr;
-		//	return;
-		//}
+	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) override {
+		if (pValue == nullptr) {
+			json()[key] = nlohmann::json();
+			return;
+		}
 
-		//pValue->json()->serialize(json);
+		IJSONObject* pJSONObject = dynamic_cast<IJSONObject*>(pValue);
+		if (pJSONObject == nullptr) {
+			assert(false);
+			return;
+		}
+
+		bool bSuccess = pJSONObject->json()->serialize(json()[key]);
+		assert(bSuccess);
 	}
 
 };
 
 
 struct JSONDeserializerVisitor : public IPropertyVisitor {
-
-	/*
-	template<typename TValue>
-	void visit_internal(nlohmann::json& json, TValue& value, MetaData const& metaData) {
-		if constexpr (HasProperties<TValue>) {
-			JSONDeserializerVisitor childSerializer{ json };
-			value.properties(childSerializer);
-		}
-		else {
-			json.get_to(value);
-		}
-	}
-
-	template<typename TValue>
-	void visit_internal(nlohmann::json& json, TValue*& pValue, MetaData const& metaData) {
-		if (pValue != nullptr) {
-			//return; //TO DO: THIS CREATES A MEMORY LEAK DEAL WITH THIS LATER
-			pValue = nullptr;
-		}
-		if (!json.contains(JSON_META_KEY)) {
-			return;
-		}
-		nlohmann::json& jsonMeta = json[JSON_META_KEY];
-		if (!json.contains(JSON_FACTORY_KEY)) {
-			return;
-		}
-
-		std::string factoryKey = jsonMeta[JSON_FACTORY_KEY];
-		if (!ServiceLocator<Factory<std::string, TValue>>::hasService()) {
-			return;
-		}
-		Factory<std::string, TValue>& factory = *ServiceLocator< Factory<std::string, TValue> >::retrieve();
-
-		if (factory.create(factoryKey, pValue)) {
-			pValue->json()->deserialize(json);
-		}
-	}
-
-	template<typename TValue>
-	void visit(std::string const& key, TValue& value, MetaData const& metaData)
-	{
-		if (metaData.m_bReadOnly) {
-			return;
-		}
-		if (m_json.contains(key)) {
-			visit_internal(m_json[key], value, metaData);
-		}
-	}
-
-	template<typename TValue>
-	void visit(std::string const& key, std::vector<TValue>& collection, MetaData const& metaData)
-	{
-		if (!m_json.contains(key) || !m_json[key].is_array()) {
-			return;
-		}
-		if (!collection.empty()) {
-			//return; TO DO: FIX THIS LATER
-			collection.clear();
-		}
-
-		nlohmann::json& jsonArray = m_json[key];
-
-		collection.resize(jsonArray.size());
-
-		for (size_t i = 0; i < jsonArray.size(); ++i) {
-			visit_internal(jsonArray[i], collection[i], metaData);
-		}
-	}*/
-
 
 	nlohmann::json& m_json;
 
@@ -163,8 +100,8 @@ protected:
 		m_jsonStack.pop_back();
 	}
 
-	bool enterFactory(std::string const& key, void*& pValue, MetaData const& metaData) {
-		return false;
+	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) override {
+
 	}
 };
 

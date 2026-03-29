@@ -24,7 +24,7 @@ void Scene::init()
 
     GameObject* pGameObjectRoot{ nullptr };
     if (ServiceLocator<Factory<GameObject>>::hasService()) {
-        Factory<GameObject> factory = *ServiceLocator<Factory<GameObject>>::retrieve();
+        Factory<GameObject>& factory = *ServiceLocator<Factory<GameObject>>::retrieve();
         if (!factory.create("scene_root_object", pGameObjectRoot)) {
             assert(false);
         }
