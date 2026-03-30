@@ -27,6 +27,8 @@ public:
 
     std::vector<GameObject*> m_vSceneObjects{};
 
+    std::vector<GameObject*> m_test{};
+
     void properties(IPropertyVisitor& visitor) override {
         //visitor("root", m_pRoot);
         visitor("test int", testInt);
@@ -34,6 +36,8 @@ public:
 
         test_collect_objects();
         visitor("gameobjects", m_vSceneObjects);
+
+        visitor("test gameobject", m_test);
     }
 
 private:

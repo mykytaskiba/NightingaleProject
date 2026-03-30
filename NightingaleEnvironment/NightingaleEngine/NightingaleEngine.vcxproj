@@ -276,6 +276,7 @@
     <ClCompile Include="Code\project_one_gameobject.cpp" />
     <ClCompile Include="Code\project_three_coobject.cpp" />
     <ClCompile Include="Code\project_two_coobject.cpp" />
+    <ClCompile Include="Code\property_menu.cpp" />
     <ClCompile Include="Code\renderer.cpp" />
     <ClCompile Include="Code\render_debug_panel.cpp" />
     <ClCompile Include="Code\render_mesh.cpp" />

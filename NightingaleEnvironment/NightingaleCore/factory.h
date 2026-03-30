@@ -23,7 +23,10 @@ public:
 class IFactory {
 public:
 	using TFactoryKey = std::string;
+	using FKeyFunc = std::function<void(TFactoryKey const&)>;
+
 	virtual bool create(TFactoryKey const& key, IFactoryElement*& outValue) const = 0;
+	virtual void foreach_key(FKeyFunc const& func) const = 0;
 };
 
 
@@ -31,7 +34,6 @@ public:
 template <typename TValue>
 class Factory : public IFactory {
 private:
-	using FKeyFunc = std::function<void(TFactoryKey const&)>;
 	using FCreationFunc = std::function<TValue* ()>;
 	std::map<TFactoryKey, FCreationFunc> m_map{};
 public:
@@ -101,7 +103,7 @@ public:
 		return false;
 	}
 
-	void foreach_key(FKeyFunc const& func) const {
+	void foreach_key(FKeyFunc const& func) const override {
 		for (auto const&[key, creationFunc] : m_map) {
 			func(key);
 		}

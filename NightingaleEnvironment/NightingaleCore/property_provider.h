@@ -4,6 +4,7 @@
 class IPropertyVisitor;
 
 class IPropertyProvider {
+public:
 	virtual void properties(IPropertyVisitor& visitor) = 0;
 };
 

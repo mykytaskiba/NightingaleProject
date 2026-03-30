@@ -43,42 +43,17 @@
             "zoom speed": 5.0,
             "zoomMax": 50.0,
             "zoomMin": 3.0
-        },
-        {
-            "_meta_": {
-                "factory_key": "gameobject",
-                "type": "json.gameobject",
-                "version": 1
-            },
-            "alias": "gameobject",
-            "physics_body": null,
-            "transform": {
-                "position": {
-                    "x": 0.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "rotation": {
-                    "w": 0.0,
-                    "x": 1.0,
-                    "y": 0.0,
-                    "z": 0.0
-                },
-                "scale": {
-                    "x": 1.0,
-                    "y": 1.0,
-                    "z": 1.0
-                }
-            }
         }
     ],
-    "test int": 0,
+    "test int": 12,
     "vector int": [
-        1,
-        2,
         3,
-        4,
         5,
-        6
+        3,
+        8,
+        5,
+        10,
+        18,
+        24
     ]
 }

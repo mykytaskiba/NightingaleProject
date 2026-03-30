@@ -10,4 +10,6 @@ void Engine::defaultGameObjectFactory()
 	m_factoryGameObject.addToFactory<GameObject>("gameobject");
 	m_factoryGameObject.addToFactory<CameraController>("cameracontroller");
 	m_factoryGameObject.addToFactory<Scene::SceneRootObject>("scene_root_object");
+
+	m_factoryPhysicsBody.addToFactory<PhysicsBody>("physics_body");
 }
