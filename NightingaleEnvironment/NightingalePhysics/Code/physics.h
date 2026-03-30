@@ -47,7 +47,15 @@ public:
 	void properties(IPropertyVisitor& visitor) {
 		visitor("active", m_bActive);
 
-		visitor("updates_per_second", m_infoUpdatesPerSecond, MetaData::ReadOnly());
+		visitor("updates_per_second", m_infoUpdatesPerSecond, MetaFlags::ReadOnly);
+
+		visitor("max_accumulated_time", m_accumulatedTime, MetaFlags::ReadOnly);
+		visitor("update_rate", m_updateRate, MetaFlags::ReadOnly);
+
+		visitor("discard_unused", m_bDiscardUnusedTime);
+		visitor("interpolate_between_frames", m_bInterpolateBetweenFrames);
+		visitor("max_updates_per_frame", m_maxUpdatesPerFrame);
+		visitor("max_accumulated_time", m_maxAccumulatedTime);
 	}
 
 private:
@@ -56,6 +64,7 @@ private:
 	bool m_bActive{ false };
 
 	uint m_infoUpdatesPerSecond{ 0u }; //Info variable, no functional effect
+	uint m_infoSpatialPairsCount{ 0u };
 
 	TTimePhys m_updateRate{ 0.0f };
 	TTimePhys m_accumulatedTime{ 0.0f };
@@ -65,7 +74,6 @@ private:
 	bool m_bDiscardUnusedTime{ true };
 	bool m_bInterpolateBetweenFrames{ false };
 
-	uint m_infoSpatialPairsCount{ 0u };
 
 	vector<PhysicsBody*> m_vActiveBodies{};
 	SpatialBucket<PhysicsBody> m_spatialStructure{};

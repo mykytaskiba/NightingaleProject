@@ -28,11 +28,11 @@ public:
 	JSON_PARENT(PhysicsBody, 1u, "json.physicsbody")
 
 	void properties(IPropertyVisitor& visitor) override {
-		visitor("position",m_position, MetaData::ReadOnly());
+		visitor("position",m_position, MetaData::ReadOnly);
 		visitor("velocity",m_velocity);
 
 		visitor("local_box", m_localBox);
-		visitor("global_box", m_globalBox, MetaData::ReadOnly());
+		visitor("global_box", m_globalBox, MetaData::ReadOnly);
 	}
 	
 	bool useGravity() const { return m_bUseGravity; }

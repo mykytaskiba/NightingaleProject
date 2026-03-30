@@ -15,30 +15,30 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	PropertyMenuVisitor() : m_idResolution(0u) {}
 
 	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override {
-		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		if (metaData.isReadOnly()) ImGui::BeginDisabled();
 		ImGui::Checkbox(formatString(key).c_str(), &value);
-		if (metaData.m_bReadOnly) ImGui::EndDisabled();
+		if (metaData.isReadOnly()) ImGui::EndDisabled();
 	}
 	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override {
-		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		if (metaData.isReadOnly()) ImGui::BeginDisabled();
 		ImGui::InputInt(formatString(key).c_str(), &value);
-		if (metaData.m_bReadOnly) ImGui::EndDisabled();
+		if (metaData.isReadOnly()) ImGui::EndDisabled();
 	}
 	void operator()(std::string const& key, float& value, MetaData const& metaData = {}) override {
-		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		if (metaData.isReadOnly()) ImGui::BeginDisabled();
 		ImGui::InputFloat(formatString(key).c_str(), &value);
-		if (metaData.m_bReadOnly) ImGui::EndDisabled();
+		if (metaData.isReadOnly()) ImGui::EndDisabled();
 	}
 	void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) override {
-		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		if (metaData.isReadOnly()) ImGui::BeginDisabled();
 		unsigned int step = 1;
 		ImGui::InputScalar(formatString(key).c_str(), ImGuiDataType_U32, &value, &step);
-		if (metaData.m_bReadOnly) ImGui::EndDisabled();
+		if (metaData.isReadOnly()) ImGui::EndDisabled();
 	}
 	void operator()(std::string const& key, std::string& value, MetaData const& metaData = {}) override {
-		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		if (metaData.isReadOnly()) ImGui::BeginDisabled();
 		ImGui::InputText(formatString(key).c_str(), &value);
-		if (metaData.m_bReadOnly) ImGui::EndDisabled();
+		if (metaData.isReadOnly()) ImGui::EndDisabled();
 	}
 
 protected:

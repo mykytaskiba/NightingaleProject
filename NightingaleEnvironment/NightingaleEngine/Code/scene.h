@@ -14,7 +14,7 @@ public:
 
         void properties(IPropertyVisitor& visitor) override {
             std::string factoryKeyStr{ getFactoryKey() };
-            visitor("factory_key", factoryKeyStr, MetaData::ReadOnly());
+            visitor("factory_key", factoryKeyStr, MetaData::ReadOnly);
             visitor("alias", m_alias);
         }
     };
