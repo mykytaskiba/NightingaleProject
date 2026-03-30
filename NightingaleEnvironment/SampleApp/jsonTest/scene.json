@@ -3,8 +3,8 @@
         "type": "json.scene",
         "version": 1
     },
-    "gameobjects": {
-        "[0]": {
+    "gameobjects": [
+        {
             "_meta_": {
                 "factory_key": "scene_root_object",
                 "type": "json.gameobject",
@@ -13,7 +13,7 @@
             "alias": "scene_root",
             "factory_key": "scene_root_object"
         },
-        "[1]": {
+        {
             "_meta_": {
                 "factory_key": "cameracontroller",
                 "type": "json.gameobject",
@@ -43,15 +43,42 @@
             "zoom speed": 5.0,
             "zoomMax": 50.0,
             "zoomMin": 3.0
+        },
+        {
+            "_meta_": {
+                "factory_key": "gameobject",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "physics_body": null,
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 0.0,
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
         }
-    },
+    ],
     "test int": 0,
-    "vector int": {
-        "[0]": 1,
-        "[1]": 2,
-        "[2]": 3,
-        "[3]": 4,
-        "[4]": 5,
-        "[5]": 6
-    }
+    "vector int": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ]
 }

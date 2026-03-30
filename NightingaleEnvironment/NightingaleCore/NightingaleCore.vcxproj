@@ -35,6 +35,9 @@
     <ClInclude Include="property_provider.h" />
     <ClInclude Include="service_locator.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="json_visitors.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

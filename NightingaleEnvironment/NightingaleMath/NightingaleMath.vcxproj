@@ -161,6 +161,11 @@
     <ClCompile Include="Code\json_math_impl.cpp" />
     <ClCompile Include="Code\quaternion.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NightingaleCore\NightingaleCore.vcxproj">
+      <Project>{c5ec99ad-42cd-4ac6-ad28-2fddb05768ec}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -1,9 +1,27 @@
 {
     "_meta_": {
-        "factory_key": "scene_root_object",
+        "factory_key": "gameobject",
         "type": "json.gameobject",
         "version": 1
     },
-    "alias": "scene_root",
-    "factory_key": "scene_root_object"
+    "alias": "gameobject",
+    "physics_body": null,
+    "transform": {
+        "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "rotation": {
+            "w": 0.0,
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+        },
+        "scale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+        }
+    }
 }

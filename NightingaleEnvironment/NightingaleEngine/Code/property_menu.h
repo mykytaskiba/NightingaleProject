@@ -24,13 +24,11 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	}
 
 protected:
-	bool enterScope(std::string const& key, MetaData const& metaData) override {
-		ImGui::Separator();
-		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
-			return true;
-		}
+	std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key, MetaData const& metaData) override {
+		return nullptr;
 	}
-	void leaveScope(MetaData const& metaData) override {
+	std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, MetaData const& metaData) override {
+		return nullptr;
 	}
 
 	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) override {
