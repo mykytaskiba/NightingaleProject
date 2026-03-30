@@ -7,12 +7,18 @@
 #include "imgui_helpers.h"
 #include "property_metadata.h"
 
+
 struct PropertyMenuVisitor : public IPropertyVisitor {
 
 	uint m_idResolution{ 0u };
 	PropertyMenuVisitor(uint idResolution) : m_idResolution(idResolution) {}
 	PropertyMenuVisitor() : m_idResolution(0u) {}
 
+	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override {
+		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
+		ImGui::Checkbox(formatString(key).c_str(), &value);
+		if (metaData.m_bReadOnly) ImGui::EndDisabled();
+	}
 	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override {
 		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
 		ImGui::InputInt(formatString(key).c_str(), &value);
@@ -95,4 +101,15 @@ protected:
 	}*/
 
 
+};
+
+class PropertyMenu {
+public:
+
+	template <typename TPropertyObject>
+	requires HasProperties<TPropertyObject>
+	static void render_update(TPropertyObject& propertyProvider) {
+		PropertyMenuVisitor menuVisitor{};
+		propertyProvider.properties(menuVisitor);
+	}
 };

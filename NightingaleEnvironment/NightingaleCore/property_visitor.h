@@ -7,6 +7,7 @@
 class IPropertyVisitor {
 public:
 	//Base Types
+	virtual void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) = 0;
 	virtual void operator()(std::string const& key, int& value, MetaData const& metaData = {}) = 0;
 	virtual void operator()(std::string const& key, float& value, MetaData const& metaData = {}) = 0;
 	virtual void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) = 0;

@@ -2,6 +2,7 @@
 #include "defines.h"
 #include "physics_body.h"
 #include "ngmath.h"
+#include "property_visitor.h"
 
 #define DEFAULT_PHYSICS_FRAMERATE 10 
 //Main class for the physics system
@@ -42,6 +43,12 @@ public:
 	TTimePhys getUpdateRate() const { return m_updateRate; }
 
 	uint getSpatialPairsCount() const { return m_infoSpatialPairsCount; };
+
+	void properties(IPropertyVisitor& visitor) {
+		visitor("active", m_bActive);
+
+		visitor("updates_per_second", m_infoUpdatesPerSecond, MetaData::ReadOnly());
+	}
 
 private:
 

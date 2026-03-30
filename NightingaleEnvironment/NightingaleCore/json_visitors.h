@@ -11,11 +11,11 @@ struct JSONSerializerVisitor : public IPropertyVisitor {
 
 	JSONSerializerVisitor(nlohmann::json& json) : m_json(json) { }
 
+	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override { m_json[key] = value; }
 	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override { m_json[key] = value; }
 	void operator()(std::string const& key, float& value, MetaData const& metaData = {}) override { m_json[key] = value; }
 	void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) override { m_json[key] = value; }
 	void operator()(std::string const& key, std::string& value, MetaData const& metaData = {}) override { m_json[key] = value; }
-
 
 protected:
 	nlohmann::json& m_json;
@@ -31,6 +31,7 @@ struct JSONSerializerCollectionVisitor : public JSONSerializerVisitor {
 
 	JSONSerializerCollectionVisitor(nlohmann::json& json) : JSONSerializerVisitor(json) { }
 
+	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override { m_json.push_back(value); }
 	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override { m_json.push_back(value); }
 	void operator()(std::string const& key, float& value, MetaData const& metaData = {}) override { m_json.push_back(value); }
 	void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) override { m_json.push_back(value); }
@@ -49,6 +50,7 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 
 	JSONDeserializerVisitor(nlohmann::json& json) : m_json(json) { }
 
+	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override { if (m_json.contains(key)) m_json[key].get_to(value); }
 	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override { if (m_json.contains(key)) m_json[key].get_to(value); }
 	void operator()(std::string const& key, float& value, MetaData const& metaData = {}) override {	if (m_json.contains(key)) m_json[key].get_to(value); }
 	void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) override { if (m_json.contains(key)) m_json[key].get_to(value); }
@@ -72,6 +74,10 @@ struct JSONDeserializerCollectionVisitor : public JSONDeserializerVisitor {
 	size_t m_index{ 0u };
 	size_t m_size{ 0u };
 
+	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override
+	{
+		if (m_index < m_size) m_json.at(m_index++).get_to(value);
+	}
 	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override
 	{
 		if (m_index < m_size) m_json.at(m_index++).get_to(value);

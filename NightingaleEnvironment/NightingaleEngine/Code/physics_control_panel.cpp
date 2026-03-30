@@ -8,6 +8,7 @@
 #include "camera_controller.h"
 #include "render_mesh.h"
 #include "asset_manager.h"
+#include "property_menu.h"
 
 void PhysicsControlPanel::render_update()
 {
@@ -16,6 +17,9 @@ void PhysicsControlPanel::render_update()
     ImGui::Begin("Physics Control", &bRemainOpen);
 
     Physics& physics = EngineFunctions::physics();
+
+    PropertyMenu::render_update(physics);
+    ImGui::Separator();
 
     bool bPhysicsActive = physics.isActive();
     if (ImGui::Checkbox("Physics Active", &bPhysicsActive)) {

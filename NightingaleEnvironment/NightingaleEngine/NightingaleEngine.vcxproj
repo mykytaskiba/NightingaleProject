@@ -155,7 +155,6 @@
     <ClInclude Include="Code\guid.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
-    <ClInclude Include="Code\physics_debug.h" />
     <ClInclude Include="Code\scene_browser.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
@@ -269,7 +268,6 @@
     <ClCompile Include="Code\physics_body_menu.cpp" />
     <ClCompile Include="Code\physics_commands.cpp" />
     <ClCompile Include="Code\physics_control_panel.cpp" />
-    <ClCompile Include="Code\physics_debug.cpp" />
     <ClCompile Include="Code\physics_debug_render_pass.cpp" />
     <ClCompile Include="Code\default_gameobject_factory.cpp" />
     <ClCompile Include="Code\project_four_coobject.cpp" />

@@ -243,9 +243,6 @@
     <ClCompile Include="Code\physics_debug_render_pass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\physics_debug.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\debug_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -486,9 +483,6 @@
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics_debug_render_pass.h">
-      <Filter>Header Files\PhysicsVisualizer</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\physics_debug.h">
       <Filter>Header Files\PhysicsVisualizer</Filter>
     </ClInclude>
     <ClInclude Include="Code\debug_panel.h">
