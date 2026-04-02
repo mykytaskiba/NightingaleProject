@@ -47,10 +47,10 @@ public:
 	void properties(IPropertyVisitor& visitor) {
 		visitor("active", m_bActive);
 
-		visitor("updates_per_second", m_infoUpdatesPerSecond, MetaFlags::ReadOnly);
+		visitor("updates_per_second", m_infoUpdatesPerSecond, MetaData::ReadOnly);
 
-		visitor("max_accumulated_time", m_accumulatedTime, MetaFlags::ReadOnly);
-		visitor("update_rate", m_updateRate, MetaFlags::ReadOnly);
+		visitor("max_accumulated_time", m_accumulatedTime, MetaData::ReadOnly);
+		visitor("update_rate", m_updateRate, MetaData::ReadOnly);
 
 		visitor("discard_unused", m_bDiscardUnusedTime);
 		visitor("interpolate_between_frames", m_bInterpolateBetweenFrames);

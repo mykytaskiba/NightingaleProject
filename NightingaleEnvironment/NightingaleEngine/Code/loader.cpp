@@ -11,6 +11,7 @@
 #include "skeleton_builder.h"
 #include "animation_builder.h"
 #include "ngmath.h"
+#include "stb_image.h"
 
 
 
@@ -209,6 +210,34 @@ bool Loader::saveFile(std::filesystem::path const& path, nlohmann::json const& j
     else {
         return saveFile(path, to_string(json), flags);
     }
+}
+
+bool Loader::loadImage(std::filesystem::path const& path, ImageLoadingFlags flags)
+{
+    assert(false); // NOT FINISHED!
+
+    int width{ 0 };
+    int height{ 0 };
+    int channels{ 0 };
+
+    int desiredChannels = 0;
+    if ((flags & ImageLoadingFlags::ForceChannel_R) == ImageLoadingFlags::ForceChannel_R) {
+        desiredChannels = 1;
+    }
+    if ((flags & ImageLoadingFlags::ForceChannel_RG) == ImageLoadingFlags::ForceChannel_RG) {
+        desiredChannels = 2;
+    }
+    if ((flags & ImageLoadingFlags::ForceChannel_RGB) == ImageLoadingFlags::ForceChannel_RGB) {
+        desiredChannels = 3;
+    }
+    if ((flags & ImageLoadingFlags::ForceChannel_RGBA) == ImageLoadingFlags::ForceChannel_RGBA) {
+        desiredChannels = 4;
+    }
+
+    stbi_set_flip_vertically_on_load(true);
+    unsigned char* data = stbi_load(path.string().c_str(), &width, &height, &channels, desiredChannels);
+    //std::string failure_reason{ stbi_failure_reason() };
+    return false;
 }
 
 bool Loader::createDirectories(std::filesystem::path const& path)

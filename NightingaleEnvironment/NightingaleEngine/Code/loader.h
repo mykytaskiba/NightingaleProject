@@ -10,13 +10,22 @@ class Mesh;
 class Skeleton;
 class Animation;
 
-enum class FileCreationFlags : uint {
+enum class FileCreationFlags : unsigned int {
     None = 0,
     CreateDirectory = 1 << 0,
     Overwrite = 1 << 1,
     JSONSingleLine = 1 << 2,
 };
 ENABLE_ENUM_BITWISE_OPERATORS(FileCreationFlags);
+
+enum class ImageLoadingFlags : unsigned int {
+    None = 0,
+    ForceChannel_R = 1 << 0,
+    ForceChannel_RG = 1 << 1,
+    ForceChannel_RGB = 1 << 2,
+    ForceChannel_RGBA = 1 << 3,
+};
+ENABLE_ENUM_BITWISE_OPERATORS(ImageLoadingFlags);
 
 class Loader{
 private:
@@ -41,6 +50,7 @@ public:
     static bool saveFile(std::filesystem::path const& path, std::string const& contents, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
     static bool saveFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
     
+    static bool loadImage(std::filesystem::path const& path, ImageLoadingFlags flags = ImageLoadingFlags::None);
 
     static bool loadTexture(string const& path);
 
