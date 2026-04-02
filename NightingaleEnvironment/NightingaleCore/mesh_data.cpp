@@ -1,0 +1,89 @@
+#include "mesh_data.h"
+#include "nightingale_assert.h"
+#include <algorithm>
+
+void MeshData::addAttribute(AttributeFormat const& attribute)
+{
+	if (attribute.m_label.empty()) {
+		assert(false); //cannot have an empty label for an attribute 	
+		return;
+	}
+	if (m_mapAttributes.find(attribute.m_label) != m_mapAttributes.end()) {
+		assert(false); //attribute already exists
+		return;
+	}
+
+	m_vAttributeOrder.push_back(attribute.m_label);
+	m_mapAttributes[attribute.m_label] = attribute;
+	
+	calculateDataStride();
+
+	if (!m_vData.empty()) {
+		assert(false); //we are changing the data before adding all the desired attributes!!
+		m_vData.clear(); //could we rearrange the existing data? Yes -> but it would be a lot of work
+	}
+}
+
+void MeshData::prepareVertexData(unsigned int vertexCount)
+{
+	if (m_dataStride == 0 || m_vAttributeOrder.empty() || m_mapAttributes.empty()) {
+		assert(false); //we must have at least one attribute
+		return;
+	}
+	m_vData.reserve(vertexCount* m_dataStride);
+}
+
+void MeshData::pushVertexData(float value)
+{
+	unsigned char* valueData = static_cast<unsigned char*>(&value);
+	for (unsigned int i{0u}; i < sizeof(float); ++i)
+	m_vData.push_back(valueData[i]);
+}
+
+void MeshData::fillVertexData(unsigned int vertexCount)
+{
+	if (m_dataStride == 0 || m_vAttributeOrder.empty() || m_mapAttributes.empty()) {
+		assert(false); //we must have at least one attribute
+		return;
+	}
+
+	m_vData.resize(vertexCount * m_dataStride);
+}
+
+unsigned int MeshData::getSizeByPrimitive(PrimitiveType type) const
+{
+	switch (type)
+	{
+	case MeshData::PrimitiveType::UNSIGNED_INT:
+		return sizeof(unsigned int);
+	case MeshData::PrimitiveType::FLOAT:
+		return sizeof(float);
+	default:
+		return 0;
+	}
+}
+
+void MeshData::calculateDataStride()
+{
+	//NOTE: PADDING MIGHT NEED TO BE CONSIDERED, NOT IN CURRENT STATE THO
+	unsigned int offset{ 0u };
+	for (std::string& label : m_vAttributeOrder) {
+
+		auto it = m_mapAttributes.find(label);
+		if (it == m_mapAttributes.end()) {
+			assert(false);//uh oh!
+			return; //bail!!
+		}
+
+		AttributeFormat& attribute = (*it).second;
+
+		attribute.m_offset = offset;
+
+		unsigned int typeSize = getSizeByPrimitive(attribute.m_type);
+		attribute.m_size = typeSize* attribute.m_count;
+
+		offset += attribute.m_size;
+	}
+
+	m_dataStride = offset;
+}

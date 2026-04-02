@@ -318,6 +318,9 @@
     <ClCompile Include="Code\property_menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Code\stb_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -556,6 +559,12 @@
     </ClInclude>
     <ClInclude Include="Code\transform.h">
       <Filter>Header Files\Logic</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\stb_image.h">
+      <Filter>Header Files\Loading</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\stb_image_write.h">
+      <Filter>Header Files\Loading</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

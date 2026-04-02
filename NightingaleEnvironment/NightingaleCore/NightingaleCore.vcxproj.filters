@@ -66,9 +66,15 @@
     <ClInclude Include="property_metadata.h">
       <Filter>Header Files\property</Filter>
     </ClInclude>
+    <ClInclude Include="mesh_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="json_visitors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh_data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

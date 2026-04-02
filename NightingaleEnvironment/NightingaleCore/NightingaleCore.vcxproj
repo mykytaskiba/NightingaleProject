@@ -28,6 +28,7 @@
     <ClInclude Include="json_representation.h" />
     <ClInclude Include="json_upgrader.h" />
     <ClInclude Include="json_visitors.h" />
+    <ClInclude Include="mesh_data.h" />
     <ClInclude Include="ngjson.h" />
     <ClInclude Include="nightingale_assert.h" />
     <ClInclude Include="property_visitor.h" />
@@ -37,6 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="json_visitors.cpp" />
+    <ClCompile Include="mesh_data.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

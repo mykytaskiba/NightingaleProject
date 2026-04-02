@@ -202,6 +202,8 @@
     <ClInclude Include="Code\skeleton.h" />
     <ClInclude Include="Code\skeleton_builder.h" />
     <ClInclude Include="Code\skinned_mesh.h" />
+    <ClInclude Include="Code\stb_image.h" />
+    <ClInclude Include="Code\stb_image_write.h" />
     <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Code\transform_menu.h" />
     <ClInclude Include="Code\window.h" />
@@ -321,6 +323,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Code\render_node_menu.cpp" />
+    <ClCompile Include="Code\stb_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleCore\NightingaleCore.vcxproj">
