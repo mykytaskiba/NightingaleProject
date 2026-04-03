@@ -131,6 +131,9 @@ void Engine::CS550TempTestFuncInit()
     //nlohmann::json sceneJSON = Scene::JSONRepresentation::serialize(EngineFunctions::scene());
     //Loader::saveFile(std::filesystem::path("jsonTest/scene.json"), sceneJSON);
 
+    std::vector<MeshData*> vMeshes;
+    Loader::readMeshData("data/core/cube.fbx", vMeshes);
+
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);
 }

@@ -88,6 +88,16 @@ bool Loader::fileExists(std::filesystem::path const& path)
     return (filesystem::exists(path));
 }
 
+bool Loader::fileIsPlainFile(std::filesystem::path const& path)
+{
+    return std::filesystem::is_regular_file(path);
+}
+
+bool Loader::fileIsDirectory(std::filesystem::path const& path)
+{
+    return std::filesystem::is_directory(path);
+}
+
 
 bool Loader::parseJSON(std::string const& text, nlohmann::json& json)
 {
@@ -234,10 +244,98 @@ bool Loader::loadImage(std::filesystem::path const& path, ImageLoadingFlags flag
         desiredChannels = 4;
     }
 
+    stbi_set_flip_vertically_on_load_thread(true);
     stbi_set_flip_vertically_on_load(true);
     unsigned char* data = stbi_load(path.string().c_str(), &width, &height, &channels, desiredChannels);
     //std::string failure_reason{ stbi_failure_reason() };
     return false;
+}
+
+bool Loader::readMeshData(std::filesystem::path const& path, std::vector<MeshData*>& outVectorData)
+{
+    if (!fileExists(path) && !fileIsPlainFile(path)) {
+        return false;
+    }
+
+    Assimp::Importer importer;
+
+    aiScene const* pScene = importer.ReadFile(path.string(), aiProcess_Triangulate);
+    if (pScene == nullptr) {
+        assert(false);
+        return false;
+    }
+
+    int numMeshes = pScene->mNumMeshes;
+
+    for (int i{ 0 }; i < numMeshes; ++i) {
+        aiMesh const* pMesh = pScene->mMeshes[i];
+        if (pMesh == nullptr) {
+            assert(false); 
+            return false; //valid invalid in this, should probably exit
+        }
+
+        outVectorData.push_back(new MeshData());
+        if (outVectorData.back() == nullptr) {
+            assert(false);
+            return false; //we probably ran out of memory
+        }
+        MeshData& meshData = *outVectorData.back();
+        bool bResult = buildMeshData(*pMesh, meshData);
+        if (!bResult) return false; //something went wrong building the mesh?
+    }
+
+    return true;
+}
+
+bool Loader::buildMeshData(aiMesh const& aiMesh, MeshData& outMesh)
+{
+    size_t numVerticies = aiMesh.mNumVertices;
+    if (numVerticies == 0) {
+        return false;
+    }
+
+    size_t numFaces = aiMesh.mNumFaces;
+    if (numFaces == 0) {
+        return false;
+    }
+
+    outMesh.addAttribute(MeshData::Attribute{ "position", MeshData::PrimitiveType::FLOAT, 3u });
+    outMesh.addAttribute(MeshData::Attribute{ "normal", MeshData::PrimitiveType::FLOAT, 3u });
+    outMesh.addAttribute(MeshData::Attribute{ "texuv", MeshData::PrimitiveType::FLOAT, 2u });
+    outMesh.prepareVertexData(numVerticies);
+
+    for (int loop = 0; loop < numVerticies; loop++) {
+
+        aiVector3D const& vertex = aiMesh.mVertices[loop];
+        aiVector3D const& normal = aiMesh.mNormals[loop];
+        aiVector3D const& texCoord = aiMesh.mTextureCoords[0][loop];
+
+        outMesh.pushVertexData(vertex.x);
+        outMesh.pushVertexData(vertex.y);
+        outMesh.pushVertexData(vertex.z);
+
+        outMesh.pushVertexData(normal.x);
+        outMesh.pushVertexData(normal.y);
+        outMesh.pushVertexData(normal.z);
+
+        outMesh.pushVertexData(texCoord.x);
+        outMesh.pushVertexData(texCoord.z);
+    }
+
+    outMesh.prepareFaceData(numFaces);
+
+    for (int loop = 0; loop < numFaces; loop++) {
+        aiFace const& face = aiMesh.mFaces[loop];
+
+        if (face.mNumIndices != 3) {
+            assert(false); //assume we always dealing with triangles
+            return false;
+        }
+
+        outMesh.pushFace(MeshData::Triangle{ face.mIndices[0],face.mIndices[1],face.mIndices[2] });
+    }
+
+    return true;
 }
 
 bool Loader::createDirectories(std::filesystem::path const& path)

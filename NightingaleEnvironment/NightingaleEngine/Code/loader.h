@@ -5,6 +5,7 @@
 #include <filesystem>
 #include "bitwise_enum.hpp"
 #include "json.hpp"
+#include "mesh_data.h"
 
 class Mesh;
 class Skeleton;
@@ -27,6 +28,11 @@ enum class ImageLoadingFlags : unsigned int {
 };
 ENABLE_ENUM_BITWISE_OPERATORS(ImageLoadingFlags);
 
+enum class MeshLoadingFlags : unsigned int {
+    None = 0,
+};
+ENABLE_ENUM_BITWISE_OPERATORS(MeshLoadingFlags);
+
 class Loader{
 private:
 
@@ -40,6 +46,8 @@ public:
 
 
     static bool fileExists(std::filesystem::path const& path);
+    static bool fileIsDirectory(std::filesystem::path const& path);
+    static bool fileIsPlainFile(std::filesystem::path const& path);
 
     static bool parseJSON(std::string const& text, nlohmann::json& json);
     static bool readFile(std::filesystem::path const& path, std::string& out);
@@ -51,6 +59,10 @@ public:
     static bool saveFile(std::filesystem::path const& path, nlohmann::json const& json, FileCreationFlags flags = FileCreationFlags::CreateDirectory | FileCreationFlags::Overwrite);
     
     static bool loadImage(std::filesystem::path const& path, ImageLoadingFlags flags = ImageLoadingFlags::None);
+
+    static bool readMeshData(std::filesystem::path const& path, std::vector<MeshData*>& outData);
+
+    static bool buildMeshData(aiMesh const& aiMesh, MeshData& outMesh);
 
     static bool loadTexture(string const& path);
 

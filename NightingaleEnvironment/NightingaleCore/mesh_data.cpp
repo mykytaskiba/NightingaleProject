@@ -2,7 +2,7 @@
 #include "nightingale_assert.h"
 #include <algorithm>
 
-void MeshData::addAttribute(AttributeFormat const& attribute)
+void MeshData::addAttribute(Attribute const& attribute)
 {
 	if (attribute.m_label.empty()) {
 		assert(false); //cannot have an empty label for an attribute 	
@@ -13,8 +13,8 @@ void MeshData::addAttribute(AttributeFormat const& attribute)
 		return;
 	}
 
-	m_vAttributeOrder.push_back(attribute.m_label);
 	m_mapAttributes[attribute.m_label] = attribute;
+	m_vAttributeOrder.push_back(&m_mapAttributes[attribute.m_label]);
 	
 	calculateDataStride();
 
@@ -26,28 +26,12 @@ void MeshData::addAttribute(AttributeFormat const& attribute)
 
 void MeshData::prepareVertexData(unsigned int vertexCount)
 {
-	if (m_dataStride == 0 || m_vAttributeOrder.empty() || m_mapAttributes.empty()) {
+	if (m_dataStride == 0 || m_vAttributeOrder.empty() || m_mapAttributes.empty() || m_vertexCount != 0) {
 		assert(false); //we must have at least one attribute
 		return;
 	}
 	m_vData.reserve(vertexCount* m_dataStride);
-}
-
-void MeshData::pushVertexData(float value)
-{
-	unsigned char* valueData = static_cast<unsigned char*>(&value);
-	for (unsigned int i{0u}; i < sizeof(float); ++i)
-	m_vData.push_back(valueData[i]);
-}
-
-void MeshData::fillVertexData(unsigned int vertexCount)
-{
-	if (m_dataStride == 0 || m_vAttributeOrder.empty() || m_mapAttributes.empty()) {
-		assert(false); //we must have at least one attribute
-		return;
-	}
-
-	m_vData.resize(vertexCount * m_dataStride);
+	m_vertexCount = vertexCount;
 }
 
 unsigned int MeshData::getSizeByPrimitive(PrimitiveType type) const
@@ -67,15 +51,14 @@ void MeshData::calculateDataStride()
 {
 	//NOTE: PADDING MIGHT NEED TO BE CONSIDERED, NOT IN CURRENT STATE THO
 	unsigned int offset{ 0u };
-	for (std::string& label : m_vAttributeOrder) {
+	for (Attribute* pAttribute : m_vAttributeOrder) {
 
-		auto it = m_mapAttributes.find(label);
-		if (it == m_mapAttributes.end()) {
-			assert(false);//uh oh!
-			return; //bail!!
+		if (pAttribute == nullptr) {
+			assert(false); //uh oh, never happens
+			return;
 		}
 
-		AttributeFormat& attribute = (*it).second;
+		Attribute& attribute = *pAttribute;
 
 		attribute.m_offset = offset;
 
@@ -86,4 +69,25 @@ void MeshData::calculateDataStride()
 	}
 
 	m_dataStride = offset;
+}
+
+
+void MeshData::prepareFaceData(unsigned int triangleCount) {
+
+	if (!m_vTriangles.empty() || m_triangleCount != 0) {
+		assert(false); //we already have triangles
+		return;
+	}
+	m_vTriangles.reserve(triangleCount);
+	m_triangleCount = triangleCount;
+}
+
+
+void MeshData::pushFace(Triangle const& triangle) {
+	
+	if (m_vTriangles.size() >= m_triangleCount) {
+		assert(false); //we already have all our faces
+		return;
+	}
+	m_vTriangles.push_back(triangle);
 }
