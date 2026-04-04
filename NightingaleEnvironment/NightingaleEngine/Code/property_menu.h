@@ -10,30 +10,31 @@
 
 struct PropertyMenuVisitor : public IPropertyVisitor {
 
-	uint m_idResolution{ 0u };
-	PropertyMenuVisitor(uint idResolution) : m_idResolution(idResolution) {}
-	PropertyMenuVisitor() : m_idResolution(0u) {}
-
 	template<typename TValue>
 	void menuImpl(std::string const& key, TValue& value) {
 		if (meta().isReadOnly()) ImGui::BeginDisabled();
 
 		bool bChanged = false;
 		if constexpr (std::is_same_v < TValue, bool>) {
-			bChanged = ImGui::Checkbox(formatString(key).c_str(), &value);
+			bChanged = ImGui::Checkbox(formatStringForImGUI(key).c_str(), &value);
 		}
 		else if constexpr (std::is_same_v < TValue, int>) {
-			bChanged = ImGui::InputInt(formatString(key).c_str(), &value);
+			bChanged = ImGui::InputInt(formatStringForImGUI(key).c_str(), &value);
 		}
 		else if constexpr (std::is_same_v < TValue, float>) {
-			bChanged = ImGui::InputFloat(formatString(key).c_str(), &value);
+			if (meta().isReadOnly()) {
+				ImGui::InputFloat(formatStringForImGUI(key).c_str(), &value, 0.01f, 1.0f, "%.10f");
+			}
+			else {
+				bChanged = ImGui::InputFloat(formatStringForImGUI(key).c_str(), &value);
+			}
 		}
 		else if constexpr (std::is_same_v < TValue, unsigned int>) {
 			unsigned int step = 1;
-			bChanged = ImGui::InputScalar(formatString(key).c_str(), ImGuiDataType_U32, &value, &step);
+			bChanged = ImGui::InputScalar(formatStringForImGUI(key).c_str(), ImGuiDataType_U32, &value, &step);
 		}
 		else if constexpr (std::is_same_v < TValue, std::string>) {
-			bChanged = ImGui::InputText(formatString(key).c_str(), &value);
+			bChanged = ImGui::InputText(formatStringForImGUI(key).c_str(), &value);
 		}
 
 
@@ -52,9 +53,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 
 protected:
 
-	std::string formatString(std::string const& key) {
-		return std::format("{}##{}", key.c_str(), m_idResolution++);
-	}
+	std::string formatStringForImGUI(std::string const& key);
 
 	std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key) override;
 	void endChild(std::string const& key) override;
@@ -63,52 +62,6 @@ protected:
 	void endCollection(std::string const& key) override;
 
 	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) override;
-
-	/*
-
-
-	template<>
-	void menu(std::string const& key, Vector3& value, MetaData const& metaData) {
-		ImGuiHelpers::Vector3Input(key.c_str(), value);
-	}
-
-	template<>
-	void menu(std::string const& key, Quaternion& value, MetaData const& metaData) {
-		ImGuiHelpers::QuaternionInput(key.c_str(), value);
-	}
-
-	template<>
-	void menu(std::string const& key, AxisAlignedBox& value, MetaData const& metaData) {
-
-		if (metaData.m_bReadOnly) ImGui::EndDisabled(); //allow node to be toggled
-		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
-			if (metaData.m_bReadOnly) ImGui::BeginDisabled();
-			ImGuiHelpers::AxisAlignedBoxInput(key.c_str(), value);
-			if (metaData.m_bReadOnly) ImGui::EndDisabled();
-		}
-		if (metaData.m_bReadOnly) ImGui::BeginDisabled();
-	}
-
-	template<typename TValue>
-	void menu(std::string const& key, std::vector<TValue>& vector, MetaData const& metaData) {
-
-		if (ImGui::TreeNodeEx(key.c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
-
-			std::string plus = std::string{ "+##" } + key;
-			if (ImGui::Button(plus.c_str())) {
-				vector.push_back(TValue{});
-			}
-
-			uint idx{ 0u };
-			for (auto& value : vector) {
-				std::string idxStr = "[" + std::to_string(idx) + "]";
-				menu(idxStr, value, metaData);
-				++idx;
-			}
-		}
-
-	}*/
-
 
 };
 

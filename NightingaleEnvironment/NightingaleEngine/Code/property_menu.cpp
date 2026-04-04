@@ -3,34 +3,69 @@
 #include "property_provider.h"
 #include "game_object.h"
 
-std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::childVisitor(std::string const& key) {
-	if (ImGui::TreeNodeEx(formatString(key).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
-		ImGui::Indent(10);
-		return std::make_unique<PropertyMenuVisitor>(m_idResolution);
+std::string PropertyMenuVisitor::formatStringForImGUI(std::string const& key)
+{
+	if (key.empty()) {
+		return "";
 	}
+
+	std::string result;
+	result.reserve(key.length());
+
+	bool nextUpper = true;
+	for (char c : key) {
+		if (c == '_') {
+			result += ' ';
+			nextUpper = true;
+		}
+		else {
+			if (nextUpper) {
+				result += (char)std::toupper((unsigned char)c);
+				nextUpper = false;
+			}
+			else {
+				result += c;
+			}
+		}
+	}
+	return result;
+}
+
+std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::childVisitor(std::string const& key) {
+
+	ImGui::PushID(key.c_str());
+	if (ImGui::TreeNodeEx(formatStringForImGUI(key).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+		ImGui::Indent(10);
+		return std::make_unique<PropertyMenuVisitor>();
+	}
+	ImGui::PopID();
 	return nullptr;
 }
 
 void PropertyMenuVisitor::endChild(std::string const& key)
 {
 	ImGui::Unindent(10);
+	ImGui::PopID();
 }
 
 std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::collectionVisitor(std::string const& key, size_t& size) {
-	if (ImGui::TreeNodeEx(formatString(key).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+	ImGui::PushID(key.c_str());
+	if (ImGui::TreeNodeEx(formatStringForImGUI(key).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
 		ImGui::Indent(10);
-		if (ImGui::Button(formatString("+").c_str())) {
+		if (ImGui::Button(formatStringForImGUI("+").c_str())) {
 			++size;
 		}
 
-		return std::make_unique<PropertyMenuVisitor>(m_idResolution);
+		return std::make_unique<PropertyMenuVisitor>();
 	}
+	ImGui::PopID();
 	return nullptr;
 }
 
 void PropertyMenuVisitor::endCollection(std::string const& key)
 {
 	ImGui::Unindent(10);
+	ImGui::PopID();
 }
 
 void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory)
@@ -43,19 +78,19 @@ void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*
 		}
 	}
 	 
-
-	if (ImGui::TreeNodeEx(formatString(name).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+	ImGui::PushID(key.c_str());
+	if (ImGui::TreeNodeEx(formatStringForImGUI(name).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
 
 		ImGui::Indent(10);
 		if (pValue == nullptr) {
 
-			if (ImGui::BeginMenu(formatString("Create").c_str())) {
+			if (ImGui::BeginMenu(formatStringForImGUI("Create").c_str())) {
 
-					
+
 				factory.foreach_key([&factory, &pValue](std::string const& key) {
-						if (ImGui::Button(std::format(">{}", key).c_str())) {
-							factory.create(key, pValue);
-						}
+					if (ImGui::Button(std::format(">{}", key).c_str())) {
+						factory.create(key, pValue);
+					}
 					}
 				);
 
@@ -64,17 +99,15 @@ void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*
 
 			ImGui::Text(std::format("No {} is attached", key).c_str());
 
-			ImGui::Unindent(10);
-			return;
+		}
+		else {
+			IPropertyProvider* pPropertyProvider = dynamic_cast<IPropertyProvider*>(pValue);
+			if (pPropertyProvider != nullptr) {
+				pPropertyProvider->properties(*this);
+			}
 		}
 
-		IPropertyProvider* pPropertyProvider = dynamic_cast<IPropertyProvider*>(pValue);
-		if (pPropertyProvider == nullptr) {
-			return;
-		}
-		
-		pPropertyProvider->properties(*this);
-		
-		ImGui::Unindent(10);
 	}
+	ImGui::Unindent(10);
+	ImGui::PopID();
 }

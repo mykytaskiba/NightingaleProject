@@ -21,45 +21,6 @@ void PhysicsControlPanel::render_update()
     PropertyMenu::render_update(physics);
     ImGui::Separator();
 
-    bool bPhysicsActive = physics.isActive();
-    if (ImGui::Checkbox("Physics Active", &bPhysicsActive)) {
-        physics.setActive(bPhysicsActive);
-    }
-
-    int updatesPerSecond = physics.getUpdatesPerSecond();
-    if (ImGui::InputInt("Updates Per Second", &updatesPerSecond, 1)); {
-        if (updatesPerSecond < 1) {
-            updatesPerSecond = 1;
-        }
-        if (updatesPerSecond != physics.getUpdatesPerSecond()) {
-            physics.setTargetUpdateRate(updatesPerSecond);
-        }
-    }
-
-
-    ImGui::Text("Accumulated Time: %f", physics.getAccumulatedTime());
-    ImGui::Text("Update Rate: %f", physics.getUpdateRate());
-
-    bool bDiscardUnusedTime = physics.getDiscardUnusedTime();
-    if (ImGui::Checkbox("Discard Unused Time", &bDiscardUnusedTime)) {
-        EngineFunctions::physics().setDiscardUnusedTime(bDiscardUnusedTime);
-    }
-
-    bool bInterpolateBetweenFrames = physics.getInterpolateBetweenFrames();
-    if (ImGui::Checkbox("Interpolate Between Frames", &bInterpolateBetweenFrames)) {
-        EngineFunctions::physics().setInterpolateBetweenFrames(bInterpolateBetweenFrames);
-    }
-
-    int maxUpdatesPerFrame = EngineFunctions::physics().getMaxUpdatesPerFrame();
-    if (ImGui::InputInt("Max Updates Per Frame", &maxUpdatesPerFrame, 1)); {
-        EngineFunctions::physics().setMaxUpdatesPerFrame(maxUpdatesPerFrame);
-    }
-
-    float maxAccumulatedTime = physics.getMaxAccumulatedTime();
-    if (ImGui::InputFloat("Max Accumulated Time", &maxAccumulatedTime)) {
-        physics.setMaxAccumulatedTime(maxAccumulatedTime);
-    }
-
     if (ImGui::Button("Test Case")) {
         setTestCase();
     }

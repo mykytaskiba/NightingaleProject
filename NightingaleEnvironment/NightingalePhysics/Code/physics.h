@@ -54,7 +54,6 @@ public:
 		visitor.popMeta();
 
 		visitor.pushMeta(MetaData::ReadOnly());
-		visitor("max_accumulated_time", m_accumulatedTime);
 		visitor("update_rate", m_updateRate);
 		visitor.popMeta();
 
