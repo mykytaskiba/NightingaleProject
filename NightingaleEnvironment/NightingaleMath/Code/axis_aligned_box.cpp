@@ -1,6 +1,12 @@
 #include "axis_aligned_box.h"
 #include "defines.h"
 #include <cmath>
+#include "property_visitor.h"
+
+void AxisAlignedBox::properties(IPropertyVisitor& visitor) {
+	visitor("min", m_min);
+	visitor("max", m_max);
+}
 
 Vector3 AxisAlignedBox::center() const
 {

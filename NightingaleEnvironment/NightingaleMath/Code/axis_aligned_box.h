@@ -1,6 +1,8 @@
 #pragma once
 #include "vector.h"
 
+class IPropertyVisitor;
+
 class AxisAlignedBox {
 public:
 
@@ -20,6 +22,8 @@ public:
 	void translate(Vector3 const& translation);
 
 	bool isOverlap(AxisAlignedBox const& other) const;
+
+	void properties(IPropertyVisitor& visitor);
 
 private:
 	//Default is a unit box around 0,0,0

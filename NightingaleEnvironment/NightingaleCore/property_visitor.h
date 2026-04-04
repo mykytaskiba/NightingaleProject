@@ -3,49 +3,53 @@
 #include "property_metadata.h"
 #include "property_provider.h"
 #include "factory.h"
+#include <stack>
 
 class IPropertyVisitor {
 public:
 	//Base Types
-	virtual void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) = 0;
-	virtual void operator()(std::string const& key, int& value, MetaData const& metaData = {}) = 0;
-	virtual void operator()(std::string const& key, float& value, MetaData const& metaData = {}) = 0;
-	virtual void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) = 0;
-	virtual void operator()(std::string const& key, std::string& value, MetaData const& metaData = {}) = 0;
-	//virtual void operator()(std::string const& )
+	virtual void operator()(std::string const& key, bool& value) = 0;
+	virtual void operator()(std::string const& key, int& value) = 0;
+	virtual void operator()(std::string const& key, float& value) = 0;
+	virtual void operator()(std::string const& key, unsigned int& value) = 0;
+	virtual void operator()(std::string const& key, std::string& value) = 0;
 
 	template<typename TValue>
-	void operator()(std::string const& key, TValue& value, MetaData const& metaData = {}) {
+	void operator()(std::string const& key, TValue& value) {
 		//static_assert(false, "Visitor definition couldnt be resolved");
-		//assert(false);
+		assert(false);
 	}
 
 	template<typename TValue>
 	requires HasProperties<TValue>
-		void operator()(std::string const& key, TValue& value, MetaData const& metaData = {}) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key, metaData);
+		void operator()(std::string const& key, TValue& value) {
+		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
 		if (pChild != nullptr) {
+			pChild->pushMeta(meta());
 			value.properties(*pChild); 
+			pChild->popMeta();
 			endChild(key);
 		}
 	}
 
 	template<typename TValue>
-	void operator()(std::string const& key, std::vector<TValue>& vector, MetaData const& metaData = {}) {
+	void operator()(std::string const& key, std::vector<TValue>& vector) {
 		size_t vecSize = vector.size();
-		std::unique_ptr<IPropertyVisitor> pChild = collectionVisitor(key, vecSize, metaData);
+		std::unique_ptr<IPropertyVisitor> pChild = collectionVisitor(key, vecSize);
 		vector.resize(vecSize);
 		if (pChild != nullptr) {
+			pChild->pushMeta(meta());
 			for (auto& value : vector) {
-				(*pChild)(key, value, metaData);
+				(*pChild)(key, value);
 			}
+			pChild->popMeta();
 			endCollection(key);
 		}
 	}
 
 	template<typename TValue>
 	requires IsFactoryObject<TValue>&& HasProperties<TValue>
-		void operator()(std::string const& key, TValue*& pValue, MetaData const& metaData = {}) {
+		void operator()(std::string const& key, TValue*& pValue) {
 
 		if (!ServiceLocator<Factory<TValue>>::hasService()) {
 			assert(false);
@@ -53,46 +57,80 @@ public:
 		}
 		Factory<TValue>& factory = *ServiceLocator<Factory<TValue>>::retrieve();
 		IFactoryElement* pFactoryElement = pValue;
-		handleFactory(key, pFactoryElement, factory, metaData);
+		handleFactory(key, pFactoryElement, factory);
 		pValue = dynamic_cast<TValue*>(pFactoryElement);
+	}
+
+	//Meta Data handling
+	void pushMeta(MetaData const& metaData) {
+		if (m_metaStack.empty()) {
+			m_metaStack.push(metaData);
+			return;
+		}
+
+		m_metaStack.push(m_metaStack.top() | metaData);
+	}
+
+	void popMeta() {
+		if (m_metaStack.empty()) {
+			assert(false);
+		}
+		m_metaStack.pop();
 	}
 
 
 protected:
-	virtual std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key, MetaData const& metaData) = 0;
+
+	std::stack<MetaData> m_metaStack{};
+	MetaData nullMeta{};
+
+	MetaData const& meta() {
+		if (m_metaStack.empty()) {
+			return nullMeta;
+		}
+		return m_metaStack.top();
+	}
+
+
+	virtual std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key) = 0;
 	virtual void endChild(std::string const& key) {}
 
-	virtual std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, size_t& size, MetaData const& metaData) = 0;
+	virtual std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, size_t& size) = 0;
 	virtual void endCollection(std::string const& key) {}
 
-	virtual void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) = 0;
+	virtual void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) = 0;
 
-	virtual void handle_vector3(std::string const& key, float& x, float& y, float& z, MetaData const& metaData) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key, metaData);
+	virtual void handle_vector3(std::string const& key, float& x, float& y, float& z) {
+		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
 		if (pChild != nullptr) {
-			(*pChild)("x", x, metaData);
-			(*pChild)("y", y, metaData);
-			(*pChild)("z", z, metaData);
+			pChild->pushMeta(meta());
+			(*pChild)("x", x);
+			(*pChild)("y", y);
+			(*pChild)("z", z);
+			pChild->popMeta();
 			endChild(key);
 		}
 	}
-	virtual void handle_vector4(std::string const& key, float& x, float& y, float& z, float& w, MetaData const& metaData) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key, metaData);
+	virtual void handle_vector4(std::string const& key, float& x, float& y, float& z, float& w) {
+		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
 		if (pChild != nullptr) {
-			(*pChild)("x", x, metaData);
-			(*pChild)("y", y, metaData);
-			(*pChild)("z", z, metaData);
-			(*pChild)("w", w, metaData);
+			pChild->pushMeta(meta());
+			(*pChild)("x", x);
+			(*pChild)("y", y);
+			(*pChild)("z", z);
+			(*pChild)("w", w);
 			endChild(key);
 		}
 	}
-	virtual void handle_quaternion(std::string const& key, float& w, float& x, float& y, float& z, MetaData const& metaData) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key, metaData);
+	virtual void handle_quaternion(std::string const& key, float& w, float& x, float& y, float& z) {
+		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
 		if (pChild != nullptr) {
-			(*pChild)("w", w, metaData);
-			(*pChild)("x", x, metaData);
-			(*pChild)("y", y, metaData);
-			(*pChild)("z", z, metaData);
+			pChild->pushMeta(meta());
+			(*pChild)("w", w);
+			(*pChild)("x", x);
+			(*pChild)("y", y);
+			(*pChild)("z", z);
+			pChild->popMeta();
 			endChild(key);
 		}
 	}

@@ -14,32 +14,41 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	PropertyMenuVisitor(uint idResolution) : m_idResolution(idResolution) {}
 	PropertyMenuVisitor() : m_idResolution(0u) {}
 
-	void operator()(std::string const& key, bool& value, MetaData const& metaData = {}) override {
-		if (metaData.isReadOnly()) ImGui::BeginDisabled();
-		ImGui::Checkbox(formatString(key).c_str(), &value);
-		if (metaData.isReadOnly()) ImGui::EndDisabled();
+	template<typename TValue>
+	void menuImpl(std::string const& key, TValue& value) {
+		if (meta().isReadOnly()) ImGui::BeginDisabled();
+
+		bool bChanged = false;
+		if constexpr (std::is_same_v < TValue, bool>) {
+			bChanged = ImGui::Checkbox(formatString(key).c_str(), &value);
+		}
+		else if constexpr (std::is_same_v < TValue, int>) {
+			bChanged = ImGui::InputInt(formatString(key).c_str(), &value);
+		}
+		else if constexpr (std::is_same_v < TValue, float>) {
+			bChanged = ImGui::InputFloat(formatString(key).c_str(), &value);
+		}
+		else if constexpr (std::is_same_v < TValue, unsigned int>) {
+			unsigned int step = 1;
+			bChanged = ImGui::InputScalar(formatString(key).c_str(), ImGuiDataType_U32, &value, &step);
+		}
+		else if constexpr (std::is_same_v < TValue, std::string>) {
+			bChanged = ImGui::InputText(formatString(key).c_str(), &value);
+		}
+
+
+		if (meta().isReadOnly()) ImGui::EndDisabled();
+
+		if (bChanged) meta().onChangeCallback();
+
 	}
-	void operator()(std::string const& key, int& value, MetaData const& metaData = {}) override {
-		if (metaData.isReadOnly()) ImGui::BeginDisabled();
-		ImGui::InputInt(formatString(key).c_str(), &value);
-		if (metaData.isReadOnly()) ImGui::EndDisabled();
-	}
-	void operator()(std::string const& key, float& value, MetaData const& metaData = {}) override {
-		if (metaData.isReadOnly()) ImGui::BeginDisabled();
-		ImGui::InputFloat(formatString(key).c_str(), &value);
-		if (metaData.isReadOnly()) ImGui::EndDisabled();
-	}
-	void operator()(std::string const& key, unsigned int& value, MetaData const& metaData = {}) override {
-		if (metaData.isReadOnly()) ImGui::BeginDisabled();
-		unsigned int step = 1;
-		ImGui::InputScalar(formatString(key).c_str(), ImGuiDataType_U32, &value, &step);
-		if (metaData.isReadOnly()) ImGui::EndDisabled();
-	}
-	void operator()(std::string const& key, std::string& value, MetaData const& metaData = {}) override {
-		if (metaData.isReadOnly()) ImGui::BeginDisabled();
-		ImGui::InputText(formatString(key).c_str(), &value);
-		if (metaData.isReadOnly()) ImGui::EndDisabled();
-	}
+
+	void operator()(std::string const& key, bool& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, int& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, float& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, unsigned int& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, std::string& value) override { menuImpl(key, value); }
+
 
 protected:
 
@@ -47,13 +56,13 @@ protected:
 		return std::format("{}##{}", key.c_str(), m_idResolution++);
 	}
 
-	std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key, MetaData const& metaData) override;
+	std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key) override;
 	void endChild(std::string const& key) override;
 
-	std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, size_t& size, MetaData const& metaData) override;
+	std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, size_t& size) override;
 	void endCollection(std::string const& key) override;
 
-	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData) override;
+	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) override;
 
 	/*
 

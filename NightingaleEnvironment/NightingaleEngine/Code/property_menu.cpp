@@ -3,7 +3,7 @@
 #include "property_provider.h"
 #include "game_object.h"
 
-std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::childVisitor(std::string const& key, MetaData const& metaData) {
+std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::childVisitor(std::string const& key) {
 	if (ImGui::TreeNodeEx(formatString(key).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
 		ImGui::Indent(10);
 		return std::make_unique<PropertyMenuVisitor>(m_idResolution);
@@ -16,7 +16,7 @@ void PropertyMenuVisitor::endChild(std::string const& key)
 	ImGui::Unindent(10);
 }
 
-std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::collectionVisitor(std::string const& key, size_t& size, MetaData const& metaData) {
+std::unique_ptr<IPropertyVisitor> PropertyMenuVisitor::collectionVisitor(std::string const& key, size_t& size) {
 	if (ImGui::TreeNodeEx(formatString(key).c_str(), ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
 		ImGui::Indent(10);
 		if (ImGui::Button(formatString("+").c_str())) {
@@ -33,7 +33,7 @@ void PropertyMenuVisitor::endCollection(std::string const& key)
 	ImGui::Unindent(10);
 }
 
-void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory, MetaData const& metaData)
+void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory)
 {
 	std::string name = key;
 	if (pValue != nullptr) {

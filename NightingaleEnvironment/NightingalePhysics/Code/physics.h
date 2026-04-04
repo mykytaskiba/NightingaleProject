@@ -47,10 +47,16 @@ public:
 	void properties(IPropertyVisitor& visitor) {
 		visitor("active", m_bActive);
 
-		visitor("updates_per_second", m_infoUpdatesPerSecond, MetaData::ReadOnly);
+		visitor.pushMeta(MetaData::OnChange([this]() {
+			setTargetUpdateRate(m_infoUpdatesPerSecond);
+		}));
+		visitor("updates_per_second", m_infoUpdatesPerSecond);
+		visitor.popMeta();
 
-		visitor("max_accumulated_time", m_accumulatedTime, MetaData::ReadOnly);
-		visitor("update_rate", m_updateRate, MetaData::ReadOnly);
+		visitor.pushMeta(MetaData::ReadOnly());
+		visitor("max_accumulated_time", m_accumulatedTime);
+		visitor("update_rate", m_updateRate);
+		visitor.popMeta();
 
 		visitor("discard_unused", m_bDiscardUnusedTime);
 		visitor("interpolate_between_frames", m_bInterpolateBetweenFrames);
