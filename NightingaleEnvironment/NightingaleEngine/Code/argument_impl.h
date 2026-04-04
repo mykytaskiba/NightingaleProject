@@ -30,12 +30,12 @@ struct ArgumentExtractor<int> {
             result.bSuccess = true;
             return std::stoi(valueStr);
         }
-        catch (std::invalid_argument const& e) {
+        catch (std::invalid_argument const&) {
             result.errorMessage = valueStr + " is not a value for an integer";
             result.bSuccess = false;
             return 0;
         }
-        catch (std::out_of_range const& e) {
+        catch (std::out_of_range const&) {
             result.errorMessage = valueStr + " is not a value for an integer";
             result.bSuccess = false;
             return 0;
@@ -73,12 +73,12 @@ struct ArgumentExtractor<float> {
             result.bSuccess = true;
             return std::stof(valueStr);
         }
-        catch (std::invalid_argument const& e) {
+        catch (std::invalid_argument const&) {
             result.errorMessage = valueStr + " is not a value for a float";
             result.bSuccess = false;
             return 0.0f;
         }
-        catch (std::out_of_range const& e) {
+        catch (std::out_of_range const&) {
             result.errorMessage = valueStr + " is not a value for a float";
             result.bSuccess = false;
             return 0.0f;
@@ -185,7 +185,7 @@ struct ArgumentExtractor<Line> {
 template<>
 struct ArgumentExtractor<Nothing> {
     static string usage() { return "void"; }
-    static Nothing parse(string& args, ParsingResult& result)
+    static Nothing parse(string&, ParsingResult& result)
     {
 
         result.bSuccess = true;
@@ -221,7 +221,7 @@ struct ArgumentExtractor<KeySequence> {
         std::vector<std::string> vKeySequence = ArgumentHelpers::separateByDelimiter(arg, '+');
         KeySequence sequence;
 
-        for (std::string const& key_str : vKeySequence) {
+        for (std::string const& key_str : vKeySequence) { 
             Key key = StringToKey(key_str);
             if (key != Key::Invalid) {
                 sequence.m_sequence.insert(key);
@@ -242,7 +242,7 @@ struct ArgumentExtractor<KeySequence> {
 template<>
 struct ArgumentExtractor<SelectedGameObject> {
     static string usage() { return ""; }
-    static SelectedGameObject parse(string & args, ParsingResult & result) {
+    static SelectedGameObject parse(string &, ParsingResult & result) {
         SelectedGameObject selectedGameObject;
         selectedGameObject.retrieve(result);
         return selectedGameObject;
