@@ -6,8 +6,8 @@ class CubicSpline3D;
 class ArcLengthTable {
 
 private:
-    vector<float> m_length{};
-    vector<float> m_tValues{};
+    std::vector<float> m_length{};
+    std::vector<float> m_tValues{};
 
     float m_totalLength{ 0.0f };
 

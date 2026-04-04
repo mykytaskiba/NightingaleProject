@@ -1,5 +1,7 @@
 #pragma once
-#include "defines.h"
+#include <functional>
+#include <vector>
+#include <string>
 
 class GLFWwindow;
 
@@ -10,16 +12,17 @@ public:
     void update();
     void shutdown();
 
-    void setTitle(string const& windowTitle);
+    void setTitle(std::string const& windowTitle);
 
     GLFWwindow* GetNativeWindow() { return m_pWindow; }
+
 private:
 
     static void resizeCallback(GLFWwindow* window, int width, int height);
     static void dropCallback(GLFWwindow* window, int pathCount, const char** paths);
 
 
-    static GLFWwindow* createWindow(uint width, uint height, string const& title);
+    static GLFWwindow* createWindow(unsigned int width, unsigned int height, std::string const& title);
 
     GLFWwindow* m_pWindow;
 };

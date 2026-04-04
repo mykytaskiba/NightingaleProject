@@ -20,7 +20,7 @@ protected:
     string m_consoleBuffer{};
     string m_consoleMessage{};
 
-    vector<string> m_executedCommands{};
+    std::vector<string> m_executedCommands{};
     size_t m_executedCommandBrowser{0u};
 
     bool m_bShownThisFrame{ false };

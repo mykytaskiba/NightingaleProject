@@ -4,6 +4,7 @@
 #include "engine_internals.h"
 #include "render_node.h"
 #include "asset_manager.h"
+#include "engine.h"
 
 void EngineFunctions::Setup(GameObject* pGameObject, GameObject* pParent)
 {
@@ -112,6 +113,12 @@ CallbackHandler& EngineFunctions::getUpdateCallback()
     }
 
     return EngineInternals::pEngine->m_updateCallback;
+}
+
+Engine& EngineFunctions::engine()
+{
+    assert(EngineInternals::pEngine != nullptr);
+    return *EngineInternals::pEngine;
 }
 
 Renderer& EngineFunctions::Renderer()

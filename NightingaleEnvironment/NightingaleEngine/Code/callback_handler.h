@@ -14,7 +14,7 @@ private:
 	std::multiset<PriorityFunction> m_vFunctions;
 	
 	bool m_bExecuting{ false };
-	vector<CallbackRef> m_deferredRemovals; //deffer removals if called mid execution
+	std::vector<CallbackRef> m_deferredRemovals; //deffer removals if called mid execution
 
 
 public:

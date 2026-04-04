@@ -120,7 +120,7 @@ public:
     int m_numCollisionLastSimulation{ 0 };
     float m_massSum{ 0.0f };
 
-    vector<SpringCons> m_springs{};
+    std::vector<SpringCons> m_springs{};
 
     int m_numMasses{ 0 };
     int m_numSprings{ 0 };

@@ -58,12 +58,12 @@ private:
     Mesh* m_pMesh{ nullptr };
 
     uint m_vertexCount{ 0 };
-    vector<float> m_vertexData{};
+    std::vector<float> m_vertexData{};
 
     uint m_faceCount{ 0 };
-    vector<uint> m_faceData{};
+    std::vector<uint> m_faceData{};
 
-    vector<BoneWeight> m_vertexBoneData;
+    std::vector<BoneWeight> m_vertexBoneData;
 
     VertexDataFormat m_vertexDataFormat{ 0 };
     uint m_dataSizePerVertex{ 0 };

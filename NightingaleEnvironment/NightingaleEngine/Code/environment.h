@@ -34,7 +34,7 @@
         static ScriptingEnvironment* m_pInstance;//singleton
 
         ExecutionState m_executionState{};
-        map<string, CommandInterface*> m_commandMap;
+        std::map<string, CommandInterface*> m_commandMap;
 
 
     };

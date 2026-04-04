@@ -18,6 +18,7 @@
 #include "hotkey_processing.h"
 #include "game_object.h"
 #include "factory.h"
+#include "window_io.h"
 
 
 class Engine {
@@ -29,6 +30,8 @@ public:
     void run();
 
     Engine();
+
+    WindowIO& windowIO() { return m_windowIO; };
 
 private:
 
@@ -52,7 +55,6 @@ private:
     //Main variable to determine if the engine needs to close or not
     bool m_bRunning{ false };
 
-    Window m_window;
     Renderer m_renderer;
     Input m_input;
     HotkeyManager m_hotkeyManager;
@@ -64,6 +66,9 @@ private:
     
     Scene m_scene;
     Camera m_camera; //for now assume a single camera
+
+    Window m_window;
+    WindowIO m_windowIO;
 
     static Engine* m_pEngine;
 

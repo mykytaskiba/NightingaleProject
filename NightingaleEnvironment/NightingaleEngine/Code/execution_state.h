@@ -11,7 +11,7 @@ struct ExecutionState {
 
     string lastCommand{ "No command" };
 
-    map<string, string> defines{};
+    std::map<string, string> defines{};
 
     template<typename T> 
     T extract_or_default(string const& key, T const& default_val) const {

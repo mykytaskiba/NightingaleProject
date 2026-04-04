@@ -6,7 +6,7 @@ class AssetManager {
 
 private:
 
-    static map<string, Resource*> m_assetMap;
+    static std::map<string, Resource*> m_assetMap;
 
 public:
 
@@ -49,6 +49,6 @@ public:
 };
 
 template <typename Resource>
-map<string, Resource*> AssetManager<Resource>::m_assetMap = map<string, Resource*>();
+std::map<string, Resource*> AssetManager<Resource>::m_assetMap = map<string, Resource*>();
 
 

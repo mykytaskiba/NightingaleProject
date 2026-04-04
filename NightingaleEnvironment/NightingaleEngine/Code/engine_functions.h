@@ -11,6 +11,7 @@ class Renderer;
 class Physics;
 class HotkeyManager;
 class Scene;
+class Engine;
 
 class EngineFunctions {
     friend struct SceneChangePackage;
@@ -53,6 +54,7 @@ public:
 
     static CallbackHandler& getUpdateCallback();
 
+    static Engine& engine();
     static Renderer& Renderer();
     static Physics& physics();
     static Scene& scene();

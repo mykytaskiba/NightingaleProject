@@ -37,7 +37,7 @@ public:
     Mesh* m_pNodeModel{ nullptr };
     RenderShader* m_pShader{ nullptr };
 
-    vector<Vector3> m_curvePoints{};
+    std::vector<Vector3> m_curvePoints{};
     Vector3 m_evaluatedPoint;
 
     CubicSpline3D m_curve;

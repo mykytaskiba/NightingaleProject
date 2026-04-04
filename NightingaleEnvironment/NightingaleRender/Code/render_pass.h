@@ -28,7 +28,7 @@ protected:
 
 
 	//render nodes of interest for this specific pass
-	vector<RenderNode*> m_renderables{};
+	std::vector<RenderNode*> m_renderables{};
 
 	std::string m_infoName;
 

@@ -200,7 +200,7 @@ void HelpCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& s
     assert(ScriptingEnvironment::getInstance() != nullptr);
     ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
 
-    map<string, CommandInterface*> const& commandMap = scriptingEnv.m_commandMap;
+   std::map<string, CommandInterface*> const& commandMap = scriptingEnv.m_commandMap;
 
     for (auto it = commandMap.cbegin(); it != commandMap.cend(); ++it) {
         string usage = (*it).second->getUsage();

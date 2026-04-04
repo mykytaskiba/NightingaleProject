@@ -6,8 +6,8 @@
 class CubicSpline {
 
 private:
-    vector<float> m_values{};
-    vector<float> m_derivatives{};
+    std::vector<float> m_values{};
+    std::vector<float> m_derivatives{};
 public:
     void addValue(float value);
     void finalize();
@@ -36,7 +36,7 @@ public:
 class SplineRepresentation {
 
 private:
-    vector<Vector3> m_representationValues;
+    std::vector<Vector3> m_representationValues;
 public:
     void represent(CubicSpline3D const& curve, float deltaStep);
 };

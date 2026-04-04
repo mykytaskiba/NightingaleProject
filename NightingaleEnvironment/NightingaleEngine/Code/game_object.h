@@ -30,8 +30,8 @@ protected:
     std::string m_alias{ "gameobject" };
     GUID m_guid{};
 
-    vector<Component*> m_components{};
-    vector<GameObject*> m_vChildren{};
+    std::vector<Component*> m_components{};
+    std::vector<GameObject*> m_vChildren{};
     GameObject* m_pParent{ nullptr };
     RenderNode* m_pRenderNode{ nullptr };
     PhysicsBody* m_pPhysicsBody{ nullptr };
@@ -94,8 +94,8 @@ public:
     void execute_on_hierarchy(TGameObjectFunc functor);
     void execute_on_children(TGameObjectFunc functor);
 
-    vector<GameObject*> const& getChildren() const { return m_vChildren; }
-    vector<GameObject*>& getChildren() { return m_vChildren; }
+    std::vector<GameObject*> const& getChildren() const { return m_vChildren; }
+    std::vector<GameObject*>& getChildren() { return m_vChildren; }
 
     bool removeChild(GameObject*);
 

@@ -226,6 +226,7 @@
     <ClInclude Include="Code\physics_body_menu.h" />
     <ClInclude Include="Code\fileloading_panel.h" />
     <ClInclude Include="Code\property_menu.h" />
+    <ClInclude Include="Code\window_io.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitwise_enum.hpp" />
+    <ClInclude Include="blocking_callback.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="factory.h" />
     <ClInclude Include="json.hpp" />

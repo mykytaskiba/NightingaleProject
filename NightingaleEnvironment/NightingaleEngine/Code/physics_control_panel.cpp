@@ -72,7 +72,7 @@ void PhysicsControlPanel::render_update()
 PhysicsDebugRenderPass* PhysicsControlPanel::findDebugPass()
 {
     PhysicsDebugRenderPass* pDebugPass{ nullptr };
-    vector<RenderPass*> const& vActiveRenderPasses = EngineFunctions::Renderer().getActiveRenderPasses();
+    std::vector<RenderPass*> const& vActiveRenderPasses = EngineFunctions::Renderer().getActiveRenderPasses();
     for (RenderPass* pRenderPass : vActiveRenderPasses) {
         pDebugPass = dynamic_cast<PhysicsDebugRenderPass*>(pRenderPass);
         if (pDebugPass != nullptr) {

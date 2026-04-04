@@ -80,6 +80,6 @@ private:
 	bool m_bInterpolateBetweenFrames{ false };
 
 
-	vector<PhysicsBody*> m_vActiveBodies{};
+	std::vector<PhysicsBody*> m_vActiveBodies{};
 	SpatialBucket<PhysicsBody> m_spatialStructure{};
 };

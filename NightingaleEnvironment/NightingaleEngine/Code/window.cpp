@@ -3,6 +3,7 @@
 #include "graphics_library.h"
 #include "engine_internals.h"
 #include "engine_functions.h"
+#include <filesystem>
 
 void Window::init()
 {
@@ -46,7 +47,7 @@ void Window::shutdown()
 {
 }
 
-void Window::setTitle(string const& windowTitle)
+void Window::setTitle(std::string const& windowTitle)
 {
     glfwSetWindowTitle(m_pWindow, windowTitle.c_str());
 }
@@ -58,11 +59,14 @@ void Window::resizeCallback(GLFWwindow* window, int width, int height)
 
 void Window::dropCallback(GLFWwindow* window, int pathCount, const char** paths)
 {
-    if (pathCount != 1) return;
+    for (unsigned int loop{ 0u }; loop < pathCount; ++loop) {
+        std::filesystem::path file{ paths[loop] };
+        EngineFunctions::engine().windowIO().dropCallback().execute(file);
+    }
 
 }
 
-GLFWwindow* Window::createWindow(uint width, uint height, string const& title)
+GLFWwindow* Window::createWindow(unsigned int width, unsigned int height, std::string const& title)
 {
     //create window
     GLFWwindow* pWindow = glfwCreateWindow(width, height, title.c_str(), NULL, NULL);

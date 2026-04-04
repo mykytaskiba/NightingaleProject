@@ -18,18 +18,18 @@ public:
     using TRotationChannel = AnimationChannel<Quaternion>;
     using TScalingChannel = AnimationChannel<float>;
 
-    vector<float> timeValues{};
-    vector<Channel> channels{};
+    std::vector<float> timeValues{};
+    std::vector<Channel> channels{};
 
-    vector<TPositionChannel> positionChannels;
-    vector<TRotationChannel> rotationChannels;
-    vector<TScalingChannel> scalingChannels;
+    std::vector<TPositionChannel> positionChannels;
+    std::vector<TRotationChannel> rotationChannels;
+    std::vector<TScalingChannel> scalingChannels;
 };
 
 struct Channel {
 public:
     string targetNodeName;
-    vector<Transform> values;
+    std::vector<Transform> values;
 };
 
 template <typename T>
@@ -38,8 +38,8 @@ struct AnimationChannel {
     friend class Skeleton; //TO DO: REMOVE THIS FRIEND
 public:
     string targetNodeName;
-    vector<float> timeValues;
-    vector<T> values;
+    std::vector<float> timeValues;
+    std::vector<T> values;
 
     void addValue(float t, T const& value) {
         timeValues.push_back(t);

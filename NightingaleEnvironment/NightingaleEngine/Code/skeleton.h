@@ -40,16 +40,16 @@ public:
 private:
 
 
-    vector<SkelBone> m_bones{};
-    vector<SkelNode> m_nodes{};
+    std::vector<SkelBone> m_bones{};
+    std::vector<SkelNode> m_nodes{};
 
-    vector<Matrix4x4> m_bindPose{};
+    std::vector<Matrix4x4> m_bindPose{};
 
     //current node and bone transforms
-    vector<Matrix4x4> m_nodeTransforms{};
-    vector<Matrix4x4> m_boneTransforms{};
+    std::vector<Matrix4x4> m_nodeTransforms{};
+    std::vector<Matrix4x4> m_boneTransforms{};
 
-    vector<Mesh*> m_meshes{};
+    std::vector<Mesh*> m_meshes{};
 
 
     //internal transform SET ONCE IN THE IMPORTER
@@ -58,7 +58,7 @@ private:
     //transform of the world coordinate skeleton
     Matrix4x4 m_transform{};
 
-    map<string, uint> m_nodeNameMap{}; //TO DO: TEMPORARY, REMOVE LATER
+    std::map<string, uint> m_nodeNameMap{}; //TO DO: TEMPORARY, REMOVE LATER
 
     struct SkelBone {
         uint linkedNode;

@@ -29,17 +29,17 @@ public:
     void registerRenderPass(RenderPass*);
     void registerRenderable(RenderNode*);
 
-    vector<RenderPass*> const& getActiveRenderPasses() const { return m_renderpasses; }
-    vector<RenderPass*>& getActiveRenderPasses() { return m_renderpasses; }
+    std::vector<RenderPass*> const& getActiveRenderPasses() const { return m_renderpasses; }
+    std::vector<RenderPass*>& getActiveRenderPasses() { return m_renderpasses; }
     void removeRenderPass(RenderPass*&);
     void clearAllRenderPasses();
 
     void removeRenderable(RenderNode*);
 private:
 
-    vector<RenderPass*> m_renderpasses;
+    std::vector<RenderPass*> m_renderpasses;
 
-    vector<RenderNode*> m_renderables;
+    std::vector<RenderNode*> m_renderables;
 
     GraphicsContext m_graphicsContext{};
     Screen m_screen{ 0,0 };

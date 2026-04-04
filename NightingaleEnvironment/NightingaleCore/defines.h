@@ -27,17 +27,6 @@ using ifstream = std::ifstream;
 using stringstream = std::stringstream;
 using exception = std::exception;
 
-#include <vector>
-template<typename T>
-using vector = std::vector<T>;
-
-#include <set>
-template<typename T>
-using set = std::set<T>;
-
-template<typename Key, typename Value>
-using map = std::map<Key,Value>;
-
 //filesystem define
 namespace filesystem = std::filesystem;
 

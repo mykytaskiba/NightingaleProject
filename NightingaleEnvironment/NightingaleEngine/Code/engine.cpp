@@ -131,8 +131,32 @@ void Engine::CS550TempTestFuncInit()
     //nlohmann::json sceneJSON = Scene::JSONRepresentation::serialize(EngineFunctions::scene());
     //Loader::saveFile(std::filesystem::path("jsonTest/scene.json"), sceneJSON);
 
-    std::vector<MeshData*> vMeshes;
-    Loader::readMeshData("data/core/cube.fbx", vMeshes);
+
+    m_windowIO.dropCallback().addCallbackFront([this](std::filesystem::path file) {
+        
+        std::filesystem::path extension = file.extension();
+        if (extension != ".fbx") {
+            return false;
+        }
+
+        //load mesh
+        std::vector<MeshData*> vMeshes;
+        if (!Loader::readMeshData(file, vMeshes)) {
+            return true;
+        }
+
+        if (!ServiceLocator<Factory<GameObject>>::hasService()) {
+            return true;
+        }
+
+        Factory<GameObject>& gameObjectFactory = *ServiceLocator<Factory<GameObject>>::retrieve();
+
+        //GameObject* pGameObject;
+        //gameObjectFactory.create("gameobject", )
+
+
+        }
+    );
 
     m_physics.setTargetUpdateRate(180);
     m_physics.setMaxUpdatesPerFrame(4);

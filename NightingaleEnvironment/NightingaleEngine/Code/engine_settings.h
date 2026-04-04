@@ -7,7 +7,7 @@
 class GameObject;
 
 struct EngineSettings {
-	vector<CommandInterface*> console_commands{};
-	vector<string> load_commands{};
+	std::vector<CommandInterface*> console_commands{};
+	std::vector<string> load_commands{};
 
 };
