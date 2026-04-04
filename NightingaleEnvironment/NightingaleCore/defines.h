@@ -20,8 +20,6 @@ using byte = std::byte;
 using TTimeAbs = double;
 using TTimeDelta = float;
 
-//Physics time delta
-using TTimePhys = float;
 
 using ifstream = std::ifstream;
 using stringstream = std::stringstream;

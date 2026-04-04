@@ -1,6 +1,6 @@
 #pragma once
 #include "ngmath.h"
-#include "defines.h"
+#include "phys_defines.h"
 #include "property_provider.h"
 #include "json_object.h"
 #include "factory.h"

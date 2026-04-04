@@ -24,6 +24,9 @@
     <ClInclude Include="Code\physics_body.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\phys_defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\physics.cpp">

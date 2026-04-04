@@ -1,5 +1,5 @@
 #pragma once
-#include "defines.h"
+#include "phys_defines.h"
 #include "physics_body.h"
 #include "ngmath.h"
 #include "property_visitor.h"
