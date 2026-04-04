@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gl_shader.h"
+#include "ngrender.h"
 #include "defines.h"
 #include "ngmath.h"
 

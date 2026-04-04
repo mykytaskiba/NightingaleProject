@@ -1,7 +1,7 @@
 #pragma once
 #include "defines.h"
 
-#include "gl_shader.h"
+#include "ngrender.h"
 #include "debug_ui.h"
 #include "screen.h"
 #include "graphics_context.h"

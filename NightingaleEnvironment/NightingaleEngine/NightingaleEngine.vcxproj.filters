@@ -105,17 +105,11 @@
     <ClCompile Include="Code\graphics_library.cpp">
       <Filter>Source Files\Rendering\GraphicsLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="Code\gl_shader.cpp">
-      <Filter>Source Files\Rendering\GraphicsLibrary</Filter>
-    </ClCompile>
     <ClCompile Include="Code\shader_source.cpp">
       <Filter>Source Files\Rendering\ShaderPreprocess</Filter>
     </ClCompile>
     <ClCompile Include="Code\render_shader.cpp">
       <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\gl_shader_uniform.cpp">
-      <Filter>Source Files\Rendering\GraphicsLibrary</Filter>
     </ClCompile>
     <ClCompile Include="Code\game_object.cpp">
       <Filter>Source Files\Logic</Filter>
@@ -338,17 +332,11 @@
     <ClInclude Include="Code\graphics_library.h">
       <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
-    <ClInclude Include="Code\gl_shader.h">
-      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
-    </ClInclude>
     <ClInclude Include="Code\shader_source.h">
       <Filter>Header Files\Rendering\ShaderPreprocess</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_shader.h">
       <Filter>Header Files\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\gl_shader_uniform.h">
-      <Filter>Header Files\Rendering\GraphicsLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Code\game_object.h">
       <Filter>Header Files\Logic</Filter>

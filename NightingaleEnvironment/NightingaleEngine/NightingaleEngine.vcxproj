@@ -176,8 +176,6 @@
     <ClInclude Include="Code\frame_controller.h" />
     <ClInclude Include="Code\gameobject_commands.h" />
     <ClInclude Include="Code\game_object.h" />
-    <ClInclude Include="Code\gl_shader.h" />
-    <ClInclude Include="Code\gl_shader_uniform.h" />
     <ClInclude Include="Code\graphics_context.h" />
     <ClInclude Include="Code\graphics_library.h" />
     <ClInclude Include="Code\input.h" />
@@ -252,8 +250,6 @@
     <ClCompile Include="Code\gameobject_commands.cpp" />
     <ClCompile Include="Code\gameobject_menu.cpp" />
     <ClCompile Include="Code\game_object.cpp" />
-    <ClCompile Include="Code\gl_shader.cpp" />
-    <ClCompile Include="Code\gl_shader_uniform.cpp" />
     <ClCompile Include="Code\graphics_context.cpp" />
     <ClCompile Include="Code\graphics_library.cpp" />
     <ClCompile Include="Code\guid.cpp" />

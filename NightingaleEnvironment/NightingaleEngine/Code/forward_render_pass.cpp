@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "forward_render_pass.h"
 
-#include "gl_shader.h"
+#include "ngrender.h"
 #include "screen.h"
 #include "graphics_context.h"
 #include "ngmath.h"

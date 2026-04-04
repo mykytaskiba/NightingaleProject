@@ -1,7 +1,6 @@
 #pragma once
 
-#include "gl_shader.h"
-#include "gl_shader_uniform.h"
+#include "ngrender.h"
 #include "ngmath.h"
 #include <string>
 

@@ -117,7 +117,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingaleCore;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)NightingaleMath\Includes;$(SolutionDir)NightingaleCore;$(ProjectDir)Lib\glew-2.1.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,12 +141,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\NightingaleEngine\Code\gl_shader.h" />
     <ClInclude Include="Code\camera.h" />
+    <ClInclude Include="Code\gl_shader.h" />
+    <ClInclude Include="Code\gl_shader_uniform.h" />
     <ClInclude Include="Code\render_pass.h" />
     <ClInclude Include="Includes\ngrender.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\camera.cpp" />
+    <ClCompile Include="Code\gl_shader.cpp" />
+    <ClCompile Include="Code\gl_shader_uniform.cpp" />
     <ClCompile Include="Code\render_pass.cpp" />
   </ItemGroup>
   <ItemGroup>

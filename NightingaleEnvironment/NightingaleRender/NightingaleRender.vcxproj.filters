@@ -24,12 +24,27 @@
     <ClInclude Include="Code\render_pass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\NightingaleEngine\Code\gl_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\gl_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\gl_shader_uniform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\render_pass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\gl_shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\gl_shader_uniform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
