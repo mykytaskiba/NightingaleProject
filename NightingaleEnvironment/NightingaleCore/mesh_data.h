@@ -44,6 +44,8 @@ private:
 
 public:
 
+	bool hasData() const;
+
 	void addAttribute(Attribute const& attribute);
 
 	void prepareVertexData(unsigned int vertexCount);

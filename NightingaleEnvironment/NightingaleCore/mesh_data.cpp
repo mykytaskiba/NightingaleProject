@@ -2,6 +2,10 @@
 #include "nightingale_assert.h"
 #include <algorithm>
 
+bool MeshData::hasData() const {
+	return (m_vData.size() != 0 || m_vTriangles.size() != 0 || m_vAttributeOrder.size() != 0);
+}
+
 void MeshData::addAttribute(Attribute const& attribute)
 {
 	if (attribute.m_label.empty()) {

@@ -68,6 +68,16 @@ void PropertyMenuVisitor::endCollection(std::string const& key)
 	ImGui::PopID();
 }
 
+void PropertyMenuVisitor::enumerateCollectionItem(unsigned int id)
+{
+	ImGui::PushID((int) id);
+}
+
+void PropertyMenuVisitor::endCollectionItem()
+{
+	ImGui::PopID();
+}
+
 void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory)
 {
 	std::string name = key;
@@ -106,8 +116,7 @@ void PropertyMenuVisitor::handleFactory(std::string const& key, IFactoryElement*
 				pPropertyProvider->properties(*this);
 			}
 		}
-
+		ImGui::Unindent(10);
 	}
-	ImGui::Unindent(10);
 	ImGui::PopID();
 }

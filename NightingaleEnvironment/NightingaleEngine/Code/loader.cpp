@@ -289,6 +289,10 @@ bool Loader::readMeshData(std::filesystem::path const& path, std::vector<MeshDat
 
 bool Loader::buildMeshData(aiMesh const& aiMesh, MeshData& outMesh)
 {
+    if (outMesh.hasData()) {
+        return false;
+    }
+
     size_t numVerticies = aiMesh.mNumVertices;
     if (numVerticies == 0) {
         return false;

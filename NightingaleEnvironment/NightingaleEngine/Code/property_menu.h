@@ -10,6 +10,7 @@
 
 struct PropertyMenuVisitor : public IPropertyVisitor {
 
+
 	template<typename TValue>
 	void menuImpl(std::string const& key, TValue& value) {
 		if (meta().isReadOnly()) ImGui::BeginDisabled();
@@ -60,6 +61,9 @@ protected:
 
 	std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, size_t& size) override;
 	void endCollection(std::string const& key) override;
+
+	void enumerateCollectionItem(uint id) override;
+	void endCollectionItem() override;
 
 	void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) override;
 

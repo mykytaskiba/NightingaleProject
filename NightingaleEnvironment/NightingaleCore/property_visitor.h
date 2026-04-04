@@ -39,8 +39,11 @@ public:
 		vector.resize(vecSize);
 		if (pChild != nullptr) {
 			pChild->pushMeta(meta());
+			unsigned int idx{ 0u };
 			for (auto& value : vector) {
+				pChild->enumerateCollectionItem(idx++);
 				(*pChild)(key, value);
+				pChild->endCollectionItem();
 			}
 			pChild->popMeta();
 			endCollection(key);
@@ -97,6 +100,9 @@ protected:
 
 	virtual std::unique_ptr<IPropertyVisitor> collectionVisitor(std::string const& key, size_t& size) = 0;
 	virtual void endCollection(std::string const& key) {}
+
+	virtual void enumerateCollectionItem(unsigned int id) {}
+	virtual void endCollectionItem() {}
 
 	virtual void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) = 0;
 
