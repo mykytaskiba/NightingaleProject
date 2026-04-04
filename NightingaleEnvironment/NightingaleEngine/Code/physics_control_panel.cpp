@@ -29,7 +29,7 @@ void PhysicsControlPanel::render_update()
     
     PhysicsDebugRenderPass* pDebugPass = findDebugPass();
     if (pDebugPass != nullptr) {
-        pDebugPass->debugUIFunction();
+        PropertyMenu::render_update(*pDebugPass);
     }
     else {
         if (ImGui::Button("Create a Debug Render Pass")) {

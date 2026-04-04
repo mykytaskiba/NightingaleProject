@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="bitwise_enum.hpp" />
     <ClInclude Include="blocking_callback.h" />
+    <ClInclude Include="color.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="factory.h" />
     <ClInclude Include="json.hpp" />
@@ -38,6 +39,7 @@
     <ClInclude Include="service_locator.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="color.cpp" />
     <ClCompile Include="json_visitors.cpp" />
     <ClCompile Include="mesh_data.cpp" />
   </ItemGroup>

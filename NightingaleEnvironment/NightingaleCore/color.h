@@ -1,5 +1,5 @@
 #pragma once
-
+#include "json.hpp"
 
 using ColorChannel = float;
 
@@ -19,3 +19,6 @@ private:
 
 
 };
+
+void to_json(nlohmann::json& json, const Color& color);
+void from_json(nlohmann::json const& json, Color& color);

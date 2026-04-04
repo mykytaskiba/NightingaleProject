@@ -21,8 +21,6 @@ public:
 
 	std::string const& getInfoName() { return m_infoName; }
 
-	virtual void debugUIFunction() = 0;
-
 	void properties(IPropertyVisitor& visitor) override {
 		visitor.pushMeta(MetaData::ReadOnly());
 		visitor("name", m_infoName);

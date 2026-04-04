@@ -18,5 +18,4 @@ public:
 
 	void registerRenderable(RenderNode* renderable) override;
 
-	void debugUIFunction() override;
 };

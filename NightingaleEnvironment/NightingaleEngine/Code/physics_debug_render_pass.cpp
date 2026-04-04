@@ -23,14 +23,3 @@ void PhysicsDebugRenderPass::registerRenderable(RenderNode* renderable)
 {
 }
 
-void PhysicsDebugRenderPass::debugUIFunction()
-{
-
-    ImGui::Checkbox("Enabled", &m_enabled);
-    ImGui::Checkbox("Depth Test", &m_bDepthTest);
-
-
-    if (ImGui::CollapsingHeader("AABB Color")) {
-        ImGuiHelpers::ColorPicker3("", m_AABBColor);
-    }
-}

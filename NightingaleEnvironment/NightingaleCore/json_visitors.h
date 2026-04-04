@@ -16,6 +16,7 @@ struct JSONSerializerVisitor : public IPropertyVisitor {
 	void operator()(std::string const& key, float& value) override { m_json[key] = value; }
 	void operator()(std::string const& key, unsigned int& value) override { m_json[key] = value; }
 	void operator()(std::string const& key, std::string& value) override { m_json[key] = value; }
+	void operator()(std::string const& key, Color& value) override { m_json[key] = value; }
 
 protected:
 	nlohmann::json& m_json;
@@ -36,6 +37,7 @@ struct JSONSerializerCollectionVisitor : public JSONSerializerVisitor {
 	void operator()(std::string const& key, float& value) override { m_json.push_back(value); }
 	void operator()(std::string const& key, unsigned int& value) override { m_json.push_back(value); }
 	void operator()(std::string const& key, std::string& value) override { m_json.push_back(value); }
+	void operator()(std::string const& key, Color& value) override { m_json.push_back(value); }
 
 protected:
 	std::unique_ptr<IPropertyVisitor> childVisitor(std::string const& key) override;
@@ -55,6 +57,7 @@ struct JSONDeserializerVisitor : public IPropertyVisitor {
 	void operator()(std::string const& key, float& value) override {	if (m_json.contains(key)) m_json[key].get_to(value); }
 	void operator()(std::string const& key, unsigned int& value) override { if (m_json.contains(key)) m_json[key].get_to(value); }
 	void operator()(std::string const& key, std::string& value) override { if (m_json.contains(key)) m_json[key].get_to(value);  }
+	void operator()(std::string const& key, Color& value) override { if (m_json.contains(key)) m_json[key].get_to(value); }
 
 
 protected:
@@ -91,6 +94,10 @@ struct JSONDeserializerCollectionVisitor : public JSONDeserializerVisitor {
 		if (m_index < m_size) m_json.at(m_index++).get_to(value);
 	}
 	void operator()(std::string const& key, std::string& value) override
+	{
+		if (m_index < m_size) m_json.at(m_index++).get_to(value);
+	}
+	void operator()(std::string const& key, Color& value) override
 	{
 		if (m_index < m_size) m_json.at(m_index++).get_to(value);
 	}

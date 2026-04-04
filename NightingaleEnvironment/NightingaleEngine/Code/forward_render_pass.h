@@ -10,5 +10,11 @@ public:
 	ForwardRenderPass() : RenderPass("Forward Render Pass") {}
 
 	void executeRenderPass(GraphicsContext& context) override;
-	void debugUIFunction() override;
+
+	void properties(IPropertyVisitor& visitor) override {
+		RenderPass::properties(visitor);
+		visitor.pushMeta(MetaData::OnlyRGB());
+		visitor("clear_color", m_clearColor);
+		visitor.popMeta();
+	}
 };

@@ -27,9 +27,6 @@
     <ClInclude Include="Code\matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\quaternion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -53,9 +50,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Code\color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\quaternion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

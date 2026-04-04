@@ -37,6 +37,16 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 		else if constexpr (std::is_same_v < TValue, std::string>) {
 			bChanged = ImGui::InputText(formatStringForImGUI(key).c_str(), &value);
 		}
+		else if constexpr (std::is_same_v < TValue, Color>) {
+			if (ImGui::CollapsingHeader(formatStringForImGUI(key).c_str())) {
+				if (meta().isFlag(MetaFlags::ColorOnlyRGB)) {
+					bChanged = ImGuiHelpers::ColorPicker3("", value);
+				}
+				else {
+					bChanged = ImGuiHelpers::ColorPicker4("", value);
+				}
+			}
+		}
 
 
 		if (meta().isReadOnly()) ImGui::EndDisabled();
@@ -50,6 +60,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	void operator()(std::string const& key, float& value) override { menuImpl(key, value); }
 	void operator()(std::string const& key, unsigned int& value) override { menuImpl(key, value); }
 	void operator()(std::string const& key, std::string& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, Color& value) override { menuImpl(key, value); }
 
 
 protected:

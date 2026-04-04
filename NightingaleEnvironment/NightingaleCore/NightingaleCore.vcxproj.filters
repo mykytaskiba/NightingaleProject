@@ -19,6 +19,9 @@
     <Filter Include="Header Files\property">
       <UniqueIdentifier>{5a729308-f338-415d-87fa-48bb335f4e1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\math">
+      <UniqueIdentifier>{b2f4ca39-93e6-48a1-ab9c-b92379aa64c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitwise_enum.hpp">
@@ -72,12 +75,18 @@
     <ClInclude Include="blocking_callback.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Header Files\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="json_visitors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="mesh_data.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

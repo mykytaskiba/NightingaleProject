@@ -25,17 +25,3 @@ void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
     }
 
 }
-
-void ForwardRenderPass::debugUIFunction()
-{
-
-
-    
-    ImGui::Checkbox("Enabled", &m_enabled);
-
-    if (ImGui::CollapsingHeader("Clear Color")) {
-        ImGuiHelpers::ColorPicker3("",m_clearColor);
-    }
-
-
-}

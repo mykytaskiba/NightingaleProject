@@ -4,6 +4,8 @@
 #include "property_provider.h"
 #include "factory.h"
 #include <stack>
+#include "json.hpp"
+#include "color.h"
 
 class IPropertyVisitor {
 public:
@@ -13,6 +15,7 @@ public:
 	virtual void operator()(std::string const& key, float& value) = 0;
 	virtual void operator()(std::string const& key, unsigned int& value) = 0;
 	virtual void operator()(std::string const& key, std::string& value) = 0;
+	virtual void operator()(std::string const& key, Color& value) = 0;
 
 	template<typename TValue>
 	void operator()(std::string const& key, TValue& value) {

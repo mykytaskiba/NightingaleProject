@@ -5,6 +5,7 @@
 enum class MetaFlags {
 	None = 0,
 	ReadOnly = 1,
+	ColorOnlyRGB = 2
 };
 ENABLE_ENUM_BITWISE_OPERATORS(MetaFlags);
 
@@ -18,11 +19,16 @@ public:
 
 	inline MetaData() = default;
 	inline MetaData(MetaFlags flags) : m_flags(flags) {}
-	
+
+
+	inline bool isFlag(MetaFlags flag) const {
+		return ((m_flags & flag) == flag);
+	}
 	
 	inline bool isReadOnly() const {
-		return ((m_flags & MetaFlags::ReadOnly) == MetaFlags::ReadOnly);
+		return isFlag(MetaFlags::ReadOnly);
 	}
+
 
 	inline void onChangeCallback() const {
 		for (TChangeCallback const& callback : m_vCbOnChanged) {
@@ -33,6 +39,7 @@ public:
 	}
 
 	static MetaData ReadOnly() { return MetaFlags::ReadOnly; }
+	static MetaData OnlyRGB() { return MetaFlags::ColorOnlyRGB; }
 
 	static MetaData OnChange(TChangeCallback changeCallback) {
 		MetaData changeMetaData{};
