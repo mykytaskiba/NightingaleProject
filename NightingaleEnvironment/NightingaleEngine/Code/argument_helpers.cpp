@@ -4,11 +4,11 @@
 #include "environment.h"
 
 
-string ArgumentHelpers::getNextRaw(string& args)
+std::string ArgumentHelpers::getNextRaw(std::string& args)
 {
-    string result;
+    std::string result;
     size_t pos = args.find(' ');
-    if (pos == string::npos) {
+    if (pos == std::string::npos) {
         result = args;
         args = "";
         return result;
@@ -18,9 +18,9 @@ string ArgumentHelpers::getNextRaw(string& args)
     return result;
 }
 
-string ArgumentHelpers::getNextWithDefines(string& args)
+std::string ArgumentHelpers::getNextWithDefines(std::string& args)
 {
-    string arg = getNextRaw(args);
+    std::string arg = getNextRaw(args);
 
     if (arg.size() >= 2) {
         bool bDefineSyntax = arg[0] == '$';

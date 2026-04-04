@@ -18,6 +18,10 @@ public:
 
 private:
 
+    static constexpr char const* s_windowLaunchTitle{ "No Title Set" };
+    static constexpr int const s_windowLaunchWidth{ 800 };
+    static constexpr int const s_windowLaunchHeight{ 600 };
+
     static void resizeCallback(GLFWwindow* window, int width, int height);
     static void dropCallback(GLFWwindow* window, int pathCount, const char** paths);
 

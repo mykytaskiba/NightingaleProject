@@ -1,20 +1,21 @@
 #include "pch.h"
 #include "shader_source.h"
-#include "defines.h"
+#include <fstream>
+#include <exception>
 
-ShaderSource ShaderSource::fromFile(string const& filename)
+ShaderSource ShaderSource::fromFile(std::string const& filename)
 {
-    string code;
+    std::string code;
 
-    ifstream shaderFile;
-    stringstream shaderBuffer;
+    std::ifstream shaderFile;
+    std::stringstream shaderBuffer;
 
 
     shaderFile.open(filename);
 
     if (!shaderFile.is_open()) {
         //_logger.log("Could not open file");
-        throw exception("Could not read shader");
+        throw std::exception("Could not read shader");
     }
 
     ShaderSource result;

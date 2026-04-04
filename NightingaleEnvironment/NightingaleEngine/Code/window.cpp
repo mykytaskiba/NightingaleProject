@@ -5,6 +5,8 @@
 #include "engine_functions.h"
 #include <filesystem>
 
+
+
 void Window::init()
 {
     //INIT GLFW
@@ -13,7 +15,7 @@ void Window::init()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    m_pWindow = createWindow(800, 600, "No Title Set");
+    m_pWindow = createWindow(s_windowLaunchWidth, s_windowLaunchHeight, s_windowLaunchTitle);
 
 
     glfwSetFramebufferSizeCallback(m_pWindow, resizeCallback);

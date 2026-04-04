@@ -2,18 +2,18 @@
 #include "logger.h"
 
 
-std::vector<string> Logger::LOG_STACK = std::vector<string>();
+std::vector<std::string> Logger::LOG_STACK = std::vector<std::string>();
 LoggerStatus Logger::CURRENT_STATUS = LoggerStatus::LOG_DISABLED;
 
-void Logger::BeginSection(string const& string)
+void Logger::BeginSection(std::string const& string)
 {
     if (CURRENT_STATUS == LoggerStatus::LOG_DISABLED) {
         return;
     }
-    LOG_STACK.push_back(string);
+    LOG_STACK.push_back(std::string{});
 }
 
-void Logger::Log(string const& string)
+void Logger::Log(std::string const& string)
 {
     if (CURRENT_STATUS == LoggerStatus::LOG_DISABLED) {
         return;
@@ -22,7 +22,7 @@ void Logger::Log(string const& string)
     std::cout << string << std::endl;
 }
 
-void Logger::EndSection(string const& string)
+void Logger::EndSection(std::string const& string)
 {
 }
 

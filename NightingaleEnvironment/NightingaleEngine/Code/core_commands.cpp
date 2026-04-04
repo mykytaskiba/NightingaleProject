@@ -8,7 +8,7 @@
 #include "hotkey_processing.h"
 /*
 
-ExecutionResult VerifyCommand::execute(string args, ExecutionState& state)
+ExecutionResult VerifyCommand::execute(std::string args, ExecutionState& state)
 {
     ExecutionResult result;
     result.bSuccess = true;
@@ -26,7 +26,7 @@ ExecutionResult VerifyCommand::execute(string args, ExecutionState& state)
     return result;
 }
 
-ExecutionResult DropStateCommand::execute(string args, ExecutionState& state)
+ExecutionResult DropStateCommand::execute(std::string args, ExecutionState& state)
 {
     state = ExecutionState();
     
@@ -36,18 +36,18 @@ ExecutionResult DropStateCommand::execute(string args, ExecutionState& state)
     return result;
 }
 
-ExecutionResult HelpCommand::execute(string args, ExecutionState& state)
+ExecutionResult HelpCommand::execute(std::string args, ExecutionState& state)
 {
 }
 
 
-ExecutionResult DefineCommand::execute(string args, ExecutionState& state)
+ExecutionResult DefineCommand::execute(std::string args, ExecutionState& state)
 {
-    string defineAs = nextArgRaw(args);
-    string defineVal = nextArgRaw(args);
-    string rest = nextArgRaw(args);
+    std::string defineAs = nextArgRaw(args);
+    std::string defineVal = nextArgRaw(args);
+    std::string rest = nextArgRaw(args);
 
-    string expected = "define $(defineAs) (defineVal)";
+    std::string expected = "define $(defineAs) (defineVal)";
 
     
     if (defineAs == "" || defineVal == "" || rest != "") {
@@ -67,12 +67,12 @@ ExecutionResult DefineCommand::execute(string args, ExecutionState& state)
     return ExecutionResult::SUCCESS("defined " + defineAs + " as " + defineVal);
 }
 
-ExecutionResult UndefineCommand::execute(string args, ExecutionState& state)
+ExecutionResult UndefineCommand::execute(std::string args, ExecutionState& state)
 {
-    string undefine = nextArgRaw(args);
-    string rest = nextArgRaw(args);
+    std::string undefine = nextArgRaw(args);
+    std::string rest = nextArgRaw(args);
 
-    string expected = "undefine $(define)";
+    std::string expected = "undefine $(define)";
 
 
     if (undefine == "" || rest != "") {
@@ -96,16 +96,16 @@ ExecutionResult UndefineCommand::execute(string args, ExecutionState& state)
     return ExecutionResult::SUCCESS("undefined " + undefine);
 }
 
-ExecutionResult UndefineAllCommand::execute(string args, ExecutionState& state)
+ExecutionResult UndefineAllCommand::execute(std::string args, ExecutionState& state)
 {
     state.defines.clear();
     return ExecutionResult::SUCCESS("undefined all");
 }
 
-ExecutionResult EnableLogCommand::execute(string args, ExecutionState& state)
+ExecutionResult EnableLogCommand::execute(std::string args, ExecutionState& state)
 {
     bool value;
-    string expected = "@enablelog (true/false)";
+    std::string expected = "@enablelog (true/false)";
 
     if (!nextBool(args, value)) {
         return ExecutionResult::FAIL("Expected syntax: " + expected);
@@ -114,20 +114,20 @@ ExecutionResult EnableLogCommand::execute(string args, ExecutionState& state)
         return ExecutionResult::FAIL("Expected syntax: " + expected);
     }
 
-    string logDisabledMsg = "Logging disabled";
+    std::string logDisabledMsg = "Logging disabled";
     if (state.bCreateLog && !value) {
         state.appendToLog(m_command + " false", logDisabledMsg);
     }
     state.bCreateLog = value;
 
-    string msg = value ? "Logging enabled" : logDisabledMsg;
+    std::string msg = value ? "Logging enabled" : logDisabledMsg;
     return ExecutionResult::SUCCESS(msg);
 }
 
-ExecutionResult ClearConsoleLogCommand::execute(string args, ExecutionState& state)
+ExecutionResult ClearConsoleLogCommand::execute(std::string args, ExecutionState& state)
 {
 
-    string expected = "@clearlog";
+    std::string expected = "@clearlog";
     if (nextArg(args) != "") {
         return ExecutionResult::FAIL("Expected syntax: " + expected);
     }
@@ -136,9 +136,9 @@ ExecutionResult ClearConsoleLogCommand::execute(string args, ExecutionState& sta
     return ExecutionResult::SUCCESS("Log was cleared");
 }
 
-ExecutionResult ShowConsoleLogCommand::execute(string args, ExecutionState& state)
+ExecutionResult ShowConsoleLogCommand::execute(std::string args, ExecutionState& state)
 {
-    string expected = "@showlog";
+    std::string expected = "@showlog";
     if (nextArg(args) != "") {
         return ExecutionResult::FAIL("Expected syntax: " + expected);
     }
@@ -149,9 +149,9 @@ ExecutionResult ShowConsoleLogCommand::execute(string args, ExecutionState& stat
     return result;
 }
 
-ExecutionResult ShowErrorLogCommand::execute(string args, ExecutionState& state)
+ExecutionResult ShowErrorLogCommand::execute(std::string args, ExecutionState& state)
 {
-    string expected = "@showlog";
+    std::string expected = "@showlog";
     if (nextArg(args) != "") {
         return ExecutionResult::FAIL("Expected syntax: " + expected);
     }
@@ -195,15 +195,15 @@ void ExecuteCommand::execute_command(ArgumentList<Line>& args, ExecutionState& s
 
 void HelpCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string commandList = "";
+    std::string commandList = "";
 
     assert(ScriptingEnvironment::getInstance() != nullptr);
     ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
 
-   std::map<string, CommandInterface*> const& commandMap = scriptingEnv.m_commandMap;
+   std::map<std::string, CommandInterface*> const& commandMap = scriptingEnv.m_commandMap;
 
     for (auto it = commandMap.cbegin(); it != commandMap.cend(); ++it) {
-        string usage = (*it).second->getUsage();
+        std::string usage = (*it).second->getUsage();
         commandList += (*it).first + usage + "\n";
     }
 
@@ -214,8 +214,8 @@ void HelpCommand::execute_command(ArgumentList<Nothing>& args, ExecutionState& s
 
 void DefineCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string defineKey = *args.get<0>();
-    string defineVal = *args.get<1>();
+    std::string defineKey = *args.get<0>();
+    std::string defineVal = *args.get<1>();
 
     state.defines[defineKey] = defineVal;
 
@@ -225,7 +225,7 @@ void DefineCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionSta
 
 void SetWindowTitleCommand::execute_command(ArgumentList<AllText>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string windowTitle = *args.get<0>();
+    std::string windowTitle = *args.get<0>();
 
     EngineFunctions::SetWindowTitle(windowTitle);
 

@@ -1,9 +1,9 @@
 #pragma once
-#include "defines.h"
+#include <string>
 
 
     struct ExecutionResult {
-        string message{ "No command executed" };
+        std::string message{ "No command executed" };
         bool bValidCommand{ false };
         bool bSuccess{ false };
         

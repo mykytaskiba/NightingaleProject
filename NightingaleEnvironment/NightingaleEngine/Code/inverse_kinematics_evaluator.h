@@ -40,7 +40,7 @@ public:
     Vector3 const& endEffector() const;
     Vector3 const& root() const;
 
-    void bind(Skeleton* pSkeleton, string const& bindNode, uint bindDepth);
+    void bind(Skeleton* pSkeleton, std::string const& bindNode, uint bindDepth);
     void evaluate();
     void draw(GraphicsContext&);
 

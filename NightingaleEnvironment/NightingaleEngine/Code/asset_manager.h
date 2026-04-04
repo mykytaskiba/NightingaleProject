@@ -11,19 +11,19 @@ private:
 
 public:
 
-    static bool has(string const& key) {
+    static bool has(std::string const& key) {
         auto it = m_assetMap.find(key);
         return (it != m_assetMap.end());
     }
 
-    static Resource* retrieve(string const& key) {
+    static Resource* retrieve(std::string const& key) {
         if (has(key)) {
             return m_assetMap[key];
         }
         return nullptr;
     }
 
-    static bool add(string const& key, Resource* value) {
+    static bool add(std::string const& key, Resource* value) {
         if (has(key)) {
             return false;
         }
@@ -50,6 +50,6 @@ public:
 };
 
 template <typename Resource>
-std::map<string, Resource*> AssetManager<Resource>::m_assetMap = std::map<string, Resource*>();
+std::map<std::string, Resource*> AssetManager<Resource>::m_assetMap = std::map<std::string, Resource*>();
 
 

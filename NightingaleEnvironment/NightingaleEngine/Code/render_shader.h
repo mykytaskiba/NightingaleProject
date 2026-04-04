@@ -3,6 +3,7 @@
 #include "gl_shader.h"
 #include "gl_shader_uniform.h"
 #include "ngmath.h"
+#include <string>
 
 //Shader that is used for rendering (Default vertex -> fragment pipeline)
 class RenderShader {
@@ -16,11 +17,11 @@ public:
     RenderShader(GL_Shader baseShader) : m_baseShader(baseShader) {}
 
     void activate();
-    void transferByName(string const& name, Matrix4x4 const& matrix);
-    void transferByName(string const& name, Color const& color);
-    void transferByName(string const& name, Vector3 const& vec3);
+    void transferByName(std::string const& name, Matrix4x4 const& matrix);
+    void transferByName(std::string const& name, Color const& color);
+    void transferByName(std::string const& name, Vector3 const& vec3);
 
-    void transferArray(string const& name, std::vector<Matrix4x4> const& matricies);
+    void transferArray(std::string const& name, std::vector<Matrix4x4> const& matricies);
 
     float const* getMatrixData(Matrix4x4 const& matrix);
 

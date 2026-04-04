@@ -11,8 +11,6 @@
 
 using FEngineProcedure = std::function<void()>;
 
-//Common used types
-using string = std::string;
 using uint = unsigned int;
 using byte = std::byte;
 
@@ -20,9 +18,5 @@ using byte = std::byte;
 using TTimeAbs = double;
 using TTimeDelta = float;
 
-
-using ifstream = std::ifstream;
-using stringstream = std::stringstream;
-using exception = std::exception;
 
 

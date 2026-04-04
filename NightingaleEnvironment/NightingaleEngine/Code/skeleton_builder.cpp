@@ -82,7 +82,7 @@ Skeleton* SkeletonBuilder::getSkeleton() const
 
 uint SkeletonBuilder::getBoneIndex(aiBone const* pBone) const
 {
-    auto it = m_boneNameMap.find(string(pBone->mName.C_Str()));
+    auto it = m_boneNameMap.find(std::string(pBone->mName.C_Str()));
     if (it == m_boneNameMap.end()) {
         assert(0);
         return 0;
@@ -133,7 +133,7 @@ void SkeletonBuilder::buildSkeletonNodesRecurse(aiNode const* pNode, uint parent
 
     uint thisNodeIndex = m_nodes.size() - 1; //since we just added, this node index is size-1
  
-    m_nodeNameMap[string(pNode->mName.C_Str())] = thisNodeIndex;
+    m_nodeNameMap[std::string(pNode->mName.C_Str())] = thisNodeIndex;
 
     for (uint i = 0; i < pNode->mNumChildren; ++i) {
         buildSkeletonNodesRecurse(pNode->mChildren[i], thisNodeIndex);
@@ -146,7 +146,7 @@ void SkeletonBuilder::buildSkeletonBones(aiScene const* pScene)
         aiMesh const* pMesh = pScene->mMeshes[meshID];
         for (uint i = 0; i < pMesh->mNumBones; ++i) {
             aiBone const* pBone = pMesh->mBones[i];
-            uint nodeIndex = m_nodeNameMap[string(pBone->mName.C_Str())];
+            uint nodeIndex = m_nodeNameMap[std::string(pBone->mName.C_Str())];
 
             if (m_boneMap.find(nodeIndex) == m_boneMap.end()) {
                 m_boneMap[nodeIndex] = BuilderBone();
@@ -159,7 +159,7 @@ void SkeletonBuilder::buildSkeletonBones(aiScene const* pScene)
 
     uint boneIndex = 0;
     for (auto it = m_boneMap.begin(); it != m_boneMap.end(); ++it) {
-        m_boneNameMap[string ((*it).second.pBone->mName.C_Str())] = boneIndex;
+        m_boneNameMap[std::string ((*it).second.pBone->mName.C_Str())] = boneIndex;
         ++boneIndex;
     }
 

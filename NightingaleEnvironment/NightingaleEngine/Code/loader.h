@@ -40,9 +40,9 @@ private:
 
 public:
 
-    static Mesh* fbxSingleMesh(string const& path, float importScale);
-    static Skeleton* fbxSkeleton(string const& path, float importScale);
-    static Animation* fbxAnimation(string const& path);
+    static Mesh* fbxSingleMesh(std::string const& path, float importScale);
+    static Skeleton* fbxSkeleton(std::string const& path, float importScale);
+    static Animation* fbxAnimation(std::string const& path);
 
 
     static bool fileExists(std::filesystem::path const& path);
@@ -64,7 +64,6 @@ public:
 
     static bool buildMeshData(aiMesh const& aiMesh, MeshData& outMesh);
 
-    static bool loadTexture(string const& path);
 
     //ASSIMP Helpers
     static Matrix4x4 fromAIMatrix(aiMatrix4x4 const&);

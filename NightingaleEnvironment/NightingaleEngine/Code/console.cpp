@@ -60,7 +60,7 @@ void Console::render_update()
 
 
     if (commandEntered) {
-        string fullCommand = string(m_consoleBuffer);
+        std::string fullCommand = std::string(m_consoleBuffer);
         assert(ScriptingEnvironment::getInstance() != nullptr);
         ScriptingEnvironment& scriptingEnv = *ScriptingEnvironment::getInstance();
         ExecutionResult executionResult = scriptingEnv.execute(fullCommand);

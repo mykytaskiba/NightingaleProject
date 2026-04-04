@@ -31,7 +31,7 @@ void GameObjectMenu::render_update(GameObject* pGameObject)
     
 
 
-    string aliasStr{ pGameObject->getAlias() };
+    std::string aliasStr{ pGameObject->getAlias() };
     if (ImGui::InputText("Alias", &aliasStr)) {
         pGameObject->setAlias(aliasStr);
     }

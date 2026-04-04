@@ -15,7 +15,7 @@
 
 
 
-Mesh* Loader::fbxSingleMesh(string const& path, float importScale)
+Mesh* Loader::fbxSingleMesh(std::string const& path, float importScale)
 {
     Assimp::Importer importer;
 
@@ -50,7 +50,7 @@ Mesh* Loader::fbxSingleMesh(string const& path, float importScale)
 }
 
 //Assumption: one skeleton and all meshes are rigged to that skeleton
-Skeleton* Loader::fbxSkeleton(string const& path, float importScale)
+Skeleton* Loader::fbxSkeleton(std::string const& path, float importScale)
 {
     Assimp::Importer importer;
 
@@ -68,7 +68,7 @@ Skeleton* Loader::fbxSkeleton(string const& path, float importScale)
     
 }
 
-Animation* Loader::fbxAnimation(string const& path)
+Animation* Loader::fbxAnimation(std::string const& path)
 {
     Assimp::Importer importer;
 
@@ -347,10 +347,6 @@ bool Loader::createDirectories(std::filesystem::path const& path)
     return false;
 }
 
-bool Loader::loadTexture(string const& path)
-{
-    return false;
-}
 
 
 Matrix4x4 Loader::fromAIMatrix(aiMatrix4x4 const& aiMat)

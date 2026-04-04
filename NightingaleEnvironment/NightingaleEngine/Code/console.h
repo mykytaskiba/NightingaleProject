@@ -17,10 +17,10 @@ public:
 protected:
 
 
-    string m_consoleBuffer{};
-    string m_consoleMessage{};
+    std::string m_consoleBuffer{};
+    std::string m_consoleMessage{};
 
-    std::vector<string> m_executedCommands{};
+    std::vector<std::string> m_executedCommands{};
     size_t m_executedCommandBrowser{0u};
 
     bool m_bShownThisFrame{ false };

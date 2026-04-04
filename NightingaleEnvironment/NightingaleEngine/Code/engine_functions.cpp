@@ -79,12 +79,12 @@ TTimeDelta EngineFunctions::delta_time()
     return EngineInternals::pEngine->m_frameController.getDeltaTime();
 }
 
-ExecutionResult EngineFunctions::ExecuteCommand(string const& command)
+ExecutionResult EngineFunctions::ExecuteCommand(std::string const& command)
 {
     return EngineInternals::pEngine->m_scriptEnvironment.execute(command);
 }
 
-void EngineFunctions::SetWindowTitle(string const& title)
+void EngineFunctions::SetWindowTitle(std::string const& title)
 {
     EngineInternals::pEngine->m_window.setTitle(title); 
 }

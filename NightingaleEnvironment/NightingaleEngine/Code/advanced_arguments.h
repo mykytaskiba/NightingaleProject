@@ -1,6 +1,6 @@
 #pragma once
-#include "defines.h"
+#include <string>
 
 struct ExistingFile {
-	string path;
+	std::string path;
 };

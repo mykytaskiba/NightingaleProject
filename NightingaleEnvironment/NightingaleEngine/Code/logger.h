@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "defines.h"
+#include <string>
 
 enum class LoggerStatus {
     LOG_DISABLED,
@@ -11,15 +11,15 @@ enum class LoggerStatus {
 
 static class Logger {
 private:
-    static std::vector<string> LOG_STACK;
+    static std::vector<std::string> LOG_STACK;
     static LoggerStatus CURRENT_STATUS;
 
 public:
-    static void BeginSection(string const& string);
+    static void BeginSection(std::string const& string);
 
-    static void Log(string const& string);
+    static void Log(std::string const& string);
 
-    static void EndSection(string const& string);
+    static void EndSection(std::string const& string);
 
     static void Reset();
 

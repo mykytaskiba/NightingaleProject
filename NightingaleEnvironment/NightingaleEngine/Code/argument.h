@@ -18,9 +18,9 @@ struct ArgumentList;
 template<>
 struct ArgumentList<> {
 public:
-	void get_usage_recur(string& result) const {
+	void get_usage_recur(std::string& result) const {
 	}
-	void parse_recur(string& args, ParsingResult& result) {
+	void parse_recur(std::string& args, ParsingResult& result) {
 		if (args.length() != 0) {
 			result.errorMessage = "too many arguments entered";
 			result.bSuccess = false;
@@ -43,7 +43,7 @@ private:
 
 public:
 
-	void get_usage_recur(string& result) const {
+	void get_usage_recur(std::string& result) const {
 		result += " (" + ArgumentExtractor<Arg>::usage() + ")";
 		rest.get_usage_recur(result);
 	}
@@ -52,7 +52,7 @@ public:
 
 	//should be public for parsing
 	//TO DO: make private eventually?
-	void parse_recur(string& args, ParsingResult& result) {
+	void parse_recur(std::string& args, ParsingResult& result) {
 		arg = ArgumentExtractor<Arg>::parse(args, result);
 		if (result.bSuccess) {
 			rest.parse_recur(args, result);
@@ -69,13 +69,13 @@ public:
 		}
 	}
 
-	string get_usage() const {
-		string result = "";
+	std::string get_usage() const {
+		std::string result = "";
 		get_usage_recur(result);
 		return result;
 	}
 
-	ParsingResult parse(string& args) {
+	ParsingResult parse(std::string& args) {
 		ParsingResult result;
 		parse_recur(args, result);
 		return result;

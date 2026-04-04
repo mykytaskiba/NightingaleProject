@@ -12,19 +12,19 @@
         void init();
 
         //Execute single command
-        ExecutionResult execute(string const&);
+        ExecutionResult execute(std::string const&);
 
         void registerSingleCommand(CommandInterface* command);
 
         static ScriptingEnvironment* getInstance();
 
-        void preprocessCommand(string&) const;
+        void preprocessCommand(std::string&) const;
         //autofill an execution command, i.e. "sample_script" -> "execute_command path/sample_script.ext"
-        string autoFillCommand(string const&) const;
+        std::string autoFillCommand(std::string const&) const;
 
-        bool defineSyntax(string&) const;
+        bool defineSyntax(std::string&) const;
 
-        void trimWhitespace(string&) const;
+        void trimWhitespace(std::string&) const;
 
         ExecutionState const& getExecutionState() const { return m_executionState; }
         ExecutionState& getExecutionState() { return m_executionState; }
@@ -34,7 +34,7 @@
         static ScriptingEnvironment* m_pInstance;//singleton
 
         ExecutionState m_executionState{};
-        std::map<string, CommandInterface*> m_commandMap;
+        std::map<std::string, CommandInterface*> m_commandMap;
 
 
     };

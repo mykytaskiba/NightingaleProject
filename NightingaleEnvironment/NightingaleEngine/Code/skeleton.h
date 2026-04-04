@@ -58,7 +58,7 @@ private:
     //transform of the world coordinate skeleton
     Matrix4x4 m_transform{};
 
-    std::map<string, uint> m_nodeNameMap{}; //TO DO: TEMPORARY, REMOVE LATER
+    std::map<std::string, uint> m_nodeNameMap{}; //TO DO: TEMPORARY, REMOVE LATER
 
     struct SkelBone {
         uint linkedNode;

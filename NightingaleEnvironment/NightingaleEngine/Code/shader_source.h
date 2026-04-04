@@ -4,7 +4,7 @@
 
 class ShaderSource {
 private:
-    string m_source;
+    std::string m_source;
     
     ShaderSource(char*);
 
@@ -12,8 +12,8 @@ public:
 
     ShaderSource() {}
 
-    string getSource() { return m_source; }
+    std::string getSource() { return m_source; }
 
-    static ShaderSource fromFile(string const&);
+    static ShaderSource fromFile(std::string const&);
 
 };

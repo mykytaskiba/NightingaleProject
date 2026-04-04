@@ -9,16 +9,16 @@ class ExecutionResult;
 
 struct ExecutionState {
 
-    string lastCommand{ "No command" };
+    std::string lastCommand{ "No command" };
 
-    std::map<string, string> defines{};
+    std::map<std::string, std::string> defines{};
 
     template<typename T> 
-    T extract_or_default(string const& key, T const& default_val) const {
+    T extract_or_default(std::string const& key, T const& default_val) const {
         bool bHasKey = defines.find(key) != defines.end();
 
         if (bHasKey) {
-            string value(defines.at(key));
+            std::string value(defines.at(key));
             ParsingResult parsingResult;
             T result = ArgumentExtractor<T>::parse(value, parsingResult);
 
@@ -34,8 +34,8 @@ struct ExecutionState {
 
     //log
     bool bCreateLog{ false };
-    string log{};
-    string errorLog{};
+    std::string log{};
+    std::string errorLog{};
 
     GameObject* pGameObject;
     RenderNode* pRenderNode;

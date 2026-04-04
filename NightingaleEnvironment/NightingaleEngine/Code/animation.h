@@ -28,7 +28,7 @@ public:
 
 struct Channel {
 public:
-    string targetNodeName;
+    std::string targetNodeName;
     std::vector<Transform> values;
 };
 
@@ -37,7 +37,7 @@ struct AnimationChannel {
     friend class AnimationBuilder;
     friend class Skeleton; //TO DO: REMOVE THIS FRIEND
 public:
-    string targetNodeName;
+    std::string targetNodeName;
     std::vector<float> timeValues;
     std::vector<T> values;
 

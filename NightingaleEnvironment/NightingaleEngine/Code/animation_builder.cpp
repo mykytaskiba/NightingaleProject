@@ -85,7 +85,7 @@ void AnimationBuilder::loadChannel(aiNodeAnim const* animChannel, uint channelId
     m_pAnimation->channels.push_back(Channel());
     Channel& channel = (* m_pAnimation->channels.rbegin());
 
-    string nodeName = animChannel->mNodeName.C_Str();
+    std::string nodeName = animChannel->mNodeName.C_Str();
     channel.targetNodeName = nodeName;
 
     Transform superTransform; //super transform if no other transform is picked up

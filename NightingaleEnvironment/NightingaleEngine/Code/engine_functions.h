@@ -45,9 +45,9 @@ public:
     static TTimeDelta delta_time();
 
     //Commands
-    static ExecutionResult ExecuteCommand(string const&);
+    static ExecutionResult ExecuteCommand(std::string const&);
 
-    static void SetWindowTitle(string const& title);
+    static void SetWindowTitle(std::string const& title);
     static void SetTargetFramerate(int framerate);
     static float getTargetFramerate();
     static uint getTargetFramerateInt();

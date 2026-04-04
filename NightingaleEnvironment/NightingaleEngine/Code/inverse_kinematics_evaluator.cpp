@@ -4,7 +4,7 @@
 #include "asset_manager.h"
 #include "ngmath.h"
 
-void InverseKinematicEvaluator::bind(Skeleton* pSkeleton, string const& bindNode, uint bindDepth)
+void InverseKinematicEvaluator::bind(Skeleton* pSkeleton, std::string const& bindNode, uint bindDepth)
 {
     //clear previous data
     m_pSkeleton = nullptr;

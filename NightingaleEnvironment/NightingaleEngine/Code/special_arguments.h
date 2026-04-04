@@ -2,40 +2,41 @@
 #include "defines.h"
 #include "key_enum.h"
 #include <set>
+#include <string>
 
 struct ParsingResult;
 class GameObject;
 
 struct Line {
-	string line;
+	std::string line;
 	
-	string& operator*() {
+	std::string& operator*() {
 		return line;
 	}
 
-	string const& operator*() const {
+	std::string const& operator*() const {
 		return line;
 	}
 };
 
 struct AllText {
-	string text;
-	string& operator*() {
+	std::string text;
+	std::string& operator*() {
 		return text;
 	}
 
-	string const& operator*() const {
+	std::string const& operator*() const {
 		return text;
 	}
 };
 
 struct Path {
-	string path;
-	string& operator*() {
+	std::string path;
+	std::string& operator*() {
 		return path;
 	}
 
-	string const& operator*() const {
+	std::string const& operator*() const {
 		return path;
 	}
 };

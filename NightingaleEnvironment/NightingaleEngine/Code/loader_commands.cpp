@@ -10,9 +10,9 @@
 
 void ShaderLoadCommand::execute_command(ArgumentList<Line, Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string shaderName = *args.get<0>();
-    string vertexShaderPath = *args.get<1>();
-    string fragmentShaderPath = *args.get<2>();
+    std::string shaderName = *args.get<0>();
+    std::string vertexShaderPath = *args.get<1>();
+    std::string fragmentShaderPath = *args.get<2>();
 
     if (AssetManager<RenderShader>::has(shaderName)) {
         result.message = "shader already exists: " + shaderName;
@@ -64,8 +64,8 @@ void ShaderLoadCommand::execute_command(ArgumentList<Line, Line, Line>& args, Ex
 
 void MeshLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string meshName = *args.get<0>();
-    string pathToMesh = *args.get<1>();
+    std::string meshName = *args.get<0>();
+    std::string pathToMesh = *args.get<1>();
 
     if (AssetManager<Mesh>::has(meshName)) {
         result.message = "mesh already exists: " + meshName;
@@ -86,8 +86,8 @@ void MeshLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionS
 
 void SkeletonLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string meshName = *args.get<0>();
-    string pathToMesh = *args.get<1>();
+    std::string meshName = *args.get<0>();
+    std::string pathToMesh = *args.get<1>();
 
     if (AssetManager<Skeleton>::has(meshName)) {
         result.message = "mesh already exists: " + meshName;
@@ -108,8 +108,8 @@ void SkeletonLoadCommand::execute_command(ArgumentList<Line, Line>& args, Execut
 
 void AnimationLoadCommand::execute_command(ArgumentList<Line, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string name = *args.get<0>();
-    string path = *args.get<1>();
+    std::string name = *args.get<0>();
+    std::string path = *args.get<1>();
 
     if (AssetManager<Animation>::has(name)) {
         result.message = "animation already exists: " + name;

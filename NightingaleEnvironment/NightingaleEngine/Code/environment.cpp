@@ -12,11 +12,11 @@ void ScriptingEnvironment::init()
     m_pInstance = this;
 }
 
-ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
+ExecutionResult ScriptingEnvironment::execute(std::string const& commandIn)
 {
     ExecutionResult result;
 
-    string args(commandIn);
+    std::string args(commandIn);
 
     if (args.size() == 0) {
 
@@ -33,7 +33,7 @@ ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
     }
 
     preprocessCommand(args);
-    string command = ArgumentHelpers::getNextWithDefines(args);
+    std::string command = ArgumentHelpers::getNextWithDefines(args);
     auto it = m_commandMap.find(command);
     bool bFoundCommand = it != m_commandMap.end();
     if (!bFoundCommand) {
@@ -53,7 +53,7 @@ ExecutionResult ScriptingEnvironment::execute(string const& commandIn)
 void ScriptingEnvironment::registerSingleCommand(CommandInterface* command)
 {
     assert(command != nullptr);
-    string const& commandStr = command->getCommand();
+    std::string const& commandStr = command->getCommand();
     assert(m_commandMap.find(commandStr) == m_commandMap.end());
     
     m_commandMap[commandStr] = command;
@@ -64,13 +64,13 @@ ScriptingEnvironment* ScriptingEnvironment::getInstance()
     return m_pInstance;
 }
 
-void ScriptingEnvironment::preprocessCommand(string& command) const
+void ScriptingEnvironment::preprocessCommand(std::string& command) const
 {
     if (defineSyntax(command)) return;
 
-    string processedCommand;
+    std::string processedCommand;
 
-    string commandStr = ArgumentHelpers::getNextRaw(command);
+    std::string commandStr = ArgumentHelpers::getNextRaw(command);
     auto it = m_commandMap.find(commandStr);
     bool bFoundCommand = it != m_commandMap.end();
 
@@ -83,21 +83,21 @@ void ScriptingEnvironment::preprocessCommand(string& command) const
 }
 
 
-string ScriptingEnvironment::autoFillCommand(string const& inCommand) const
+std::string ScriptingEnvironment::autoFillCommand(std::string const& inCommand) const
 {
-    string filledCommand = ".execute data/" + inCommand + ".ngs";
+    std::string filledCommand = ".execute data/" + inCommand + ".ngs";
     return filledCommand;
 }
 
-bool ScriptingEnvironment::defineSyntax(string& inCommand) const
+bool ScriptingEnvironment::defineSyntax(std::string& inCommand) const
 {
     size_t equalSign = inCommand.find('=');
-    if (equalSign == string::npos) {
+    if (equalSign == std::string::npos) {
         return false;
     }
 
-    string defineKey = inCommand.substr(0, equalSign);
-    string defineVal = inCommand.substr(equalSign+1);
+    std::string defineKey = inCommand.substr(0, equalSign);
+    std::string defineVal = inCommand.substr(equalSign+1);
     trimWhitespace(defineKey);
     trimWhitespace(defineVal);
 
@@ -105,7 +105,7 @@ bool ScriptingEnvironment::defineSyntax(string& inCommand) const
 
 }
 
-void ScriptingEnvironment::trimWhitespace(string& inStr) const
+void ScriptingEnvironment::trimWhitespace(std::string& inStr) const
 {
     inStr = inStr.substr(inStr.find_first_not_of(' '));
     inStr = inStr.substr(0, inStr.find_last_not_of(' ') + 1);

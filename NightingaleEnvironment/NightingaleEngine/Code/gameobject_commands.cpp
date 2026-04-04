@@ -15,7 +15,7 @@
 void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
     GameObject* pParent = *args.get<0>();
-    string type = *args.get<1>();
+    std::string type = *args.get<1>();
     
     GameObject* pCreatedObject = nullptr;
 
@@ -48,7 +48,7 @@ void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, L
 
 void AttachRenderMeshCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string meshName = *args.get<0>();
+    std::string meshName = *args.get<0>();
 
     if (!AssetManager<Mesh>::has(meshName)) {
         result.bSuccess = false;
@@ -79,7 +79,7 @@ void AttachRenderMeshCommand::execute_command(ArgumentList<Line>& args, Executio
 
 void AttachAnimatedMeshCommand::execute_command(ArgumentList<Line>& args, ExecutionState& state, ExecutionResult& result)
 {
-    string skeletonName = *args.get<0>();
+    std::string skeletonName = *args.get<0>();
 
 
 

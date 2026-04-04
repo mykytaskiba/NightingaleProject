@@ -90,7 +90,7 @@ void Engine::registerConsoleCommands()
 
 void Engine::loadCommands()
 {
-    for (string const command : m_settings.load_commands) {
+    for (std::string const command : m_settings.load_commands) {
         ExecutionResult result = m_scriptEnvironment.execute(command);
         assert(result.bSuccess);
     }
@@ -135,9 +135,6 @@ void Engine::CS550TempTestFuncInit()
 
     m_windowIO.dropCallback().addCallbackFront([this](std::filesystem::path file) {
 
-
-        FileSource* pFileSource = new FileSource(file);
-
         std::filesystem::path extension = file.extension();
         if (extension != ".fbx") {
             return false;
@@ -146,6 +143,7 @@ void Engine::CS550TempTestFuncInit()
         //load mesh
         std::vector<MeshData*> vMeshes;
         if (!Loader::readMeshData(file, vMeshes)) {
+
             return true;
         }
 

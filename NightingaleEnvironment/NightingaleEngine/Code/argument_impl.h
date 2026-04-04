@@ -6,7 +6,7 @@
 
 struct ParsingResult {
     bool bSuccess{ false };
-    string errorMessage{};
+    std::string errorMessage{};
 };
 
 template<typename Arg>
@@ -22,10 +22,10 @@ struct ArgumentExtractor {
 //INT
 template<>
 struct ArgumentExtractor<int> {
-    static string usage() { return "integer"; }
-    static int parse(string& args, ParsingResult& result)
+    static std::string usage() { return "integer"; }
+    static int parse(std::string& args, ParsingResult& result)
     {
-        string valueStr = ArgumentHelpers::getNextWithDefines(args);
+        std::string valueStr = ArgumentHelpers::getNextWithDefines(args);
         try {
             result.bSuccess = true;
             return std::stoi(valueStr);
@@ -46,8 +46,8 @@ struct ArgumentExtractor<int> {
 //UINT
 template<>
 struct ArgumentExtractor<uint> {
-    static string usage() { return "positive integer"; }
-    static uint parse(string& args, ParsingResult& result)
+    static std::string usage() { return "positive integer"; }
+    static uint parse(std::string& args, ParsingResult& result)
     {
         int i = ArgumentExtractor<int>::parse(args, result);
         if (result.bSuccess) {
@@ -64,10 +64,10 @@ struct ArgumentExtractor<uint> {
 //FLOAT
 template<>
 struct ArgumentExtractor<float> {
-    static string usage() { return "float"; }
-    static float parse(string& args, ParsingResult& result)
+    static std::string usage() { return "float"; }
+    static float parse(std::string& args, ParsingResult& result)
     {
-        string valueStr = ArgumentHelpers::getNextWithDefines(args);
+        std::string valueStr = ArgumentHelpers::getNextWithDefines(args);
         try {
             result.bSuccess = true;
             return std::stof(valueStr);
@@ -89,10 +89,10 @@ struct ArgumentExtractor<float> {
 //BOOL
 template<>
 struct ArgumentExtractor<bool> {
-    static string usage() { return "true/false"; }
-    static bool parse(string& args, ParsingResult& result) 
+    static std::string usage() { return "true/false"; }
+    static bool parse(std::string& args, ParsingResult& result)
     {
-        string valueStr = ArgumentHelpers::getNextWithDefines(args);
+        std::string valueStr = ArgumentHelpers::getNextWithDefines(args);
 
         if (valueStr == "true") {
             result.bSuccess = true;
@@ -112,10 +112,10 @@ struct ArgumentExtractor<bool> {
 //TRIBOOL
 template<>
 struct ArgumentExtractor<TriBool> {
-    static string usage() { return "true/false/toggle"; }
-    static TriBool parse(string& args, ParsingResult& result)
+    static std::string usage() { return "true/false/toggle"; }
+    static TriBool parse(std::string& args, ParsingResult& result)
     {
-        string valueStr = ArgumentHelpers::getNextWithDefines(args);
+        std::string valueStr = ArgumentHelpers::getNextWithDefines(args);
 
         if (valueStr == "true") {
             result.bSuccess = true;
@@ -139,8 +139,8 @@ struct ArgumentExtractor<TriBool> {
 //ALL TEXT
 template<>
 struct ArgumentExtractor<AllText> {
-    static string usage() { return "text..."; }
-    static AllText parse(string& args, ParsingResult& result)
+    static std::string usage() { return "text..."; }
+    static AllText parse(std::string& args, ParsingResult& result)
     {
         //Note: the loop is required to make sure that all the $defines are handled
         AllText arg;
@@ -165,8 +165,8 @@ struct ArgumentExtractor<AllText> {
 //LINE
 template<>
 struct ArgumentExtractor<Line> {
-    static string usage() { return "line"; }
-    static Line parse(string& args, ParsingResult& result)
+    static std::string usage() { return "line"; }
+    static Line parse(std::string& args, ParsingResult& result)
     {
         Line arg;
         arg.line = ArgumentHelpers::getNextWithDefines(args);
@@ -183,8 +183,8 @@ struct ArgumentExtractor<Line> {
 //VOID
 template<>
 struct ArgumentExtractor<Nothing> {
-    static string usage() { return "void"; }
-    static Nothing parse(string&, ParsingResult& result)
+    static std::string usage() { return "void"; }
+    static Nothing parse(std::string&, ParsingResult& result)
     {
 
         result.bSuccess = true;
@@ -195,8 +195,8 @@ struct ArgumentExtractor<Nothing> {
 //Vector3
 template<>
 struct ArgumentExtractor<Vector3> {
-    static string usage() { return "3d vector"; }
-    static Vector3 parse(string& args, ParsingResult& result) {
+    static std::string usage() { return "3d vector"; }
+    static Vector3 parse(std::string& args, ParsingResult& result) {
 
         Vector3 arg(0,0,0);
         arg[0] = ArgumentExtractor<float>::parse(args, result);
@@ -213,8 +213,8 @@ struct ArgumentExtractor<Vector3> {
 //KeySequence
 template<>
 struct ArgumentExtractor<KeySequence> {
-    static string usage() { return "key sequence"; }
-    static KeySequence parse(string& args, ParsingResult& result) {
+    static std::string usage() { return "key sequence"; }
+    static KeySequence parse(std::string& args, ParsingResult& result) {
         std::string arg = ArgumentHelpers::getNextWithDefines(args);
         
         std::vector<std::string> vKeySequence = ArgumentHelpers::separateByDelimiter(arg, '+');
@@ -240,8 +240,8 @@ struct ArgumentExtractor<KeySequence> {
 
 template<>
 struct ArgumentExtractor<SelectedGameObject> {
-    static string usage() { return ""; }
-    static SelectedGameObject parse(string &, ParsingResult & result) {
+    static std::string usage() { return ""; }
+    static SelectedGameObject parse(std::string &, ParsingResult & result) {
         SelectedGameObject selectedGameObject;
         selectedGameObject.retrieve(result);
         return selectedGameObject;
