@@ -19,3 +19,6 @@
 
 //JSON Serialization
 #include "../Code/json_math_impl.h"
+
+#include <numbers>
+constexpr float pi = (float) std::numbers::pi;

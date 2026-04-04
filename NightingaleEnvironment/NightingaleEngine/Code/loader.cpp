@@ -85,7 +85,7 @@ Animation* Loader::fbxAnimation(string const& path)
 
 bool Loader::fileExists(std::filesystem::path const& path)
 {
-    return (filesystem::exists(path));
+    return (std::filesystem::exists(path));
 }
 
 bool Loader::fileIsPlainFile(std::filesystem::path const& path)

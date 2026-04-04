@@ -27,9 +27,4 @@ using ifstream = std::ifstream;
 using stringstream = std::stringstream;
 using exception = std::exception;
 
-//filesystem define
-namespace filesystem = std::filesystem;
-
-//math defines
-constexpr float pi = (float) std::numbers::pi;
 
