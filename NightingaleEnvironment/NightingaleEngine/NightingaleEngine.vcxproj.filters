@@ -569,6 +569,9 @@
     <ClInclude Include="Code\window_io.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
+    <ClInclude Include="Code\file_source.h">
+      <Filter>Header Files\AssetManagement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />

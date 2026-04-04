@@ -106,6 +106,7 @@ void Engine::setDefaultSettings()
 #include "render_mesh.h"
 #include "physics_debug_render_pass.h"
 #include "loader.h"
+#include "file_source.h"
 void Engine::CS550TempTestFuncInit()
 {
     /*
@@ -133,7 +134,10 @@ void Engine::CS550TempTestFuncInit()
 
 
     m_windowIO.dropCallback().addCallbackFront([this](std::filesystem::path file) {
-        
+
+
+        FileSource* pFileSource = new FileSource(file);
+
         std::filesystem::path extension = file.extension();
         if (extension != ".fbx") {
             return false;
@@ -153,7 +157,6 @@ void Engine::CS550TempTestFuncInit()
 
         //GameObject* pGameObject;
         //gameObjectFactory.create("gameobject", )
-
 
         }
     );

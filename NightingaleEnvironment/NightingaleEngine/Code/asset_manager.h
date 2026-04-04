@@ -1,12 +1,13 @@
 #pragma once
-#include "defines.h"
+#include <map>
+#include <string>
 
 template <typename Resource>
 class AssetManager {
 
 private:
 
-    static std::map<string, Resource*> m_assetMap;
+    static std::map<std::string, Resource*> m_assetMap;
 
 public:
 

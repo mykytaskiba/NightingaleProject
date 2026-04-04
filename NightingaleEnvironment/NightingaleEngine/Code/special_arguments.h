@@ -3,7 +3,7 @@
 #include "key_enum.h"
 #include <set>
 
-class ParsingResult;
+struct ParsingResult;
 class GameObject;
 
 struct Line {

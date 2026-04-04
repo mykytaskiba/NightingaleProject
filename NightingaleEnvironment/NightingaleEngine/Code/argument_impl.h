@@ -67,7 +67,6 @@ struct ArgumentExtractor<float> {
     static string usage() { return "float"; }
     static float parse(string& args, ParsingResult& result)
     {
-        float arg;
         string valueStr = ArgumentHelpers::getNextWithDefines(args);
         try {
             result.bSuccess = true;
