@@ -4,6 +4,7 @@
 #include "engine_internals.h"
 #include "forward_render_pass.h"
 #include "physics_debug_render_pass.h"
+#include "property_menu.h"
 
 void RenderDebugPanel::render_update()
 {
@@ -79,7 +80,7 @@ void RenderDebugPanel::render_update()
         
 
         if (bShowingPass) {
-            pRenderPass->debugUIFunction();
+            PropertyMenu::render_update(*pRenderPass);
         }
 
         ImGui::EndChild();

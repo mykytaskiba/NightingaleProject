@@ -1,10 +1,11 @@
 #pragma once
-#include "defines.h"
+#include "property_provider.h"
+#include "property_visitor.h"
 
 class GraphicsContext;
 class RenderNode;
 
-class RenderPass {
+class RenderPass : public IPropertyProvider {
 
 public:
 
@@ -21,6 +22,13 @@ public:
 	std::string const& getInfoName() { return m_infoName; }
 
 	virtual void debugUIFunction() = 0;
+
+	void properties(IPropertyVisitor& visitor) override {
+		visitor.pushMeta(MetaData::ReadOnly());
+		visitor("name", m_infoName);
+		visitor.popMeta();
+		visitor("enabled", m_enabled);
+	}
 protected:
 
 	//whether this pass is enabled
