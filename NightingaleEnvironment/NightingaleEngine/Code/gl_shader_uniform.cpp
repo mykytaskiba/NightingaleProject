@@ -11,9 +11,9 @@ GL_Shader_Uniform::GL_Shader_Uniform(uint shaderHandle, uint index) : m_variable
     m_variableLocation = glGetUniformLocation(shaderHandle, &m_variableName);
 }
 
-vector<GL_Shader_Uniform> GL_Shader_Uniform::makeUniformList(GL_Shader const& shader)
+std::vector<GL_Shader_Uniform> GL_Shader_Uniform::makeUniformList(GL_Shader const& shader)
 {
-    vector<GL_Shader_Uniform> uniformList;
+    std::vector<GL_Shader_Uniform> uniformList;
 
     uint const& shaderHandle = shader.getHandle();
 

@@ -28,7 +28,7 @@ string ArgumentHelpers::getNextWithDefines(string& args)
             //assert(Environment::getInstance() != nullptr);
             //Environment& environment = *Environment::getInstance();
             //TO DO: make a define class?
-            //map<string, string>& defines = environment.m_.defines;
+            //std::map<string, string>& defines = environment.m_.defines;
             //bool bDefineExists = defines.find(arg.substr(1)) != defines.end();
             //if (bDefineExists) {
             //    arg = defines[arg.substr(1)];

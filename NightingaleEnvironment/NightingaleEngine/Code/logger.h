@@ -11,7 +11,7 @@ enum class LoggerStatus {
 
 static class Logger {
 private:
-    static vector<string> LOG_STACK;
+    static std::vector<string> LOG_STACK;
     static LoggerStatus CURRENT_STATUS;
 
 public:

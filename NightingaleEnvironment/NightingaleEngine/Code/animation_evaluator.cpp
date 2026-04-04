@@ -16,7 +16,7 @@ void AnimationEvaluator::bindEvaluator(Animation* pAnimation, Skeleton* pSkeleto
     m_pAnimation = pAnimation;
     m_pSkeleton = pSkeleton;
 
-    vector<Channel>& channels = m_pAnimation->channels;
+    std::vector<Channel>& channels = m_pAnimation->channels;
 
     for (auto it = channels.begin(); it != channels.end(); ++it) {
         m_channelToNodeMap.push_back(pSkeleton->m_nodeNameMap[(*it).targetNodeName]);
@@ -41,7 +41,7 @@ void AnimationEvaluator::evaluate(float t)
     }
 
     float animT = t * m_pAnimation->duration;
-    vector<float>& timeValues = m_pAnimation->timeValues;
+    std::vector<float>& timeValues = m_pAnimation->timeValues;
     uint lowerKey = 0, upperKey = 0;
     for (uint i = 0; i < timeValues.size()-1; ++i) {
         if (animT >= timeValues[i] && animT < timeValues[i+1]) {

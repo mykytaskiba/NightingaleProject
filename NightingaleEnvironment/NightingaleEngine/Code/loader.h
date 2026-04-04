@@ -74,8 +74,8 @@ public:
 
 private:
 
-    static void allNodes(aiNode const* root, vector<aiNode const*>& outList);
-    static void findMeshedNodes(aiNode const* root, vector<aiNode const*>& outList);
+    static void allNodes(aiNode const* root, std::vector<aiNode const*>& outList);
+    static void findMeshedNodes(aiNode const* root, std::vector<aiNode const*>& outList);
     static aiNode const* findFirstMeshedNode(aiNode const* root);
 
 

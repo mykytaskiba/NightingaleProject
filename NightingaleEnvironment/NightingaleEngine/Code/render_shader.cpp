@@ -30,7 +30,7 @@ void RenderShader::transferByName(string const& name, Vector3 const& vec3)
     glUniform3fv(loc, 1, (float*)&vec3);
 }
 
-void RenderShader::transferArray(string const& name, vector<Matrix4x4> const& matricies)
+void RenderShader::transferArray(string const& name, std::vector<Matrix4x4> const& matricies)
 {
     uint loc = glGetUniformLocation(m_baseShader.getHandle(), name.c_str());
     glUniformMatrix4fv(loc, matricies.size(), GL_FALSE, (float const*)matricies.data());

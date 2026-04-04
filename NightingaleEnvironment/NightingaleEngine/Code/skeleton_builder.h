@@ -18,11 +18,11 @@ public:
 private:
     uint m_numNodes{ 0 };
     uint m_numBones{ 0 };
-    vector<BuilderNode> m_nodes{};
-    map<string, uint> m_nodeNameMap{};
+    std::vector<BuilderNode> m_nodes{};
+    std::map<string, uint> m_nodeNameMap{};
 
-    map<uint, BuilderBone> m_boneMap{};
-    map<string, uint> m_boneNameMap{};
+    std::map<uint, BuilderBone> m_boneMap{};
+    std::map<string, uint> m_boneNameMap{};
 
     bool m_bSuccess{ false };
     Skeleton* m_pSkeleton{ nullptr };

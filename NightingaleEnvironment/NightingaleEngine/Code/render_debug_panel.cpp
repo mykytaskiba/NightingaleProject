@@ -34,7 +34,7 @@ void RenderDebugPanel::render_update()
     ImGui::BeginChild("RENDER_PASSES", ImVec2(width, 0), ImGuiChildFlags_AutoResizeY | ImGuiChildFlags_Border, ImGuiWindowFlags_MenuBar);
     ImGui::Text("Render passes");
 
-    vector<RenderPass*>& vActiveRenderPasses = EngineFunctions::Renderer().getActiveRenderPasses();
+    std::vector<RenderPass*>& vActiveRenderPasses = EngineFunctions::Renderer().getActiveRenderPasses();
 
     bool bNextMoveUp{ false };
     uint passCount{ 0u };

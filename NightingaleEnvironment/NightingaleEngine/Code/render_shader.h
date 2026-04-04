@@ -9,7 +9,7 @@ class RenderShader {
 public:
 
     GL_Shader m_baseShader;
-    vector<GL_Shader_Uniform> m_uniformList;
+    std::vector<GL_Shader_Uniform> m_uniformList;
 
 public:
 
@@ -20,7 +20,7 @@ public:
     void transferByName(string const& name, Color const& color);
     void transferByName(string const& name, Vector3 const& vec3);
 
-    void transferArray(string const& name, vector<Matrix4x4> const& matricies);
+    void transferArray(string const& name, std::vector<Matrix4x4> const& matricies);
 
     float const* getMatrixData(Matrix4x4 const& matrix);
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "defines.h"
 #include "key_enum.h"
+#include <set>
 
 class ParsingResult;
 class GameObject;

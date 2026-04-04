@@ -404,7 +404,7 @@ aiMatrix4x4 Loader::parentTransformation(aiNode const* node)
     return transform;
 }
 
-void Loader::allNodes(aiNode const* root, vector<aiNode const*>& outList)
+void Loader::allNodes(aiNode const* root, std::vector<aiNode const*>& outList)
 {
     outList.push_back(root);
 
@@ -413,7 +413,7 @@ void Loader::allNodes(aiNode const* root, vector<aiNode const*>& outList)
     }
 }
 
-void Loader::findMeshedNodes(aiNode const* root, vector<aiNode const*>& outList)
+void Loader::findMeshedNodes(aiNode const* root, std::vector<aiNode const*>& outList)
 {
     if (root->mNumMeshes > 0) {
         outList.push_back(root);

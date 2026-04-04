@@ -98,8 +98,8 @@ public:
 
     bool m_uiActive{ true };
 
-    vector<SimulatedMass> m_simulatedMasses;
-    vector<Tetrahedron> m_tetrahedrons;
+    std::vector<SimulatedMass> m_simulatedMasses;
+    std::vector<Tetrahedron> m_tetrahedrons;
     Transform m_objectTransform;
 
     uint addMassPoint(Vector3 const&);

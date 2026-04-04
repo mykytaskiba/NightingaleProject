@@ -13,7 +13,7 @@ private:
 
     Animation* m_pAnimation{ nullptr };
     Skeleton* m_pSkeleton{ nullptr };
-    vector<uint> m_channelToNodeMap{};
+    std::vector<uint> m_channelToNodeMap{};
 public:
     void bindEvaluator(Animation*, Skeleton*);
     void unbind();

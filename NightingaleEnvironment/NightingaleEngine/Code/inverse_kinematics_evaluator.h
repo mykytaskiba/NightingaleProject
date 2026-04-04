@@ -26,7 +26,7 @@ public:
 
     bool m_bIKOutsideOfDistance{ true };
 
-    vector<Limb> m_limbs;
+    std::vector<Limb> m_limbs;
 
     Vector3 m_IKTarget{};
     Vector3 m_absoluteTarget{};

@@ -49,6 +49,6 @@ public:
 };
 
 template <typename Resource>
-std::map<string, Resource*> AssetManager<Resource>::m_assetMap = map<string, Resource*>();
+std::map<string, Resource*> AssetManager<Resource>::m_assetMap = std::map<string, Resource*>();
 
 

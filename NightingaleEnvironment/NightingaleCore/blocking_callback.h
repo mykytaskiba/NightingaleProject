@@ -1,6 +1,6 @@
 #pragma once
 #include <functional>
-#include <list>
+#include <vector>
 
 template <typename... TArgs>
 class BlockingCallback {
@@ -39,7 +39,7 @@ public:
 	}
 
 	void operator()(TArgs... args) const {
-		execute(args..);
+		execute(args...);
 	}
 
 };

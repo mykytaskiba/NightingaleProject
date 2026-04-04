@@ -2,7 +2,7 @@
 #include "logger.h"
 
 
-vector<string> Logger::LOG_STACK = vector<string>();
+std::vector<string> Logger::LOG_STACK = std::vector<string>();
 LoggerStatus Logger::CURRENT_STATUS = LoggerStatus::LOG_DISABLED;
 
 void Logger::BeginSection(string const& string)

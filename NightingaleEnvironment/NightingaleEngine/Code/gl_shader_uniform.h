@@ -20,6 +20,6 @@ private:
     GL_Shader_Uniform() : m_variableLocation(-1), m_size(0), m_type(0) {}
    
 public:
-    static vector<GL_Shader_Uniform> makeUniformList(GL_Shader const& shader);
+    static std::vector<GL_Shader_Uniform> makeUniformList(GL_Shader const& shader);
 
 };
