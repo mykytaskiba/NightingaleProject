@@ -3,7 +3,7 @@
 //Keep track of screen state
 class Screen {
 public:
-    int Width;
-    int Height;
+    unsigned int m_width;
+    unsigned int m_height;
 
 };

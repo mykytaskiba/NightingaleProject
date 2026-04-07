@@ -4,7 +4,6 @@
 #include "ngrender.h"
 #include "debug_ui.h"
 #include "screen.h"
-#include "graphics_context.h"
 #include "ngmath.h"
 
 class Mesh;

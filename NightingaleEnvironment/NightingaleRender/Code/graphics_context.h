@@ -1,6 +1,6 @@
 #pragma once
 #include "ngmath.h"
-#include "screen.h"
+#include "camera.h"
 
 class RenderShader;
 class Mesh;
@@ -8,11 +8,15 @@ class Mesh;
 struct GraphicsContext {
 private:
     RenderShader* m_pCurrentShader{ nullptr };
+    
+    unsigned int m_targetWidth{ 0u };
+    unsigned int m_targetHeight{ 0u };
 
 public:
-    //TO DO: possibly refactor this?
-    Screen m_currentScreenDims{};
-
+    
+    unsigned int targetWidth() { return m_targetWidth; }
+    unsigned int targetHeight() { return m_targetHeight; }
+    
     void setCurrentShader(RenderShader*);
     RenderShader* getCurrentShader();
     

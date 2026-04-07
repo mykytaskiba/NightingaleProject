@@ -1,9 +1,6 @@
-#include "pch.h"
 #include "graphics_context.h"
-#include "render_shader.h"
-#include "engine_internals.h"
-#include "mesh.h"
 #include "ngmath.h"
+#include <GL/glew.h>
 
 void GraphicsContext::setCurrentShader(RenderShader* pShader)
 {

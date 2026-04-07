@@ -149,7 +149,6 @@
     <ClInclude Include="Code\argument_impl.h" />
     <ClInclude Include="Code\advanced_arguments.h" />
     <ClInclude Include="Code\callback_handler.h" />
-    <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\debug_panel.h" />
     <ClInclude Include="Code\gameobject_menu.h" />
     <ClInclude Include="Code\guid.h" />
@@ -176,8 +175,6 @@
     <ClInclude Include="Code\frame_controller.h" />
     <ClInclude Include="Code\gameobject_commands.h" />
     <ClInclude Include="Code\game_object.h" />
-    <ClInclude Include="Code\graphics_context.h" />
-    <ClInclude Include="Code\graphics_library.h" />
     <ClInclude Include="Code\input.h" />
     <ClInclude Include="Code\inverse_kinematics_evaluator.h" />
     <ClInclude Include="Code\loader.h" />
@@ -191,7 +188,6 @@
     <ClInclude Include="Code\project_two_coobject.h" />
     <ClInclude Include="Code\renderer.h" />
     <ClInclude Include="Code\render_mesh.h" />
-    <ClInclude Include="Code\render_node.h" />
     <ClInclude Include="Code\render_shader.h" />
     <ClInclude Include="Code\render_skinned.h" />
     <ClInclude Include="Code\scene.h" />
@@ -245,13 +241,10 @@
     <ClCompile Include="Code\environment.cpp" />
     <ClCompile Include="Code\execution_state.cpp" />
     <ClCompile Include="Code\fileloading_panel.cpp" />
-    <ClCompile Include="Code\forward_render_pass.cpp" />
     <ClCompile Include="Code\frame_controller.cpp" />
     <ClCompile Include="Code\gameobject_commands.cpp" />
     <ClCompile Include="Code\gameobject_menu.cpp" />
     <ClCompile Include="Code\game_object.cpp" />
-    <ClCompile Include="Code\graphics_context.cpp" />
-    <ClCompile Include="Code\graphics_library.cpp" />
     <ClCompile Include="Code\guid.cpp" />
     <ClCompile Include="Code\hotkey_processing.cpp" />
     <ClCompile Include="Code\input.cpp" />
@@ -283,7 +276,6 @@
     <ClCompile Include="Code\resource_browsers.cpp" />
     <ClCompile Include="Code\scene.cpp" />
     <ClCompile Include="Code\scene_browser.cpp" />
-    <ClCompile Include="Code\screen.cpp" />
     <ClCompile Include="Code\shader_source.cpp" />
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />

@@ -1,5 +1,5 @@
 #pragma once
-#include "ngrender.h"
+#include "render_pass.h"
 
 class ForwardRenderPass : public RenderPass {
 
