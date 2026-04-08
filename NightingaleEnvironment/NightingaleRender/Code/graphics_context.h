@@ -1,22 +1,38 @@
 #pragma once
 #include "ngmath.h"
-#include "camera.h"
 
 class RenderShader;
 class Mesh;
+class Camera;
+
+struct TestGraphicsConstants {
+
+    unsigned int m_lineVAO;
+    RenderShader* m_pLineShader;
+
+    RenderShader* m_pUnlitShader;
+    Mesh* m_pSphere;
+    Mesh* m_pCube;
+};
 
 struct GraphicsContext {
 private:
+    bool m_bDirtyShader{ true };
     RenderShader* m_pCurrentShader{ nullptr };
+
+    bool m_bDirtyCamera{ true };
+    Camera* m_pCamera{ nullptr };
     
     unsigned int m_targetWidth{ 0u };
     unsigned int m_targetHeight{ 0u };
-
+    
+    static constexpr Color s_defaultColor = Color{ 1.0f, 1.0f, 0.0f, 1.0f };
 public:
     
     unsigned int targetWidth() { return m_targetWidth; }
     unsigned int targetHeight() { return m_targetHeight; }
     
+    void setCamera(Camera* pCamera);
     void setCurrentShader(RenderShader*);
     RenderShader* getCurrentShader();
     
@@ -30,7 +46,6 @@ public:
 
     void init();
 
-    static constexpr Color s_defaultColor = Color{ 1.0f, 1.0f, 0.0f, 1.0f };
 
     void drawAxisAlignedBox(AxisAlignedBox const& box, Color const& color = s_defaultColor);
 

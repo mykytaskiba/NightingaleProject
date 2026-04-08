@@ -1,6 +1,4 @@
 #pragma once
-
-#include "ngrender.h"
 #include "ngmath.h"
 #include <string>
 

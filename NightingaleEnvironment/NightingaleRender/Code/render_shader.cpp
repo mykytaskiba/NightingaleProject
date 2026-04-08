@@ -1,8 +1,6 @@
-#include "pch.h"
-
+#include "ngmath.h"
 #include "render_shader.h"
 #include "shader_source.h"
-#include "ngmath.h"
 
 
 void RenderShader::activate()
