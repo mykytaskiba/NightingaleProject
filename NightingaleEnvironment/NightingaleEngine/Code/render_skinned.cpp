@@ -4,10 +4,10 @@
 #include "skeleton.h"
 #include "asset_manager.h"
 #include "game_object.h"
-#include "render_shader.h"
-#include "graphics_context.h"
 #include "animation.h"
 #include "inverse_kinematics_evaluator.h"
+#include "game_object.h"
+#include "ngrender.h"
 
 void RenderSkinnedMeshNode::init(GameObject* pGameObject)
 {

@@ -154,6 +154,7 @@
     <ClInclude Include="Code\guid.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
+    <ClInclude Include="Code\render_primitives.h" />
     <ClInclude Include="Code\scene_browser.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
@@ -188,7 +189,6 @@
     <ClInclude Include="Code\project_two_coobject.h" />
     <ClInclude Include="Code\renderer.h" />
     <ClInclude Include="Code\render_mesh.h" />
-    <ClInclude Include="Code\render_shader.h" />
     <ClInclude Include="Code\render_skinned.h" />
     <ClInclude Include="Code\scene.h" />
     <ClInclude Include="Code\screen.h" />
@@ -198,7 +198,6 @@
     <ClInclude Include="Code\skinned_mesh.h" />
     <ClInclude Include="Code\stb_image.h" />
     <ClInclude Include="Code\stb_image_write.h" />
-    <ClInclude Include="Code\transform.h" />
     <ClInclude Include="Code\transform_menu.h" />
     <ClInclude Include="Code\window.h" />
     <ClInclude Include="Code\key_enum.h" />
@@ -226,7 +225,6 @@
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />
     <ClCompile Include="Code\animation_evaluator.cpp" />
-    <ClCompile Include="Code\argument.cpp" />
     <ClCompile Include="Code\argument_helpers.cpp" />
     <ClCompile Include="Code\callback_handler.cpp" />
     <ClCompile Include="Code\camera_controller.cpp" />
@@ -271,7 +269,7 @@
     <ClCompile Include="Code\renderer.cpp" />
     <ClCompile Include="Code\render_debug_panel.cpp" />
     <ClCompile Include="Code\render_mesh.cpp" />
-    <ClCompile Include="Code\render_shader.cpp" />
+    <ClCompile Include="Code\render_primitives.cpp" />
     <ClCompile Include="Code\render_skinned.cpp" />
     <ClCompile Include="Code\resource_browsers.cpp" />
     <ClCompile Include="Code\scene.cpp" />
@@ -280,7 +278,6 @@
     <ClCompile Include="Code\skeleton.cpp" />
     <ClCompile Include="Code\skeleton_builder.cpp" />
     <ClCompile Include="Code\special_arguments.cpp" />
-    <ClCompile Include="Code\transform.cpp" />
     <ClCompile Include="Code\transform_menu.cpp" />
     <ClCompile Include="Code\window.cpp" />
     <ClCompile Include="Code\default_console_commands.cpp" />

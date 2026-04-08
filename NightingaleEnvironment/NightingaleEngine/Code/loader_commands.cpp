@@ -1,11 +1,11 @@
 #include "pch.h"
 #include "loader_commands.h"
 #include "core_commands.h"
-#include "render_shader.h"
 #include "shader_source.h"
 #include "loader.h"
 #include "engine_functions.h"
 #include "asset_manager.h"
+#include "ngrender.h"
 
 
 void ShaderLoadCommand::execute_command(ArgumentList<Line, Line, Line>& args, ExecutionState& state, ExecutionResult& result)

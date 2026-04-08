@@ -17,7 +17,6 @@ void Console::render_update()
 
     ImGui::Begin("Console", &bRemainOpen);
 
-    int screenWidth = EngineFunctions::ScreenWidth();
 
     //ImGui::SetNextWindowPos(ImVec2(0, 0));
     //ImGui::SetNextWindowSize(ImVec2(screenWidth, m_consoleHeight));

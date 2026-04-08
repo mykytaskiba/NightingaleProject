@@ -1,13 +1,13 @@
 #pragma once
 #include "ngmath.h"
 #include <string>
+#include "gl_shader.h"
 
 //Shader that is used for rendering (Default vertex -> fragment pipeline)
 class RenderShader {
 public:
 
     GL_Shader m_baseShader;
-    std::vector<GL_Shader_Uniform> m_uniformList;
 
 public:
 

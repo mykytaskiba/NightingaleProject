@@ -39,9 +39,6 @@ public:
 
     static Camera& Camera();
 
-    static int ScreenWidth();
-    static int ScreenHeight();
-
     static TTimeDelta delta_time();
 
     //Commands

@@ -1,4 +1,5 @@
 #pragma once
+/*
 #include "render_node.h"
 #include "defines.h"
 #include "ngmath.h"
@@ -62,3 +63,4 @@ public:
 
     ProjectTwoRenderHook m_renderHook; //TO DO: eventually remove this
 };
+*/

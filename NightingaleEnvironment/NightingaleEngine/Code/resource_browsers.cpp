@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "resource_browsers.h"
 #include "asset_manager.h"
-#include "render_shader.h"
+#include "ngrender.h"
 #include "mesh.h"
 
 void ShaderResourceBrowser::render_update()

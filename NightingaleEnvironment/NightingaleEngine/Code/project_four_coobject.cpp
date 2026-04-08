@@ -1,5 +1,5 @@
 #include "pch.h"
-#include "project_four_coobject.h"
+/*#include "project_four_coobject.h"
 #include "engine_internals.h"
 #include "project_one_gameobject.h"
 #include "engine_functions.h"
@@ -562,3 +562,4 @@ void ProjectFour::TetraCons::simulateConstraint(ProjectFour& state, Tetrahedron&
     state.getMass(tetra.v2).position += deltaX2;
     state.getMass(tetra.v3).position += deltaX3;
 }
+*/

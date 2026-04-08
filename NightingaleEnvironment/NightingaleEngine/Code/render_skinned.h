@@ -1,13 +1,14 @@
 #pragma once
-#include "render_node.h"
 #include "ngmath.h"
 #include "animation_evaluator.h"
+#include "ngrender.h"
 
 class Mesh;
 class Skeleton;
 class RenderShader;
 class Animation;
 class InverseKinematicEvaluator;
+class GameObject;
 
 class RenderSkinnedMeshNode : public RenderNode {
 public:

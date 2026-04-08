@@ -1,4 +1,5 @@
 #pragma once
+/*
 #include "game_object.h"
 #include "animation.h"
 #include "ngmath.h"
@@ -58,3 +59,4 @@ private:
 
 
 };
+*/

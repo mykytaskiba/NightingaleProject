@@ -41,6 +41,5 @@ private:
     std::vector<RenderNode*> m_renderables;
 
     GraphicsContext m_graphicsContext{};
-    Screen m_screen{ 0,0 };
 
 };

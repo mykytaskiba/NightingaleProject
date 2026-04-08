@@ -1,4 +1,5 @@
 #pragma once
+/*
 #include "render_node.h"
 #include "defines.h"
 #include "ngmath.h"
@@ -168,3 +169,4 @@ public:
 
     ProjectFourRenderHook m_renderHook; //TO DO: eventually remove this
 };
+*/

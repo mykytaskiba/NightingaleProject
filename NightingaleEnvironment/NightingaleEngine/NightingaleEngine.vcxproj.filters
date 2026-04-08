@@ -105,9 +105,6 @@
     <ClCompile Include="Code\shader_source.cpp">
       <Filter>Source Files\Rendering\ShaderPreprocess</Filter>
     </ClCompile>
-    <ClCompile Include="Code\render_shader.cpp">
-      <Filter>Source Files\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="Code\game_object.cpp">
       <Filter>Source Files\Logic</Filter>
     </ClCompile>
@@ -285,13 +282,7 @@
     <ClCompile Include="Code\scene_browser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\environment.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\argument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\argument_helpers.cpp">
@@ -301,6 +292,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\stb_impl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\render_primitives.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -319,9 +313,6 @@
     </ClInclude>
     <ClInclude Include="Code\shader_source.h">
       <Filter>Header Files\Rendering\ShaderPreprocess</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\render_shader.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\game_object.h">
       <Filter>Header Files\Logic</Filter>
@@ -521,9 +512,6 @@
     <ClInclude Include="Code\property_menu.h">
       <Filter>Header Files\Menus</Filter>
     </ClInclude>
-    <ClInclude Include="Code\transform.h">
-      <Filter>Header Files\Logic</Filter>
-    </ClInclude>
     <ClInclude Include="Code\stb_image.h">
       <Filter>Header Files\Loading</Filter>
     </ClInclude>
@@ -535,6 +523,9 @@
     </ClInclude>
     <ClInclude Include="Code\file_source.h">
       <Filter>Header Files\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\render_primitives.h">
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

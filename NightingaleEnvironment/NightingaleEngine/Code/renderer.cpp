@@ -1,20 +1,16 @@
 #include "pch.h"
 
 #include "renderer.h"
-#include "graphics_library.h"
 #include "shader_source.h"
-#include "render_node.h"
 #include "ngrender.h"
 
 //TEMP INCLUDES
 #include "game_object.h"
-#include "render_shader.h"
 #include "loader.h"
 #include "mesh.h"
 #include "input.h"
 #include "engine_internals.h"
 #include "ngmath.h"
-#include "forward_render_pass.h"
 
 //TO DO remove this temp include
 #include "skeleton.h"
@@ -23,7 +19,6 @@
 
 void Renderer::init()
 {
-    m_graphicsContext.init();
 
     registerRenderPass(new ForwardRenderPass());
 }
@@ -33,9 +28,11 @@ void Renderer::render()
     
     if (m_renderpasses.empty()) {
         //fallback for a no render pass moment, just draw black screen
-        GL::setClearColor(Color(0.0f, 0.0f, 0.0f, 1.0f));
-        GL::clear();
+        GraphicsLibrary::clear(false, true, Color{ 0.0f,0.0f,0.0f,1.0f });
+        return;
     }
+
+    m_graphicsContext.beginFrame();
 
     for (RenderPass* pRenderPass : m_renderpasses) {
         if (!pRenderPass->isEnabled()) {
@@ -52,11 +49,7 @@ void Renderer::render()
 
 void Renderer::handleResize(int width, int height)
 {
-    m_screen.Width = width;
-    m_screen.Height = height;
-
-    m_graphicsContext.m_currentScreenDims.Width = width;
-    m_graphicsContext.m_currentScreenDims.Height = height;
+    m_graphicsContext.setTargetDimensions(width, height);
 
     EngineInternals::Camera().SetTargetSize(width, height);
 }

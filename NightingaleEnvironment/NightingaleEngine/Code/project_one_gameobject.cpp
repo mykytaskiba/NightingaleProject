@@ -1,4 +1,5 @@
 #include "pch.h"
+/*
 #include "project_one_gameobject.h"
 #include "engine_functions.h"
 #include "render_skinned.h"
@@ -288,3 +289,4 @@ void ProjectOneGameObject::lookDir(Vector3 const& dir)
     getTransform().rotation = Quaternion(Vector3(0.0f, 1.0f, 0.0f), angle + pi / 2.0f);// Quaternion(Vector3(1.0f, 0.0f, 0.0f), movement);
 
 }
+*/

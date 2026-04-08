@@ -1,11 +1,10 @@
 #include "pch.h"
 #include "skeleton.h"
+#include "ngrender.h"
 
 //TO DO: REMOVE THESE INCLUDES
-#include "render_shader.h"
 #include "mesh.h"
 #include "animation.h"
-#include "graphics_context.h"
 
 
 
@@ -84,7 +83,7 @@ void Skeleton::DebugDraw(GraphicsContext& context, RenderShader* shader, Mesh* m
         uint nodeIndex = (*it).linkedNode;
         Matrix4x4 const& nodeTransform = m_nodeTransforms[nodeIndex];
         context.setCurrentShader(shader);
-        shader->transferByName("uModelMatrix", scaleDebug * nodeTransform);
+        //shader->transferByName("uModelMatrix", scaleDebug * nodeTransform);
         mesh->Draw();    
     }
 
@@ -95,7 +94,7 @@ void Skeleton::DebugDraw(GraphicsContext& context, RenderShader* shader, Mesh* m
             Vector3 const& nodePos = nodeTransform[3].truncate_dimension();
             Matrix4x4 const& parentTransform = m_nodeTransforms[parentIndex];
             Vector3 const& parentPos = parentTransform[3].truncate_dimension();
-            context.drawLine(nodePos, parentPos, Color(1.0f, 0.0f, 0.0f, 1.0f));
+            //context.drawLine(nodePos, parentPos, Color(1.0f, 0.0f, 0.0f, 1.0f));
         }
     }
 }
@@ -103,7 +102,7 @@ void Skeleton::DebugDraw(GraphicsContext& context, RenderShader* shader, Mesh* m
 void Skeleton::Draw(RenderShader* shader)
 {
 
-    shader->transferArray("uBoneMatrix", m_boneTransforms);
+    //shader->transferArray("uBoneMatrix", m_boneTransforms);
 
     for (auto it = m_meshes.begin(); it != m_meshes.end(); ++it) {
         (*it)->Draw();

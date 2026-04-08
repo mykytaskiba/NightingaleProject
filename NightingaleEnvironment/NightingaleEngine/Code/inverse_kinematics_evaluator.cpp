@@ -1,8 +1,8 @@
 #include "pch.h"
 #include "inverse_kinematics_evaluator.h"
-#include "graphics_context.h"
 #include "asset_manager.h"
 #include "ngmath.h"
+#include "ngrender.h"
 
 void InverseKinematicEvaluator::bind(Skeleton* pSkeleton, std::string const& bindNode, uint bindDepth)
 {
@@ -130,7 +130,7 @@ void InverseKinematicEvaluator::evaluate()
 void InverseKinematicEvaluator::draw(GraphicsContext& context)
 {
 
-    if (m_bDrawIKBones) {
+    /*if (m_bDrawIKBones) {
         for (auto it{ m_limbs.begin() }; it != m_limbs.end(); ++it) {
 
             context.drawLine((*it).from, (*it).to);
@@ -142,7 +142,7 @@ void InverseKinematicEvaluator::draw(GraphicsContext& context)
 
     if (m_bDrawEndEffector) {
         context.drawSphere(m_IKTarget, 0.1f, Color(0.1f, 1.0f, 0.1f, 1.0f));
-    }
+    }*/
 }
 
 void InverseKinematicEvaluator::setSkeletonOrientations() {

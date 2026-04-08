@@ -145,19 +145,15 @@
     <ClInclude Include="Code\arc_length_table.h" />
     <ClInclude Include="Code\cubic_spline.h" />
     <ClInclude Include="Code\json_math_impl.h" />
-    <ClInclude Include="Code\matrix.h" />
     <ClInclude Include="Code\spatial_bucket.h" />
     <ClInclude Include="Code\spatial_structure.h" />
     <ClInclude Include="Includes\ngmath.h" />
-    <ClInclude Include="Code\quaternion.h" />
-    <ClInclude Include="Code\vector.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\arc_length_table.cpp" />
     <ClCompile Include="Code\axis_aligned_box.cpp" />
     <ClCompile Include="Code\cubic_spline.cpp" />
     <ClCompile Include="Code\json_math_impl.cpp" />
-    <ClCompile Include="Code\quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleCore\NightingaleCore.vcxproj">

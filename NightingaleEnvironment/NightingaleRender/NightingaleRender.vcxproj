@@ -141,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\NightingaleEngine\Code\gl_shader.h" />
     <ClInclude Include="Code\camera.h" />
     <ClInclude Include="Code\forward_render_pass.h" />
     <ClInclude Include="Code\gl_shader.h" />
@@ -150,6 +149,7 @@
     <ClInclude Include="Code\graphics_library.h" />
     <ClInclude Include="Code\render_node.h" />
     <ClInclude Include="Code\render_pass.h" />
+    <ClInclude Include="Code\render_shader.h" />
     <ClInclude Include="Includes\ngrender.h" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +160,7 @@
     <ClCompile Include="Code\graphics_context.cpp" />
     <ClCompile Include="Code\graphics_library.cpp" />
     <ClCompile Include="Code\render_pass.cpp" />
+    <ClCompile Include="Code\render_shader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleCore\NightingaleCore.vcxproj">

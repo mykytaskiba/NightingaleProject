@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\RenderPasses">
+      <UniqueIdentifier>{d7035080-90e5-4851-91d7-e1475cbc42b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL">
+      <UniqueIdentifier>{bef750f2-90fb-43ec-a2b0-c7412c498b8f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\ngrender.h">
@@ -24,26 +30,26 @@
     <ClInclude Include="Code\render_pass.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\NightingaleEngine\Code\gl_shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\gl_shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\gl_shader_uniform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\forward_render_pass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\graphics_context.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\graphics_library.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\render_node.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\render_shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\forward_render_pass.h">
+      <Filter>Header Files\RenderPasses</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\graphics_library.h">
+      <Filter>Header Files\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\graphics_library.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\render_shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

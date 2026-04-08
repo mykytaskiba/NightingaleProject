@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "physics_debug_render_pass.h"
-#include "graphics_context.h"
 #include "imgui_helpers.h"
+#include "ngrender.h"
 
 
 void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
@@ -15,7 +15,8 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 
 
 	for (PhysicsBody* pBody : m_physics.m_vActiveBodies) {
-		context.drawAxisAlignedBox(pBody->getGlobalBox(), m_AABBColor);
+		//context.drawAxisAlignedBox(pBody->getGlobalBox(), m_AABBColor);
+        assert(false); //THIS IS IMPORTANT IMPLEMENT THIS
 	}
 }
 

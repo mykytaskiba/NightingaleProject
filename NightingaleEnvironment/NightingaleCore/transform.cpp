@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "transform.h"
 #include "property_visitor.h"
 

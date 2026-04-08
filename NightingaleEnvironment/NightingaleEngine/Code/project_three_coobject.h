@@ -1,9 +1,9 @@
 #pragma once
-#include "render_node.h"
 #include "defines.h"
 #include "inverse_kinematics_evaluator.h"
 #include "ngmath.h"
 
+/*
 class ProjectOneGameObject;
 class ProjectThree;
 class Mesh;
@@ -54,3 +54,5 @@ public:
     
     ProjectThreeRenderHook m_renderHook; //TO DO: eventually remove this
 };
+
+*/

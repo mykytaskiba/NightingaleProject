@@ -1,7 +1,6 @@
 #pragma once
-#include "render_node.h"
-#include "graphics_context.h"
 #include "ngmath.h"
+#include "ngrender.h"
 
 class Mesh;
 class RenderShader;
@@ -9,7 +8,6 @@ class GraphicsContext;
 
 class RenderMeshNode : public RenderNode {
 public:
-    void init(GameObject* pGameObject) override;
     void render(GraphicsContext& context) override;
 
     void setMesh(Mesh* pMesh);
@@ -20,6 +18,5 @@ public:
 private:
     Mesh* m_pMesh{ nullptr };
     RenderShader* m_pShader{ nullptr };
-    GameObject* m_pGameObject{ nullptr };
     Color m_color{ 1.0f,1.0f,1.0f,1.0f}; //White by default
 };

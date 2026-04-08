@@ -4,12 +4,11 @@
 #include "asset_manager.h"
 #include "mesh.h"
 #include "skeleton.h"
-#include "render_shader.h"
 #include "project_one_gameobject.h"
 #include "render_skinned.h"
 #include "engine_functions.h"
 
-
+/*
 void ProjectThreeRenderHook::render(GraphicsContext& context)
 {
     if (m_projectThree.m_bSmoothMoveTarget && m_projectThree.m_IKevaluator.m_bDrawEndEffector) {
@@ -153,3 +152,4 @@ void ProjectThree::DisableOverride()
     m_bProjectFourOverride = false;
 }
 
+*/

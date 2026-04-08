@@ -2,7 +2,7 @@
 #include "engine_functions.h"
 #include "game_object.h"
 #include "engine_internals.h"
-#include "render_node.h"
+#include "ngrender.h"
 #include "asset_manager.h"
 #include "engine.h"
 
@@ -42,7 +42,6 @@ void EngineFunctions::AssignRenderNode(GameObject* pGameObject, RenderNode* pRen
     assert(pRenderNode != nullptr);
 
     pGameObject->m_pRenderNode = pRenderNode;
-    pRenderNode->init(pGameObject);
 
     EngineInternals::Renderer().registerRenderable(pRenderNode);
 }
@@ -64,15 +63,6 @@ Camera& EngineFunctions::Camera()
 }
 
 
-int EngineFunctions::ScreenWidth()
-{
-    return EngineInternals::Renderer().m_screen.Width;
-}
-
-int EngineFunctions::ScreenHeight()
-{
-    return EngineInternals::Renderer().m_screen.Height;
-}
 
 TTimeDelta EngineFunctions::delta_time()
 {

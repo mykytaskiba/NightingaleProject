@@ -11,9 +11,7 @@ void ForwardRenderPass::executeRenderPass(GraphicsContext& context)
     GraphicsLibrary::depthTest(true);
 
     GraphicsLibrary::setViewport(0, 0, context.targetWidth(), context.targetHeight());
-    GraphicsLibrary::setClearColor(m_clearColor);
-    GraphicsLibrary::clear();
-    GraphicsLibrary::clearDepth();
+    GraphicsLibrary::clear(true, true, m_clearColor);
 
     
     for (auto it = m_renderables.begin(); it != m_renderables.end(); ++it) {
