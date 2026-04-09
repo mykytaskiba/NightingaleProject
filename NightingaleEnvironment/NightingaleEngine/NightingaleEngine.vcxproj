@@ -221,6 +221,7 @@
     <ClInclude Include="Code\property_menu.h" />
     <ClInclude Include="Code\window_io.h" />
     <ClInclude Include="Code\file_source.h" />
+    <ClInclude Include="Code\frame_context.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\animation_builder.cpp" />

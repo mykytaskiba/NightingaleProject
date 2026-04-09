@@ -21,9 +21,4 @@ Scene& EngineInternals::Scene()
     return pEngine->m_scene;
 }
 
-Camera& EngineInternals::Camera()
-{
-    assert(pEngine != nullptr);
-    return pEngine->m_camera;
-}
 

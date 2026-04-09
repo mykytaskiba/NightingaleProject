@@ -24,7 +24,6 @@ private:
 
     static Scene& Scene();
 
-    static Camera& Camera();
 
 public:
 

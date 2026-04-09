@@ -57,12 +57,6 @@ void EngineFunctions::AttachPhysicsBody(GameObject* pGameObject)
     pBody->update(0.0f);
 }
 
-Camera& EngineFunctions::Camera()
-{
-    return EngineInternals::Camera();
-}
-
-
 
 TTimeDelta EngineFunctions::delta_time()
 {

@@ -39,7 +39,7 @@ void Engine::register_systems()
     m_initCallback.addCallback({ 95, [this] {  loadCommands(); } });
     m_initCallback.addCallback({ 100, [this] {m_renderer.init(); } });
     m_initCallback.addCallback({ 110, [this] {CS550TempTestFuncInit(); } });
-    
+
     m_updateCallback.addCallback({ 60, [this] {m_frameController.frameStart(); } });
     m_updateCallback.addCallback({ 70, [this] {m_debugUI.newFrame(); } });
     m_updateCallback.addCallback({ 80, [this] {m_input.captureInputState(); } });
@@ -53,6 +53,7 @@ void Engine::register_systems()
     m_updateCallback.addCallback({ 240, [this] {m_window.update(); } });
     m_updateCallback.addCallback({ 250, [this] {m_frameController.frameEnd(); } });
     
+
     m_shutdownCallback.addCallback({ 100, [this] {m_debugUI.shutdown(); } });
 
 }
@@ -74,6 +75,8 @@ void Engine::update()
     {
         m_updateCallback.execute();
     }
+
+
 }
 
 void Engine::shutdown()

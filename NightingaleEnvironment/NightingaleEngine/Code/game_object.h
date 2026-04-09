@@ -9,6 +9,7 @@
 #include "transform.h"
 #include "property_provider.h"
 #include "property_visitor.h"
+#include "frame_context.h"
 
 class Component;
 class GameObject;
@@ -40,7 +41,6 @@ protected:
 
     Transform m_renderTransform{};
 
-    virtual void shutdown() {}
 
 
 
@@ -88,7 +88,8 @@ public:
 
 
     virtual void init() {}
-    virtual void tick() {}
+    virtual void tick(FrameContext& context) {}
+    virtual void shutdown() {}
 
 
     void execute_on_hierarchy(TGameObjectFunc functor);

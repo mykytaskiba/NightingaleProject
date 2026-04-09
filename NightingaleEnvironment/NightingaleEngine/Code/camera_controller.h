@@ -18,10 +18,8 @@ protected:
     float m_zoomMin;
     float m_zoomMax;
 
-    virtual void init();
-    virtual void tick();
-    virtual void render(); 
-    virtual void shutdown();
+    void init() override;
+    void tick(FrameContext& context) override;
 public:
     static CameraController* s_instance;
     void setPosition(Vector3);

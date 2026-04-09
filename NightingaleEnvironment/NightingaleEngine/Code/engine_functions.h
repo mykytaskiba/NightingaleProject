@@ -37,7 +37,6 @@ public:
 
     static void AttachPhysicsBody(GameObject* pGameObject);
 
-    static Camera& Camera();
 
     static TTimeDelta delta_time();
 

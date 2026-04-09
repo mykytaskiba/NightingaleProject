@@ -30,14 +30,14 @@ void CameraController::init()
 
 }
 
-void CameraController::tick()
+void CameraController::tick(FrameContext& context)
 {
 
     if (Input::MouseDown(MouseButton::Right)) {
         Matrix4x4 rotationDeltaY; 
-        rotationDeltaY.make_rotation_y(m_rotationSpeed * EngineFunctions::delta_time() * Input::MouseDelta()[0]);
+        rotationDeltaY.make_rotation_y(m_rotationSpeed * context.deltaTime() * Input::MouseDelta()[0]);
         Matrix4x4 rotationDeltaX;
-        rotationDeltaX.make_rotation_x(m_rotationSpeed * EngineFunctions::delta_time() * Input::MouseDelta()[1]);
+        rotationDeltaX.make_rotation_x(m_rotationSpeed * context.deltaTime() * Input::MouseDelta()[1]);
         m_rotationY = rotationDeltaY * m_rotationY;
         m_rotationX = rotationDeltaX * m_rotationX;
 
@@ -74,13 +74,6 @@ void CameraController::tick()
     EngineFunctions::Camera().SetViewMatrix(viewMatrix);
 }
 
-void CameraController::render()
-{
-}
-
-void CameraController::shutdown()
-{
-}
 
 void CameraController::setPosition(Vector3 vec)
 {

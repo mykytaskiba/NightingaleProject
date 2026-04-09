@@ -7,7 +7,7 @@ class BlockingCallback {
 
 	using TCallback = std::function<bool(TArgs...)>;
 
-	std::vector<TCallback> m_vCallback;
+	std::vector<TCallback> m_vCallbacks;
 
 public:
 	void addCallbackFront(TCallback callback) {
@@ -16,7 +16,7 @@ public:
 			assert(false);
 			return;
 		}
-		m_vCallback.insert(m_vCallback.begin(), std::move(callback));
+		m_vCallbacks.insert(m_vCallbacks.begin(), std::move(callback));
 	}
 
 	void addCallbackBack(TCallback callback) {
@@ -25,11 +25,11 @@ public:
 			assert(false);
 			return;
 		}
-		m_vCallback.push_back(std::move(callback));
+		m_vCallbacks.push_back(std::move(callback));
 	}
 
 	void execute(TArgs... args) const {
-		for (TCallback const& callback : m_vCallback) {
+		for (TCallback const& callback : m_vCallbacks) {
 			//assume no nullptr here
 			bool bBlocking = callback(args...);
 			if (bBlocking) {

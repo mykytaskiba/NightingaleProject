@@ -22,6 +22,9 @@
     <Filter Include="Header Files\math">
       <UniqueIdentifier>{b2f4ca39-93e6-48a1-ab9c-b92379aa64c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\callbacks">
+      <UniqueIdentifier>{5c9e796c-a8d4-40a8-a9d3-c5fe00cd2bbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitwise_enum.hpp">
@@ -72,9 +75,6 @@
     <ClInclude Include="mesh_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="blocking_callback.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="color.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -89,6 +89,12 @@
     </ClInclude>
     <ClInclude Include="matrix.h">
       <Filter>Header Files\math</Filter>
+    </ClInclude>
+    <ClInclude Include="blocking_callback.h">
+      <Filter>Header Files\callbacks</Filter>
+    </ClInclude>
+    <ClInclude Include="ordered_callback.h">
+      <Filter>Header Files\callbacks</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

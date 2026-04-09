@@ -34,6 +34,7 @@
     <ClInclude Include="mesh_data.h" />
     <ClInclude Include="ngjson.h" />
     <ClInclude Include="nightingale_assert.h" />
+    <ClInclude Include="ordered_callback.h" />
     <ClInclude Include="property_visitor.h" />
     <ClInclude Include="property_metadata.h" />
     <ClInclude Include="property_provider.h" />
