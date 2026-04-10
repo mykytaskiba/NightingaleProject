@@ -70,9 +70,6 @@
     <Filter Include="Header Files\PhysicsVisualizer">
       <UniqueIdentifier>{f205ae2b-723e-4217-83f2-b3276d67da74}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Core\Callbacks">
-      <UniqueIdentifier>{1a42e5c1-403e-4651-b3af-3715339a233a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\DebugPanels">
       <UniqueIdentifier>{b27327d2-3efe-47dc-bd77-ddefd02208df}</UniqueIdentifier>
     </Filter>
@@ -113,9 +110,6 @@
     </ClCompile>
     <ClCompile Include="Code\debug_ui.cpp">
       <Filter>Source Files\IMGUI</Filter>
-    </ClCompile>
-    <ClCompile Include="Code\mesh.cpp">
-      <Filter>Source Files\Rendering</Filter>
     </ClCompile>
     <ClCompile Include="Code\loader.cpp">
       <Filter>Source Files\Loading</Filter>
@@ -225,9 +219,6 @@
     <ClCompile Include="Code\debug_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\callback_handler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Code\render_debug_panel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -328,9 +319,6 @@
     </ClInclude>
     <ClInclude Include="Code\debug_ui.h">
       <Filter>Header Files\IMGUI</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\mesh.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\loader.h">
       <Filter>Header Files\Loading</Filter>
@@ -451,12 +439,6 @@
     </ClInclude>
     <ClInclude Include="Code\debug_panel_commands.h">
       <Filter>Header Files\CoreConsoleCommands</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\callback_handler.h">
-      <Filter>Header Files\Core\Callbacks</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\priority_function.h">
-      <Filter>Header Files\Core\Callbacks</Filter>
     </ClInclude>
     <ClInclude Include="Code\execution_order_enums.h">
       <Filter>Header Files\Core</Filter>

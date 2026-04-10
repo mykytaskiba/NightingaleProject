@@ -13,7 +13,11 @@ void EngineFunctions::Setup(GameObject* pGameObject, GameObject* pParent)
 
     SetParent(pGameObject, pParent);
 
-    pGameObject->init();
+    FrameContext context;
+    context.deltaTime() = EngineFunctions::delta_time();
+    context.activeScene() = &EngineFunctions::scene();
+
+    pGameObject->init(context);
 }
 
 void EngineFunctions::PreSetup(GameObject* pGameObject, GameObject* pParent)
@@ -89,7 +93,7 @@ uint EngineFunctions::getTargetFramerateInt()
     return (uint)getTargetFramerate();
 }
 
-CallbackHandler& EngineFunctions::getUpdateCallback()
+OrderedCallback<>& EngineFunctions::getUpdateCallback()
 {
     assert(EngineInternals::pEngine != nullptr);
     if (EngineInternals::pEngine == nullptr) {

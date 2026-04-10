@@ -18,8 +18,11 @@ void Scene::addDeferredFunction(TDeferredFunction function)
 
 void Scene::init()
 {
-    m_tickFunc = [](GameObject& gameObject) {
-        gameObject.tick();
+    m_tickFunc = [this](GameObject& gameObject) {
+        FrameContext context;
+        context.deltaTime() = EngineFunctions::delta_time();
+        context.activeScene() = this;
+        gameObject.tick(context);
     };
 
     GameObject* pGameObjectRoot{ nullptr };

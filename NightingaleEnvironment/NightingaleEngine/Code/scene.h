@@ -2,6 +2,7 @@
 #include "game_object.h"
 #include "defines.h"
 #include "json_object.h"
+#include "ngrender.h"
 
 class Scene : public IJSONObject, public IPropertyProvider {
 
@@ -25,7 +26,8 @@ public:
 
     std::vector<GameObject*> m_vSceneObjects{};
 
-    std::vector<GameObject*> m_test{};
+    Camera m_mainCamera;
+
 
     void properties(IPropertyVisitor& visitor) override {
         //visitor("root", m_pRoot);
@@ -34,8 +36,6 @@ public:
 
         test_collect_objects();
         visitor("gameobjects", m_vSceneObjects);
-
-        visitor("test gameobject", m_test);
     }
 
 private:
@@ -71,4 +71,7 @@ public:
     void addObject(GameObject* pGameObject, GameObject* pParent);
 
     void clearScene();
+
+    Camera& getMainCamera() { return m_mainCamera; }
+    Camera const& getMainCamera() const { return m_mainCamera; }
 };

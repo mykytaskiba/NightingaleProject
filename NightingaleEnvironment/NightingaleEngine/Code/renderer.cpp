@@ -7,10 +7,10 @@
 //TEMP INCLUDES
 #include "game_object.h"
 #include "loader.h"
-#include "mesh.h"
 #include "input.h"
 #include "engine_internals.h"
 #include "ngmath.h"
+#include "engine_functions.h"
 
 //TO DO remove this temp include
 #include "skeleton.h"
@@ -34,6 +34,8 @@ void Renderer::render()
 
     m_graphicsContext.beginFrame();
 
+    m_graphicsContext.setCamera(&EngineFunctions::scene().getMainCamera());
+
     for (RenderPass* pRenderPass : m_renderpasses) {
         if (!pRenderPass->isEnabled()) {
             continue;
@@ -50,8 +52,6 @@ void Renderer::render()
 void Renderer::handleResize(int width, int height)
 {
     m_graphicsContext.setTargetDimensions(width, height);
-
-    EngineInternals::Camera().SetTargetSize(width, height);
 }
 
 void Renderer::registerRenderPass(RenderPass* pRenderPass)

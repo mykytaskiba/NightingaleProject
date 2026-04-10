@@ -11,18 +11,13 @@ void DebugPanel::toggle()
         //Switching to active
         activate();
 
-        m_updateLoopRef = EngineFunctions::getUpdateCallback().addCallback(
-            {
-                110,
-                [this] { render_update(); }
-            }
-        );
+        m_updateLoopID = EngineFunctions::getUpdateCallback().addCallback(110, [this] { render_update(); } );
 
     }
     else {
         //Switching to inactive
         deactivate();
-        EngineFunctions::getUpdateCallback().removeCallback(m_updateLoopRef);
+        EngineFunctions::getUpdateCallback().removeCallback(m_updateLoopID);
     }
 
     m_bActive = bNextState;

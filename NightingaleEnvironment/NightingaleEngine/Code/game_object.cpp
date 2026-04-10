@@ -9,18 +9,6 @@
 
 JSON_IMPL(GameObject)
 
-Transform const& GameObject::getRenderTransform() const
-{   
-    //TO DO: Not sure what to do here, this is just a work around at this 
-    if (m_pPhysicsBody == nullptr) {
-        return m_transform;
-    }
-    if (!EngineFunctions::physics().getInterpolateBetweenFrames()) {
-        return m_transform;
-    }
-    return m_renderTransform;
-}
-
 void GameObject::sync_physics_to_gameobject()
 {
     if (m_pPhysicsBody == nullptr) {
@@ -36,8 +24,18 @@ void GameObject::sync_gameobject_to_physics()
     }
     m_transform.position = m_pPhysicsBody->getPosition();
 
+    if (m_pRenderNode == nullptr) {
+        return;
+    }
+
     if (EngineFunctions::physics().getInterpolateBetweenFrames()) {
-        m_renderTransform.position = m_transform.position + m_pPhysicsBody->getVelocity() * EngineFunctions::physics().getAccumulatedTime();
+
+        Transform nodeTransform = m_transform;
+        nodeTransform.position += m_pPhysicsBody->getVelocity() * EngineFunctions::physics().getAccumulatedTime();
+        m_pRenderNode->setNodePosition(nodeTransform);
+    }
+    else {
+        m_pRenderNode->setNodePosition(m_transform);
     }
 }
 

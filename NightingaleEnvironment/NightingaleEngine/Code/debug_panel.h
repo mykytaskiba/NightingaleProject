@@ -1,5 +1,5 @@
 #pragma once
-#include "callback_handler.h"
+#include "ordered_callback.h"
 
 class DebugPanel {
 public:
@@ -12,5 +12,5 @@ public:
 
 protected:
 	bool m_bActive{ false };
-	CallbackRef m_updateLoopRef{};
+	TCallbackID m_updateLoopID{};
 };

@@ -2,11 +2,11 @@
 #include "defines.h"
 #include "scripting.h"
 #include "factory.h"
+#include "ordered_callback.h"
 
 class GameObject;
 class Camera;
 class RenderNode;
-class CallbackHandler;
 class Renderer;
 class Physics;
 class HotkeyManager;
@@ -48,7 +48,7 @@ public:
     static float getTargetFramerate();
     static uint getTargetFramerateInt();
 
-    static CallbackHandler& getUpdateCallback();
+    static OrderedCallback<>& getUpdateCallback();
 
     static Engine& engine();
     static Renderer& Renderer();

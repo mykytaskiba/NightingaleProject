@@ -39,8 +39,6 @@ protected:
 
     Transform m_transform{};
 
-    Transform m_renderTransform{};
-
 
 
 
@@ -76,7 +74,6 @@ public:
         return m_transform;
     } 
 
-    Transform const& getRenderTransform() const;
 
     std::string const& getAlias() const { return m_alias; }
     GUID const& getGUID() const { return m_guid; }
@@ -87,8 +84,8 @@ public:
     void sync_gameobject_to_physics();
 
 
-    virtual void init() {}
-    virtual void tick(FrameContext& context) {}
+    virtual void init(FrameContext const& context) {}
+    virtual void tick(FrameContext const& context) {}
     virtual void shutdown() {}
 
 

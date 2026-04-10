@@ -1,33 +1,15 @@
 #pragma once
-
-struct CallbackRef {
-	std::multiset<PriorityFunction>::iterator m_iterator;
-};
-
-class CallbackHandler {
-
-private:
-	std::multiset<PriorityFunction> m_vFunctions;
-
-	bool m_bExecuting{ false };
-	std::vector<CallbackRef> m_deferredRemovals; //deffer removals if called mid execution
-
-
-public:
-	CallbackRef addCallback(PriorityFunction function);
-	bool removeCallback(CallbackRef ref);
-	void execute();
-};
-
 #include <functional>
 #include <vector>
+#include <algorithm>
+
+using TCallbackPriority = unsigned int;
+using TCallbackID = unsigned int;
 
 template <typename... TArgs>
 class OrderedCallback {
 
-	using TCallback = std::function<bool(TArgs...)>;
-	using TCallbackPriority = unsigned int;
-	using TCallbackID = unsigned int;
+	using TCallback = std::function<void(TArgs...)>;
 
 	static constexpr TCallbackID INVALID_ID = 0xffffffff;
 
@@ -36,16 +18,17 @@ class OrderedCallback {
 		TCallbackPriority m_priority;
 		TCallback m_func;
 
+		CallbackEntry(TCallbackID id, TCallbackPriority priority, TCallback func) : m_id(id), m_priority(priority), m_func(std::move(func)) {}
+
 		// This allows std::stable_sort to order them by priority
 		bool operator<(const CallbackEntry& other) const {
-			return priority < other.priority;
+			return m_priority < other.m_priority;
 		}
 	};
 
-	std::vector<CallbackEntry> m_vCallbacks{};
 	TCallbackID m_idCounter{ 0u };
-	bool m_bDirty{ true };
-	bool m_bExecuting{ false };
+
+	std::vector<CallbackEntry> m_vCallbacks{};
 	std::vector<TCallbackID> m_vDefferedRemoves{};
 	std::vector<CallbackEntry> m_vDefferedAdds{};
 
@@ -59,9 +42,7 @@ public:
 		TCallbackID outID = m_idCounter++;
 		assert(m_idCounter != INVALID_ID);
 
-		if (m_bExecuting) dasdasdsaad //ADD WHILE RUNNING LOGIC HERE
-
-		m_vCallbacks.emplace_back({ outID, priority, std::move(callback) });
+		m_vDefferedAdds.emplace_back(CallbackEntry{ outID, priority, std::move(callback) });
 		return outID;
 	}
 
@@ -71,34 +52,56 @@ public:
 			return false;
 		}
 
-		if (m_bExecuting) dasdasdsaad //ADD WHILE RUNNING LOGIC HERE
-
-		size_t numRemoved = std::erase_if(m_vCallbacks, 
+		auto itFound = std::find_if(m_vCallbacks.begin(), m_vCallbacks.end(),
 			[id](CallbackEntry const& entry) {
 				return entry.m_id == id;
 			}
 		);
 
-		if (numRemoved > 1) {
-			assert(false);
+		if (itFound == m_vCallbacks.end()) {
 			return false;
 		}
 
-		return (numRemoved == 1);
+		m_vDefferedRemoves.push_back(id);
+		return true;
 	}
 
-	void execute(TArgs... args) const {
-		for (TCallback const& callback : m_vCallbacks) {
+	void processDefferals() {
+
+		if (m_vDefferedAdds.empty() && m_vDefferedRemoves.empty()) {
+			return;
+		}
+
+		for (TCallbackID id : m_vDefferedRemoves) {
+			size_t numRemoved = std::erase_if(m_vCallbacks,
+				[id](CallbackEntry const& entry) {
+					return entry.m_id == id;
+				}
+			);
+			assert(numRemoved == 1);
+		}
+		m_vDefferedRemoves.clear();
+
+		for (CallbackEntry& entry : m_vDefferedAdds) {
+			m_vCallbacks.push_back(std::move(entry));
+		}
+		m_vDefferedAdds.clear();
+
+		std::stable_sort(m_vCallbacks.begin(), m_vCallbacks.end());
+
+	}
+
+	void execute(TArgs... args) {
+		processDefferals();
+
+		for (CallbackEntry const& entry : m_vCallbacks) {
 			//assume no nullptr here
-			bool bBlocking = callback(args...);
-			if (bBlocking) {
-				return;
-			}
+			entry.m_func(args...);
 		}
 	}
 
-	void operator()(TArgs... args) const {
+	void operator()(TArgs... args) {
 		execute(args...);
 	}
 
-}
+};

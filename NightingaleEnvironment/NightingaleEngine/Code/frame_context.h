@@ -1,6 +1,8 @@
 #pragma once
 #include "nightingale_assert.h"
 
+class Scene;
+
 struct FrameContext {
 public:
 	bool isValid() {
@@ -12,9 +14,12 @@ public:
 		return true;
 	}
 
-	TTimeDelta deltaTime() { return m_deltaTime; }
+	TTimeDelta deltaTime() const { return m_deltaTime; }
+	TTimeDelta& deltaTime() { return m_deltaTime; }
 
-	Scene& activeScene() { return *m_pScene; }
+	Scene& activeScene() const { return *m_pScene; }
+	Scene*& activeScene() { return m_pScene; }
+
 
 private:
 	TTimeDelta m_deltaTime{ 0.0f };

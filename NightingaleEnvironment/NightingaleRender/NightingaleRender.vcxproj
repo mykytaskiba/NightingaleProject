@@ -147,6 +147,7 @@
     <ClInclude Include="Code\gl_shader_uniform.h" />
     <ClInclude Include="Code\graphics_context.h" />
     <ClInclude Include="Code\graphics_library.h" />
+    <ClInclude Include="Code\mesh.h" />
     <ClInclude Include="Code\render_node.h" />
     <ClInclude Include="Code\render_pass.h" />
     <ClInclude Include="Code\render_shader.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Code\gl_shader_uniform.cpp" />
     <ClCompile Include="Code\graphics_context.cpp" />
     <ClCompile Include="Code\graphics_library.cpp" />
+    <ClCompile Include="Code\mesh.cpp" />
     <ClCompile Include="Code\render_pass.cpp" />
     <ClCompile Include="Code\render_shader.cpp" />
   </ItemGroup>

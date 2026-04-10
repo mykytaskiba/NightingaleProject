@@ -18,8 +18,8 @@ protected:
     float m_zoomMin;
     float m_zoomMax;
 
-    void init() override;
-    void tick(FrameContext& context) override;
+    void init(FrameContext const& context) override;
+    void tick(FrameContext const& context) override;
 public:
     static CameraController* s_instance;
     void setPosition(Vector3);

@@ -4,12 +4,13 @@
 #include "input.h"
 #include "ngrender.h"
 #include "ngjson.h"
+#include "scene.h"
 
 CameraController* CameraController::s_instance = nullptr;
 
 JSON_IMPL(CameraController)
 
-void CameraController::init()
+void CameraController::init(FrameContext const& context)
 {
     s_instance = this;
 
@@ -26,11 +27,11 @@ void CameraController::init()
     m_position = Vector3(0.0f, 0.0f, 0.0f);
     m_moveSpeed = 3.0f;
 
-    EngineFunctions::Camera().SetPerspective(0.1f, 5000.0f, 1.2f);
+    context.activeScene().getMainCamera().SetPerspective(0.1f, 5000.0f, 1.2f);
 
 }
 
-void CameraController::tick(FrameContext& context)
+void CameraController::tick(FrameContext const& context)
 {
 
     if (Input::MouseDown(MouseButton::Right)) {
@@ -71,7 +72,7 @@ void CameraController::tick(FrameContext& context)
 
 
     Matrix4x4 viewMatrix = zoomMatrix * rotationMatrix * translationMatrix;
-    EngineFunctions::Camera().SetViewMatrix(viewMatrix);
+    context.activeScene().getMainCamera().SetViewMatrix(viewMatrix);
 }
 
 

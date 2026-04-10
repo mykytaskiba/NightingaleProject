@@ -3,7 +3,6 @@
 #include "defines.h"
 #include "skeleton.h"
 #include "loader.h"
-#include "mesh.h"
 
 SkeletonBuilder::SkeletonBuilder(aiScene const* pScene, aiMatrix4x4 const& importTransform)
 {

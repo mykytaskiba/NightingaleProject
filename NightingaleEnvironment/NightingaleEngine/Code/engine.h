@@ -11,14 +11,13 @@
 #include "console.h"
 #include "engine_settings.h"
 #include "scripting.h"
-#include "priority_function.h"
 #include "ngphys.h"
 #include "ngrender.h"
-#include "callback_handler.h"
 #include "hotkey_processing.h"
 #include "game_object.h"
 #include "factory.h"
 #include "window_io.h"
+#include "ordered_callback.h"
 
 
 class Engine {
@@ -48,9 +47,9 @@ private:
     void setDefaultSettings();
     void defaultSettings_CoreCommands();
 
-    CallbackHandler m_initCallback;
-    CallbackHandler m_updateCallback;
-    CallbackHandler m_shutdownCallback;
+    OrderedCallback<> m_initCallback;
+    OrderedCallback<> m_updateCallback;
+    OrderedCallback<> m_shutdownCallback;
 
     //Main variable to determine if the engine needs to close or not
     bool m_bRunning{ false };

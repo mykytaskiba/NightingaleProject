@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "render_mesh.h"
 #include "game_object.h"
-#include "mesh.h"
 #include "asset_manager.h"
 #include "ngrender.h"
 
@@ -15,7 +14,7 @@ void RenderMeshNode::render(GraphicsContext& context)
     context.setCurrentShader(m_pShader);
     m_pShader->transferByName("uModelMatrix", m_transform.getMatrix());
     m_pShader->transferByName("uColor", m_color);
-    m_pMesh->Draw();
+    context.draw(m_pMesh);
 }
 
 void RenderMeshNode::setMesh(Mesh* pMesh)

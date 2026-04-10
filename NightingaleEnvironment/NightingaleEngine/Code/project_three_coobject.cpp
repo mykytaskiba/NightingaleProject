@@ -2,7 +2,6 @@
 #include "project_three_coobject.h"
 #include "engine_internals.h"
 #include "asset_manager.h"
-#include "mesh.h"
 #include "skeleton.h"
 #include "project_one_gameobject.h"
 #include "render_skinned.h"

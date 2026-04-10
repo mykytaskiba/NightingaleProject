@@ -3,6 +3,7 @@
 #include <GL/glew.h>
 #include "render_shader.h"
 #include "camera.h"
+#include "mesh.h"
 
 void GraphicsContext::setCamera(Camera* pCamera)
 {
@@ -18,12 +19,6 @@ void GraphicsContext::setCurrentShader(RenderShader* pShader)
 
     m_pCurrentShader = pShader;
     m_bDirtyShader = true;
-
-    m_pCurrentShader->activate();
-    if (m_pCamera != nullptr) {
-        m_pCurrentShader->transferByName("uViewMatrix", m_pCamera->GetViewMatrix());
-        m_pCurrentShader->transferByName("uProjMatrix", m_pCamera->GetPerspectiveMatrix());
-    }
 }
 
 RenderShader* GraphicsContext::getCurrentShader()
@@ -31,6 +26,37 @@ RenderShader* GraphicsContext::getCurrentShader()
     return m_pCurrentShader;
 }
 
+
+void GraphicsContext::draw(Mesh* pMesh) {
+    if (updateDirtyState()) {
+        pMesh->Draw();
+    }
+}
+
+//Check for any dirty state and update
+bool GraphicsContext::updateDirtyState() {
+
+    if (m_pCurrentShader == nullptr || m_pCamera == nullptr) {
+        return false;
+    }
+
+    if (m_bDirtyCamera) {
+        m_bDirtyCamera = false;
+        m_pCamera->SetTargetSize(m_targetWidth, m_targetHeight);
+        
+        m_bDirtyShader = true; //a dirty camera means shader needs to be updated
+    }
+
+    if (m_bDirtyShader) {
+        m_bDirtyShader = false;
+        m_pCurrentShader->activate();
+
+        m_pCurrentShader->transferByName("uViewMatrix", m_pCamera->GetViewMatrix());
+        m_pCurrentShader->transferByName("uProjMatrix", m_pCamera->GetPerspectiveMatrix());
+    }
+
+    return true;
+}
 
 void GraphicsContext::beginFrame()
 {

@@ -31,6 +31,11 @@ public:
     void setCurrentShader(RenderShader*);
     RenderShader* getCurrentShader();
     
+    void draw(Mesh* pMesh);
+
+    //Check for any dirty state and update
+    //return true if ready to draw
+    bool updateDirtyState();
 
     void beginFrame();
     void endFrame();

@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "render_skinned.h"
-#include "mesh.h"
 #include "skeleton.h"
 #include "asset_manager.h"
 #include "game_object.h"

@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "gameobject_commands.h"
 #include "game_object.h"
-#include "mesh.h"
 #include "asset_manager.h"
 #include "render_mesh.h"
 #include "engine_functions.h"
@@ -11,6 +10,7 @@
 #include "scene.h"
 #include "factory.h"
 #include "service_locator.h"
+#include "ngrender.h"
 
 void CreateGameObjectCommand::execute_command(ArgumentList<SelectedGameObject, Line>& args, ExecutionState& state, ExecutionResult& result)
 {
