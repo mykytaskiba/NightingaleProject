@@ -6,6 +6,7 @@
 #include <stack>
 #include "json.hpp"
 #include "color.h"
+#include "vector.h"
 
 class IPropertyVisitor {
 public:
@@ -16,6 +17,9 @@ public:
 	virtual void operator()(std::string const& key, unsigned int& value) = 0;
 	virtual void operator()(std::string const& key, std::string& value) = 0;
 	virtual void operator()(std::string const& key, Color& value) = 0;
+	virtual void operator()(std::string const& key, Vector2& value) = 0;
+	virtual void operator()(std::string const& key, Vector3& value) = 0;
+	virtual void operator()(std::string const& key, Vector4& value) = 0;
 
 	template<typename TValue>
 	void operator()(std::string const& key, TValue& value) {
@@ -109,28 +113,6 @@ protected:
 
 	virtual void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) = 0;
 
-	virtual void handle_vector3(std::string const& key, float& x, float& y, float& z) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
-		if (pChild != nullptr) {
-			pChild->pushMeta(meta());
-			(*pChild)("x", x);
-			(*pChild)("y", y);
-			(*pChild)("z", z);
-			pChild->popMeta();
-			endChild(key);
-		}
-	}
-	virtual void handle_vector4(std::string const& key, float& x, float& y, float& z, float& w) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
-		if (pChild != nullptr) {
-			pChild->pushMeta(meta());
-			(*pChild)("x", x);
-			(*pChild)("y", y);
-			(*pChild)("z", z);
-			(*pChild)("w", w);
-			endChild(key);
-		}
-	}
 	virtual void handle_quaternion(std::string const& key, float& w, float& x, float& y, float& z) {
 		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
 		if (pChild != nullptr) {

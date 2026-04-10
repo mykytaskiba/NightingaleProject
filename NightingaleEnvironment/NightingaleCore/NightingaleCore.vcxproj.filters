@@ -72,9 +72,6 @@
     <ClInclude Include="property_metadata.h">
       <Filter>Header Files\property</Filter>
     </ClInclude>
-    <ClInclude Include="mesh_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="color.h">
       <Filter>Header Files\math</Filter>
     </ClInclude>
@@ -96,6 +93,9 @@
     <ClInclude Include="ordered_callback.h">
       <Filter>Header Files\callbacks</Filter>
     </ClInclude>
+    <ClInclude Include="mesh_data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="json_visitors.cpp">
@@ -111,6 +111,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="quaternion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="json_math_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

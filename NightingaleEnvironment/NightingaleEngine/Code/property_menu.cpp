@@ -2,6 +2,9 @@
 #include "property_menu.h"
 #include "property_provider.h"
 #include "game_object.h"
+#include <format>
+#include <string>
+#include <iostream>
 
 std::string PropertyMenuVisitor::formatStringForImGUI(std::string const& key)
 {

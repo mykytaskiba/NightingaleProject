@@ -1,39 +1,5 @@
 #include "json_math_impl.h"
 
-void to_json(nlohmann::json& json, const Vector3& vec)
-{
-	json["x"] = vec[0];
-	json["y"] = vec[1];
-	json["z"] = vec[2];
-}
-
-void from_json(nlohmann::json const& json, Vector3& vec)
-{
-	/*
-	if (json.contains("x")) {
-		vec[0] = json["x"].get<float>();
-	}*/
-	json.at("x").get_to(vec[0]);
-	json.at("y").get_to(vec[1]);
-	json.at("z").get_to(vec[2]);
-}
-
-void to_json(nlohmann::json& json, const Vector4& vec)
-{
-	json["x"] = vec[0];
-	json["y"] = vec[1];
-	json["z"] = vec[2];
-	json["w"] = vec[3];
-}
-
-void from_json(nlohmann::json const& json, Vector4& vec)
-{
-	json.at("x").get_to(vec[0]);
-	json.at("y").get_to(vec[1]);
-	json.at("z").get_to(vec[2]);
-	json.at("w").get_to(vec[3]);
-}
-
 void to_json(nlohmann::json& json, const Quaternion& quat)
 {
 	json["w"] = quat.w;

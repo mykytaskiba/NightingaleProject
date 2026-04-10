@@ -2,6 +2,7 @@
 #include "ngmath.h"
 #include <string>
 #include "gl_shader.h"
+#include "color.h"
 
 //Shader that is used for rendering (Default vertex -> fragment pipeline)
 class RenderShader {

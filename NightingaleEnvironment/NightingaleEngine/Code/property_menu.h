@@ -47,6 +47,15 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 				}
 			}
 		}
+		else if constexpr (std::is_same_v < TValue, Vector2 >) {
+
+		}
+		else if constexpr (std::is_same_v < TValue, Vector3 >) {
+			bChanged = ImGuiHelpers::Vector3Input(formatStringForImGUI(key).c_str(), value);
+		}
+		else if constexpr (std::is_same_v < TValue, Vector4 >) {
+
+		}
 
 
 		if (meta().isReadOnly()) ImGui::EndDisabled();
@@ -61,6 +70,9 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	void operator()(std::string const& key, unsigned int& value) override { menuImpl(key, value); }
 	void operator()(std::string const& key, std::string& value) override { menuImpl(key, value); }
 	void operator()(std::string const& key, Color& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, Vector2& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, Vector3& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, Vector4& value) override { menuImpl(key, value); }
 
 
 protected:

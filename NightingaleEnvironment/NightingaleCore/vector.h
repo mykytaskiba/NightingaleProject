@@ -2,6 +2,7 @@
 #include "nightingale_assert.h"
 #include <cmath>
 
+
 template < typename T, unsigned int DIM >
 struct Vector {
 
@@ -193,7 +194,16 @@ using Vector2i = Vector<int, 2u>;
 using Vector3i = Vector<int, 3u>;
 using Vector4i = Vector<int, 4u>;
 
+//JSON Impl
+#include "json.hpp"
+void to_json(nlohmann::json& json, const Vector2& vec);
+void from_json(nlohmann::json const& json, Vector2& vec);
 
+void to_json(nlohmann::json& json, const Vector3& vec);
+void from_json(nlohmann::json const& json, Vector3& vec);
+
+void to_json(nlohmann::json& json, const Vector4& vec);
+void from_json(nlohmann::json const& json, Vector4& vec);
 
 
 

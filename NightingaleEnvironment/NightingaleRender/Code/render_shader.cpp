@@ -1,6 +1,7 @@
 #include "ngmath.h"
 #include "render_shader.h"
 #include <GL/glew.h>
+#include "color.h"
 
 
 void RenderShader::activate()

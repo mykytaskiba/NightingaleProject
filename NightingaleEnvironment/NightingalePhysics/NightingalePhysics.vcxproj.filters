@@ -18,14 +18,17 @@
     <ClInclude Include="Includes\ngphys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Code\physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Code\physics_body.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\phys_defines.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\physics.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

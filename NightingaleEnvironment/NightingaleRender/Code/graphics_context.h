@@ -16,8 +16,7 @@ private:
     
     unsigned int m_targetWidth{ 0u };
     unsigned int m_targetHeight{ 0u };
-    
-    static constexpr Color s_defaultColor = Color{ 1.0f, 1.0f, 0.0f, 1.0f };
+ 
 public:
     
     unsigned int targetWidth() { return m_targetWidth; }

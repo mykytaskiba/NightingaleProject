@@ -5,6 +5,7 @@
 #include "json_object.h"
 #include "factory.h"
 #include <memory>
+#include "property_visitor.h"
 
 class IPropertyVisitor;
 

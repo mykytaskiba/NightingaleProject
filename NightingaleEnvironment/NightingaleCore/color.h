@@ -1,6 +1,7 @@
 #pragma once
 #include "json.hpp"
 
+
 using ColorChannel = float;
 
 class Color {

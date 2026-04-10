@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="color.cpp" />
+    <ClCompile Include="json_math_impl.cpp" />
     <ClCompile Include="json_visitors.cpp" />
     <ClCompile Include="mesh_data.cpp" />
     <ClCompile Include="quaternion.cpp" />
