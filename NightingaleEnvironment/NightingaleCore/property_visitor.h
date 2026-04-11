@@ -7,6 +7,7 @@
 #include "json.hpp"
 #include "color.h"
 #include "vector.h"
+#include "quaternion.h"
 
 class IPropertyVisitor {
 public:
@@ -20,6 +21,7 @@ public:
 	virtual void operator()(std::string const& key, Vector2& value) = 0;
 	virtual void operator()(std::string const& key, Vector3& value) = 0;
 	virtual void operator()(std::string const& key, Vector4& value) = 0;
+	virtual void operator()(std::string const& key, Quaternion& value) = 0;
 
 	template<typename TValue>
 	void operator()(std::string const& key, TValue& value) {

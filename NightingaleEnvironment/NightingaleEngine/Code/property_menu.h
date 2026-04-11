@@ -56,6 +56,9 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 		else if constexpr (std::is_same_v < TValue, Vector4 >) {
 
 		}
+		else if constexpr (std::is_same_v < TValue, Quaternion >) {
+			bChanged = ImGuiHelpers::QuaternionInput(formatStringForImGUI(key).c_str(), value);
+		}
 
 
 		if (meta().isReadOnly()) ImGui::EndDisabled();
@@ -73,6 +76,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 	void operator()(std::string const& key, Vector2& value) override { menuImpl(key, value); }
 	void operator()(std::string const& key, Vector3& value) override { menuImpl(key, value); }
 	void operator()(std::string const& key, Vector4& value) override { menuImpl(key, value); }
+	void operator()(std::string const& key, Quaternion& value) override { menuImpl(key, value); }
 
 
 protected:

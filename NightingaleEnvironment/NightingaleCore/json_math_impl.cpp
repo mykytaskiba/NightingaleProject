@@ -1,5 +1,6 @@
 #include "color.h"
 #include "vector.h"
+#include "quaternion.h"
 
 void to_json(nlohmann::json& json, const Color& color)
 {
@@ -63,4 +64,21 @@ void from_json(nlohmann::json const& json, Vector4& vec)
 	json.at("y").get_to(vec[1]);
 	json.at("z").get_to(vec[2]);
 	json.at("w").get_to(vec[3]);
+}
+
+
+void to_json(nlohmann::json& json, const Quaternion& quat)
+{
+	json["w"] = quat.w;
+	json["x"] = quat.z;
+	json["y"] = quat.y;
+	json["z"] = quat.z;
+}
+
+void from_json(nlohmann::json const& json, Quaternion& quat)
+{
+	json.at("w").get_to(quat.w);
+	json.at("x").get_to(quat.x);
+	json.at("y").get_to(quat.y);
+	json.at("z").get_to(quat.z);
 }

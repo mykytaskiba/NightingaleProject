@@ -19,7 +19,11 @@ void GameObject::sync_physics_to_gameobject()
 
 void GameObject::sync_gameobject_to_physics()
 {
+    //TO DO: Refactor this!!
     if (m_pPhysicsBody == nullptr) {
+        if (m_pRenderNode != nullptr) {
+            m_pRenderNode->setNodePosition(m_transform);
+        }
         return;
     }
     m_transform.position = m_pPhysicsBody->getPosition();

@@ -40,3 +40,7 @@ static Quaternion operator*(float scalar, Quaternion const& quat)
 {
     return quat * scalar;
 }
+
+#include "json.hpp"
+void to_json(nlohmann::json& json, const Quaternion& quat);
+void from_json(nlohmann::json const& json, Quaternion& quat);

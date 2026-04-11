@@ -186,3 +186,4 @@ bool Quaternion::operator==(Quaternion const& other) const
         w == other.w);
 }
 
+
