@@ -115,17 +115,4 @@ protected:
 
 	virtual void handleFactory(std::string const& key, IFactoryElement*& pValue, IFactory& factory) = 0;
 
-	virtual void handle_quaternion(std::string const& key, float& w, float& x, float& y, float& z) {
-		std::unique_ptr<IPropertyVisitor> pChild = childVisitor(key);
-		if (pChild != nullptr) {
-			pChild->pushMeta(meta());
-			(*pChild)("w", w);
-			(*pChild)("x", x);
-			(*pChild)("y", y);
-			(*pChild)("z", z);
-			pChild->popMeta();
-			endChild(key);
-		}
-	}
-
 };
