@@ -153,7 +153,6 @@
     <ClInclude Include="Code\guid.h" />
     <ClInclude Include="Code\physics_commands.h" />
     <ClInclude Include="Code\physics_control_panel.h" />
-    <ClInclude Include="Code\render_primitives.h" />
     <ClInclude Include="Code\scene_browser.h" />
     <ClInclude Include="Code\scripting.h" />
     <ClInclude Include="Code\animation.h" />
@@ -265,7 +264,6 @@
     <ClCompile Include="Code\renderer.cpp" />
     <ClCompile Include="Code\render_debug_panel.cpp" />
     <ClCompile Include="Code\render_mesh.cpp" />
-    <ClCompile Include="Code\render_primitives.cpp" />
     <ClCompile Include="Code\render_skinned.cpp" />
     <ClCompile Include="Code\resource_browsers.cpp" />
     <ClCompile Include="Code\scene.cpp" />

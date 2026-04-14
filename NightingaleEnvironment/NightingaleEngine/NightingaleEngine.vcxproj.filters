@@ -285,9 +285,6 @@
     <ClCompile Include="Code\stb_impl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Code\render_primitives.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Code\pch.h">
@@ -505,9 +502,6 @@
     </ClInclude>
     <ClInclude Include="Code\file_source.h">
       <Filter>Header Files\AssetManagement</Filter>
-    </ClInclude>
-    <ClInclude Include="Code\render_primitives.h">
-      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
     <ClInclude Include="Code\frame_context.h">
       <Filter>Header Files\Logic</Filter>

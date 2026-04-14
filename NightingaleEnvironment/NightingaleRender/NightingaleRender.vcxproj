@@ -150,6 +150,7 @@
     <ClInclude Include="Code\mesh.h" />
     <ClInclude Include="Code\render_node.h" />
     <ClInclude Include="Code\render_pass.h" />
+    <ClInclude Include="Code\render_primitives.h" />
     <ClInclude Include="Code\render_shader.h" />
     <ClInclude Include="Includes\ngrender.h" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClCompile Include="Code\graphics_library.cpp" />
     <ClCompile Include="Code\mesh.cpp" />
     <ClCompile Include="Code\render_pass.cpp" />
+    <ClCompile Include="Code\render_primitives.cpp" />
     <ClCompile Include="Code\render_shader.cpp" />
   </ItemGroup>
   <ItemGroup>
