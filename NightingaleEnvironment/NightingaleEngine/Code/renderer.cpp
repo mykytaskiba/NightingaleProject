@@ -21,6 +21,11 @@ void Renderer::init()
 {
 
     registerRenderPass(new ForwardRenderPass());
+
+    m_graphicsContext.primitives().setCubeMesh(AssetManager<Mesh>::retrieve("cube_mesh"));
+    m_graphicsContext.primitives().setSphereMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+    m_graphicsContext.primitives().setUnlitShader(AssetManager<RenderShader>::retrieve("unlit_shader"));
+    m_graphicsContext.primitives().setLineShader(AssetManager<RenderShader>::retrieve("line_shader"));
 }
 
 void Renderer::render()

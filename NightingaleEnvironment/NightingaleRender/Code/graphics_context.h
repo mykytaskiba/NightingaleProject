@@ -18,7 +18,7 @@ private:
     unsigned int m_targetWidth{ 0u };
     unsigned int m_targetHeight{ 0u };
  
-    RenderPrimitives m_primitives{};
+    RenderPrimitives m_primitives{ *this };
 
 public:
     
@@ -30,6 +30,8 @@ public:
     }
     
     void setCamera(Camera* pCamera);
+    Camera* getCamera() { return m_pCamera; }
+
     void setCurrentShader(RenderShader*);
     RenderShader* getCurrentShader();
     
@@ -41,4 +43,7 @@ public:
 
     void beginFrame();
     void endFrame();
+
+    RenderPrimitives& primitives() { return m_primitives; }
+    RenderPrimitives const& primitives() const { return m_primitives; }
 };

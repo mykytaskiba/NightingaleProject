@@ -21,6 +21,9 @@ load_mesh sphere_mesh data/core/sphere.fbx
 load_mesh cube_mesh data/core/cube.fbx
 @verify
 
+load_mesh tetrahedron_mesh data/core/tetrahedron.fbx
+@verify
+
 @enablelog false
 
 

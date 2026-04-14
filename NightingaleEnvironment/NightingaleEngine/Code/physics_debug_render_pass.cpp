@@ -6,18 +6,17 @@
 
 void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 {
-    if (!m_bDepthTest) {
-        glDisable(GL_DEPTH_TEST);
-    }
-    else {
-        glEnable(GL_DEPTH_TEST);
-    }
+    GraphicsLibrary::depthTest(m_bDepthTest);
 
+    for (PhysicsBody* pBody : m_physics.m_vActiveBodies) {
+        if (m_bAxisAlignedBoxesActive) {
+            context.primitives().drawAxisAlignedBox(pBody->getGlobalBox(), m_axisAlignedBoxesColor);
+        }
 
-	for (PhysicsBody* pBody : m_physics.m_vActiveBodies) {
-		//context.drawAxisAlignedBox(pBody->getGlobalBox(), m_AABBColor);
-        assert(false); //THIS IS IMPORTANT IMPLEMENT THIS
-	}
+        if (m_bVelocityArrowActive) {
+            context.primitives().drawLine(pBody->getPosition(), pBody->getPosition() + pBody->getVelocity(), m_velocityArrowColor);
+        }
+    }
 }
 
 void PhysicsDebugRenderPass::registerRenderable(RenderNode* renderable)
