@@ -1,4 +1,3 @@
-#include "pch.h"
 #include "render_primitives.h"
 #include "asset_manager.h"
 

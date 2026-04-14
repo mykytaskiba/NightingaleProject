@@ -5,15 +5,19 @@ class Mesh;
 
 struct RenderPrimitives {
 
-    unsigned int m_lineVAO;
     RenderShader* m_pLineShader;
-
     RenderShader* m_pUnlitShader;
+
+    unsigned int m_lineVAO;
     Mesh* m_pSphere;
     Mesh* m_pCube;
 
     void init();
 
+    void setLineShader(RenderShader* pLineShader);
+    void setUnlitShader(RenderShader* pUnlitShader);
+    void setSphereMesh(Mesh* pSphere);
+    void setCubeMesh(Mesh* pCube);
 
     //void drawAxisAlignedBox(AxisAlignedBox const& box, Color const& color = s_defaultColor);
 

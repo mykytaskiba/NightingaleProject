@@ -1,5 +1,6 @@
 #pragma once
 #include "ngmath.h"
+#include "render_primitives.h"
 
 class RenderShader;
 class Mesh;
@@ -17,6 +18,8 @@ private:
     unsigned int m_targetWidth{ 0u };
     unsigned int m_targetHeight{ 0u };
  
+    RenderPrimitives m_primitives{};
+
 public:
     
     unsigned int targetWidth() { return m_targetWidth; }
