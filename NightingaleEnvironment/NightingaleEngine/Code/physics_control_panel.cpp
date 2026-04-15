@@ -19,10 +19,14 @@ void PhysicsControlPanel::render_update()
     Physics& physics = EngineFunctions::physics();
 
     PropertyMenu::render_update(physics);
+    
     ImGui::Separator();
-
-    if (ImGui::Button("Test Case")) {
-        setTestCase();
+    ImGui::Text("Test Cases");
+    if (ImGui::Button("Case Single Sphere")) {
+        caseSingleSphere();
+    }
+    if (ImGui::Button("Case Sphere Explosion")) {
+        caseSphereExplosion();
     }
 
     ImGui::Separator();
@@ -83,7 +87,52 @@ PhysicsDebugRenderPass* PhysicsControlPanel::findDebugPass()
     return pDebugPass;
 }
 
-void PhysicsControlPanel::setTestCase()
+void PhysicsControlPanel::forceSimulatePhysics(float simulateTime)
+{
+    Physics& physics = EngineFunctions::physics();
+    physics.setActive(true);
+    uint currentMaxUpdatesPerFrame = physics.getMaxUpdatesPerFrame();
+    physics.setMaxUpdatesPerFrame(100000u);
+    physics.update(simulateTime);
+    physics.setActive(false);
+    physics.setMaxUpdatesPerFrame(currentMaxUpdatesPerFrame);
+    EngineFunctions::scene().syncObjectToPhysics();
+}
+
+void PhysicsControlPanel::caseSingleSphere()
+{
+    EngineFunctions::physics().setActive(false);
+    EngineFunctions::scene().clearScene();
+
+    EngineFunctions::InstantiateGameObject<CameraController>();
+
+    Vector3 position{ 0.0f,10.0f,0.0f };
+
+    GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+    RenderMeshNode* pRenderNode = new RenderMeshNode();
+    pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+    EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+    EngineFunctions::AttachPhysicsBody(pGameObject);
+
+    PhysicsBody* pBody = pGameObject->getPhysicsBody();
+
+    float localBoxSize = 1.0f;
+    pBody->setLocalBox(AxisAlignedBox({ 0,0,0 }, { localBoxSize, localBoxSize, localBoxSize }));
+    pGameObject->getTransform().position = position;
+    //pBody->setVelocity({ 0.0f,0.0f,0.0f });
+    pBody->setGravity(true);
+
+    //pBody->getShape
+
+
+    GameObject* pFloor = EngineFunctions::InstantiateGameObject<GameObject>();
+    EngineFunctions::AttachPhysicsBody(pFloor);
+    pFloor->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f }));
+    pFloor->getTransform().position = (Vector3(0, -10.0f, 0));
+}
+
+void PhysicsControlPanel::caseSphereExplosion()
 {
     EngineFunctions::physics().setActive(false);
     EngineFunctions::scene().clearScene();
@@ -127,17 +176,4 @@ void PhysicsControlPanel::setTestCase()
     EngineFunctions::AttachPhysicsBody(pFloor);
     pFloor->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f }));
     pFloor->getTransform().position = (Vector3(0, -10.0f, 0));
-
-}
-
-void PhysicsControlPanel::forceSimulatePhysics(float simulateTime)
-{
-    Physics& physics = EngineFunctions::physics();
-    physics.setActive(true);
-    uint currentMaxUpdatesPerFrame = physics.getMaxUpdatesPerFrame();
-    physics.setMaxUpdatesPerFrame(100000u);
-    physics.update(simulateTime);
-    physics.setActive(false);
-    physics.setMaxUpdatesPerFrame(currentMaxUpdatesPerFrame);
-    EngineFunctions::scene().syncObjectToPhysics();
 }

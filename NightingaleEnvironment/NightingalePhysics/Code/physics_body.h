@@ -6,6 +6,7 @@
 #include "factory.h"
 #include <memory>
 #include "property_visitor.h"
+#include "shape.h"
 
 class IPropertyVisitor;
 
@@ -22,6 +23,8 @@ private:
 
 	AxisAlignedBox m_globalBox{};
 	AxisAlignedBox m_localBox{};
+
+	Shape* m_pShape{ nullptr };
 
 	void calculateGlobalBox();
 public:
@@ -54,6 +57,9 @@ public:
 
 	AxisAlignedBox const& getLocalBox() const { return m_localBox; }
 	void setLocalBox(AxisAlignedBox const& localBox);
+
+	Shape& getShape() const;
+	void setShape(Shape* pShape);
 
 	AxisAlignedBox const& getGlobalBox() { return m_globalBox; }
 

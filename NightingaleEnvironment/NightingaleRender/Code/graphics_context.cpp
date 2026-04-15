@@ -19,6 +19,9 @@ void GraphicsContext::setCurrentShader(RenderShader* pShader)
 
     m_pCurrentShader = pShader;
     m_bDirtyShader = true;
+
+    //TO DO: DO NOT ACTIVATE THE SHADER HERE
+    m_pCurrentShader->activate();
 }
 
 RenderShader* GraphicsContext::getCurrentShader()

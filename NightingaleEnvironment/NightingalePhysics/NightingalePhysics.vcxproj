@@ -146,7 +146,8 @@
     <ClInclude Include="Code\phys_defines.h" />
     <ClInclude Include="Includes\ngphys.h" />
     <ClInclude Include="Code\physics_body.h" />
-    <ClInclude Include="shape.h" />
+    <ClInclude Include="Code\shape.h" />
+    <ClInclude Include="Code\sphere_shape.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\physics.cpp" />

@@ -10,8 +10,7 @@
                 "type": "json.gameobject",
                 "version": 1
             },
-            "alias": "scene_root",
-            "factory_key": "scene_root_object"
+            "alias": "scene_root"
         },
         {
             "_meta_": {
@@ -28,8 +27,8 @@
                     "z": 0.0
                 },
                 "rotation": {
-                    "w": 0.0,
-                    "x": 1.0,
+                    "w": 1.0,
+                    "x": 0.0,
                     "y": 0.0,
                     "z": 0.0
                 },
@@ -43,17 +42,82 @@
             "zoom speed": 5.0,
             "zoomMax": 50.0,
             "zoomMin": 3.0
+        },
+        {
+            "_meta_": {
+                "factory_key": "gameobject",
+                "type": "json.gameobject",
+                "version": 1
+            },
+            "alias": "gameobject",
+            "physics_body": {
+                "_meta_": {
+                    "factory_key": "physics_body",
+                    "type": "json.physicsbody",
+                    "version": 1
+                },
+                "global_box": {
+                    "max": {
+                        "x": 0.5,
+                        "y": 0.5,
+                        "z": 0.5
+                    },
+                    "min": {
+                        "x": -0.5,
+                        "y": -0.5,
+                        "z": -0.5
+                    }
+                },
+                "local_box": {
+                    "max": {
+                        "x": 0.5,
+                        "y": 0.5,
+                        "z": 0.5
+                    },
+                    "min": {
+                        "x": -0.5,
+                        "y": -0.5,
+                        "z": -0.5
+                    }
+                },
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "velocity": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                }
+            },
+            "transform": {
+                "position": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "rotation": {
+                    "w": 1.0,
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                }
+            }
         }
     ],
-    "test int": 12,
+    "test int": 0,
     "vector int": [
+        1,
+        2,
         3,
+        4,
         5,
-        3,
-        8,
-        5,
-        10,
-        18,
-        24
+        6
     ]
 }

@@ -24,11 +24,14 @@
     <ClInclude Include="Code\phys_defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="shape.h">
+    <ClInclude Include="Code\shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Code\physics.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Code\sphere_shape.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

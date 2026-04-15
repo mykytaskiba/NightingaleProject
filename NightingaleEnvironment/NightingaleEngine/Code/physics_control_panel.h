@@ -16,6 +16,8 @@ private:
 	float m_simulationTime{ 1.0f };
 	float m_addedAccumulationTime{ 1.0f };
 	
-	void setTestCase();
 	void forceSimulatePhysics(float simulateTime);
+
+	void caseSingleSphere();
+	void caseSphereExplosion();
 };
