@@ -16,6 +16,11 @@ void PhysicsBody::calculateGlobalBox()
 	m_globalBox.translate(m_position);
 }
 
+void PhysicsBody::addImpulse(Vector3 const& impulse)
+{
+	m_velocity += impulse / m_mass;
+}
+
 void PhysicsBody::setPosition(Vector3 const& position) {
 	m_position = position;
 	calculateGlobalBox();

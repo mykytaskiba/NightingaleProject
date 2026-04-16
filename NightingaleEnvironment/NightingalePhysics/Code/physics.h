@@ -5,6 +5,7 @@
 #include "property_visitor.h"
 #include "sphere_shape.h"
 #include "shape.h"
+#include "collision.h"
 
 #define DEFAULT_PHYSICS_FRAMERATE 10 
 //Main class for the physics system
@@ -92,6 +93,6 @@ private:
 
 	bool broadPhase(PhysicsBody& body, PhysicsBody& other);
 
-	bool narrowPhase(PhysicsBody& body, PhysicsBody& other);
-	bool sphereOnSphere(PhysicsBody& body, PhysicsBody& other);
+	Collision narrowPhase(PhysicsBody& body, PhysicsBody& other);
+	Collision sphereOnSphere(PhysicsBody& body, PhysicsBody& other);
 };

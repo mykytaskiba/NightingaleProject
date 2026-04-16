@@ -113,7 +113,7 @@ void PhysicsControlPanel::caseSingleSphere()
 
     EngineFunctions::InstantiateGameObject<CameraController>();
 
-    Vector3 position{ 0.0f,10.0f,0.0f };
+    Vector3 position{ 3.0f,10.0f,0.0f };
 
     GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
     RenderMeshNode* pRenderNode = new RenderMeshNode();
@@ -153,7 +153,7 @@ void PhysicsControlPanel::caseSphereOnSphere()
 
     EngineFunctions::InstantiateGameObject<CameraController>();
 
-    Vector3 position{ 0.0f,10.0f,0.0f };
+    Vector3 position{ 3.0f,10.0f,0.0f };
 
     GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
     RenderMeshNode* pRenderNode = new RenderMeshNode();

@@ -28,6 +28,8 @@ private:
 
 	float m_mass{ 1.0f };
 
+	float m_restitution{ 0.1f };
+
 	void calculateGlobalBox();
 public:
 
@@ -54,6 +56,10 @@ public:
 	
 	bool useGravity() const { return m_bUseGravity; }
 	void setGravity(bool bUseGravity) { m_bUseGravity = bUseGravity; }
+
+	float getMass() const { return m_mass; }
+
+	void addImpulse(Vector3 const& impulse);
 
 	Vector3 const& getPosition() const { return m_position; }
 	Vector3& getPosition() { return m_position; }

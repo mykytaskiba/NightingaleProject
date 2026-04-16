@@ -33,6 +33,9 @@
     <ClInclude Include="Code\physics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\physics.cpp">

@@ -91,12 +91,29 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
 		return;
 	}
 
-	if (!narrowPhase(body, other)) {
+	Collision collision = narrowPhase(body, other);
+	if (!collision.m_bCollision) {
 		return;
 	}
 
-	body.setVelocity(Vector3(0, 0, 0));
-	other.setVelocity(Vector3(0, 0, 0));
+	//Sink correction
+	body.setPosition( body.getPosition() + (collision.m_normal * collision.m_depth * 0.5f) );
+	other.setPosition(other.getPosition() - (collision.m_normal * collision.m_depth * 0.5f) );
+	
+	//impulse scalar
+	float velocityAlongNormal = (body.getVelocity() - other.getVelocity()).dot(collision.m_normal);
+	if (velocityAlongNormal > 0.0f) return;
+
+	float restitution = 0.2f;
+	float j = -(1.0f + restitution) * velocityAlongNormal;
+	j /= (1.0f / body.getMass());
+	j /= (1.0f / other.getMass());
+
+	body.addImpulse(j * collision.m_normal);
+	other.addImpulse(-j * collision.m_normal);
+
+	//body.setVelocity(Vector3(0, 0, 0));
+	//other.setVelocity(Vector3(0, 0, 0));
 }
 
 bool Physics::broadPhase(PhysicsBody& body, PhysicsBody& other)
@@ -104,7 +121,7 @@ bool Physics::broadPhase(PhysicsBody& body, PhysicsBody& other)
 	return body.getGlobalBox().isOverlap(other.getGlobalBox());
 }
 
-bool Physics::narrowPhase(PhysicsBody& body, PhysicsBody& other)
+Collision Physics::narrowPhase(PhysicsBody& body, PhysicsBody& other)
 {
 	assert(body.getShape() != nullptr && other.getShape() != nullptr);
 	Shape& shape = *body.getShape();
@@ -115,17 +132,17 @@ bool Physics::narrowPhase(PhysicsBody& body, PhysicsBody& other)
 	}
 
 	assert(false);
-	return false;
+	return Collision();
 }
 
-bool Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
+Collision Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
 {
 	SphereShape* pSphere = dynamic_cast<SphereShape*>(body.getShape());
 	SphereShape* pOtherSphere = dynamic_cast<SphereShape*>(other.getShape());
 
 	if (pSphere == nullptr || pOtherSphere == nullptr) {
 		assert(false);
-		return false;
+		return Collision();
 	}
 
 	Vector3 toVec = body.getPosition() - other.getPosition();
@@ -133,9 +150,9 @@ bool Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
 	float radiusSum = pSphere->getRadius() + pOtherSphere->getRadius();
 
 	if (toVec.magnitude() < radiusSum) {
-		return true;
+		return Collision(toVec.normalized(), radiusSum - toVec.magnitude());
 	}
-	return false;
+	return Collision();
 }
 
 

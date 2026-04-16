@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\collision.h" />
     <ClInclude Include="Code\physics.h" />
     <ClInclude Include="Code\phys_defines.h" />
     <ClInclude Include="Includes\ngphys.h" />
