@@ -1,5 +1,6 @@
 #pragma once
 #include "property_provider.h"
+#include "property_visitor.h"
 #include "factory.h"
 
 enum class ShapeType {

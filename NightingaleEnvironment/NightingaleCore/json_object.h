@@ -9,9 +9,13 @@ class IJSONObject {
 public:
 	virtual std::string jsonType() const = 0;
 	virtual unsigned int jsonVersion() const = 0; //std::max(c_version, parent::jsonVersion); 
+	
 	virtual std::unique_ptr<IJSONRepresentation> json() = 0;
-
 	virtual bool jsonUpgrade(JSONUpgrader& upgrader) const { return true; };
+private:
+
+	std::string m_jsonType;
+	unsigned int m_jsonVersion;
 };
 
 #define JSON_PARENT(CLASS, VERSION, TYPE_STRING)							\

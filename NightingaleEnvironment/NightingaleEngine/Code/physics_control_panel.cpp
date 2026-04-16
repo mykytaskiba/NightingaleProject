@@ -20,32 +20,38 @@ void PhysicsControlPanel::render_update()
     Physics& physics = EngineFunctions::physics();
 
     PropertyMenu::render_update(physics);
-    
-    ImGui::Separator();
-    ImGui::Text("Test Cases");
-    if (ImGui::Button("Case Single Sphere")) {
-        caseSingleSphere();
-    }
-    if (ImGui::Button("Case Sphere Explosion")) {
-        caseSphereExplosion();
-    }
 
     ImGui::Separator();
-    
-    PhysicsDebugRenderPass* pDebugPass = findDebugPass();
-    if (pDebugPass != nullptr) {
-        PropertyMenu::render_update(*pDebugPass);
-    }
-    else {
-        if (ImGui::Button("Create a Debug Render Pass")) {
-            pDebugPass = new PhysicsDebugRenderPass(EngineFunctions::physics());
-            EngineFunctions::Renderer().registerRenderPass(pDebugPass);
+    ImGui::Spacing();
+
+    if (ImGui::TreeNodeEx("Text Cases", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+        if (ImGui::Button("Case Single Sphere")) {
+            caseSingleSphere();
+        }
+        if (ImGui::Button("Case Sphere Explosion")) {
+            caseSphereExplosion();
         }
     }
 
     ImGui::Separator();
-
     ImGui::Spacing();
+
+    if (ImGui::TreeNodeEx("Debug Rendering", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+        PhysicsDebugRenderPass* pDebugPass = findDebugPass();
+        if (pDebugPass != nullptr) {
+            PropertyMenu::render_update(*pDebugPass);
+        }
+        else {
+            if (ImGui::Button("Create a Debug Render Pass")) {
+                pDebugPass = new PhysicsDebugRenderPass(EngineFunctions::physics());
+                EngineFunctions::Renderer().registerRenderPass(pDebugPass);
+            }
+        }
+    }
+
+    ImGui::Separator();
+    ImGui::Spacing();
+
     if (ImGui::TreeNodeEx("Step Simulation", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
         if (ImGui::InputInt("Simulation Frame Count", &m_simulationFrames)) {}
         if (ImGui::Button("Simulate Frames")) {

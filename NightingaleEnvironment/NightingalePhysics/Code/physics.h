@@ -83,5 +83,5 @@ private:
 	std::vector<PhysicsBody*> m_vActiveBodies{};
 	SpatialBucket<PhysicsBody> m_spatialStructure{};
 
-	//Factory<Shape> m_shapeFactory{};
+	Factory<Shape> m_shapeFactory{};
 };

@@ -38,6 +38,8 @@ public:
 		visitor.popMeta();
 		visitor("velocity",m_velocity);
 
+		visitor("shape", m_pShape);
+
 		visitor("local_box", m_localBox);
 		visitor.pushMeta(MetaData::ReadOnly());
 		visitor("global_box", m_globalBox);

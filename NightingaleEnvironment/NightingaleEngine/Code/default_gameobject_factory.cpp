@@ -12,4 +12,11 @@ void Engine::defaultGameObjectFactory()
 	m_factoryGameObject.addToFactory<Scene::SceneRootObject>("scene_root_object");
 
 	m_factoryPhysicsBody.addToFactory<PhysicsBody>("physics_body");
+
+	if (!ServiceLocator<Factory<Shape>>::hasService()) {
+		assert(false);
+		return;
+	}
+	Factory<Shape>& shapeFactory = *ServiceLocator<Factory<Shape>>::retrieve();
+	shapeFactory.addToFactory<SphereShape>("sphere_shape");
 }

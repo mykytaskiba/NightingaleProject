@@ -23,11 +23,12 @@ public:
 	virtual void operator()(std::string const& key, Vector4& value) = 0;
 	virtual void operator()(std::string const& key, Quaternion& value) = 0;
 
+	/*
 	template<typename TValue>
 	void operator()(std::string const& key, TValue& value) {
 		//static_assert(false, "Visitor definition couldnt be resolved");
-		assert(false);
-	}
+		//assert(false);
+	}*/
 
 	template<typename TValue>
 	requires HasProperties<TValue>
@@ -60,7 +61,7 @@ public:
 	}
 
 	template<typename TValue>
-	requires IsFactoryObject<TValue>&& HasProperties<TValue>
+	//requires IsFactoryObject<TValue> && HasProperties<TValue>
 		void operator()(std::string const& key, TValue*& pValue) {
 
 		if (!ServiceLocator<Factory<TValue>>::hasService()) {
