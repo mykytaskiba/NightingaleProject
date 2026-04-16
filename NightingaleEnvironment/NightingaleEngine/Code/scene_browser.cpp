@@ -144,7 +144,13 @@ void Inspector::render_update()
         ImGui::Text("Object not found");
     }
     else {
-        GameObjectMenu::render_update(pGameObject);
+        //GameObjectMenu::render_update(pGameObject);
+
+        ImGui::Text("Properties");
+
+        PropertyMenuVisitor menuVisitor{};
+        pGameObject->properties(menuVisitor);
+
 
         if (ImGui::Button("Serialize JSON")) {
             
@@ -167,13 +173,6 @@ void Inspector::render_update()
         }
     }
 
-    if (pGameObject != nullptr) {
-        ImGui::Separator();
-        ImGui::Text("Properties");
-
-        PropertyMenuVisitor menuVisitor{};
-        pGameObject->properties(menuVisitor);
-    }
     ImGui::End();
 
     if (!bRemainOpen && m_bActive) {

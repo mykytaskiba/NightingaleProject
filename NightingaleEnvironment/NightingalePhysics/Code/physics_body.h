@@ -58,8 +58,8 @@ public:
 	AxisAlignedBox const& getLocalBox() const { return m_localBox; }
 	void setLocalBox(AxisAlignedBox const& localBox);
 
-	Shape& getShape() const;
-	void setShape(Shape* pShape);
+	Shape* getShape() const { return m_pShape; }
+	void setShape(Shape* pShape) { m_pShape = pShape; }
 
 	AxisAlignedBox const& getGlobalBox() { return m_globalBox; }
 

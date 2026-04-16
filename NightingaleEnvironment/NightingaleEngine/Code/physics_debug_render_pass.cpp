@@ -2,7 +2,7 @@
 #include "physics_debug_render_pass.h"
 #include "imgui_helpers.h"
 #include "ngrender.h"
-
+#include "ngphys.h"
 
 void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 {
@@ -15,6 +15,13 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
 
         if (m_bVelocityArrowActive) {
             context.primitives().drawLine(pBody->getPosition(), pBody->getPosition() + pBody->getVelocity(), m_velocityArrowColor);
+        }
+
+        if (pBody->getShape() != nullptr) {
+            SphereShape* pSphere = dynamic_cast<SphereShape*>(pBody->getShape());
+            if (pSphere != nullptr) {
+                context.primitives().drawWireSphere(pBody->getPosition(), pSphere->getRadius());
+            }
         }
     }
 }

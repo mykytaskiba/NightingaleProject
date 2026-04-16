@@ -9,6 +9,7 @@
 #include "render_mesh.h"
 #include "asset_manager.h"
 #include "property_menu.h"
+#include "ngphys.h"
 
 void PhysicsControlPanel::render_update()
 {
@@ -123,7 +124,9 @@ void PhysicsControlPanel::caseSingleSphere()
     //pBody->setVelocity({ 0.0f,0.0f,0.0f });
     pBody->setGravity(true);
 
-    //pBody->getShape
+    SphereShape* pSphereShape = new SphereShape();
+    pSphereShape->setRadius(1.0f);
+    pBody->setShape(pSphereShape);
 
 
     GameObject* pFloor = EngineFunctions::InstantiateGameObject<GameObject>();
