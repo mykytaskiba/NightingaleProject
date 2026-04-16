@@ -26,6 +26,8 @@ private:
 
 	Shape* m_pShape{ nullptr };
 
+	float m_mass{ 1.0f };
+
 	void calculateGlobalBox();
 public:
 
@@ -39,6 +41,10 @@ public:
 		visitor("velocity",m_velocity);
 
 		visitor("shape", m_pShape);
+
+		visitor.pushMeta(MetaData::SliderRangeFloat(0.01f, 1000.0f));
+		visitor("mass", m_mass);
+		visitor.popMeta();
 
 		visitor("local_box", m_localBox);
 		visitor.pushMeta(MetaData::ReadOnly());

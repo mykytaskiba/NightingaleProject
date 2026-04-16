@@ -4,8 +4,8 @@
 
 enum class MetaFlags {
 	None = 0,
-	ReadOnly = 1,
-	ColorOnlyRGB = 2
+	ReadOnly,
+	ColorOnlyRGB,
 };
 ENABLE_ENUM_BITWISE_OPERATORS(MetaFlags);
 
@@ -13,6 +13,11 @@ struct MetaData {
 	using TChangeCallback = std::function<void()>; //std::function -> non literal type
 private:
 	MetaFlags m_flags{ MetaFlags::None };
+
+	static float constexpr c_fSliderMaxDefault = 1000.0f;
+	static float constexpr c_fSliderMinDefault = -1000.0f;
+	float m_fsliderMax{ 1000.0f };
+	float m_fsliderMin{ -1000.0f };
 
 	std::vector<TChangeCallback> m_vCbOnChanged{};
 public:
@@ -29,6 +34,9 @@ public:
 		return isFlag(MetaFlags::ReadOnly);
 	}
 
+	float SliderFloatMin() const { return m_fsliderMin; }
+	float SliderFloatMax() const { return m_fsliderMax; }
+
 
 	inline void onChangeCallback() const {
 		for (TChangeCallback const& callback : m_vCbOnChanged) {
@@ -40,6 +48,13 @@ public:
 
 	static MetaData ReadOnly() { return MetaFlags::ReadOnly; }
 	static MetaData OnlyRGB() { return MetaFlags::ColorOnlyRGB; }
+
+	static MetaData SliderRangeFloat(float min, float max) {
+		MetaData data{};
+		data.m_fsliderMin = min;
+		data.m_fsliderMax = max;
+		return data;
+	}
 
 	static MetaData OnChange(TChangeCallback changeCallback) {
 		MetaData changeMetaData{};
@@ -55,6 +70,9 @@ public:
 		for (TChangeCallback const& otherCallback : other.m_vCbOnChanged) {
 			result.m_vCbOnChanged.push_back(otherCallback);
 		}
+
+		result.m_fsliderMin = other.m_fsliderMin == c_fSliderMinDefault ? m_fsliderMin : other.m_fsliderMin;
+		result.m_fsliderMax = other.m_fsliderMax == c_fSliderMaxDefault ? m_fsliderMax : other.m_fsliderMax;
 
 		return result;
 	}

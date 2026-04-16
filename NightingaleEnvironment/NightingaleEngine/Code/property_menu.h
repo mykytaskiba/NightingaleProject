@@ -27,7 +27,7 @@ struct PropertyMenuVisitor : public IPropertyVisitor {
 				ImGui::InputFloat(formatStringForImGUI(key).c_str(), &value, 0.01f, 1.0f, "%.10f");
 			}
 			else {
-				bChanged = ImGui::InputFloat(formatStringForImGUI(key).c_str(), &value);
+				bChanged = ImGui::SliderFloat(formatStringForImGUI(key).c_str(), &value, meta().SliderFloatMin(), meta().SliderFloatMax());
 			}
 		}
 		else if constexpr (std::is_same_v < TValue, unsigned int>) {
