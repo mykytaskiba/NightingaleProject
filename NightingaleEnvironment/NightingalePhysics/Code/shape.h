@@ -16,4 +16,7 @@ protected:
 
 	void properties(IPropertyVisitor& visitor) override {
 	}
+
+public:
+	ShapeType getType() { return m_type; }
 };

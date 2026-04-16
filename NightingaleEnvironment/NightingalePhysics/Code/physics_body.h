@@ -62,6 +62,7 @@ public:
 
 	Shape* getShape() const { return m_pShape; }
 	void setShape(Shape* pShape) { m_pShape = pShape; }
+	bool hasShape() const { return m_pShape != nullptr; }
 
 	AxisAlignedBox const& getGlobalBox() { return m_globalBox; }
 

@@ -51,12 +51,8 @@ void Physics::subUpdate(TTimePhys deltaT)
 
 	//Collision check step
 	m_spatialStructure.queryPairs(
-		[this](PhysicsBody* pBody, PhysicsBody* pOther) {
-			++m_infoSpatialPairsCount;
-			if (pBody->getGlobalBox().isOverlap(pOther->getGlobalBox())) {
-				pBody->setVelocity(Vector3(0, 0, 0));
-				pOther->setVelocity(Vector3(0, 0, 0));
-			}
+		[this](PhysicsBody& body, PhysicsBody& other) {
+			resolvePossibleCollision(body, other);
 		}
 	);
 
@@ -80,6 +76,66 @@ void Physics::setTargetUpdateRate(uint updatesPerSecond)
 
 void Physics::addAccumulatedTime(TTimePhys addedTime) {
 	m_accumulatedTime += addedTime;
+}
+
+void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
+{
+	++m_infoSpatialPairsCount;
+
+	if (!body.hasShape() || !other.hasShape()) {
+		//would this ever be the case?
+		return;
+	}
+
+	if (!broadPhase(body, other)) {
+		return;
+	}
+
+	if (!narrowPhase(body, other)) {
+		return;
+	}
+
+	body.setVelocity(Vector3(0, 0, 0));
+	other.setVelocity(Vector3(0, 0, 0));
+}
+
+bool Physics::broadPhase(PhysicsBody& body, PhysicsBody& other)
+{
+	return body.getGlobalBox().isOverlap(other.getGlobalBox());
+}
+
+bool Physics::narrowPhase(PhysicsBody& body, PhysicsBody& other)
+{
+	assert(body.getShape() != nullptr && other.getShape() != nullptr);
+	Shape& shape = *body.getShape();
+	Shape& otherShape = *other.getShape();
+
+	if (shape.getType() == ShapeType::Sphere && otherShape.getType() == ShapeType::Sphere) {
+		return sphereOnSphere(body, other);
+	}
+
+	assert(false);
+	return false;
+}
+
+bool Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
+{
+	SphereShape* pSphere = dynamic_cast<SphereShape*>(body.getShape());
+	SphereShape* pOtherSphere = dynamic_cast<SphereShape*>(other.getShape());
+
+	if (pSphere == nullptr || pOtherSphere == nullptr) {
+		assert(false);
+		return false;
+	}
+
+	Vector3 toVec = body.getPosition() - other.getPosition();
+	
+	float radiusSum = pSphere->getRadius() + pOtherSphere->getRadius();
+
+	if (toVec.magnitude() < radiusSum) {
+		return true;
+	}
+	return false;
 }
 
 

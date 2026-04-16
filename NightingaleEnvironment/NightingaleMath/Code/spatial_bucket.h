@@ -19,7 +19,7 @@ public:
 	void queryPairs(SpatialStructure<TEntity>::PairFunction const& function) override {
 		for (auto it_outer = m_vEntities.begin(); it_outer != m_vEntities.end(); ++it_outer) {
 			for (auto it_inner = std::next(it_outer); it_inner != m_vEntities.end(); ++it_inner) {
-				function(*it_outer, *it_inner);
+				function(**it_outer, **it_inner);
 			}
 		}
 	}

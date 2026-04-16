@@ -19,5 +19,7 @@ private:
 	void forceSimulatePhysics(float simulateTime);
 
 	void caseSingleSphere();
+
+	void caseSphereOnSphere();
 	void caseSphereExplosion();
 };

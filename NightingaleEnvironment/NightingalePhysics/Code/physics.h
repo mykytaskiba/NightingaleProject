@@ -3,6 +3,8 @@
 #include "physics_body.h"
 #include "ngmath.h"
 #include "property_visitor.h"
+#include "sphere_shape.h"
+#include "shape.h"
 
 #define DEFAULT_PHYSICS_FRAMERATE 10 
 //Main class for the physics system
@@ -84,4 +86,12 @@ private:
 	SpatialBucket<PhysicsBody> m_spatialStructure{};
 
 	Factory<Shape> m_shapeFactory{};
+
+	//Collision resolution
+	void resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other);
+
+	bool broadPhase(PhysicsBody& body, PhysicsBody& other);
+
+	bool narrowPhase(PhysicsBody& body, PhysicsBody& other);
+	bool sphereOnSphere(PhysicsBody& body, PhysicsBody& other);
 };

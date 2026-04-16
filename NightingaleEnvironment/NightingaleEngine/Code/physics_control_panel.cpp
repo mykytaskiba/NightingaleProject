@@ -24,9 +24,9 @@ void PhysicsControlPanel::render_update()
     ImGui::Separator();
     ImGui::Spacing();
 
-    if (ImGui::TreeNodeEx("Text Cases", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
-        if (ImGui::Button("Case Single Sphere")) {
-            caseSingleSphere();
+    if (ImGui::TreeNodeEx("Test Cases", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+        if (ImGui::Button("Case Sphere On Sphere")) {
+            caseSphereOnSphere();
         }
         if (ImGui::Button("Case Sphere Explosion")) {
             caseSphereExplosion();
@@ -124,7 +124,7 @@ void PhysicsControlPanel::caseSingleSphere()
 
     PhysicsBody* pBody = pGameObject->getPhysicsBody();
 
-    float localBoxSize = 1.0f;
+    float localBoxSize = 2.0f;
     pBody->setLocalBox(AxisAlignedBox({ 0,0,0 }, { localBoxSize, localBoxSize, localBoxSize }));
     pGameObject->getTransform().position = position;
     //pBody->setVelocity({ 0.0f,0.0f,0.0f });
@@ -137,8 +137,60 @@ void PhysicsControlPanel::caseSingleSphere()
 
     GameObject* pFloor = EngineFunctions::InstantiateGameObject<GameObject>();
     EngineFunctions::AttachPhysicsBody(pFloor);
-    pFloor->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { 150.0f,0.25f,150.0f }));
+    float floorBoxSize = 10.0f;
+    pFloor->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { floorBoxSize, floorBoxSize, floorBoxSize }));
     pFloor->getTransform().position = (Vector3(0, -10.0f, 0));
+
+    SphereShape* pFloorShape = new SphereShape();
+    pFloorShape->setRadius(5.0f);
+    pFloor->getPhysicsBody()->setShape(pFloorShape);
+}
+
+void PhysicsControlPanel::caseSphereOnSphere()
+{
+    EngineFunctions::physics().setActive(false);
+    EngineFunctions::scene().clearScene();
+
+    EngineFunctions::InstantiateGameObject<CameraController>();
+
+    Vector3 position{ 0.0f,10.0f,0.0f };
+
+    GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+    RenderMeshNode* pRenderNode = new RenderMeshNode();
+    pRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+    EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+    EngineFunctions::AttachPhysicsBody(pGameObject);
+
+    PhysicsBody* pBody = pGameObject->getPhysicsBody();
+
+    float localBoxSize = 2.0f;
+    pBody->setLocalBox(AxisAlignedBox({ 0,0,0 }, { localBoxSize, localBoxSize, localBoxSize }));
+    pGameObject->getTransform().position = position;
+    //pBody->setVelocity({ 0.0f,0.0f,0.0f });
+    pBody->setGravity(true);
+
+    SphereShape* pSphereShape = new SphereShape();
+    pSphereShape->setRadius(1.0f);
+    pBody->setShape(pSphereShape);
+
+
+    GameObject* pBigSphere = EngineFunctions::InstantiateGameObject<GameObject>();
+    EngineFunctions::AttachPhysicsBody(pBigSphere);
+    float bigBoxSize = 10.0f;
+    pBigSphere->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0.0f,0.0f,0.0f }, { bigBoxSize, bigBoxSize, bigBoxSize }));
+    pBigSphere->getTransform().position = (Vector3(0, -10.0f, 0));
+
+    SphereShape* pBigSphereShape = new SphereShape();
+    pBigSphereShape->setRadius(5.0f);
+    pBigSphere->getPhysicsBody()->setShape(pBigSphereShape);
+
+
+    RenderMeshNode* pBigSphereRenderNode = new RenderMeshNode();
+    pBigSphereRenderNode->setMesh(AssetManager<Mesh>::retrieve("sphere_mesh"));
+
+    EngineFunctions::AssignRenderNode(pBigSphere, pBigSphereRenderNode);
+    pBigSphere->getTransform().scale = Vector3{ 5.0f,5.0f,5.0f };
 }
 
 void PhysicsControlPanel::caseSphereExplosion()

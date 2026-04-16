@@ -19,7 +19,7 @@ public:
 	virtual void insert(TEntity*) = 0;
 	virtual bool remove(TEntity*) = 0;
 
-	using PairFunction = std::function<void(TEntity*, TEntity*)>;
+	using PairFunction = std::function<void(TEntity&, TEntity&)>;
 	virtual void queryPairs(PairFunction const&) = 0;
 	virtual void queryRay() {};
 	virtual void queryVolume() {};
