@@ -58,6 +58,7 @@ public:
 	void setGravity(bool bUseGravity) { m_bUseGravity = bUseGravity; }
 
 	float getMass() const { return m_mass; }
+	void setMass(float mass);
 
 	void addImpulse(Vector3 const& impulse);
 

@@ -184,6 +184,7 @@ void PhysicsControlPanel::caseSphereOnSphere()
     SphereShape* pBigSphereShape = new SphereShape();
     pBigSphereShape->setRadius(5.0f);
     pBigSphere->getPhysicsBody()->setShape(pBigSphereShape);
+    pBigSphere->getPhysicsBody()->setMass(10.0f);
 
 
     RenderMeshNode* pBigSphereRenderNode = new RenderMeshNode();

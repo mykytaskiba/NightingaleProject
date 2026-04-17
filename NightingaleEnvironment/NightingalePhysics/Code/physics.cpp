@@ -104,10 +104,8 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
 	float velocityAlongNormal = (body.getVelocity() - other.getVelocity()).dot(collision.m_normal);
 	if (velocityAlongNormal > 0.0f) return;
 
-	float restitution = 0.2f;
-	float j = -(1.0f + restitution) * velocityAlongNormal;
-	j /= (1.0f / body.getMass());
-	j /= (1.0f / other.getMass());
+	float j = -(1.0f + m_restitution) * velocityAlongNormal;
+	j /= (1.0f / body.getMass()) + (1.0f / other.getMass());
 
 	body.addImpulse(j * collision.m_normal);
 	other.addImpulse(-j * collision.m_normal);

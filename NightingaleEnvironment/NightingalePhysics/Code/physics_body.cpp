@@ -16,6 +16,14 @@ void PhysicsBody::calculateGlobalBox()
 	m_globalBox.translate(m_position);
 }
 
+void PhysicsBody::setMass(float mass)
+{
+	m_mass = mass;
+	if (m_mass <= 0.0f) {
+		m_mass = 0.01f;
+	}
+}
+
 void PhysicsBody::addImpulse(Vector3 const& impulse)
 {
 	m_velocity += impulse / m_mass;

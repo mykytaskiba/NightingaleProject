@@ -64,6 +64,8 @@ public:
 		visitor("interpolate_between_frames", m_bInterpolateBetweenFrames);
 		visitor("max_updates_per_frame", m_maxUpdatesPerFrame);
 		visitor("max_accumulated_time", m_maxAccumulatedTime);
+
+		visitor("restitution", m_restitution);
 	}
 
 private:
@@ -81,6 +83,8 @@ private:
 	uint m_maxUpdatesPerFrame{1u};
 	bool m_bDiscardUnusedTime{ true };
 	bool m_bInterpolateBetweenFrames{ false };
+
+	float m_restitution{ 0.5f };
 
 
 	std::vector<PhysicsBody*> m_vActiveBodies{};
