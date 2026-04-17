@@ -1,6 +1,7 @@
 #include "physics.h"
 #include "nightingale_assert.h"
 #include <iostream>
+#include "box_shape.h"
 
 Physics::Physics()
 {
@@ -128,7 +129,7 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
 	body.addAngularImpulse(invInertia * relativePoint.cross(impulse));
 
 	other.addImpulse(impulse * -1.0f);
-	other.addAngularImpulse(invInertia * relativePoint.cross(impulse * -1.0f));
+	other.addAngularImpulse(invInertiaOther * relativePoint.cross(impulse * -1.0f));
 
 
 	//body.setVelocity(Vector3(0, 0, 0));
@@ -148,6 +149,9 @@ Collision Physics::narrowPhase(PhysicsBody& body, PhysicsBody& other)
 
 	if (shape.getType() == ShapeType::Sphere && otherShape.getType() == ShapeType::Sphere) {
 		return sphereOnSphere(body, other);
+	}
+	if (shape.getType() == ShapeType::Box && otherShape.getType() == ShapeType::Box) {
+		return boxOnBox(body, other);
 	}
 
 	assert(false);
@@ -174,6 +178,89 @@ Collision Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
 		return Collision(collisionPoint, toVec.normalized(), radiusSum - toVec.magnitude());
 	}
 	return Collision();
+}
+
+Vector3 GetSupportPoint(Vector3 const& axis1, Vector3 const& axis2, Vector3 const& axis3, Vector3 const& halfSize, Vector3 const& center, const Vector3& direction) {
+	Vector3 localDir;
+	localDir[0] = direction.dot(axis1);
+	localDir[1] = direction.dot(axis2);
+	localDir[2] = direction.dot(axis3);
+	
+	Vector3 resultLocal;
+	resultLocal[0] = (localDir[0] > 0) ? halfSize[0] : -halfSize[0];
+	resultLocal[1] = (localDir[1] > 0) ? halfSize[1] : -halfSize[1];
+	resultLocal[2] = (localDir[2] > 0) ? halfSize[2] : -halfSize[2];
+
+	return center +
+		(axis1 * resultLocal[0]) +
+		(axis2 * resultLocal[1]) +
+		(axis3 * resultLocal[2]);
+}
+
+Collision Physics::boxOnBox(PhysicsBody& body, PhysicsBody& other)
+{
+	BoxShape* pBox = dynamic_cast<BoxShape*>(body.getShape());
+	BoxShape* pOtherBox = dynamic_cast<BoxShape*>(other.getShape());
+
+	if (pBox == nullptr || pOtherBox == nullptr) {
+		assert(false);
+		return Collision();
+	}
+
+	float minOverlap = std::numeric_limits<float>::max();
+	Vector3 bestAxis{};
+
+	Vector3 axisToTest[15];
+	pBox->getAxisFromRotation(body.getRotation(), axisToTest[0], axisToTest[1], axisToTest[2]);
+	pOtherBox->getAxisFromRotation(other.getRotation(), axisToTest[3], axisToTest[4], axisToTest[5]);
+
+	unsigned int k{ 6u };
+	for (unsigned int i{ 0u }; i < 3; ++i) {
+		for (unsigned int j{ 3u }; j < 6; ++j) {
+			axisToTest[k++] = axisToTest[i].cross(axisToTest[j]);
+		}
+	}
+
+	Vector3 toVec = other.getPosition() - body.getPosition();
+
+	for (Vector3 L : axisToTest) {
+		if (L.magnitude_squared() < 0.001f) continue; // Skip parallel edges
+		L.normalize_equal();
+
+
+		float rA = pBox->getHalfSize()[0] * abs(axisToTest[0].dot(L)) +
+			pBox->getHalfSize()[1] * abs(axisToTest[1].dot(L)) +
+			pBox->getHalfSize()[2] * abs(axisToTest[2].dot(L));
+
+		float rB = pOtherBox->getHalfSize()[0] * abs(axisToTest[3].dot(L)) +
+			pOtherBox->getHalfSize()[1] * abs(axisToTest[4].dot(L)) +
+			pOtherBox->getHalfSize()[2] * abs(axisToTest[5].dot(L));
+
+		
+		float centerDist = abs(toVec.dot(L));
+		float overlap = (rA + rB) - centerDist;
+
+		if (overlap <= 0) return Collision(); // Found a separating axis!
+
+		if (overlap < minOverlap) {
+			minOverlap = overlap;
+			bestAxis = L;
+		}
+	}
+
+	Collision result;
+	Vector3 d = other.getPosition()- body.getPosition();
+	if (d.dot(bestAxis) < 0) bestAxis = -1.0f * bestAxis; // Ensure normal points A -> B
+
+	result.m_bCollision = true;
+	result.m_normal = -1.0f * bestAxis;
+	result.m_depth = minOverlap;
+
+	Vector3 point1 = GetSupportPoint(axisToTest[0], axisToTest[1], axisToTest[2], pBox->getHalfSize(), body.getPosition(), bestAxis);
+	Vector3 point2 = GetSupportPoint(axisToTest[3], axisToTest[4], axisToTest[5], pOtherBox->getHalfSize(), other.getPosition(), -1.0f * bestAxis);
+
+	result.m_point = (point1 + point2) / 2.0f;
+	return result;
 }
 
 

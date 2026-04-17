@@ -25,6 +25,12 @@ void PhysicsControlPanel::render_update()
     ImGui::Spacing();
 
     if (ImGui::TreeNodeEx("Test Cases", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+        if (ImGui::Button("Case Box On Box")) {
+            caseBoxOnWeirdBox(false);
+        }
+        if (ImGui::Button("Case Box On 45Box")) {
+            caseBoxOnWeirdBox(true);
+        }
         if (ImGui::Button("Case Sphere On Sphere")) {
             caseSphereOnSphere();
         }
@@ -192,6 +198,81 @@ void PhysicsControlPanel::caseSphereOnSphere()
 
     EngineFunctions::AssignRenderNode(pBigSphere, pBigSphereRenderNode);
     pBigSphere->getTransform().scale = Vector3{ 5.0f,5.0f,5.0f };
+}
+
+void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird)
+{
+    EngineFunctions::physics().setActive(false);
+    EngineFunctions::scene().clearScene();
+
+    EngineFunctions::InstantiateGameObject<CameraController>();
+
+    {
+        Vector3 position{ 3.0f,10.0f,0.0f };
+        Vector3 boxSize{ 2.0f, 2.0f,2.0f };
+        float localBoxFudgeFactor = 1.414f;
+        float mass = 1.0f;
+        bool bGravity = true;
+        bool b45Degree = bWeird;
+        Quaternion degree45Quat; //hard coded 45,45,45 euler
+        degree45Quat.x = 0.4619398f;
+        degree45Quat.y = 0.1913417f;
+        degree45Quat.z = 0.4619398f;
+        degree45Quat.w = 0.7325378f;
+
+        GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+
+        RenderMeshNode* pRenderNode = new RenderMeshNode();
+        pRenderNode->setMesh(AssetManager<Mesh>::retrieve("cube_mesh"));
+
+        EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+        EngineFunctions::AttachPhysicsBody(pGameObject);
+
+        pGameObject->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0,0,0 }, boxSize * 2.0f * localBoxFudgeFactor));
+        pGameObject->getTransform().position = position;
+        if (b45Degree) pGameObject->getTransform().rotation = degree45Quat;
+        pGameObject->getTransform().scale = boxSize;
+
+        BoxShape* pShape = new BoxShape();
+        pShape->getHalfSize() = boxSize;
+        pGameObject->getPhysicsBody()->setShape(pShape);
+        pGameObject->getPhysicsBody()->setGravity(bGravity);
+        pGameObject->getPhysicsBody()->setMass(mass);
+    }
+
+    {
+        Vector3 position{ 0.0f,-1.0f,0.0f };
+        Vector3 boxSize{ 10.0f, 1.0f,10.0f };
+        float localBoxFudgeFactor = 1.414f;
+        float mass = 15.0f;
+        bool bGravity = false;
+        bool b45Degree = false;
+        Quaternion degree45Quat; //hard coded 45,45,45 euler
+        degree45Quat.x = 0.4619398f;
+        degree45Quat.y = 0.1913417f;
+        degree45Quat.z = 0.4619398f;
+        degree45Quat.w = 0.7325378f;
+
+        GameObject* pGameObject = EngineFunctions::InstantiateGameObject<GameObject>();
+
+        RenderMeshNode* pRenderNode = new RenderMeshNode();
+        pRenderNode->setMesh(AssetManager<Mesh>::retrieve("cube_mesh"));
+
+        EngineFunctions::AssignRenderNode(pGameObject, pRenderNode);
+        EngineFunctions::AttachPhysicsBody(pGameObject);
+
+        pGameObject->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0,0,0 }, boxSize * 2.0f * localBoxFudgeFactor));
+        pGameObject->getTransform().position = position;
+        if (b45Degree) pGameObject->getTransform().rotation = degree45Quat;
+        pGameObject->getTransform().scale = boxSize;
+
+        BoxShape* pShape = new BoxShape();
+        pShape->getHalfSize() = boxSize;
+        pGameObject->getPhysicsBody()->setShape(pShape);
+        pGameObject->getPhysicsBody()->setGravity(bGravity);
+        pGameObject->getPhysicsBody()->setMass(mass);
+    }
+
 }
 
 void PhysicsControlPanel::caseSphereExplosion()

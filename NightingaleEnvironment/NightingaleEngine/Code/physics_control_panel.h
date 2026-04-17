@@ -21,5 +21,6 @@ private:
 	void caseSingleSphere();
 
 	void caseSphereOnSphere();
+	void caseBoxOnWeirdBox(bool bWeird);
 	void caseSphereExplosion();
 };

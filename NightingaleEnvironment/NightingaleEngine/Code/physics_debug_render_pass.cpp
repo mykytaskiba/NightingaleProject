@@ -21,6 +21,18 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
             SphereShape* pSphere = dynamic_cast<SphereShape*>(pBody->getShape());
             if (pSphere != nullptr) {
                 context.primitives().drawWireSphere(pBody->getPosition(), pSphere->getRadius());
+                continue;
+            }
+
+            BoxShape* pBox = dynamic_cast<BoxShape*>(pBody->getShape());
+            if (pBox != nullptr) {
+                Vector3 axis1;
+                Vector3 axis2;
+                Vector3 axis3;
+                pBox->getAxisFromRotation(pBody->getRotation(), axis1, axis2, axis3);
+
+                context.primitives().drawOrientedBox(pBody->getPosition(), pBox->getHalfSize(), axis1, axis2, axis3);
+
             }
         }
     }

@@ -8,7 +8,7 @@ void PhysicsBody::update(TTimePhys deltaT)
 {
 	m_position += m_velocity * deltaT;
 
-	Quaternion deltaVelocity = 0.5f * Quaternion(0, m_angularVelocity[0], m_angularVelocity[1], m_angularVelocity[2]) * m_rotation;
+	Quaternion deltaVelocity = 0.5f * Quaternion(m_angularVelocity[0], m_angularVelocity[1], m_angularVelocity[2], 0.0f) * m_rotation;
 	m_rotation += deltaVelocity * deltaT;
 	m_rotation.normalizeEquals();
 

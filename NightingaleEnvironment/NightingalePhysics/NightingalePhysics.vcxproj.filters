@@ -36,6 +36,9 @@
     <ClInclude Include="Code\collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Code\box_shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code\physics.cpp">
@@ -45,6 +48,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Code\sphere_shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Code\box_shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Code\box_shape.h" />
     <ClInclude Include="Code\collision.h" />
     <ClInclude Include="Code\physics.h" />
     <ClInclude Include="Code\phys_defines.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="Code\sphere_shape.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Code\box_shape.cpp" />
     <ClCompile Include="Code\physics.cpp" />
     <ClCompile Include="Code\physics_body.cpp" />
     <ClCompile Include="Code\sphere_shape.cpp" />

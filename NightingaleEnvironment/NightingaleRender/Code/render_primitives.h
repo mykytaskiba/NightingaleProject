@@ -27,6 +27,9 @@ struct RenderPrimitives {
 
     void drawAxisAlignedBox(AxisAlignedBox const& box, Color const& color = s_defaultColor) const;
 
+    //TODO this method is awful, redo!
+    void drawOrientedBox(Vector3 const& center, Vector3 const& halfExtents, Vector3 const& axis1, Vector3 const& axis2, Vector3 const& axis3, Color const& color = s_defaultColor) const;
+
     void drawLine(Vector3 const& from, Vector3 const& to, Color const& color = s_defaultColor) const;
     void drawSphere(Vector3 const& at, float scale = 1.0f, Color const& color = s_defaultColor) const;
     void drawCube(Vector3 const& center, Vector3 const& scale, Color const& color = s_defaultColor) const;

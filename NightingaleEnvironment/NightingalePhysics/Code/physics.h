@@ -99,4 +99,5 @@ private:
 
 	Collision narrowPhase(PhysicsBody& body, PhysicsBody& other);
 	Collision sphereOnSphere(PhysicsBody& body, PhysicsBody& other);
+	Collision boxOnBox(PhysicsBody& body, PhysicsBody& other);
 };

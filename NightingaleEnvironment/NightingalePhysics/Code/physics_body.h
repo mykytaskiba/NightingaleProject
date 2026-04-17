@@ -36,6 +36,8 @@ private:
 
 	float m_restitution{ 0.1f };
 
+	bool m_bImmovable{ false };
+
 	void calculateGlobalBox();
 public:
 

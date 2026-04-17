@@ -81,6 +81,30 @@ void RenderPrimitives::drawAxisAlignedBox(AxisAlignedBox const& box, Color const
 
 }
 
+void RenderPrimitives::drawOrientedBox(Vector3 const& center, Vector3 const& halfExtents, Vector3 const& axis1, Vector3 const& axis2, Vector3 const& axis3, Color const& color) const
+{
+    Vector3 right = 2.0f * axis1.normalized() * halfExtents[0];
+    Vector3 up = 2.0f * axis2.normalized() * halfExtents[1];
+    Vector3 forward = 2.0f * axis3.normalized() * halfExtents[2];
+    Vector3 min = center - right / 2.0f - forward / 2.0f - up / 2.0f;
+    Vector3 max = center + right / 2.0f + forward / 2.0f + up / 2.0f;
+
+    drawLine(min, min + up, color);
+    drawLine(min + right, min + up + right, color);
+    drawLine(min + forward, min + up + forward, color);
+    drawLine(max, max - up, color);
+
+    drawLine(min, min + right, color);
+    drawLine(min, min + forward, color);
+    drawLine(max - up, max - up - forward, color);
+    drawLine(max - up, max - up - right, color);
+
+    drawLine(max, max - right, color);
+    drawLine(max, max - forward, color);
+    drawLine(min + up, min + up + right, color);
+    drawLine(min + up, min + up + forward, color);
+}
+
 void RenderPrimitives::drawLine(Vector3 const& from, Vector3 const& to, Color const& color) const
 {
     m_context.setCurrentShader(m_pLineShader);
