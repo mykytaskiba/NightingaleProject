@@ -48,7 +48,7 @@ float Quaternion::magnitude() const
 
 Matrix4x4 Quaternion::getRotation() const
 {
-    assert(magnitude() == 1.0f);
+    assert(abs(magnitude()-1.0f) < 0.001f );
 
     Matrix4x4 result;
 

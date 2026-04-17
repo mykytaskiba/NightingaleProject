@@ -14,7 +14,8 @@ void GameObject::sync_physics_to_gameobject()
     if (m_pPhysicsBody == nullptr) {
         return;
     }
-    m_pPhysicsBody->setPosition(m_transform.position);
+    m_pPhysicsBody->getPosition() = m_transform.position;
+    m_pPhysicsBody->getRotation() = m_transform.rotation;
 }
 
 void GameObject::sync_gameobject_to_physics()
@@ -27,6 +28,7 @@ void GameObject::sync_gameobject_to_physics()
         return;
     }
     m_transform.position = m_pPhysicsBody->getPosition();
+    m_transform.rotation = m_pPhysicsBody->getRotation();
 
     if (m_pRenderNode == nullptr) {
         return;

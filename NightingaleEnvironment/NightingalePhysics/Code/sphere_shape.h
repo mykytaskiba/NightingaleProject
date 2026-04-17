@@ -13,6 +13,7 @@ public:
         visitor("radius", m_radius);
     }
 
+    void calculateMomentOfInertia(Matrix3x3& momentInertiaInverse, Quaternion const& rotation, float mass) override;
 private:
     float m_radius{ 0.0f };
 

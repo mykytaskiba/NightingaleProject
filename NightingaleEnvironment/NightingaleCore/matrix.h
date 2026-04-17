@@ -85,6 +85,18 @@ public:
         return *this;
     }
 
+    Matrix& make_identity()
+        requires (std::same_as<T, float>&& DIM_ROW == 3 && DIM_COL == 3) {
+        Matrix& m = *this;
+
+        //transposed for memory locality
+        m[0][0] = 1; m[0][1] = 0; m[0][2] = 0; 
+        m[1][0] = 0; m[1][1] = 1; m[1][2] = 0; 
+        m[2][0] = 0; m[2][1] = 0; m[2][2] = 1; 
+
+        return *this;
+    }
+
     Matrix& make_translation(T x, T y, T z)
         requires (std::same_as<T, float>&& DIM_ROW == 4 && DIM_COL == 4) {
 

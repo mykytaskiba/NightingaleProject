@@ -153,6 +153,7 @@
   <ItemGroup>
     <ClCompile Include="Code\physics.cpp" />
     <ClCompile Include="Code\physics_body.cpp" />
+    <ClCompile Include="Code\sphere_shape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NightingaleCore\NightingaleCore.vcxproj">

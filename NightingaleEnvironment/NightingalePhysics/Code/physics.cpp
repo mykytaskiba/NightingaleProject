@@ -100,15 +100,36 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
 	body.setPosition( body.getPosition() + (collision.m_normal * collision.m_depth * 0.5f) );
 	other.setPosition(other.getPosition() - (collision.m_normal * collision.m_depth * 0.5f) );
 	
+	Matrix3x3 invInertia = body.getMomentOfInertiaInverse();
+	Matrix3x3 invInertiaOther = other.getMomentOfInertiaInverse();
+
+	Vector3 relativePoint = collision.m_point - body.getPosition();
+	Vector3 relativePointOther = collision.m_point - other.getPosition();
+
+	Vector3 pointVelocity = body.getVelocity() + body.getAngularVelocity().cross(relativePoint);
+	Vector3 pointVelocityOther = other.getVelocity() + other.getAngularVelocity().cross(relativePointOther);
+
+	Vector3 relativeVelocity = pointVelocity - pointVelocityOther;
+
 	//impulse scalar
-	float velocityAlongNormal = (body.getVelocity() - other.getVelocity()).dot(collision.m_normal);
+	float velocityAlongNormal = (relativeVelocity).dot(collision.m_normal);
 	if (velocityAlongNormal > 0.0f) return;
+	
+	float restitution = m_restitution; //TO DO: currently using a global value
 
-	float j = -(1.0f + m_restitution) * velocityAlongNormal;
-	j /= (1.0f / body.getMass()) + (1.0f / other.getMass());
+	float angularTermA = (invInertia * relativePoint.cross(collision.m_normal)).cross(relativePoint).dot(collision.m_normal);
+	float angularTermB = (invInertiaOther * relativePointOther.cross(collision.m_normal)).cross(relativePointOther).dot(collision.m_normal);
 
-	body.addImpulse(j * collision.m_normal);
-	other.addImpulse(-j * collision.m_normal);
+	float j = -(1.0f + restitution) * velocityAlongNormal;
+	j /= (1.0f / body.getMass()) + (1.0f / other.getMass()) + angularTermA + angularTermB;
+
+	Vector3 impulse = j * collision.m_normal;
+	body.addImpulse(impulse);
+	body.addAngularImpulse(invInertia * relativePoint.cross(impulse));
+
+	other.addImpulse(impulse * -1.0f);
+	other.addAngularImpulse(invInertia * relativePoint.cross(impulse * -1.0f));
+
 
 	//body.setVelocity(Vector3(0, 0, 0));
 	//other.setVelocity(Vector3(0, 0, 0));
@@ -148,7 +169,9 @@ Collision Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
 	float radiusSum = pSphere->getRadius() + pOtherSphere->getRadius();
 
 	if (toVec.magnitude() < radiusSum) {
-		return Collision(toVec.normalized(), radiusSum - toVec.magnitude());
+		Vector3 collisionPoint = body.getPosition() + other.getPosition() + toVec.normalized() * (pSphere->getRadius() + -1.0f * pOtherSphere->getRadius());
+		collisionPoint /= 2.0f;
+		return Collision(collisionPoint, toVec.normalized(), radiusSum - toVec.magnitude());
 	}
 	return Collision();
 }

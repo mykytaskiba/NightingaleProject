@@ -7,6 +7,8 @@
 #include <memory>
 #include "property_visitor.h"
 #include "shape.h"
+#include "transform.h"
+#include "collision.h"
 
 class IPropertyVisitor;
 
@@ -18,13 +20,17 @@ private:
 	bool m_bUseGravity{ false };
 	
 	Vector3 m_position{ 0.0f,0.0f,0.0f };
-	Vector3 m_velocity{ 0.0f,0.0f,0.0f };
+	Quaternion m_rotation{ 0.0f, 0.0f, 0.0f, 1.0f};
 
+
+	Vector3 m_velocity{ 0.0f,0.0f,0.0f };
+	Vector3 m_angularVelocity{ 0.0f, 0.0f, 0.0f };
 
 	AxisAlignedBox m_globalBox{};
 	AxisAlignedBox m_localBox{};
 
 	Shape* m_pShape{ nullptr };
+	
 
 	float m_mass{ 1.0f };
 
@@ -41,6 +47,7 @@ public:
 		visitor("position",m_position);
 		visitor.popMeta();
 		visitor("velocity",m_velocity);
+		visitor("angular_velocity", m_angularVelocity);
 
 		visitor("shape", m_pShape);
 
@@ -61,14 +68,25 @@ public:
 	void setMass(float mass);
 
 	void addImpulse(Vector3 const& impulse);
+	void addAngularImpulse(Vector3 const& angularImpulse);
 
 	Vector3 const& getPosition() const { return m_position; }
 	Vector3& getPosition() { return m_position; }
 	void setPosition(Vector3 const& position);
 
+	Quaternion const& getRotation() const { return m_rotation; }
+	Quaternion& getRotation() { return m_rotation; }
+
 	Vector3 const& getVelocity() const { return m_velocity; }
 	Vector3& getVelocity() { return m_velocity; }
 	void setVelocity(Vector3 const& velocity) { m_velocity = velocity; };
+
+	Vector3 const& getAngularVelocity() const { return m_angularVelocity; }
+	Vector3& getAngularVelocity() { return m_angularVelocity; }
+
+	void resolveCollision(Collision const& collision);
+
+	Matrix3x3 getMomentOfInertiaInverse() const;
 
 	AxisAlignedBox const& getLocalBox() const { return m_localBox; }
 	void setLocalBox(AxisAlignedBox const& localBox);
