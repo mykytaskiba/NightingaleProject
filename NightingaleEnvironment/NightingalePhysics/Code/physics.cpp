@@ -21,6 +21,8 @@ void Physics::update(TTimePhys frameDelta)
 
 	while (m_accumulatedTime >= m_updateRate) {
 		m_accumulatedTime += -m_updateRate;
+
+
 		subUpdate(m_updateRate);
 
 		++updatesThisFrame;
@@ -52,8 +54,8 @@ void Physics::subUpdate(TTimePhys deltaT)
 
 	//Collision check step
 	m_spatialStructure.queryPairs(
-		[this](PhysicsBody& body, PhysicsBody& other) {
-			resolvePossibleCollision(body, other);
+		[this, deltaT](PhysicsBody& body, PhysicsBody& other) {
+			resolvePossibleCollision(body, other, deltaT);
 		}
 	);
 
@@ -79,14 +81,20 @@ void Physics::addAccumulatedTime(TTimePhys addedTime) {
 	m_accumulatedTime += addedTime;
 }
 
-void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
+void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other, TTimePhys deltaT)
 {
 	++m_infoSpatialPairsCount;
 
 	if (!body.hasShape() || !other.hasShape()) {
-		//would this ever be the case?
+		//TO DO: would this ever be the case?
 		return;
 	}
+
+	if (body.isImmovable() && other.isImmovable()) {
+		//TO DO: would this ever be the case?
+		return;
+	}
+
 
 	if (!broadPhase(body, other)) {
 		return;
@@ -97,9 +105,17 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
 		return;
 	}
 
+	float correctionFactor = 0.5f;
+	if (body.isImmovable()) {
+		correctionFactor = 0.0f;
+	}
+	else if (other.isImmovable()) {
+		correctionFactor = 1.0f;
+	}
+
 	//Sink correction
-	body.setPosition( body.getPosition() + (collision.m_normal * collision.m_depth * 0.5f) );
-	other.setPosition(other.getPosition() - (collision.m_normal * collision.m_depth * 0.5f) );
+	body.setPosition(body.getPosition() + (collision.m_normal * collision.m_depth * correctionFactor));
+	other.setPosition(other.getPosition() - (collision.m_normal * collision.m_depth * (1.0f - correctionFactor)));
 	
 	Matrix3x3 invInertia = body.getMomentOfInertiaInverse();
 	Matrix3x3 invInertiaOther = other.getMomentOfInertiaInverse();
@@ -112,28 +128,66 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other)
 
 	Vector3 relativeVelocity = pointVelocity - pointVelocityOther;
 
+	float restitution = m_restitution; //TO DO: currently using a global value
+
 	//impulse scalar
 	float velocityAlongNormal = (relativeVelocity).dot(collision.m_normal);
-	if (velocityAlongNormal > 0.0f) return;
+	if (velocityAlongNormal > 0.0f) {
+		return;
+	}
+	else {
+		if (collision.m_depth > 0.02f) {
+			restitution = 0.0f;
+		}
+	}
 	
-	float restitution = m_restitution; //TO DO: currently using a global value
 
 	float angularTermA = (invInertia * relativePoint.cross(collision.m_normal)).cross(relativePoint).dot(collision.m_normal);
 	float angularTermB = (invInertiaOther * relativePointOther.cross(collision.m_normal)).cross(relativePointOther).dot(collision.m_normal);
+	if (!m_bEnableRotationCalculations) {
+		angularTermA = 0.0f;
+		angularTermB = 0.0f;
+	}
 
-	float j = -(1.0f + restitution) * velocityAlongNormal;
-	j /= (1.0f / body.getMass()) + (1.0f / other.getMass()) + angularTermA + angularTermB;
+	float invAMass = body.isImmovable() ? 0.0f : 1.0f / body.getMass();
+	float invBMass = other.isImmovable() ? 0.0f : 1.0f / other.getMass();
+
+	float slop = 0.01f;
+	float bias = 0.1f;
+	float baumgarteBias = bias / deltaT * std::max(0.0f, collision.m_depth - slop);
+
+	float j = -(1.0f + restitution) * velocityAlongNormal + baumgarteBias;
+
+
+	j /= invAMass + invBMass + angularTermA + angularTermB;
 
 	Vector3 impulse = j * collision.m_normal;
-	body.addImpulse(impulse);
-	body.addAngularImpulse(invInertia * relativePoint.cross(impulse));
 
-	other.addImpulse(impulse * -1.0f);
-	other.addAngularImpulse(invInertiaOther * relativePoint.cross(impulse * -1.0f));
+	if (!body.isImmovable()) {
+		body.addImpulse(impulse);
+		if (m_bEnableRotationCalculations) body.addAngularImpulse(invInertia * relativePoint.cross(impulse));
+
+		if (m_bInfoCollectCollisionPoints) {
+			InfoCollisionPoint infoPoint{};
+			infoPoint.point = collision.m_point;
+			infoPoint.force = impulse;
+			collisionPoints.push_back(infoPoint);
+		}
+	}
+
+	if (!other.isImmovable()) {
+		other.addImpulse(-1.0f * impulse);
+		if (m_bEnableRotationCalculations) other.addAngularImpulse((invInertiaOther * relativePointOther.cross(-1.0f * impulse)));
+
+		if (m_bInfoCollectCollisionPoints) {
+			InfoCollisionPoint infoPoint{};
+			infoPoint.point = collision.m_point;
+			infoPoint.force = -1.0f * impulse;
+			collisionPoints.push_back(infoPoint);
+		}
+	}
 
 
-	//body.setVelocity(Vector3(0, 0, 0));
-	//other.setVelocity(Vector3(0, 0, 0));
 }
 
 bool Physics::broadPhase(PhysicsBody& body, PhysicsBody& other)
@@ -224,7 +278,7 @@ Collision Physics::boxOnBox(PhysicsBody& body, PhysicsBody& other)
 	Vector3 toVec = other.getPosition() - body.getPosition();
 
 	for (Vector3 L : axisToTest) {
-		if (L.magnitude_squared() < 0.001f) continue; // Skip parallel edges
+		if (L.magnitude_squared() < 0.01f) continue; // Skip parallel edges
 		L.normalize_equal();
 
 

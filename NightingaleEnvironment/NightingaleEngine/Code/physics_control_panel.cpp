@@ -31,6 +31,9 @@ void PhysicsControlPanel::render_update()
         if (ImGui::Button("Case Box On 45Box")) {
             caseBoxOnWeirdBox(true);
         }
+        if (ImGui::Button("Case Box On 45Plane")) {
+            caseBoxOnWeirdBox(false, true);
+        }
         if (ImGui::Button("Case Sphere On Sphere")) {
             caseSphereOnSphere();
         }
@@ -53,6 +56,11 @@ void PhysicsControlPanel::render_update()
                 EngineFunctions::Renderer().registerRenderPass(pDebugPass);
             }
         }
+    }
+
+    ImGui::Text("Point Number: %i", physics.collisionPoints.size());
+    if (ImGui::Button("Clear Accumulated Points")) {
+        physics.collisionPoints.clear();
     }
 
     ImGui::Separator();
@@ -198,9 +206,10 @@ void PhysicsControlPanel::caseSphereOnSphere()
 
     EngineFunctions::AssignRenderNode(pBigSphere, pBigSphereRenderNode);
     pBigSphere->getTransform().scale = Vector3{ 5.0f,5.0f,5.0f };
+    pBigSphere->getPhysicsBody()->setImmovable(true);
 }
 
-void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird)
+void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird, bool b45DegreePlane)
 {
     EngineFunctions::physics().setActive(false);
     EngineFunctions::scene().clearScene();
@@ -264,6 +273,7 @@ void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird)
         pGameObject->getPhysicsBody()->setLocalBox(AxisAlignedBox({ 0,0,0 }, boxSize * 2.0f * localBoxFudgeFactor));
         pGameObject->getTransform().position = position;
         if (b45Degree) pGameObject->getTransform().rotation = degree45Quat;
+        if (b45DegreePlane) pGameObject->getTransform().rotation = Quaternion(0.3827, 0, 0, 0.9239);
         pGameObject->getTransform().scale = boxSize;
 
         BoxShape* pShape = new BoxShape();
@@ -271,6 +281,7 @@ void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird)
         pGameObject->getPhysicsBody()->setShape(pShape);
         pGameObject->getPhysicsBody()->setGravity(bGravity);
         pGameObject->getPhysicsBody()->setMass(mass);
+        pGameObject->getPhysicsBody()->setImmovable(true);
     }
 
 }

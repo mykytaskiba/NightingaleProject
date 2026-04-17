@@ -36,6 +36,7 @@ private:
 
 	float m_restitution{ 0.1f };
 
+	//TO DO: rename this perhaps?
 	bool m_bImmovable{ false };
 
 	void calculateGlobalBox();
@@ -50,6 +51,7 @@ public:
 		visitor.popMeta();
 		visitor("velocity",m_velocity);
 		visitor("angular_velocity", m_angularVelocity);
+		visitor("immovable", m_bImmovable);
 
 		visitor("shape", m_pShape);
 
@@ -71,6 +73,9 @@ public:
 
 	void addImpulse(Vector3 const& impulse);
 	void addAngularImpulse(Vector3 const& angularImpulse);
+
+	void setImmovable(bool bImmovable) { m_bImmovable = bImmovable; }
+	bool isImmovable() const { return m_bImmovable; }
 
 	Vector3 const& getPosition() const { return m_position; }
 	Vector3& getPosition() { return m_position; }

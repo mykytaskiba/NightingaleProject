@@ -21,6 +21,6 @@ private:
 	void caseSingleSphere();
 
 	void caseSphereOnSphere();
-	void caseBoxOnWeirdBox(bool bWeird);
+	void caseBoxOnWeirdBox(bool bWeird, bool b45DegreePlane = false);
 	void caseSphereExplosion();
 };

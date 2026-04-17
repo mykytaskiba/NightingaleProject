@@ -49,6 +49,9 @@ public:
 
 	void properties(IPropertyVisitor& visitor) {
 		visitor("active", m_bActive);
+		visitor("rotation_calculations", m_bEnableRotationCalculations);
+
+		visitor("collect_collision_points", m_bInfoCollectCollisionPoints);
 
 		visitor.pushMeta(MetaData::OnChange([this]() {
 			setTargetUpdateRate(m_infoUpdatesPerSecond);
@@ -68,10 +71,19 @@ public:
 		visitor("restitution", m_restitution);
 	}
 
+	bool m_bInfoCollectCollisionPoints{ false };
+	struct InfoCollisionPoint {
+		Vector3 point;
+		Vector3 force;
+	};
+	std::vector<InfoCollisionPoint> collisionPoints{};
+
 private:
 
 	//Whether all physics are active
 	bool m_bActive{ false };
+
+	bool m_bEnableRotationCalculations{ true };
 
 	uint m_infoUpdatesPerSecond{ 0u }; //Info variable, no functional effect
 	uint m_infoSpatialPairsCount{ 0u };
@@ -93,7 +105,7 @@ private:
 	Factory<Shape> m_shapeFactory{};
 
 	//Collision resolution
-	void resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other);
+	void resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other, TTimePhys timeDelta);
 
 	bool broadPhase(PhysicsBody& body, PhysicsBody& other);
 

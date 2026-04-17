@@ -17,10 +17,17 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
             context.primitives().drawLine(pBody->getPosition(), pBody->getPosition() + pBody->getVelocity(), m_velocityArrowColor);
         }
 
-        if (pBody->getShape() != nullptr) {
+        if (m_bDrawCollisionPoints) {
+            for (auto const& collisionPoint : m_physics.collisionPoints) {
+                context.primitives().drawSphere(collisionPoint.point, 0.1f, m_collisionPointsColor);
+                context.primitives().drawLine(collisionPoint.point, collisionPoint.force.normalized() * 1.5f + collisionPoint.point, m_collisionPointsColor);
+            }
+        }
+
+        if (m_bCollisionMeshActive && pBody->getShape() != nullptr) {
             SphereShape* pSphere = dynamic_cast<SphereShape*>(pBody->getShape());
             if (pSphere != nullptr) {
-                context.primitives().drawWireSphere(pBody->getPosition(), pSphere->getRadius());
+                context.primitives().drawWireSphere(pBody->getPosition(), pSphere->getRadius(), m_collisionMeshColor);
                 continue;
             }
 
@@ -31,10 +38,11 @@ void PhysicsDebugRenderPass::executeRenderPass(GraphicsContext& context)
                 Vector3 axis3;
                 pBox->getAxisFromRotation(pBody->getRotation(), axis1, axis2, axis3);
 
-                context.primitives().drawOrientedBox(pBody->getPosition(), pBox->getHalfSize(), axis1, axis2, axis3);
-
+                context.primitives().drawOrientedBox(pBody->getPosition(), pBox->getHalfSize(), axis1, axis2, axis3, m_collisionMeshColor);
+                continue;
             }
         }
+
     }
 }
 
