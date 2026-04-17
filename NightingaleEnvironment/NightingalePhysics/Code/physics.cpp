@@ -113,9 +113,6 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other, TT
 		correctionFactor = 1.0f;
 	}
 
-	//Sink correction
-	body.setPosition(body.getPosition() + (collision.m_normal * collision.m_depth * correctionFactor));
-	other.setPosition(other.getPosition() - (collision.m_normal * collision.m_depth * (1.0f - correctionFactor)));
 	
 	Matrix3x3 invInertia = body.getMomentOfInertiaInverse();
 	Matrix3x3 invInertiaOther = other.getMomentOfInertiaInverse();
@@ -126,20 +123,13 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other, TT
 	Vector3 pointVelocity = body.getVelocity() + body.getAngularVelocity().cross(relativePoint);
 	Vector3 pointVelocityOther = other.getVelocity() + other.getAngularVelocity().cross(relativePointOther);
 
-	Vector3 relativeVelocity = pointVelocity - pointVelocityOther;
+	Vector3 relativeVelocity = pointVelocityOther - pointVelocity;
 
 	float restitution = m_restitution; //TO DO: currently using a global value
 
 	//impulse scalar
 	float velocityAlongNormal = (relativeVelocity).dot(collision.m_normal);
-	if (velocityAlongNormal > 0.0f) {
-		return;
-	}
-	else {
-		if (collision.m_depth > 0.02f) {
-			restitution = 0.0f;
-		}
-	}
+	if (velocityAlongNormal > -0.25f) { return; }
 	
 
 	float angularTermA = (invInertia * relativePoint.cross(collision.m_normal)).cross(relativePoint).dot(collision.m_normal);
@@ -164,20 +154,8 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other, TT
 	Vector3 impulse = j * collision.m_normal;
 
 	if (!body.isImmovable()) {
-		body.addImpulse(impulse);
-		if (m_bEnableRotationCalculations) body.addAngularImpulse(invInertia * relativePoint.cross(impulse));
-
-		if (m_bInfoCollectCollisionPoints) {
-			InfoCollisionPoint infoPoint{};
-			infoPoint.point = collision.m_point;
-			infoPoint.force = impulse;
-			collisionPoints.push_back(infoPoint);
-		}
-	}
-
-	if (!other.isImmovable()) {
-		other.addImpulse(-1.0f * impulse);
-		if (m_bEnableRotationCalculations) other.addAngularImpulse((invInertiaOther * relativePointOther.cross(-1.0f * impulse)));
+		body.addImpulse(-1.0f * impulse);
+		if (m_bEnableRotationCalculations) body.addAngularImpulse(invInertia * relativePoint.cross(-1.0f * impulse));
 
 		if (m_bInfoCollectCollisionPoints) {
 			InfoCollisionPoint infoPoint{};
@@ -187,6 +165,21 @@ void Physics::resolvePossibleCollision(PhysicsBody& body, PhysicsBody& other, TT
 		}
 	}
 
+	if (!other.isImmovable()) {
+		other.addImpulse(impulse);
+		if (m_bEnableRotationCalculations) other.addAngularImpulse((invInertiaOther * relativePointOther.cross(impulse)));
+
+		if (m_bInfoCollectCollisionPoints) {
+			InfoCollisionPoint infoPoint{};
+			infoPoint.point = collision.m_point;
+			infoPoint.force = impulse;
+			collisionPoints.push_back(infoPoint);
+		}
+	}
+
+	//Sink correction
+	body.setPosition(body.getPosition() - (collision.m_normal * collision.m_depth * correctionFactor));
+	other.setPosition(other.getPosition() + (collision.m_normal * collision.m_depth * (1.0f - correctionFactor)));
 
 }
 
@@ -209,28 +202,6 @@ Collision Physics::narrowPhase(PhysicsBody& body, PhysicsBody& other)
 	}
 
 	assert(false);
-	return Collision();
-}
-
-Collision Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
-{
-	SphereShape* pSphere = dynamic_cast<SphereShape*>(body.getShape());
-	SphereShape* pOtherSphere = dynamic_cast<SphereShape*>(other.getShape());
-
-	if (pSphere == nullptr || pOtherSphere == nullptr) {
-		assert(false);
-		return Collision();
-	}
-
-	Vector3 toVec = body.getPosition() - other.getPosition();
-	
-	float radiusSum = pSphere->getRadius() + pOtherSphere->getRadius();
-
-	if (toVec.magnitude() < radiusSum) {
-		Vector3 collisionPoint = body.getPosition() + other.getPosition() + toVec.normalized() * (pSphere->getRadius() + -1.0f * pOtherSphere->getRadius());
-		collisionPoint /= 2.0f;
-		return Collision(collisionPoint, toVec.normalized(), radiusSum - toVec.magnitude());
-	}
 	return Collision();
 }
 
@@ -307,7 +278,7 @@ Collision Physics::boxOnBox(PhysicsBody& body, PhysicsBody& other)
 	if (d.dot(bestAxis) < 0) bestAxis = -1.0f * bestAxis; // Ensure normal points A -> B
 
 	result.m_bCollision = true;
-	result.m_normal = -1.0f * bestAxis;
+	result.m_normal = bestAxis.normalized();
 	result.m_depth = minOverlap;
 
 	Vector3 point1 = GetSupportPoint(axisToTest[0], axisToTest[1], axisToTest[2], pBox->getHalfSize(), body.getPosition(), bestAxis);
@@ -318,6 +289,28 @@ Collision Physics::boxOnBox(PhysicsBody& body, PhysicsBody& other)
 }
 
 
+
+Collision Physics::sphereOnSphere(PhysicsBody& body, PhysicsBody& other)
+{
+	SphereShape* pSphere = dynamic_cast<SphereShape*>(body.getShape());
+	SphereShape* pOtherSphere = dynamic_cast<SphereShape*>(other.getShape());
+
+	if (pSphere == nullptr || pOtherSphere == nullptr) {
+		assert(false);
+		return Collision();
+	}
+
+	Vector3 toVec = other.getPosition() - body.getPosition();
+
+	float radiusSum = pSphere->getRadius() + pOtherSphere->getRadius();
+
+	if (toVec.magnitude() < radiusSum) {
+		Vector3 collisionPoint = body.getPosition() + other.getPosition() + toVec.normalized() * (pSphere->getRadius() + -1.0f * pOtherSphere->getRadius());
+		collisionPoint /= 2.0f;
+		return Collision(collisionPoint, toVec.normalized(), radiusSum - toVec.magnitude());
+	}
+	return Collision();
+}
 void Physics::addBody(PhysicsBody* pBody)
 {
 	m_vActiveBodies.push_back(pBody);

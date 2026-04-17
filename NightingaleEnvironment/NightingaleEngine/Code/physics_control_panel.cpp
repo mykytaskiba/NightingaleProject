@@ -25,6 +25,9 @@ void PhysicsControlPanel::render_update()
     ImGui::Spacing();
 
     if (ImGui::TreeNodeEx("Test Cases", ImGuiTreeNodeFlags_NoTreePushOnOpen)) {
+
+        ImGui::Checkbox("Spawn Immovables", &m_bSpawnImmovables);
+
         if (ImGui::Button("Case Box On Box")) {
             caseBoxOnWeirdBox(false);
         }
@@ -206,7 +209,7 @@ void PhysicsControlPanel::caseSphereOnSphere()
 
     EngineFunctions::AssignRenderNode(pBigSphere, pBigSphereRenderNode);
     pBigSphere->getTransform().scale = Vector3{ 5.0f,5.0f,5.0f };
-    pBigSphere->getPhysicsBody()->setImmovable(true);
+    pBigSphere->getPhysicsBody()->setImmovable(m_bSpawnImmovables);
 }
 
 void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird, bool b45DegreePlane)
@@ -251,7 +254,7 @@ void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird, bool b45DegreePlane)
 
     {
         Vector3 position{ 0.0f,-1.0f,0.0f };
-        Vector3 boxSize{ 10.0f, 1.0f,10.0f };
+        Vector3 boxSize{ 3.0f, 3.0f,3.0f };
         float localBoxFudgeFactor = 1.414f;
         float mass = 15.0f;
         bool bGravity = false;
@@ -281,7 +284,7 @@ void PhysicsControlPanel::caseBoxOnWeirdBox(bool bWeird, bool b45DegreePlane)
         pGameObject->getPhysicsBody()->setShape(pShape);
         pGameObject->getPhysicsBody()->setGravity(bGravity);
         pGameObject->getPhysicsBody()->setMass(mass);
-        pGameObject->getPhysicsBody()->setImmovable(true);
+        pGameObject->getPhysicsBody()->setImmovable(m_bSpawnImmovables);
     }
 
 }
